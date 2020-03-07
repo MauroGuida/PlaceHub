@@ -18,13 +18,13 @@ CREATE TABLE Recensione(
   Testo VARCHAR(2000) NOT NULL,
   Stelle INTEGER NOT NULL,
   CodRecensione SERIAL PRIMARY KEY,
-  CodAttività INTEGER FOREIGN KEY REFERENCES Attività(codAttivita),
-  CodUser INTEGER FOREIGN KEY REFERENCES User(codUser)
+  CodAttività INTEGER FOREIGN KEY REFERENCES Attività(codAttivita) ON DELETE CASCADE,
+  CodUser INTEGER FOREIGN KEY REFERENCES User(codUser) ON DELETE CASCADE
 );
 
 CREATE TABLE ImmagineRecensione(
   Url VARCHAR(1000) NOT NULL,
-  codRecensione INTEGER FOREIGN KEY REFERENCES Recensione(CodRecensione)
+  codRecensione INTEGER FOREIGN KEY REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
 
 CREATE TABLE Attività(
@@ -34,12 +34,12 @@ CREATE TABLE Attività(
   PartitaIVA VARCHAR(100) NOT NULL,
   Tipo ENUM ('Ristorante','Intrattenimento','Alloggio'),
   Descrizione VARCHAR(2000) NOT NULL,
-  codUser INTEGER FOREIGN KEY REFERENCES User(codUser)
+  codUser INTEGER FOREIGN KEY REFERENCES User(codUser) ON DELETE CASCADE
 );
 
 CREATE TABLE ImmagineProprietà(
   Url VARCHAR(1000) PRIMARY KEY,
-  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita)
+  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita) ON DELETE CASCADE
 );
 
 CREATE TABLE Tag(
@@ -47,8 +47,8 @@ CREATE TABLE Tag(
 );
 
 CREATE TABLE Associazione_Tag(
-  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita),
-  parola VARCHAR(50) FOREIGN KEY REFERENCES Tag(parola)
+  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita) ON DELETE CASCADE,
+  parola VARCHAR(50) FOREIGN KEY REFERENCES Tag(parola) ON DELETE CASCADE
 );
 
 CREATE TABLE RaffinazioneTipo(
@@ -58,7 +58,7 @@ CREATE TABLE RaffinazioneTipo(
 );
 
 CREATE TABLE Associazione_Tipo(
-  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita),
+  codAttivita INTEGER FOREIGN KEY REFERENCES Attività(codAttivita) ON DELETE CASCADE,
   raffinazione ENUM ('Bar','Braceria','Pizzeria',
 					           'Paninoteca','Hotel','Casa Vacanze',
 					           'Cinema','ParcoGiochi','Museo','Shopping','Piscina')
