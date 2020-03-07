@@ -420,24 +420,6 @@
 									"subViews": [
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFwtJDN9uPco7k=",
-											"_parent": {
-												"$ref": "AAAAAAFwtJAvMOO0LRE="
-											},
-											"model": {
-												"$ref": "AAAAAAFwtJDNxOPZln8="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": 453,
-											"top": 958,
-											"width": 135,
-											"height": 13,
-											"text": "+CodPlace",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAFwtJDimOPj4RM=",
 											"_parent": {
 												"$ref": "AAAAAAFwtJAvMOO0LRE="
@@ -447,7 +429,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 704,
+											"top": 702,
 											"width": 135,
 											"height": 13,
 											"text": "+Parola",
@@ -458,7 +440,7 @@
 									"left": 776,
 									"top": 697,
 									"width": 145,
-									"height": 25
+									"height": 23
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -471,7 +453,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 776,
-									"top": 722,
+									"top": 720,
 									"width": 145,
 									"height": 10
 								},
@@ -1761,30 +1743,13 @@
 											"height": 13,
 											"text": "+CodBusiness",
 											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFwtOWOBa5tczQ=",
-											"_parent": {
-												"$ref": "AAAAAAFwtLZ4QeyCWec="
-											},
-											"model": {
-												"$ref": "AAAAAAFwtOWNy65kq/8="
-											},
-											"font": "Arial;13;0",
-											"left": 405,
-											"top": 501,
-											"width": 208.97119140625,
-											"height": 13,
-											"text": "+CodAffinity",
-											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 400,
 									"top": 481,
 									"width": 218.97119140625,
-									"height": 38
+									"height": 23
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1797,7 +1762,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 400,
-									"top": 519,
+									"top": 504,
 									"width": 218.97119140625,
 									"height": 10
 								},
@@ -1839,7 +1804,7 @@
 							"left": 400,
 							"top": 456,
 							"width": 218.97119140625,
-							"height": 73,
+							"height": 58,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtLZ4Qex9uVQ="
 							},
@@ -2966,8 +2931,8 @@
 												"$ref": "AAAAAAFwtMaWZ1IZFcg="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 357,
+											"left": 157,
+											"top": 93,
 											"width": 134,
 											"height": 13,
 											"text": "«enumeration»"
@@ -2979,8 +2944,8 @@
 												"$ref": "AAAAAAFwtMaWZ1IZFcg="
 											},
 											"font": "Arial;13;1",
-											"left": 253,
-											"top": 372,
+											"left": 157,
+											"top": 108,
 											"width": 134,
 											"height": 13,
 											"text": "TipoAttività"
@@ -2993,8 +2958,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 160,
-											"top": 208,
+											"left": -32,
+											"top": -320,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -3007,15 +2972,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 160,
-											"top": 208,
+											"left": -32,
+											"top": -320,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 248,
-									"top": 352,
+									"left": 152,
+									"top": 88,
 									"width": 144,
 									"height": 38,
 									"stereotypeLabel": {
@@ -3051,8 +3016,8 @@
 												"$ref": "AAAAAAFwtMbAAVLq/DU="
 											},
 											"font": "Arial;13;0",
-											"left": 85,
-											"top": 109,
+											"left": -11,
+											"top": -155,
 											"width": 63.2353515625,
 											"height": 13,
 											"text": "+Attribute1",
@@ -3061,8 +3026,8 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 80,
-									"top": 104,
+									"left": -16,
+									"top": -160,
 									"width": 73.2353515625,
 									"height": 23
 								},
@@ -3077,8 +3042,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 80,
-									"top": 104,
+									"left": -16,
+									"top": -160,
 									"width": 10,
 									"height": 10
 								},
@@ -3093,8 +3058,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 80,
-									"top": 104,
+									"left": -16,
+									"top": -160,
 									"width": 10,
 									"height": 10
 								},
@@ -3109,8 +3074,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 80,
-									"top": 104,
+									"left": -16,
+									"top": -160,
 									"width": 10,
 									"height": 10
 								},
@@ -3134,8 +3099,8 @@
 												"$ref": "AAAAAAFwtMbTflNo0dk="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 395,
+											"left": 157,
+											"top": 131,
 											"width": 134,
 											"height": 13,
 											"text": "Ristorante",
@@ -3151,8 +3116,8 @@
 												"$ref": "AAAAAAFwtMbs3lQFLm8="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 410,
+											"left": 157,
+											"top": 146,
 											"width": 134,
 											"height": 13,
 											"text": "Alloggi",
@@ -3168,8 +3133,8 @@
 												"$ref": "AAAAAAFwtMchN1R16J8="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 425,
+											"left": 157,
+											"top": 161,
 											"width": 134,
 											"height": 13,
 											"text": "Intrattenimento",
@@ -3177,16 +3142,16 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 248,
-									"top": 390,
+									"left": 152,
+									"top": 126,
 									"width": 144,
 									"height": 53
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 248,
-							"top": 352,
+							"left": 152,
+							"top": 88,
 							"width": 144,
 							"height": 91,
 							"nameCompartment": {
@@ -3237,9 +3202,9 @@
 												"$ref": "AAAAAAFwtMgMBFe9vrw="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 461,
-											"width": 119,
+											"left": 157,
+											"top": 189,
+											"width": 135,
 											"height": 13,
 											"text": "«enumeration»"
 										},
@@ -3250,9 +3215,9 @@
 												"$ref": "AAAAAAFwtMgMBFe9vrw="
 											},
 											"font": "Arial;13;1",
-											"left": 253,
-											"top": 476,
-											"width": 119,
+											"left": 157,
+											"top": 204,
+											"width": 135,
 											"height": 13,
 											"text": "TipiAffinazione"
 										},
@@ -3264,8 +3229,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -112,
-											"top": 416,
+											"left": -304,
+											"top": -128,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -3278,16 +3243,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -112,
-											"top": 416,
+											"left": -304,
+											"top": -128,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 248,
-									"top": 456,
-									"width": 129,
+									"left": 152,
+									"top": 184,
+									"width": 145,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFwtMgMBFe+GcQ="
@@ -3313,8 +3278,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -56,
-									"top": 208,
+									"left": -152,
+									"top": -64,
 									"width": 10,
 									"height": 10
 								},
@@ -3329,8 +3294,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -56,
-									"top": 208,
+									"left": -152,
+									"top": -64,
 									"width": 10,
 									"height": 10
 								},
@@ -3345,8 +3310,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -56,
-									"top": 208,
+									"left": -152,
+									"top": -64,
 									"width": 10,
 									"height": 10
 								},
@@ -3361,8 +3326,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -56,
-									"top": 208,
+									"left": -152,
+									"top": -64,
 									"width": 10,
 									"height": 10
 								},
@@ -3386,9 +3351,9 @@
 												"$ref": "AAAAAAFwtMgvB1h+4Ys="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 499,
-											"width": 119,
+											"left": 157,
+											"top": 227,
+											"width": 135,
 											"height": 13,
 											"text": "Bar",
 											"horizontalAlignment": 0
@@ -3403,27 +3368,214 @@
 												"$ref": "AAAAAAFwtMg9/VlIsWg="
 											},
 											"font": "Arial;13;0",
-											"left": 253,
-											"top": 514,
-											"width": 119,
+											"left": 157,
+											"top": 242,
+											"width": 135,
 											"height": 13,
 											"text": "Braceria",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcX9leKA2t0=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcX9XOJuK5U="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 257,
+											"width": 135,
+											"height": 13,
+											"text": "Pizzeria",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcYggONZ2cw=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcYgT+NHeII="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 272,
+											"width": 135,
+											"height": 13,
+											"text": "Paninoteca",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcYuDuPzENU=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcYt9+Phdyw="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 287,
+											"width": 135,
+											"height": 13,
+											"text": "Casa Vacanze",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcbxYeUns3Y=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcbxSuUVuoA="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 302,
+											"width": 135,
+											"height": 13,
+											"text": "Hotel",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtca0juSNL5k=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtca0d+R7vtM="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 317,
+											"width": 135,
+											"height": 13,
+											"text": "Cinema",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtccQT+YrtLE=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtccQIeYZQto="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 332,
+											"width": 135,
+											"height": 13,
+											"text": "Lusso",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcc56ubFITg=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcc5teaztcM="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 347,
+											"width": 135,
+											"height": 13,
+											"text": "Gourmet",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtcdyTeeKlRg=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtcdyN+d4ct8="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 362,
+											"width": 135,
+											"height": 13,
+											"text": "Museo",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtceIJegkqok=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtceIDugSxEc="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 377,
+											"width": 135,
+											"height": 13,
+											"text": "Shopping",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtchN7+v6r7o=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtchNvuvoPQg="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 392,
+											"width": 135,
+											"height": 13,
+											"text": "Parco Divertimenti",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLEnumerationLiteralView",
+											"_id": "AAAAAAFwtch9Su2741Y=",
+											"_parent": {
+												"$ref": "AAAAAAFwtMgMBFfG974="
+											},
+											"model": {
+												"$ref": "AAAAAAFwtch9G+2pzTE="
+											},
+											"font": "Arial;13;0",
+											"left": 157,
+											"top": 407,
+											"width": 135,
+											"height": 13,
+											"text": "Piscina",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 248,
-									"top": 494,
-									"width": 129,
-									"height": 38
+									"left": 152,
+									"top": 222,
+									"width": 145,
+									"height": 203
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 248,
-							"top": 456,
-							"width": 129,
-							"height": 76,
+							"left": 152,
+							"top": 184,
+							"width": 145,
+							"height": 241,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtMgMBFe9vrw="
 							},
@@ -4671,7 +4823,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -128,
+											"left": -208,
 											"top": 64,
 											"height": 13
 										},
@@ -4682,9 +4834,9 @@
 												"$ref": "AAAAAAFwtOQMIKXN9sc="
 											},
 											"font": "Arial;13;1",
-											"left": 445,
+											"left": 405,
 											"top": 343,
-											"width": 125.68359375,
+											"width": 208.97119140625,
 											"height": 13,
 											"text": "Associazione_Tipo"
 										},
@@ -4696,7 +4848,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -128,
+											"left": -208,
 											"top": 64,
 											"width": 73.67724609375,
 											"height": 13,
@@ -4710,16 +4862,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -128,
+											"left": -208,
 											"top": 64,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 440,
+									"left": 400,
 									"top": 336,
-									"width": 135.68359375,
+									"width": 218.97119140625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFwtOQMIKXOh20="
@@ -4754,11 +4906,11 @@
 												"$ref": "AAAAAAFwtOYHVLHhbOk="
 											},
 											"font": "Arial;13;0",
-											"left": 445,
+											"left": 405,
 											"top": 366,
-											"width": 125.68359375,
+											"width": 208.97119140625,
 											"height": 13,
-											"text": "+CodAffinity",
+											"text": "+Raffinazione: Enum TipiAffinazione",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4771,18 +4923,18 @@
 												"$ref": "AAAAAAFwtOYdZrK6JUU="
 											},
 											"font": "Arial;13;0",
-											"left": 445,
+											"left": 405,
 											"top": 381,
-											"width": 125.68359375,
+											"width": 208.97119140625,
 											"height": 13,
-											"text": "+codAttivita",
+											"text": "+CodAttivita",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 440,
+									"left": 400,
 									"top": 361,
-									"width": 135.68359375,
+									"width": 218.97119140625,
 									"height": 38
 								},
 								{
@@ -4795,9 +4947,9 @@
 										"$ref": "AAAAAAFwtOQMH6XKvPI="
 									},
 									"font": "Arial;13;0",
-									"left": 440,
+									"left": 400,
 									"top": 399,
-									"width": 135.68359375,
+									"width": 218.97119140625,
 									"height": 10
 								},
 								{
@@ -4811,7 +4963,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -64,
+									"left": -104,
 									"top": 32,
 									"width": 10,
 									"height": 10
@@ -4827,7 +4979,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -64,
+									"left": -104,
 									"top": 32,
 									"width": 10,
 									"height": 10
@@ -4835,9 +4987,9 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 440,
+							"left": 400,
 							"top": 336,
-							"width": 135.68359375,
+							"width": 218.97119140625,
 							"height": 73,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtOQMIKXN9sc="
@@ -4871,7 +5023,7 @@
 							"tail": {
 								"$ref": "AAAAAAFwtOQMIKXMkR8="
 							},
-							"points": "576:368;664:368;664:481;680:481"
+							"points": "619:368;664:368;664:481;680:481"
 						}
 					]
 				},
@@ -4984,7 +5136,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "Nome"
+							"name": "Nome",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4992,7 +5145,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "Indirizzo"
+							"name": "Indirizzo",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5000,7 +5154,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "Partita IVA"
+							"name": "Partita IVA",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5017,7 +5172,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "Descrizione"
+							"name": "Descrizione",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5025,7 +5181,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "CodAttivita"
+							"name": "CodAttivita",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5048,20 +5205,12 @@
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
-							"_id": "AAAAAAFwtJDNxOPZln8=",
-							"_parent": {
-								"$ref": "AAAAAAFwtJAvL+OsFrk="
-							},
-							"name": "CodPlace",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
 							"_id": "AAAAAAFwtJDiguPgV6I=",
 							"_parent": {
 								"$ref": "AAAAAAFwtJAvL+OsFrk="
 							},
-							"name": "Parola"
+							"name": "Parola",
+							"type": ""
 						}
 					]
 				},
@@ -5143,7 +5292,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Nome"
+							"name": "Nome",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5151,7 +5301,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Cognome"
+							"name": "Cognome",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5168,7 +5319,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Data di Nascita"
+							"name": "Data di Nascita",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5194,7 +5346,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Immagine"
+							"name": "Immagine",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5236,7 +5389,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJprO+mKVRo="
 							},
-							"name": "CodAttivita"
+							"name": "CodAttivita",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5244,7 +5398,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJprO+mKVRo="
 							},
-							"name": "Parola"
+							"name": "Parola",
+							"type": ""
 						}
 					]
 				},
@@ -5280,15 +5435,6 @@
 								"$ref": "AAAAAAFwtLZ4Qex6pXA="
 							},
 							"name": "CodBusiness",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFwtOWNy65kq/8=",
-							"_parent": {
-								"$ref": "AAAAAAFwtLZ4Qex6pXA="
-							},
-							"name": "CodAffinity",
 							"type": ""
 						}
 					]
@@ -5371,7 +5517,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "Testo"
+							"name": "Testo",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5379,7 +5526,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "Stelle"
+							"name": "Stelle",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5387,7 +5535,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodRecensione"
+							"name": "CodRecensione",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5395,7 +5544,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodAttivita"
+							"name": "CodAttivita",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5476,6 +5626,94 @@
 								"$ref": "AAAAAAFwtMgMBFe68ws="
 							},
 							"name": "Braceria"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcX9XOJuK5U=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Pizzeria"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcYgT+NHeII=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Paninoteca"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcYt9+Phdyw=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Casa Vacanze"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcbxSuUVuoA=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Hotel"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtca0d+R7vtM=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Cinema"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtccQIeYZQto=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Lusso"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcc5teaztcM=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Gourmet"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtcdyN+d4ct8=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Museo"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtceIDugSxEc=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Shopping"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtchNvuvoPQg=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Parco Divertimenti"
+						},
+						{
+							"_type": "UMLEnumerationLiteral",
+							"_id": "AAAAAAFwtch9G+2pzTE=",
+							"_parent": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							},
+							"name": "Piscina"
 						}
 					]
 				},
@@ -5502,7 +5740,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNN4qXAGmz4="
 							},
-							"name": "CodAttivita"
+							"name": "CodAttivita",
+							"type": ""
 						}
 					]
 				},
@@ -5535,7 +5774,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNTrsHa8hJk="
 							},
-							"name": "Fronte documento"
+							"name": "Fronte documento",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5543,7 +5783,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNTrsHa8hJk="
 							},
-							"name": "Retro documento"
+							"name": "Retro documento",
+							"type": ""
 						}
 					]
 				},
@@ -5570,7 +5811,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNuW+JHgIkw="
 							},
-							"name": "CodRecensione"
+							"name": "CodRecensione",
+							"type": ""
 						}
 					]
 				},
@@ -5603,8 +5845,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtOQMH6XKvPI="
 							},
-							"name": "CodAffinity",
-							"type": ""
+							"name": "Raffinazione",
+							"type": "Enum TipiAffinazione"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5612,7 +5854,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtOQMH6XKvPI="
 							},
-							"name": "codAttivita"
+							"name": "CodAttivita"
 						}
 					]
 				}
