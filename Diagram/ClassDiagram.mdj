@@ -2140,7 +2140,7 @@
 											"top": 207,
 											"width": 183,
 											"height": 13,
-											"text": "Recensioni"
+											"text": "Recensione"
 										},
 										{
 											"_type": "LabelView",
@@ -3005,31 +3005,12 @@
 									"model": {
 										"$ref": "AAAAAAFwtMaWZlIWsVI="
 									},
-									"subViews": [
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFwtMbAOVL8/v8=",
-											"_parent": {
-												"$ref": "AAAAAAFwtMaWaFIefRQ="
-											},
-											"model": {
-												"$ref": "AAAAAAFwtMbAAVLq/DU="
-											},
-											"font": "Arial;13;0",
-											"left": -11,
-											"top": -155,
-											"width": 63.2353515625,
-											"height": 13,
-											"text": "+Attribute1",
-											"horizontalAlignment": 0
-										}
-									],
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
 									"top": -160,
 									"width": 73.2353515625,
-									"height": 23
+									"height": 10
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -5405,14 +5386,6 @@
 				},
 				{
 					"_type": "UMLClass",
-					"_id": "AAAAAAFwtLXvu+tAFsY=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Class1"
-				},
-				{
-					"_type": "UMLClass",
 					"_id": "AAAAAAFwtLZ4Qex6pXA=",
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
@@ -5445,7 +5418,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Recensioni",
+					"name": "Recensione",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5565,17 +5538,6 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "TipoAttività",
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFwtMbAAVLq/DU=",
-							"_parent": {
-								"$ref": "AAAAAAFwtMaWZlIWsVI="
-							},
-							"name": "Attribute1",
-							"type": ""
-						}
-					],
 					"literals": [
 						{
 							"_type": "UMLEnumerationLiteral",
