@@ -19,9 +19,12 @@ public class SchermataAccesso extends JFrame {
 	public SchermataAccesso(Controller Ctrl) {
 		this.ctrl=Ctrl;
 		
-		setVisible(true);
+		setLocationRelativeTo(null);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setSize(1100,650);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

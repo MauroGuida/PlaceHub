@@ -6,6 +6,7 @@ import gui.SchermataAccesso;
 
 public class Controller {
 
+	private static SchermataAccesso schermataAccessoFrame;
 	//Inizializzazione programma
 
 	public static void main(String[] args) {
@@ -13,7 +14,8 @@ public class Controller {
 			public void run() {
 				try {
 					Controller ctrl = new Controller();
-					SchermataAccesso schermataAccessoFrame = new SchermataAccesso(ctrl);
+					schermataAccessoFrame = new SchermataAccesso(ctrl);
+					schermataAccessoFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
