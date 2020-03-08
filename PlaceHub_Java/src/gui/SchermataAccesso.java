@@ -73,7 +73,7 @@ public class SchermataAccesso extends JFrame {
 		
 		gestioneRotazioneImmagini(immaginiSinsitra);
 	}
-
+	
 	private void gestioneRotazioneImmagini(JLabel immaginiSinsitra) {
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
