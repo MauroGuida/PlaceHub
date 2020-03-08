@@ -29,10 +29,12 @@ public class SchermataAccesso extends JFrame {
 	
 	private Controller ctrl;
 	
-	private JPanel contentPane;
+	private JPanel pannelloInferiore;
+	
 	private JPanel panelloBottoni;
 	private JButton bottoneMinimizza;
 	private JButton bottoneEsci;
+	
 	private JPanel panelloLogin;
 	private JButton bottoneAccedi;
 	private JLabel testoPasswordDimenticata;
@@ -45,6 +47,9 @@ public class SchermataAccesso extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel lineaUsername;
 	private JLabel lineaPassword;
+	
+	private JLabel immaginiSinsitra;
+	
 	private int coordinataX;
 	private int coordinataY;
 	
@@ -59,44 +64,40 @@ public class SchermataAccesso extends JFrame {
 	}
 
 	private void generaPannelloBackground() {
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.GRAY);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		pannelloInferiore = new JPanel();
+		pannelloInferiore.setBackground(Color.GRAY);
+		pannelloInferiore.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pannelloInferiore);
+		pannelloInferiore.setLayout(null);
 		
-		JLabel immaginiSinsitra = new JLabel("");
+		immaginiSinsitra = new JLabel("");
 		immaginiSinsitra.setHorizontalAlignment(SwingConstants.CENTER);
-		immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/1.png")));
 		immaginiSinsitra.setBounds(0, 0, 550, 650);
-		contentPane.add(immaginiSinsitra);
+		pannelloInferiore.add(immaginiSinsitra);
 		
-		gestioneRotazioneImmagini(immaginiSinsitra);
+		gestioneRotazioneImmagini();
 	}
 	
-	private void gestioneRotazioneImmagini(JLabel immaginiSinsitra) {
+	private void gestioneRotazioneImmagini() {
 		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			int i=2;
+		timer.scheduleAtFixedRate(new TimerTask() {
+			private int i=1;
 			  @Override
 			  public void run() {
-					immaginiSinsitra.setHorizontalAlignment(SwingConstants.RIGHT);
 					immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
-					immaginiSinsitra.setBounds(0, 0, 550, 650);
-					contentPane.add(immaginiSinsitra);
 					if(i<3)
-						i=i+1;
+						i++;
 					else
 						i=1;
 			  }
-			}, 5000); //NON VA IN LOOP
+		}, 0, 5000);
 	}
 
 	private void generaPannelloLogin() {
 		panelloLogin = new JPanel();
 		panelloLogin.setBackground(Color.WHITE);
 		panelloLogin.setBounds(550, 0, 550, 650);
-		contentPane.add(panelloLogin);
+		pannelloInferiore.add(panelloLogin);
 		panelloLogin.setLayout(null);
 		
 		//Piazza il logo
@@ -219,13 +220,13 @@ public class SchermataAccesso extends JFrame {
 		panelloBottoni = new JPanel();
 		panelloBottoni.setBackground(Color.WHITE);
 		panelloBottoni.setBounds(550, 0, 550, 36);
-		contentPane.add(panelloBottoni);
+		pannelloInferiore.add(panelloBottoni);
 		panelloBottoni.setLayout(null);
 		
 		bottoneEsci = new JButton("");
 		bottoneEsci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
+				System.exit(0);
 			}
 		});
 		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
