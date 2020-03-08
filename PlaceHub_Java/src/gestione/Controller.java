@@ -16,6 +16,7 @@ public class Controller {
 					Controller ctrl = new Controller();
 					schermataAccessoFrame = new SchermataAccesso(ctrl);
 					schermataAccessoFrame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
