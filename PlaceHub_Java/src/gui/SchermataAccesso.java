@@ -107,21 +107,6 @@ public class SchermataAccesso extends JFrame {
 		generaPannelloReimpostaPassword();
 	}
 	
-	private void generaPannelloBackground() {
-		pannelloInferiore = new JPanel();
-		pannelloInferiore.setBackground(Color.GRAY);
-		pannelloInferiore.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(pannelloInferiore);
-		pannelloInferiore.setLayout(null);
-		
-		immaginiSinsitra = new JLabel("");
-		immaginiSinsitra.setHorizontalAlignment(SwingConstants.CENTER);
-		immaginiSinsitra.setBounds(0, 0, 550, 650);
-		pannelloInferiore.add(immaginiSinsitra);
-		
-		gestioneRotazioneImmagini();
-	}
-	
 	private void layoutGeneraleFinestra() {
 		setLocationRelativeTo(null);
 		gestioneRiposizionamentoFinestra();
@@ -151,6 +136,36 @@ public class SchermataAccesso extends JFrame {
             }
         });
     }
+	
+	private void generaPannelloBackground() {
+		pannelloInferiore = new JPanel();
+		pannelloInferiore.setBackground(Color.GRAY);
+		pannelloInferiore.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pannelloInferiore);
+		pannelloInferiore.setLayout(null);
+		
+		immaginiSinsitra = new JLabel("");
+		immaginiSinsitra.setHorizontalAlignment(SwingConstants.CENTER);
+		immaginiSinsitra.setBounds(0, 0, 550, 650);
+		pannelloInferiore.add(immaginiSinsitra);
+		
+		gestioneRotazioneImmagini();
+	}
+	
+	private void gestioneRotazioneImmagini() {
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			private int i=1;
+			  @Override
+			  public void run() {
+					immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
+					if(i<3)
+						i++;
+					else
+						i=1;
+			  }
+		}, 0, 5000);
+	}
 
 	private void generaPannelloReimpostaPassword() {
 		pannelloReimpostaPassword = new JPanel();
@@ -288,21 +303,6 @@ public class SchermataAccesso extends JFrame {
 		bottoneConfermaReimpostaPassword.setBorderPainted(false);
 		bottoneConfermaReimpostaPassword.setContentAreaFilled(false);
 		pannelloReimpostaPassword.add(bottoneConfermaReimpostaPassword);
-	}
-	
-	private void gestioneRotazioneImmagini() {
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			private int i=1;
-			  @Override
-			  public void run() {
-					immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
-					if(i<3)
-						i++;
-					else
-						i=1;
-			  }
-		}, 0, 5000);
 	}
 
 	private void generaPannelloLogin() {
