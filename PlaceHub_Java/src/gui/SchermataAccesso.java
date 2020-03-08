@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,18 +16,21 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
 
 public class SchermataAccesso extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
+	private Controller ctrl;
+	
 	private JPanel contentPane;
 	private JPanel panelloBottoni;
-	private Controller ctrl;
 	private JButton bottoneMinimizza;
 	private JButton bottoneEsci;
 	private JPanel panelloLogin;
@@ -51,95 +52,106 @@ public class SchermataAccesso extends JFrame {
 	public SchermataAccesso(Controller Ctrl) {
 		this.ctrl=Ctrl;
 		
-		setLocationRelativeTo(null);
-		frameDrag();
-		setUndecorated(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		setSize(1100,650);
-		
+		generaPannelloBackground();
+		layoutGeneraleFinestra();
+		generaPannelloBottoni();
+		generaPannelloLogin();
+	}
+
+	private void generaPannelloBackground() {
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.RED);
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panelloBottoni = new JPanel();
-		panelloBottoni.setBackground(Color.WHITE);
-		panelloBottoni.setBounds(550, 0, 550, 36);
-		contentPane.add(panelloBottoni);
-		panelloBottoni.setLayout(null);
+		JLabel immaginiSinsitra = new JLabel("");
+		immaginiSinsitra.setHorizontalAlignment(SwingConstants.CENTER);
+		immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/1.png")));
+		immaginiSinsitra.setBounds(0, 0, 550, 650);
+		contentPane.add(immaginiSinsitra);
 		
-		bottoneEsci = new JButton("");
-		bottoneEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		
-		bottoneMinimizza = new JButton("");
-		bottoneMinimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setState(ICONIFIED);
-			}
-		});
-		bottoneMinimizza.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/minimizza.png")));
-		bottoneMinimizza.setBounds(483, 5, 25, 25);
-		bottoneMinimizza.setOpaque(false);
-		bottoneMinimizza.setContentAreaFilled(false);
-		bottoneMinimizza.setBorderPainted(false);
-		panelloBottoni.add(bottoneMinimizza);
-		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
-		bottoneEsci.setBounds(520, 8, 22, 22);
-		bottoneEsci.setBorderPainted(false);
-		bottoneEsci.setContentAreaFilled(false);
-		bottoneEsci.setOpaque(false);
-		panelloBottoni.add(bottoneEsci);
-		
+		gestioneRotazioneImmagini(immaginiSinsitra);
+	}
+
+	private void gestioneRotazioneImmagini(JLabel immaginiSinsitra) {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			int i=2;
+			  @Override
+			  public void run() {
+					immaginiSinsitra.setHorizontalAlignment(SwingConstants.RIGHT);
+					immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
+					immaginiSinsitra.setBounds(0, 0, 550, 650);
+					contentPane.add(immaginiSinsitra);
+					if(i<3)
+						i=i+1;
+					else
+						i=1;
+			  }
+			}, 5000); //NON VA IN LOOP
+	}
+
+	private void generaPannelloLogin() {
 		panelloLogin = new JPanel();
 		panelloLogin.setBackground(Color.WHITE);
 		panelloLogin.setBounds(550, 0, 550, 650);
 		contentPane.add(panelloLogin);
 		panelloLogin.setLayout(null);
 		
-		bottoneAccedi = new JButton("");
-		bottoneAccedi.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/AccediFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Accedi.png")));
-			}
-		});
-		bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Accedi.png")));
-		bottoneAccedi.setOpaque(false);
-		bottoneAccedi.setBorderPainted(false);
-		bottoneAccedi.setContentAreaFilled(false);
-		bottoneAccedi.setBounds(140, 470, 280, 48);
-		panelloLogin.add(bottoneAccedi);
+		//Piazza il logo
+		placehubLogo = new JLabel("");
+		placehubLogo.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/placehubLogo.png")));
+		placehubLogo.setBounds(177, 50, 197, 152);
+		panelloLogin.add(placehubLogo);
 		
-		testoPasswordDimenticata = new JLabel("");
-		testoPasswordDimenticata.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/passwordDimenticata.png")));
-		testoPasswordDimenticata.setBounds(55, 578, 250, 26);
-		panelloLogin.add(testoPasswordDimenticata);
+		generaBottoneAccedi();
+		gerenaTestoPasswordDimenticata();
+		generaTestoRegistrati();
+		generaFieldUsername();
+		generaFieldPassword();
+	}
+
+	private void generaFieldPassword() {
+		JLabel testoPassword = new JLabel("");
+		testoPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Password.png")));
+		testoPassword.setBounds(90, 325, 111, 16);
+		panelloLogin.add(testoPassword);
 		
-		testoReimpostaPassword = new JLabel("");
-		testoReimpostaPassword.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPasswordFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPassword.png")));
-			}
-		});
-		testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPassword.png")));
-		testoReimpostaPassword.setBounds(307, 578, 189, 26);
-		panelloLogin.add(testoReimpostaPassword);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(90, 353, 383, 32);
+		passwordField.setBackground(new Color(255,255,255));
+		passwordField.setBorder(new LineBorder(new Color(255,255,255),1));
+		passwordField.setFont(new Font("Roboto", Font.PLAIN, 17));
+		panelloLogin.add(passwordField);
 		
+		lineaPassword = new JLabel("");
+		lineaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
+		lineaPassword.setBounds(90, 386, 383, 1);
+		panelloLogin.add(lineaPassword);
+	}
+
+	private void generaFieldUsername() {
+		testoUsername = new JLabel("");
+		testoUsername.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Username.png")));
+		testoUsername.setBounds(90, 219, 111, 16);
+		panelloLogin.add(testoUsername);
+		
+		textFieldUsername = new JTextField();
+		textFieldUsername.setBounds(90, 247, 383, 32);
+		textFieldUsername.setFont(new Font("Roboto", Font.PLAIN, 17));
+		textFieldUsername.setBackground(new Color(255,255,255));
+		textFieldUsername.setBorder(new LineBorder(new Color(255,255,255),1));
+		panelloLogin.add(textFieldUsername);
+		textFieldUsername.setColumns(10);
+		
+		lineaUsername = new JLabel("");
+		lineaUsername.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
+		lineaUsername.setBounds(90, 280, 383, 1);
+		panelloLogin.add(lineaUsername);
+	}
+
+	private void generaTestoRegistrati() {
 		testoCreaAccount = new JLabel("");
 		testoCreaAccount.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/creaAccount.png")));
 		testoCreaAccount.setBounds(116, 540, 189, 26);
@@ -159,49 +171,94 @@ public class SchermataAccesso extends JFrame {
 		testoRegistrati.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Registrati.png")));
 		testoRegistrati.setBounds(307, 542, 83, 26);
 		panelloLogin.add(testoRegistrati);
+	}
+
+	private void gerenaTestoPasswordDimenticata() {
+		testoPasswordDimenticata = new JLabel("");
+		testoPasswordDimenticata.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/passwordDimenticata.png")));
+		testoPasswordDimenticata.setBounds(55, 578, 250, 26);
+		panelloLogin.add(testoPasswordDimenticata);
 		
-		placehubLogo = new JLabel("");
-		placehubLogo.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/placehubLogo.png")));
-		placehubLogo.setBounds(177, 50, 197, 152);
-		panelloLogin.add(placehubLogo);
+		testoReimpostaPassword = new JLabel("");
+		testoReimpostaPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPasswordFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPassword.png")));
+			}
+		});
+		testoReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPassword.png")));
+		testoReimpostaPassword.setBounds(307, 578, 189, 26);
+		panelloLogin.add(testoReimpostaPassword);
+	}
+
+	private void generaBottoneAccedi() {
+		bottoneAccedi = new JButton("");
+		bottoneAccedi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/AccediFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Accedi.png")));
+			}
+		});
+		bottoneAccedi.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Accedi.png")));
+		bottoneAccedi.setOpaque(false);
+		bottoneAccedi.setBorderPainted(false);
+		bottoneAccedi.setContentAreaFilled(false);
+		bottoneAccedi.setBounds(140, 470, 280, 48);
+		panelloLogin.add(bottoneAccedi);
+	}
+
+	private void generaPannelloBottoni() {
+		panelloBottoni = new JPanel();
+		panelloBottoni.setBackground(Color.WHITE);
+		panelloBottoni.setBounds(550, 0, 550, 36);
+		contentPane.add(panelloBottoni);
+		panelloBottoni.setLayout(null);
 		
-		testoUsername = new JLabel("");
-		testoUsername.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Username.png")));
-		testoUsername.setBounds(90, 219, 111, 16);
-		panelloLogin.add(testoUsername);
+		bottoneEsci = new JButton("");
+		bottoneEsci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
+		bottoneEsci.setBounds(520, 8, 22, 22);
+		bottoneEsci.setBorderPainted(false);
+		bottoneEsci.setContentAreaFilled(false);
+		bottoneEsci.setOpaque(false);
+		panelloBottoni.add(bottoneEsci);
 		
-		textFieldUsername = new JTextField();
-		textFieldUsername.setBounds(90, 247, 383, 32);
-		textFieldUsername.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textFieldUsername.setBackground(new Color(255,255,255));
-		textFieldUsername.setBorder(new LineBorder(new Color(255,255,255),1));
-		panelloLogin.add(textFieldUsername);
-		textFieldUsername.setColumns(10);
-		
-		JLabel testoPassword = new JLabel("");
-		testoPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Password.png")));
-		testoPassword.setBounds(90, 325, 111, 16);
-		panelloLogin.add(testoPassword);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(90, 353, 383, 32);
-		passwordField.setBackground(new Color(255,255,255));
-		passwordField.setBorder(new LineBorder(new Color(255,255,255),1));
-		passwordField.setFont(new Font("Roboto", Font.PLAIN, 17));
-		panelloLogin.add(passwordField);
-		
-		lineaUsername = new JLabel("");
-		lineaUsername.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
-		lineaUsername.setBounds(90, 280, 383, 1);
-		panelloLogin.add(lineaUsername);
-		
-		lineaPassword = new JLabel("");
-		lineaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
-		lineaPassword.setBounds(90, 388, 383, 1);
-		panelloLogin.add(lineaPassword);
+		bottoneMinimizza = new JButton("");
+		bottoneMinimizza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setState(ICONIFIED);
+			}
+		});
+		bottoneMinimizza.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/minimizza.png")));
+		bottoneMinimizza.setBounds(483, 5, 24, 25);
+		bottoneMinimizza.setOpaque(false);
+		bottoneMinimizza.setContentAreaFilled(false);
+		bottoneMinimizza.setBorderPainted(false);
+		panelloBottoni.add(bottoneMinimizza);
+	}
+
+	private void layoutGeneraleFinestra() {
+		setLocationRelativeTo(null);
+		gestioneRiposizionamentoFinestra();
+		setUndecorated(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		setSize(1100,650);
 	}
 	
-	private void frameDrag() {
+	private void gestioneRiposizionamentoFinestra() {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
