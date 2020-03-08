@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.RoundRectangle2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -111,6 +112,7 @@ public class SchermataAccesso extends JFrame {
 		setLocationRelativeTo(null);
 		gestioneRiposizionamentoFinestra();
 		setUndecorated(true);
+		setShape(new RoundRectangle2D.Double(15, 0, 1100, 650, 30, 30));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(1100,650);
