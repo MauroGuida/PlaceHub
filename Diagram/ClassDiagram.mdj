@@ -63,7 +63,7 @@
 											"top": 407,
 											"width": 207,
 											"height": 13,
-											"text": "Attività"
+											"text": "Business"
 										},
 										{
 											"_type": "LabelView",
@@ -220,7 +220,7 @@
 											"top": 505,
 											"width": 207,
 											"height": 13,
-											"text": "+CodAttivita",
+											"text": "+CodBusiness",
 											"horizontalAlignment": 0
 										},
 										{
@@ -237,7 +237,7 @@
 											"top": 520,
 											"width": 207,
 											"height": 13,
-											"text": "+CodUser",
+											"text": "+CodUtente",
 											"horizontalAlignment": 0
 										}
 									],
@@ -831,7 +831,7 @@
 											"top": 151,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "User"
+											"text": "Utente"
 										},
 										{
 											"_type": "LabelView",
@@ -988,7 +988,7 @@
 											"top": 249,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+CodUser",
+											"text": "+CodUtente",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1039,7 +1039,7 @@
 											"top": 294,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Attività?: Boolean default 0",
+											"text": "+Business: Boolean default 0",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1510,7 +1510,7 @@
 											"top": 622,
 											"width": 135,
 											"height": 13,
-											"text": "+CodAttivita",
+											"text": "+CodBusiness",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2280,7 +2280,7 @@
 											"top": 275,
 											"width": 183,
 											"height": 13,
-											"text": "+CodAttivita",
+											"text": "+CodBusiness",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2297,7 +2297,7 @@
 											"top": 290,
 											"width": 183,
 											"height": 13,
-											"text": "+CodUser",
+											"text": "+CodUtente",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3727,7 +3727,7 @@
 											"top": 549,
 											"width": 159,
 											"height": 13,
-											"text": "+CodAttivita",
+											"text": "+CodBusiness",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4925,7 +4925,7 @@
 											"top": 381,
 											"width": 208.97119140625,
 											"height": 13,
-											"text": "+CodAttivita",
+											"text": "+CodBusiness",
 											"horizontalAlignment": 0
 										}
 									],
@@ -5031,7 +5031,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Attività",
+					"name": "Business",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5179,8 +5179,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "CodAttivita",
-							"type": ""
+							"name": "CodBusiness"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5188,8 +5187,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "CodUser",
-							"type": ""
+							"name": "CodUtente"
 						}
 					]
 				},
@@ -5218,7 +5216,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "User",
+					"name": "Utente",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5290,7 +5288,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Username"
+							"name": "Username",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5334,8 +5333,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "CodUser",
-							"type": ""
+							"name": "CodUtente"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5361,7 +5359,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Attività?",
+							"name": "Business",
 							"type": "Boolean default 0"
 						}
 					]
@@ -5395,8 +5393,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJprO+mKVRo="
 							},
-							"name": "CodAttivita",
-							"type": ""
+							"name": "CodBusiness"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5542,8 +5539,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodAttivita",
-							"type": ""
+							"name": "CodBusiness"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5551,8 +5547,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodUser",
-							"type": ""
+							"name": "CodUtente"
 						}
 					]
 				},
@@ -5727,8 +5722,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNN4qXAGmz4="
 							},
-							"name": "CodAttivita",
-							"type": ""
+							"name": "CodBusiness"
 						}
 					]
 				},
@@ -5841,8 +5835,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtOQMH6XKvPI="
 							},
-							"name": "CodAttivita",
-							"type": ""
+							"name": "CodBusiness"
 						}
 					]
 				}

@@ -31,7 +31,7 @@ public class SchermataAccesso extends JFrame {
 	private Controller ctrl;
 	
 	private JPanel pannelloInferiore;
-	private JLabel immaginiSinsitra;
+	private JLabel immaginiSinistra;
 	
 	private JPanel pannelloBottoni;
 	private JButton bottoneMinimizza;
@@ -146,10 +146,10 @@ public class SchermataAccesso extends JFrame {
 		setContentPane(pannelloInferiore);
 		pannelloInferiore.setLayout(null);
 		
-		immaginiSinsitra = new JLabel("");
-		immaginiSinsitra.setHorizontalAlignment(SwingConstants.CENTER);
-		immaginiSinsitra.setBounds(0, 0, 550, 650);
-		pannelloInferiore.add(immaginiSinsitra);
+		immaginiSinistra = new JLabel("");
+		immaginiSinistra.setHorizontalAlignment(SwingConstants.CENTER);
+		immaginiSinistra.setBounds(0, 0, 550, 650);
+		pannelloInferiore.add(immaginiSinistra);
 		
 		gestioneRotazioneImmagini();
 	}
@@ -160,7 +160,7 @@ public class SchermataAccesso extends JFrame {
 			private int i=1;
 			  @Override
 			  public void run() {
-					immaginiSinsitra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
+					immaginiSinistra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
 					if(i<3)
 						i++;
 					else
@@ -422,6 +422,11 @@ public class SchermataAccesso extends JFrame {
 
 	private void generaBottoneAccedi() {
 		bottoneAccediLogin = new JButton("");
+		bottoneAccediLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.loginSchermataAccesso(textFieldUsernameLogin.getText(), passwordFieldPasswordLogin.getPassword());
+			}
+		});
 		bottoneAccediLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

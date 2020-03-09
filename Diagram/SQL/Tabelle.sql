@@ -1,4 +1,5 @@
 CREATE TABLE Utente(
+  Username VARCHAR(50) NOT NULL,
   Nome VARCHAR(50) NOT NULL,
   Cognome VARCHAR(50) NOT NULL,
   Email VARCHAR(100) NOT NULL UNIQUE CHECK(Email LIKE ’_%@%.__%’),
