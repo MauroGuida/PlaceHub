@@ -42,10 +42,6 @@ public class Controller {
 		}
 	}
 	
-	public static SchermataAccesso getSchermataAccessoFrame() {
-		return schermataAccessoFrame;
-	}
-	
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
 	}

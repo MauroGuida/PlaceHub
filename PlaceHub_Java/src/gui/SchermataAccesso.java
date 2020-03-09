@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import res.DatePicker;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -583,7 +584,7 @@ public class SchermataAccesso extends JFrame {
 		textFieldDataNascitaRegistrazione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textFieldDataNascitaRegistrazione.setText(new DatePicker(Controller.getSchermataAccessoFrame()).setPickedDate());
+				textFieldDataNascitaRegistrazione.setText(new DatePicker(SchermataAccesso.this).setPickedDate());
 			}
 		});
 		textFieldDataNascitaRegistrazione.setBounds(80, 280, 383, 32);
