@@ -2,7 +2,7 @@ CREATE TABLE Utente(
   Username VARCHAR(50) NOT NULL,
   Nome VARCHAR(50) NOT NULL,
   Cognome VARCHAR(50) NOT NULL,
-  Email VARCHAR(100) NOT NULL UNIQUE CHECK(Email LIKE ’_%@%.__%’),
+  Email VARCHAR(100) NOT NULL UNIQUE CHECK(Email LIKE '_%@%.__%'),
   DataDiNascita date NOT NULL,
   codUtente SERIAL PRIMARY KEY,
   Password VARCHAR(100) NOT NULL,
