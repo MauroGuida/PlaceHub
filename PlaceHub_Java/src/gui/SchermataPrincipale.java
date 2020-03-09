@@ -150,7 +150,7 @@ public class SchermataPrincipale extends JFrame {
 		bottoneMinimizza.setContentAreaFilled(false);
 		bottoneMinimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/minimizza.png")));
 		
-		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
 		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
