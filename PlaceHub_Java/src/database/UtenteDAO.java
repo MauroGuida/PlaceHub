@@ -32,4 +32,22 @@ public class UtenteDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void registrati(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) {
+		try {
+			String sql = "INSERT INTO Utente(Username, Nome, Cognome, Email, DataDiNascita, Password) Values(?,?,?,?,?,?)";
+			PreparedStatement query;
+			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+			query.setString(1, Username);
+			query.setString(2, Nome);
+			query.setString(3, Cognome);
+			query.setString(4, Email);
+			query.setDate(5, java.sql.Date.valueOf(DataDiNascita));
+			query.setString(6, new String(Password));
+			query.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
 }

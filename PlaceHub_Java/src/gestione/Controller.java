@@ -1,6 +1,7 @@
 package gestione;
 
 import java.awt.EventQueue;
+import java.sql.SQLException;
 
 import database.Connessione;
 import database.UtenteDAO;
@@ -22,7 +23,6 @@ public class Controller {
 			public void run() {
 				try {
 					Controller ctrl = new Controller();	
-					connessioneAlDatabase = new Connessione();
 					
 					schermataAccessoFrame = new SchermataAccesso(ctrl);
 					schermataAccessoFrame.setVisible(true);
@@ -33,12 +33,24 @@ public class Controller {
 		});
 	}
 	
+	private Controller() {
+		try {
+			connessioneAlDatabase = new Connessione();
+			utente = new UtenteDAO();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static SchermataAccesso getSchermataAccessoFrame() {
+		return schermataAccessoFrame;
+	}
+	
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
 	}
 	
 	public void loginSchermataAccesso(String Username, char[] Password) {
-		utente = new UtenteDAO();
 		try {
 			utente.login(Username, Password);
 			
@@ -47,6 +59,14 @@ public class Controller {
 			schermataAccessoFrame.dispose();
 		} catch (UsernameOPasswordErrati e) {
 			System.out.print("Username o Password errata!");
+		}
+	}
+	
+	public void registratiSchermataAccesso(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) {
+		try {
+			utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
+import res.DatePicker;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -504,6 +505,9 @@ public class SchermataAccesso extends JFrame {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
+				ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
+						textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
+				
 				pannelloRegistrazione.setVisible(false);
 				pannelloLogin.setVisible(true);
 			}
@@ -576,12 +580,19 @@ public class SchermataAccesso extends JFrame {
 		pannelloRegistrazione.add(testoDataNascitaRegistrazione);
 		
 		textFieldDataNascitaRegistrazione = new JTextField();
+		textFieldDataNascitaRegistrazione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldDataNascitaRegistrazione.setText(new DatePicker(Controller.getSchermataAccessoFrame()).setPickedDate());
+			}
+		});
 		textFieldDataNascitaRegistrazione.setBounds(80, 280, 383, 32);
 		textFieldDataNascitaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldDataNascitaRegistrazione.setBackground(new Color(255,255,255));
 		textFieldDataNascitaRegistrazione.setBorder(new LineBorder(new Color(255,255,255),1));
 		pannelloRegistrazione.add(textFieldDataNascitaRegistrazione);
 		textFieldDataNascitaRegistrazione.setColumns(10);
+		textFieldDataNascitaRegistrazione.setEditable(false);
 		
 		lineaDataNascitaRegistrazione = new JLabel("");
 		lineaDataNascitaRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));

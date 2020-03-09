@@ -1,29 +1,21 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-
 import javax.swing.JFrame;
 
 import gestione.Controller;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 
 
 public class SchermataPrincipale extends JFrame {
@@ -88,7 +80,7 @@ public class SchermataPrincipale extends JFrame {
 		panel_1.setBackground(new Color(51,51,51));
 		
 		JButton bottoneGestisciBusiness = new JButton("");
-		bottoneGestisciBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/gestisciAttvità.png")));
+		bottoneGestisciBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/gestisciAttvita.png")));
 		bottoneGestisciBusiness.setOpaque(false);
 		bottoneGestisciBusiness.setFocusPainted(false);
 		bottoneGestisciBusiness.setContentAreaFilled(false);
@@ -157,30 +149,11 @@ public class SchermataPrincipale extends JFrame {
 		bottoneMinimizza.setBorderPainted(false);
 		bottoneMinimizza.setContentAreaFilled(false);
 		bottoneMinimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/minimizza.png")));
-		GroupLayout gl_pannelloBottoni = new GroupLayout(pannelloBottoni);
-		gl_pannelloBottoni.setHorizontalGroup(
-			gl_pannelloBottoni.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloBottoni.createSequentialGroup()
-					.addGap(740)
-					.addComponent(bottoneMinimizza, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(bottoneMassimizza, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					.addGap(13)
-					.addComponent(bottoneEsci, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_pannelloBottoni.setVerticalGroup(
-			gl_pannelloBottoni.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloBottoni.createSequentialGroup()
-					.addGap(5)
-					.addComponent(bottoneMinimizza, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_pannelloBottoni.createSequentialGroup()
-					.addGap(8)
-					.addComponent(bottoneMassimizza, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_pannelloBottoni.createSequentialGroup()
-					.addGap(8)
-					.addComponent(bottoneEsci, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-		);
-		pannelloBottoni.setLayout(gl_pannelloBottoni);
+		
+		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
 		
 
 	}
