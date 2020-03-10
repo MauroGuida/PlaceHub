@@ -52,6 +52,7 @@ public class DatePicker extends JDialog
                         button[x].setOpaque(false);
                         button[x].setContentAreaFilled(false);
                         button[x].setFont(new Font("Roboto", Font.PLAIN, 12));
+                        button[x].setBorder(new LineBorder(Color.DARK_GRAY));
                         
                         //set background colour
                         button[x].setBackground(Color.white);
