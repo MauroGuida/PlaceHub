@@ -36,6 +36,11 @@ public class SchermataPrincipale extends JFrame {
 	private int coordinataY;
 	private JTextField textFieldCosa;
 	private JTextField textFieldDove;
+	private JButton bottoneHomepage;
+	private JButton bottoneRistoranti;
+	private JButton bottoneIntrattenimento;
+	private JButton bottoneAlloggi;
+	private int flagFocusBottone;
 	
 	public SchermataPrincipale(Controller Ctrl) {
 		getContentPane().setBackground(Color.WHITE);
@@ -46,7 +51,7 @@ public class SchermataPrincipale extends JFrame {
 		setMinimumSize(new Dimension(1100,650));
 		setUndecorated(true);
 		setResizable(true);
-
+		
 		
 		addMouseListener(new MouseAdapter() {
             @Override
@@ -70,14 +75,55 @@ public class SchermataPrincipale extends JFrame {
 		JPanel panelloSideBar = new JPanel();
 		panelloSideBar.setBackground(new Color(51,51,51));
 		
-		JButton bottoneHomepage = new JButton("");
+	    bottoneHomepage = new JButton("");
+	    bottoneHomepage.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		flagFocusBottone = 1;
+	    		cambiaIcona(flagFocusBottone);
+	    		resettaIcone(flagFocusBottone);
+	    	}
+	    });
+		bottoneHomepage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(flagFocusBottone != 1)
+					bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+				else 
+					resettaIcone(flagFocusBottone);
+			}
+
+		});
 		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
 		bottoneHomepage.setOpaque(false);
 		bottoneHomepage.setFocusPainted(false);
 		bottoneHomepage.setContentAreaFilled(false);
 		bottoneHomepage.setBorderPainted(false);
 		
-		JButton bottoneRistoranti = new JButton("");
+		bottoneRistoranti = new JButton("");
+		bottoneRistoranti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				flagFocusBottone = 2;
+				cambiaIcona(flagFocusBottone);
+				resettaIcone(flagFocusBottone);
+			}
+		});
+		bottoneRistoranti.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(flagFocusBottone != 2)
+					bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+				else
+					resettaIcone(flagFocusBottone);
+			}
+		});
 		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
 		bottoneRistoranti.setOpaque(false);
 		bottoneRistoranti.setFocusPainted(false);
@@ -85,7 +131,20 @@ public class SchermataPrincipale extends JFrame {
 		bottoneRistoranti.setBorderPainted(false);
 		
 		
-		JButton bottoneIntrattenimento = new JButton("");
+		bottoneIntrattenimento = new JButton("");
+		bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(flagFocusBottone != 3)
+					bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+				else
+					resettaIcone(flagFocusBottone);
+			}
+		});
 		bottoneIntrattenimento.setOpaque(false);
 		bottoneIntrattenimento.setFocusPainted(false);
 		bottoneIntrattenimento.setContentAreaFilled(false);
@@ -93,10 +152,33 @@ public class SchermataPrincipale extends JFrame {
 		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
 		bottoneIntrattenimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				flagFocusBottone = 3;
+				cambiaIcona(flagFocusBottone);
+				resettaIcone(flagFocusBottone);
 			}
 		});
 		
-		JButton bottoneAlloggi = new JButton("");
+		bottoneAlloggi = new JButton("");
+		bottoneAlloggi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				flagFocusBottone = 4;
+				cambiaIcona(flagFocusBottone);
+				resettaIcone(flagFocusBottone);
+			}
+		});
+		bottoneAlloggi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(flagFocusBottone != 4)
+					bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+				else
+					resettaIcone(flagFocusBottone);
+			}
+		});
 		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 		bottoneAlloggi.setOpaque(false);
 		bottoneAlloggi.setFocusPainted(false);
@@ -238,22 +320,6 @@ public class SchermataPrincipale extends JFrame {
 		
 		JPanel pannelloBottoni = new JPanel();
 		pannelloBottoni.setBackground(Color.WHITE);
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panelloSideBar, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(584, Short.MAX_VALUE))
-		);
-		getContentPane().setLayout(groupLayout);
 		
 		bottoneEsci = new JButton("");
 		bottoneEsci.addActionListener(new ActionListener() {
@@ -300,6 +366,77 @@ public class SchermataPrincipale extends JFrame {
 		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
 		
-
+		JPanel panel = new JPanel();
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(panelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panelloSideBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+		);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 850, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 614, Short.MAX_VALUE)
+		);
+		panel.setLayout(gl_panel);
+		getContentPane().setLayout(groupLayout);
+		
 	}
+	
+	private void cambiaIcona(int flag) {
+		switch(flag) {
+			case 1:
+				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
+				break;
+			case 2:
+				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
+				break;
+			case 3:
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+				break;
+			case 4:
+				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
+				break;
+		}
+	}
+	
+	private void resettaIcone(int flag) {
+		switch(flag) {
+			case 1:
+				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+				break;
+			case 2:
+				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+				break;
+			case 3:
+				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+				break;
+			case 4:
+				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+				break;		
+		}
+	}
+	
 }
