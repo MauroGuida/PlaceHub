@@ -36,7 +36,8 @@ public class DatePicker extends JDialog
                 //create JPanel object and set layout
                 JPanel p1 = new JPanel(new GridLayout(7, 7));
                 //set size
-                p1.setPreferredSize(new Dimension(450, 350));
+                p1.setPreferredSize(new Dimension(420, 200));
+                p1.setBackground(Color.WHITE);
                 //for loop condition
                 for (int x = 0; x < button.length; x++) 
                 {		
@@ -46,6 +47,11 @@ public class DatePicker extends JDialog
                         button[x] = new JButton();
                         //set focus painted false
                         button[x].setFocusPainted(false);
+                        
+                        button[x].setOpaque(false);
+                        button[x].setContentAreaFilled(false);
+                        button[x].setFont(new Font("Roboto", Font.PLAIN, 12));
+                        
                         //set background colour
                         button[x].setBackground(Color.white);
                         //if loop condition

@@ -517,11 +517,7 @@ public class SchermataAccesso extends JFrame {
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
-						textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
-				
-				pannelloRegistrazione.setVisible(false);
-				pannelloLogin.setVisible(true);
+				eseguiRegistrazione();
 			}
 		});
 		bottoneRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneRegistrati.png")));
@@ -702,6 +698,14 @@ public class SchermataAccesso extends JFrame {
 	
 	private void eseguiLogin() {
 		ctrl.loginSchermataAccesso(textFieldUsernameLogin.getText(), passwordFieldPasswordLogin.getPassword());
+	}
+
+	private void eseguiRegistrazione() {
+		ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
+				textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
+		
+		pannelloRegistrazione.setVisible(false);
+		pannelloLogin.setVisible(true);
 	}
 
 }
