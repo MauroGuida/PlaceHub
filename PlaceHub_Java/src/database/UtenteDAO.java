@@ -15,22 +15,18 @@ public class UtenteDAO {
 		return idUtente;
 	}
 	
-	public void login(String Username, char[] Password) throws UsernameOPasswordErratiException{
-		try {
-			String sql = "SELECT codUtente FROM utente where username = ? and password = ?";
-			PreparedStatement query;
-			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-			query.setString(1, Username);
-			query.setString(2, new String(Password));
-			ResultSet datiRecuperati = query.executeQuery();
+	public void login(String Username, char[] Password) throws UsernameOPasswordErratiException, SQLException{
+		String sql = "SELECT codUtente FROM utente where username = ? and password = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, Username);
+		query.setString(2, new String(Password));
+		ResultSet datiRecuperati = query.executeQuery();
 			
-			if(datiRecuperati.next())
-				idUtente = datiRecuperati.getString(1);
-			else
-				throw new UsernameOPasswordErratiException();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		if(datiRecuperati.next())
+			idUtente = datiRecuperati.getString(1);
+		else
+			throw new UsernameOPasswordErratiException();
 	}
 	
 	public void registrati(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) throws SQLException {

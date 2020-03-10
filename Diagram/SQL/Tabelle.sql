@@ -7,7 +7,9 @@ CREATE TABLE Utente(
   codUtente SERIAL PRIMARY KEY,
   Password VARCHAR(100) NOT NULL,
   Immagine VARCHAR(1000) DEFAULT NULL,
-  Business bool NOT NULL DEFAULT '0'
+  Business bool NOT NULL DEFAULT '0',
+
+  ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6)
 );
 
 CREATE TABLE Verifica(

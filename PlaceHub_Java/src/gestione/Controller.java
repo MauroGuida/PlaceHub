@@ -5,11 +5,6 @@ import java.sql.SQLException;
 
 import database.Connessione;
 import database.UtenteDAO;
-import errori.CampiVuotiException;
-import errori.DataDiNascitaNonValidaException;
-import errori.EmailNonValidaException;
-import errori.PasswordNonValidaException;
-import errori.UsernameNonValidoException;
 import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
@@ -58,27 +53,35 @@ public class Controller {
 			schermataPrincipaleFrame = new SchermataPrincipale(this);
 			schermataPrincipaleFrame.setVisible(true);
 			schermataAccessoFrame.dispose();
-		} catch (UsernameOPasswordErratiException e) {
-			System.out.print("Username o Password errata!");
+		} catch (UsernameOPasswordErratiException e1) {
 			schermataAccessoFrame.mostraErroreUsernamePassword(true);
+		} catch(SQLException e2) {
+			e2.printStackTrace();
 		}
 	}
 	
-	public void registratiSchermataAccesso(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) throws UsernameNonValidoException,
-			EmailNonValidaException, DataDiNascitaNonValidaException, PasswordNonValidaException, CampiVuotiException {
+	public void registratiSchermataAccesso(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) {
+		schermataAccessoFrame.resettaErroriRegistrazione();
 		
 		if(Username.isBlank() || Username.isEmpty() || Nome.isBlank() || Nome.isEmpty() || Cognome.isBlank() || Cognome.isEmpty() ||
-				Email.isBlank() || Email.isEmpty() || DataDiNascita.isBlank() || DataDiNascita.isEmpty() || Password.length==0)
-			throw new CampiVuotiException();
-		
-		try {
-			utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
-		} catch (Exception e) {		
-			if(e.toString().indexOf("utente_username_key") != -1) {
-				throw new UsernameNonValidoException();
+				Email.isBlank() || Email.isEmpty() || DataDiNascita.isBlank() || DataDiNascita.isEmpty() || Password.length==0) {
+			schermataAccessoFrame.mostraErroreNonPossonoEsserciCampiVuotiRegistrazione();
+		}else {
+			try {
+				utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
+				schermataAccessoFrame.mostraConfermaRegistrazione();
+			} catch (Exception e) {		
+				if(e.toString().indexOf("utente_username_key") != -1)
+					schermataAccessoFrame.mostraErroreUsernameNonDisponibileRegistrazione();;
+				if(e.toString().indexOf("utente_email_check") != -1)
+					schermataAccessoFrame.mostraErroreEmailNonValidaRegistrazione();
+				if(e.toString().indexOf("utente_email_key") != -1)
+					schermataAccessoFrame.mostraErroreEmailGiaInUsoRegistrazione();
+				if(e.toString().indexOf("lunghezzapassword") != -1)
+					schermataAccessoFrame.mostraErrorePasswordNonValidaRegistrazione();
+				
+//				e.printStackTrace();
 			}
 		}
 	}
-	
-
 }
