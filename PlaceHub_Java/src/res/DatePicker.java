@@ -5,32 +5,38 @@ import java.awt.event.*;
 import javax.swing.*;
 
 //create class
-public class DatePicker 
+public class DatePicker extends JDialog
 {
-	//define variables
+	private static final long serialVersionUID = 1L;
+	
+		//define variables
         int month = 0;
         int year = 1990;
         //create object of JLabel with alignment
-        JTextField l = new JTextField("", JTextField.CENTER);
+        JTextField textFieldDisplay = new JTextField("", JTextField.CENTER);
         //define variable
         String day = "";
-        //declaration
-        JDialog d;
         //create object of JButton
         JButton[] button = new JButton[49];
 
         public DatePicker(JFrame parent)//create constructor 
         {
-        	//create object
-                d = new JDialog();
+        		ActionListener esciShortcut = new ActionListener(){
+                    public void actionPerformed(ActionEvent ae){
+                        dispose();
+                    }
+               };
+               getRootPane().registerKeyboardAction(esciShortcut, "command", KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+            		   JComponent.WHEN_IN_FOCUSED_WINDOW);
+        	
                 //set modal true
-                d.setModal(true);
+                setModal(true);
                 //define string
                 String[] header = { "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" };
                 //create JPanel object and set layout
                 JPanel p1 = new JPanel(new GridLayout(7, 7));
                 //set size
-                p1.setPreferredSize(new Dimension(430, 120));
+                p1.setPreferredSize(new Dimension(450, 350));
                 //for loop condition
                 for (int x = 0; x < button.length; x++) 
                 {		
@@ -51,24 +57,26 @@ public class DatePicker
                                  {
                                        day = button[selection].getActionCommand();
                                        //call dispose() method
-                                       d.dispose();
+                                       dispose();
                                  }
                         });
                         if (x < 7)//if loop condition 
                         {
                                 button[x].setText(header[x]);
                                 //set fore ground colour
-                                button[x].setForeground(Color.red);
+                                button[x].setForeground(new Color(64,151,0));
                         }
                         p1.add(button[x]);//add button
                 }
                 //create JPanel object with grid layout
-                JPanel p2 = new JPanel(new GridLayout(1, 3));
+                JPanel p2 = new JPanel(new GridLayout(1, 5));
+                
+                textFieldDisplay.setHorizontalAlignment(SwingConstants.CENTER);
                 
                 //create object of button for previous month
-                JButton previous = new JButton("<< Previous");
+                JButton previousMonth = new JButton("<");
                 //add action command
-                previous.addActionListener(new ActionListener() 
+                previousMonth.addActionListener(new ActionListener() 
                 {
                         public void actionPerformed(ActionEvent ae) 
                         {
@@ -78,13 +86,35 @@ public class DatePicker
                             displayDate();
                         }
                 });
-                p2.add(previous);//add button
-                l.setHorizontalAlignment(SwingConstants.CENTER);
-                p2.add(l);//add label
+                
+                
+                JButton previousYear = new JButton("<<");
+                previousYear.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent ae) 
+                    {
+                        //decrement month by 1
+                        year--;
+                        //call method
+                        displayDate();
+                    }
+                });
+                
+                JButton nextYear = new JButton(">>");
+                nextYear.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent ae) 
+                    {
+                        //decrement month by 1
+                        year++;
+                        //call method
+                        displayDate();
+                    }
+                });
+                
+                
                 //create object of button for next month
-                JButton next = new JButton("Next >>");
+                JButton nextMonth = new JButton(">");
                 //add action command
-                next.addActionListener(new ActionListener()
+                nextMonth.addActionListener(new ActionListener()
                 {
                         public void actionPerformed(ActionEvent ae) 
                         {
@@ -94,17 +124,30 @@ public class DatePicker
                             displayDate();
                         }
                 });
-                p2.add(next);// add next button
+                  
+                
+                p2.add(previousYear);
+                p2.add(previousMonth);
+                p2.add(textFieldDisplay);
+                p2.add(nextMonth);
+                p2.add(nextYear);
+                
+                textFieldDisplay.setEditable(false);
+                setBackground(Color.WHITE);
+                setUndecorated(true);
+                setResizable(false);
+                textFieldDisplay.setBackground(Color.WHITE);
+                
                 //set border alignment
-                d.getContentPane().add(p1, BorderLayout.CENTER);
-                d.getContentPane().add(p2, BorderLayout.SOUTH);
-                d.pack();
+                getContentPane().add(p1, BorderLayout.CENTER);
+                getContentPane().add(p2, BorderLayout.SOUTH);
+                pack();
                 //set location
-                d.setLocationRelativeTo(parent);
+                setLocationRelativeTo(parent);
                 //call method
                 displayDate();
                 //set visible true
-                d.setVisible(true);
+                setVisible(true);
         }
 
         public void displayDate() 
@@ -123,9 +166,9 @@ public class DatePicker
         	for (int x = 6 + dayOfWeek, day = 1; day <= daysInMonth; x++, day++)
         	//set text
         	button[x].setText("" + day);
-        	l.setText(sdf.format(cal.getTime()));
+        	textFieldDisplay.setText(sdf.format(cal.getTime()));
         	//set title
-        	d.setTitle("Date Picker");
+        	setTitle("Date Picker");
         }
 
         public String setPickedDate() 
@@ -137,37 +180,5 @@ public class DatePicker
             java.util.Calendar cal = java.util.Calendar.getInstance();
             cal.set(year, month, Integer.parseInt(day));
             return sdf.format(cal.getTime());
-        }
-}
-
-class Picker 
-{
-        public static void main(String[] args) // main method
-        {
-        	//create object of JLabel and set label
-        	JLabel label = new JLabel("Selected Date:");
-        	//create object of JTextField and declare it final
-        	final JTextField text = new JTextField(20);
-        	//create object of JButton
-        	JButton b = new JButton("popup");
-        	//create object of JPanel
-        	JPanel p = new JPanel();
-        	p.add(label);
-        	p.add(text);
-        	p.add(b);
-        	//create object of JFrame and declare it final
-        	final JFrame f = new JFrame();
-        	f.getContentPane().add(p);
-        	f.pack();
-        	f.setVisible(true);
-        	//add action listener
-        	b.addActionListener(new ActionListener() 
-        	{
-        		public void actionPerformed(ActionEvent ae) 
-        		{
-        			//set text i.e. date
-        			text.setText(new DatePicker(f).setPickedDate());
-        		}
-            });
         }
 }

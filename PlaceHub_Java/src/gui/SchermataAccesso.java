@@ -13,7 +13,9 @@ import java.awt.Cursor;
 import java.awt.Font;
 
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
@@ -26,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
 
 public class SchermataAccesso extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -336,6 +339,14 @@ public class SchermataAccesso extends JFrame {
 		pannelloLogin.add(testoPasswordLogin);
 		
 		passwordFieldPasswordLogin = new JPasswordField();
+		passwordFieldPasswordLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				      eseguiLogin();
+				   }
+			}
+		});
 		passwordFieldPasswordLogin.setBounds(80, 353, 383, 32);
 		passwordFieldPasswordLogin.setBackground(new Color(255,255,255));
 		passwordFieldPasswordLogin.setBorder(new LineBorder(new Color(255,255,255),1));
@@ -426,7 +437,7 @@ public class SchermataAccesso extends JFrame {
 		bottoneAccediLogin = new JButton("");
 		bottoneAccediLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.loginSchermataAccesso(textFieldUsernameLogin.getText(), passwordFieldPasswordLogin.getPassword());
+				eseguiLogin();
 			}
 		});
 		bottoneAccediLogin.addMouseListener(new MouseAdapter() {
@@ -686,6 +697,11 @@ public class SchermataAccesso extends JFrame {
 		testoAccediRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/testoAccedi.png")));
 		testoAccediRegistrazione.setBounds(335, 563, 62, 24);
 		pannelloRegistrazione.add(testoAccediRegistrazione);
+	}
+	
+	
+	private void eseguiLogin() {
+		ctrl.loginSchermataAccesso(textFieldUsernameLogin.getText(), passwordFieldPasswordLogin.getPassword());
 	}
 
 }
