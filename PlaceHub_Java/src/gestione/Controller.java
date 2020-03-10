@@ -49,12 +49,13 @@ public class Controller {
 	public void loginSchermataAccesso(String Username, char[] Password) {
 		try {
 			utente.login(Username, Password);
-			
+			schermataAccessoFrame.mostraErroreUsernamePassword(false);
 			schermataPrincipaleFrame = new SchermataPrincipale(this);
 			schermataPrincipaleFrame.setVisible(true);
 			schermataAccessoFrame.dispose();
 		} catch (UsernameOPasswordErrati e) {
 			System.out.print("Username o Password errata!");
+			schermataAccessoFrame.mostraErroreUsernamePassword(true);
 		}
 	}
 	
@@ -65,5 +66,6 @@ public class Controller {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

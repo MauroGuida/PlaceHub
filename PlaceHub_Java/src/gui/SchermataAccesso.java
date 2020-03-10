@@ -96,6 +96,7 @@ public class SchermataAccesso extends JFrame {
 	private JLabel testoConfermaNuovaPasswordReimpostaPassword;
 	private JPasswordField passwordFieldConfermaNuovaPasswordReimpostaPassword;
 	private JLabel lineaConfermaNuovaPasswordReimpostaPassword;
+	private JLabel errorePasswordUsername;
 	
 	public SchermataAccesso(Controller Ctrl) {
 		this.ctrl=Ctrl;
@@ -330,6 +331,14 @@ public class SchermataAccesso extends JFrame {
 		generaTestoRegistrati();
 		generaFieldUsername();
 		generaFieldPassword();
+		
+		errorePasswordUsername = new JLabel("Username o Password errati");
+		errorePasswordUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		errorePasswordUsername.setForeground(Color.RED);
+		errorePasswordUsername.setFont(new Font("Roboto", Font.PLAIN, 16));
+		errorePasswordUsername.setBounds(80, 410, 383, 26);
+		errorePasswordUsername.setVisible(false);
+		pannelloLogin.add(errorePasswordUsername);
 	}
 
 	private void generaFieldPassword() {
@@ -357,6 +366,7 @@ public class SchermataAccesso extends JFrame {
 		lineaPasswordLogin.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
 		lineaPasswordLogin.setBounds(80, 386, 383, 1);
 		pannelloLogin.add(lineaPasswordLogin);
+		
 	}
 
 	private void generaFieldUsername() {
@@ -706,6 +716,10 @@ public class SchermataAccesso extends JFrame {
 		
 		pannelloRegistrazione.setVisible(false);
 		pannelloLogin.setVisible(true);
+	}
+	
+	public void mostraErroreUsernamePassword(boolean controllo) {
+		errorePasswordUsername.setVisible(controllo);
 	}
 
 }
