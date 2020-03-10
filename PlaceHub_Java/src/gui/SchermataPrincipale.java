@@ -9,17 +9,26 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+
 import javax.swing.JTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.JLabel;
 
 
 public class SchermataPrincipale extends JFrame {
@@ -39,6 +48,8 @@ public class SchermataPrincipale extends JFrame {
 		setSize(1100,650);
 		setMinimumSize(new Dimension(1100,650));
 		setUndecorated(true);
+		setResizable(true);
+
 		
 		addMouseListener(new MouseAdapter() {
             @Override
@@ -64,18 +75,6 @@ public class SchermataPrincipale extends JFrame {
 		
 		JButton bottoneHomepage = new JButton("");
 		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-//		Image img;
-//		try {
-//			img = ImageIO.read(new File("/home/davide/Downloads/homepage.png"));
-//			Image Icon = img.getScaledInstance(70,70,java.awt.Image.SCALE_SMOOTH);
-//			btnHomepage.setIcon(new ImageIcon(Icon));
-//			btnHomepage.setOpaque(false);
-//			btnHomepage.setContentAreaFilled(false);
-//			btnHomepage.setBorderPainted(false);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		bottoneHomepage.setOpaque(false);
 		bottoneHomepage.setFocusPainted(false);
 		bottoneHomepage.setContentAreaFilled(false);
@@ -138,12 +137,74 @@ public class SchermataPrincipale extends JFrame {
 		);
 		
 		textFieldCosa = new JTextField();
+		textFieldCosa.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textFieldCosa.setText("");
+				textFieldCosa.setForeground(Color.WHITE);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(textFieldCosa.getText().isEmpty() ){
+					textFieldCosa.setText("Cosa?");
+					textFieldCosa.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
 		textFieldCosa.setColumns(10);
+		textFieldCosa.setFont(new Font("Roboto", Font.PLAIN, 20));
+		textFieldCosa.setBackground(new Color(51,51,51));
+		textFieldCosa.setBorder(new LineBorder(new Color(51,51,51),1));
+		textFieldCosa.setText("Cosa?");
+		textFieldCosa.setForeground(Color.LIGHT_GRAY);
+		textFieldCosa.setCaretColor(Color.WHITE);
 		
 		textFieldDove = new JTextField();
+		textFieldDove.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				textFieldDove.setText("");
+				textFieldDove.setForeground(Color.WHITE);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(textFieldDove.getText().isEmpty()) {
+					textFieldDove.setText("Dove?");
+					textFieldDove.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
 		textFieldDove.setColumns(10);
+		textFieldDove.setFont(new Font("Roboto", Font.PLAIN, 20));
+		textFieldDove.setBackground(new Color(51,51,51));
+		textFieldDove.setBorder(new LineBorder(new Color(51,51,51),1));
+		textFieldDove.setText("Dove?");
+		textFieldDove.setForeground(Color.LIGHT_GRAY);
+		textFieldDove.setCaretColor(Color.WHITE);
 		
-		JButton btnCerca = new JButton("Cerca");
+		JButton bottoneCercaSideBar = new JButton("");
+		bottoneCercaSideBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButtonFocus.png")));
+				setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+				bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
+			}
+		});
+		bottoneCercaSideBar.setOpaque(false);
+		bottoneCercaSideBar.setBorderPainted(false);
+		bottoneCercaSideBar.setContentAreaFilled(false);
+		bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
+		
+		JLabel lineaTestoCosaSideBar = new JLabel("");
+		lineaTestoCosaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
+		
+		JLabel lineaTestoDoveSideBar = new JLabel("");
+		lineaTestoDoveSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
 		GroupLayout gl_pannelloCerca = new GroupLayout(pannelloCerca);
 		gl_pannelloCerca.setHorizontalGroup(
 			gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
@@ -152,20 +213,28 @@ public class SchermataPrincipale extends JFrame {
 					.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_pannelloCerca.createSequentialGroup()
 					.addGap(20)
+					.addComponent(lineaTestoCosaSideBar))
+				.addGroup(gl_pannelloCerca.createSequentialGroup()
+					.addGap(20)
 					.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_pannelloCerca.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lineaTestoDoveSideBar))
+				.addGroup(gl_pannelloCerca.createSequentialGroup()
 					.addGap(70)
-					.addComponent(btnCerca, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+					.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_pannelloCerca.setVerticalGroup(
 			gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pannelloCerca.createSequentialGroup()
 					.addGap(20)
-					.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(25)
-					.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(15)
-					.addComponent(btnCerca, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lineaTestoCosaSideBar)
+					.addGap(19)
+					.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lineaTestoDoveSideBar)
+					.addGap(19)
+					.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 		);
 		pannelloCerca.setLayout(gl_pannelloCerca);
 		panelloSideBar.setLayout(gl_panelloSideBar);
