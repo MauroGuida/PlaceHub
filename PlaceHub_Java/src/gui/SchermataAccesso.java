@@ -750,7 +750,6 @@ public class SchermataAccesso extends JFrame {
 	}
 
 	private void eseguiRegistrazione() {
-
 			try {
 				ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
 						textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
