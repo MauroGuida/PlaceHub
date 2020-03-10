@@ -477,7 +477,7 @@ public class SchermataAccesso extends JFrame {
 			}
 		});
 		bottoneMinimizza.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/minimizza.png")));
-		bottoneMinimizza.setBounds(483, 5, 24, 25);
+		bottoneMinimizza.setBounds(475, 5, 24, 25);
 		bottoneMinimizza.setOpaque(false);
 		bottoneMinimizza.setContentAreaFilled(false);
 		bottoneMinimizza.setBorderPainted(false);
