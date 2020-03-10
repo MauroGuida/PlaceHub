@@ -3,6 +3,7 @@ package res;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 //create class
 public class DatePicker extends JDialog
@@ -137,6 +138,24 @@ public class DatePicker extends JDialog
                 p2.add(textFieldDisplay);
                 p2.add(nextMonth);
                 p2.add(nextYear);
+                
+                previousYear.setBorderPainted(false);
+                previousMonth.setBorderPainted(false);
+                nextMonth.setBorderPainted(false);
+                nextYear.setBorderPainted(false);
+                
+                previousYear.setFocusPainted(false);
+                previousMonth.setFocusPainted(false);
+                nextMonth.setFocusPainted(false);
+                nextYear.setFocusPainted(false);
+                
+                previousYear.setBackground(Color.WHITE);
+                previousMonth.setBackground(Color.WHITE);
+                nextMonth.setBackground(Color.WHITE);
+                nextYear.setBackground(Color.WHITE);
+                
+                textFieldDisplay.setBorder(new LineBorder(Color.WHITE));
+                
                 
                 textFieldDisplay.setEditable(false);
                 setBackground(Color.WHITE);
