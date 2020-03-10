@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
@@ -26,6 +27,12 @@ import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JLabel;
+import java.awt.GridLayout;
+import java.awt.Scrollbar;
+import java.awt.SystemColor;
+import java.awt.CardLayout;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 
 
 public class SchermataPrincipale extends JFrame {
@@ -51,7 +58,7 @@ public class SchermataPrincipale extends JFrame {
 		setMinimumSize(new Dimension(1100,650));
 		setUndecorated(true);
 		setResizable(true);
-		
+	
 		
 		addMouseListener(new MouseAdapter() {
             @Override
@@ -366,7 +373,15 @@ public class SchermataPrincipale extends JFrame {
 		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
 		
-		JPanel panel = new JPanel();
+		JPanel panelloGestisciBusiness2 = new JPanel();
+		panelloGestisciBusiness2.setBackground(new Color(255, 255, 255));
+		JLabel label1 = new JLabel("1");	JLabel label2 = new JLabel("2");	JLabel label3 = new JLabel("3");
+		JLabel label4 = new JLabel("4");	JLabel label5 = new JLabel("5");	JLabel label6 = new JLabel("6");
+		JLabel label7 = new JLabel("7");	JLabel label8 = new JLabel("8");	JLabel label9 = new JLabel("9");
+		JLabel label10 = new JLabel("10");	JLabel label11 = new JLabel("11");	JLabel label12 = new JLabel("12");
+		
+		JPanel pannelloScrollbar = new JPanel();
+		pannelloScrollbar.setBackground(SystemColor.activeCaptionBorder);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -374,25 +389,153 @@ public class SchermataPrincipale extends JFrame {
 					.addComponent(panelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(panelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+							.addGap(25))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGap(824)
+							.addComponent(pannelloScrollbar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(panelloSideBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+						.addComponent(pannelloScrollbar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 850, Short.MAX_VALUE)
+		
+		JTextArea areaTestoDescriviBusiness2 = new JTextArea();
+		areaTestoDescriviBusiness2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				areaTestoDescriviBusiness2.setText("");
+				areaTestoDescriviBusiness2.setForeground(Color.BLACK);
+			}
+		});
+		areaTestoDescriviBusiness2.setForeground(new Color(192, 192, 192));
+		areaTestoDescriviBusiness2.setBackground(new Color(255, 255, 255));
+		areaTestoDescriviBusiness2.setFont(new Font("Roboto", Font.PLAIN, 17));
+		areaTestoDescriviBusiness2.setRows(20);
+		areaTestoDescriviBusiness2.setColumns(55);
+		areaTestoDescriviBusiness2.setText("Scrivi qui! MAX(2000 caratteri)");
+		areaTestoDescriviBusiness2.setForeground(Color.DARK_GRAY);
+		areaTestoDescriviBusiness2.setBorder(new LineBorder(Color.BLACK,1));
+		
+		JLabel testoDescriviBusiness = new JLabel("Descrivi la tua attivita'");
+		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
+		
+		JButton bottoneIndietroGestisciBusiness2 = new JButton("");
+		bottoneIndietroGestisciBusiness2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButtonFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
+			}
+		});
+		bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
+		bottoneIndietroGestisciBusiness2.setOpaque(false);
+		bottoneIndietroGestisciBusiness2.setContentAreaFilled(false);
+		bottoneIndietroGestisciBusiness2.setBorderPainted(false);
+		
+		JButton bottoneAvantiGestisciBusiness2 = new JButton("");
+		bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+		bottoneAvantiGestisciBusiness2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButtonFocus.png")));
+
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+			}
+		});
+		bottoneAvantiGestisciBusiness2.setOpaque(false);
+		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
+		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
+		
+		JLabel testoTrascinaImmagini = new JLabel("Trascina Immagini");
+		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
+		
+		JLabel immaginiFoto2 = new JLabel("");
+		immaginiFoto2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		
+		JLabel immagineFoto1 = new JLabel("");
+		immagineFoto1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		
+		JLabel imagineFoto3 = new JLabel("");
+		imagineFoto3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		GroupLayout gl_panelloGestisciBusiness2 = new GroupLayout(panelloGestisciBusiness2);
+		gl_panelloGestisciBusiness2.setHorizontalGroup(
+			gl_panelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+					.addGap(100)
+					.addComponent(immagineFoto1, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+					.addGap(122)
+					.addComponent(immaginiFoto2, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+					.addGap(122)
+					.addComponent(imagineFoto3)
+					.addGap(97))
+				.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addComponent(bottoneIndietroGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
+					.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addGap(28))
+				.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addGroup(gl_panelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+							.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+							.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+							.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(294, Short.MAX_VALUE))))
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
+		gl_panelloGestisciBusiness2.setVerticalGroup(
+			gl_panelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelloGestisciBusiness2.createSequentialGroup()
+					.addGap(8)
+					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+					.addGap(41)
+					.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panelloGestisciBusiness2.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(immagineFoto1)
+						.addComponent(immaginiFoto2)
+						.addComponent(imagineFoto3))
+					.addGap(32)
+					.addGroup(gl_panelloGestisciBusiness2.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(bottoneIndietroGestisciBusiness2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(24))
+		);
+		panelloGestisciBusiness2.setLayout(gl_panelloGestisciBusiness2);
+		GroupLayout gl_pannelloScrollbar = new GroupLayout(pannelloScrollbar);
+		gl_pannelloScrollbar.setHorizontalGroup(
+			gl_pannelloScrollbar.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 26, Short.MAX_VALUE)
+		);
+		gl_pannelloScrollbar.setVerticalGroup(
+			gl_pannelloScrollbar.createParallelGroup(Alignment.LEADING)
 				.addGap(0, 614, Short.MAX_VALUE)
 		);
-		panel.setLayout(gl_panel);
+		pannelloScrollbar.setLayout(gl_pannelloScrollbar);
+		
+		Scrollbar s = new Scrollbar();
+		s.setBounds(1074, 36, 26, 614);
+		pannelloScrollbar.add(s);
+		
 		getContentPane().setLayout(groupLayout);
 		
 	}
@@ -438,5 +581,4 @@ public class SchermataPrincipale extends JFrame {
 				break;		
 		}
 	}
-	
 }
