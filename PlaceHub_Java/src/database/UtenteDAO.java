@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import errori.UsernameOPasswordErrati;
+import errori.UsernameOPasswordErratiException;
 import gestione.Controller;
 
 public class UtenteDAO {
@@ -15,7 +15,7 @@ public class UtenteDAO {
 		return idUtente;
 	}
 	
-	public void login(String Username, char[] Password) throws UsernameOPasswordErrati{
+	public void login(String Username, char[] Password) throws UsernameOPasswordErratiException{
 		try {
 			String sql = "SELECT codUtente FROM utente where username = ? and password = ?";
 			PreparedStatement query;
@@ -27,14 +27,13 @@ public class UtenteDAO {
 			if(datiRecuperati.next())
 				idUtente = datiRecuperati.getString(1);
 			else
-				throw new UsernameOPasswordErrati();
+				throw new UsernameOPasswordErratiException();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void registrati(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) {
-		try {
+	public void registrati(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) throws SQLException {
 			String sql = "INSERT INTO Utente(Username, Nome, Cognome, Email, DataDiNascita, Password) Values(?,?,?,?,?,?)";
 			PreparedStatement query;
 			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -45,9 +44,5 @@ public class UtenteDAO {
 			query.setDate(5, java.sql.Date.valueOf(DataDiNascita));
 			query.setString(6, new String(Password));
 			query.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
 	}
 }

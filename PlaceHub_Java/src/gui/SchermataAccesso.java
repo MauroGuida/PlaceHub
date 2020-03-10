@@ -5,6 +5,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import errori.CampiVuotiException;
+import errori.DataDiNascitaNonValidaException;
+import errori.EmailNonValidaException;
+import errori.PasswordNonValidaException;
+import errori.UsernameNonValidoException;
 import gestione.Controller;
 import res.DatePicker;
 
@@ -96,7 +101,12 @@ public class SchermataAccesso extends JFrame {
 	private JLabel testoConfermaNuovaPasswordReimpostaPassword;
 	private JPasswordField passwordFieldConfermaNuovaPasswordReimpostaPassword;
 	private JLabel lineaConfermaNuovaPasswordReimpostaPassword;
-	private JLabel errorePasswordUsername;
+	
+	private JLabel errorePasswordUsernameLogin;
+	private JLabel erroreNonPossonoEsserciCampiVuotiRegistrazione;
+	private JLabel erroreUsernameNonDisponibileRegistrazione;
+	private JLabel erroreEmailNonValidaRegistrazione;
+	private JLabel errorePasswordNonValidaRegistrazione;
 	
 	public SchermataAccesso(Controller Ctrl) {
 		this.ctrl=Ctrl;
@@ -107,9 +117,11 @@ public class SchermataAccesso extends JFrame {
 		
 		generaPannelloBottoni();
 		
+		generaPannelloRegistrazione();
+		
 		generaPannelloLogin();
 		
-		generaPannelloRegistrazione();
+		
 		
 		generaPannelloReimpostaPassword();
 	}
@@ -184,15 +196,10 @@ public class SchermataAccesso extends JFrame {
 		pannelloReimpostaPassword.setVisible(false);
 		
 		generaBottoneConfermaReimpostaPassword();
-		
 		generaBottoneIndietroReimpostaPassword();
-		
 		generaFieldEmailReimpostaPassword();
-		
 		generaFieldCodiceVerificaReimpostaPassword();
-		
 		generaFieldNuovaPasswordReimpostaPassword();
-		
 		generaFieldConfermaNuovaPasswordReimpostaPassword();
 	}
 
@@ -326,22 +333,25 @@ public class SchermataAccesso extends JFrame {
 		placehubLogoLogin.setBounds(177, 50, 197, 152);
 		pannelloLogin.add(placehubLogoLogin);
 		
-		generaBottoneAccedi();
-		gerenaTestoPasswordDimenticata();
-		generaTestoRegistrati();
-		generaFieldUsername();
-		generaFieldPassword();
-		
-		errorePasswordUsername = new JLabel("Username o Password errati");
-		errorePasswordUsername.setHorizontalAlignment(SwingConstants.CENTER);
-		errorePasswordUsername.setForeground(Color.RED);
-		errorePasswordUsername.setFont(new Font("Roboto", Font.PLAIN, 16));
-		errorePasswordUsername.setBounds(80, 410, 383, 26);
-		errorePasswordUsername.setVisible(false);
-		pannelloLogin.add(errorePasswordUsername);
+		generaBottoneAccediLogin();
+		gerenaTestoPasswordDimenticataLogin();
+		generaTestoRegistratiLogin();
+		generaFieldUsernameLogin();
+		generaFieldPasswordLogin();
+		generaTestoErroreUsernameOPasswordLogin();
 	}
 
-	private void generaFieldPassword() {
+	private void generaTestoErroreUsernameOPasswordLogin() {
+		errorePasswordUsernameLogin = new JLabel("Username o Password errati!");
+		errorePasswordUsernameLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		errorePasswordUsernameLogin.setForeground(Color.RED);
+		errorePasswordUsernameLogin.setFont(new Font("Roboto", Font.PLAIN, 16));
+		errorePasswordUsernameLogin.setBounds(80, 410, 383, 26);
+		errorePasswordUsernameLogin.setVisible(false);
+		pannelloLogin.add(errorePasswordUsernameLogin);
+	}
+
+	private void generaFieldPasswordLogin() {
 		JLabel testoPasswordLogin = new JLabel("");
 		testoPasswordLogin.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Password.png")));
 		testoPasswordLogin.setBounds(80, 325, 111, 16);
@@ -369,7 +379,7 @@ public class SchermataAccesso extends JFrame {
 		
 	}
 
-	private void generaFieldUsername() {
+	private void generaFieldUsernameLogin() {
 		testoUsernamePannelloLogin = new JLabel("");
 		testoUsernamePannelloLogin.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Username.png")));
 		testoUsernamePannelloLogin.setBounds(80, 219, 111, 16);
@@ -389,7 +399,7 @@ public class SchermataAccesso extends JFrame {
 		pannelloLogin.add(lineaUsernameLogin);
 	}
 
-	private void generaTestoRegistrati() {
+	private void generaTestoRegistratiLogin() {
 		testoRegistratiLogin = new JLabel("");
 		testoRegistratiLogin.addMouseListener(new MouseAdapter() {
 			@Override
@@ -416,7 +426,7 @@ public class SchermataAccesso extends JFrame {
 		pannelloLogin.add(testoCreaAccountLogin);
 	}
 
-	private void gerenaTestoPasswordDimenticata() {
+	private void gerenaTestoPasswordDimenticataLogin() {
 		testoPasswordDimenticataLogin = new JLabel("");
 		testoPasswordDimenticataLogin.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/haiDimenticatolaPassword.png")));
 		testoPasswordDimenticataLogin.setBounds(39, 578, 265, 26);
@@ -443,7 +453,7 @@ public class SchermataAccesso extends JFrame {
 		pannelloLogin.add(testoReimpostaPasswordLogin);
 	}
 
-	private void generaBottoneAccedi() {
+	private void generaBottoneAccediLogin() {
 		bottoneAccediLogin = new JButton("");
 		bottoneAccediLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -538,18 +548,13 @@ public class SchermataAccesso extends JFrame {
 		pannelloRegistrazione.add(bottoneRegistrazione);
 		
 		generaTestoHaiGiaUnAccountRegistrazione();
-		
 		generaFieldUsernameRegistrazione();
-		
 		generaFieldNomeRegistrazione();
-		
 		generaFieldCognomeRegistrazione();
-		
 		generaFiledDataNascitaRegistrazione();
-		
 		generaFieldEmailRegistrazione();
-		
 		generaFieldPasswordRegistrazione();
+		generaTestoErroriRegistrazione();
 	}
 
 	private void generaFieldPasswordRegistrazione() {
@@ -569,6 +574,40 @@ public class SchermataAccesso extends JFrame {
 		lineaPasswordRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
 		lineaPasswordRegistrazione.setBounds(80, 454, 383, 1);
 		pannelloRegistrazione.add(lineaPasswordRegistrazione);
+	}
+
+	private void generaTestoErroriRegistrazione() {
+		erroreUsernameNonDisponibileRegistrazione = new JLabel("Username non disponibile");
+		erroreUsernameNonDisponibileRegistrazione.setHorizontalAlignment(SwingConstants.RIGHT);
+		erroreUsernameNonDisponibileRegistrazione.setForeground(Color.RED);
+		erroreUsernameNonDisponibileRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 20));
+		erroreUsernameNonDisponibileRegistrazione.setBounds(201, 41, 262, 20);
+		erroreUsernameNonDisponibileRegistrazione.setVisible(false);
+		pannelloRegistrazione.add(erroreUsernameNonDisponibileRegistrazione);
+		
+		erroreNonPossonoEsserciCampiVuotiRegistrazione = new JLabel("Non possono esserci campi vuoti");
+		erroreNonPossonoEsserciCampiVuotiRegistrazione.setHorizontalAlignment(SwingConstants.CENTER);
+		erroreNonPossonoEsserciCampiVuotiRegistrazione.setForeground(Color.RED);
+		erroreNonPossonoEsserciCampiVuotiRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 20));
+		erroreNonPossonoEsserciCampiVuotiRegistrazione.setBounds(80, 469, 383, 20);
+		erroreNonPossonoEsserciCampiVuotiRegistrazione.setVisible(false);
+		pannelloRegistrazione.add(erroreNonPossonoEsserciCampiVuotiRegistrazione);
+		
+		erroreEmailNonValidaRegistrazione = new JLabel("Email non valida");
+		erroreEmailNonValidaRegistrazione.setHorizontalAlignment(SwingConstants.RIGHT);
+		erroreEmailNonValidaRegistrazione.setForeground(Color.RED);
+		erroreEmailNonValidaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 20));
+		erroreEmailNonValidaRegistrazione.setBounds(155, 329, 308, 20);
+		erroreEmailNonValidaRegistrazione.setVisible(false);
+		pannelloRegistrazione.add(erroreEmailNonValidaRegistrazione);
+		
+		errorePasswordNonValidaRegistrazione = new JLabel("Password non valida");
+		errorePasswordNonValidaRegistrazione.setHorizontalAlignment(SwingConstants.RIGHT);
+		errorePasswordNonValidaRegistrazione.setForeground(Color.RED);
+		errorePasswordNonValidaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 20));
+		errorePasswordNonValidaRegistrazione.setBounds(228, 400, 235, 20);
+		errorePasswordNonValidaRegistrazione.setVisible(false);
+		pannelloRegistrazione.add(errorePasswordNonValidaRegistrazione);
 	}
 
 	private void generaFieldEmailRegistrazione() {
@@ -711,15 +750,29 @@ public class SchermataAccesso extends JFrame {
 	}
 
 	private void eseguiRegistrazione() {
-		ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
-				textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
-		
-		pannelloRegistrazione.setVisible(false);
-		pannelloLogin.setVisible(true);
+
+			try {
+				ctrl.registratiSchermataAccesso(textFieldUsernameRegistrazione.getText(), textFieldNomeRegistrazione.getText(),
+						textFieldCognomeRegistrazione.getText(), textFieldEmailRegistrazione.getText(), textFieldDataNascitaRegistrazione.getText(), passwordFieldRegistrazione.getPassword());
+				
+				pannelloRegistrazione.setVisible(false);
+				pannelloLogin.setVisible(true);
+			} catch (UsernameNonValidoException e1) {
+				erroreUsernameNonDisponibileRegistrazione.setVisible(true);
+			} catch(EmailNonValidaException e3) {
+				erroreEmailNonValidaRegistrazione.setVisible(true);
+			} catch(DataDiNascitaNonValidaException e4) {
+				
+			} catch(PasswordNonValidaException e5) {
+				errorePasswordNonValidaRegistrazione.setVisible(true);
+			} catch(CampiVuotiException e6) {
+				erroreNonPossonoEsserciCampiVuotiRegistrazione.setVisible(true);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public void mostraErroreUsernamePassword(boolean controllo) {
-		errorePasswordUsername.setVisible(controllo);
+		errorePasswordUsernameLogin.setVisible(controllo);
 	}
-
 }
