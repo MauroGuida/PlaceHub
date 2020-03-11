@@ -562,16 +562,16 @@ public class SchermataPrincipale extends JFrame {
 		textFieldPartitaIVA.setColumns(10);
 		
 		JLabel lineaTestoNomeBusiness = new JLabel("");
-		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttività.png")));
+		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		
 		JLabel lineaTestoIndirizzo = new JLabel("");
-		lineaTestoIndirizzo.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttività.png")));
+		lineaTestoIndirizzo.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		
 		JLabel lineaTestoTelefono = new JLabel("");
-		lineaTestoTelefono.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttività.png")));
+		lineaTestoTelefono.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		
 		JLabel lineaTestoPartitaIVA = new JLabel("");
-		lineaTestoPartitaIVA.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttività.png")));
+		lineaTestoPartitaIVA.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		
 		JLabel testoSelezionaOpzione = new JLabel("Seleziona una opzione");
 		testoSelezionaOpzione.setFont(new Font("Roboto", Font.PLAIN, 20));
