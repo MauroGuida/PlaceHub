@@ -81,12 +81,9 @@ public class SchermataAccesso extends JFrame {
 	private JPasswordField passwordFieldRegistrazione;
 	private JLabel lineaPasswordRegistrazione;
 	
-	private JPanel pannelloReimpostaPassword;
+	private JPanel pannelloReimpostaPassword2;
 	private JButton bottoneConfermaReimpostaPassword;
 	private JButton bottoneTornaIndietroReimpostaPassword;
-	private JLabel testoEmailReimpostaPassword;
-	private JTextField textFieldEmailReimpostaPassword;
-	private JLabel lineaEmailReimpostaPassword;
 	private JLabel testoCodiceVerificaReimpostaPassword;
 	private JTextField textFieldCodiceVerificaReimpostaPassword;
 	private JLabel lineaCodiceVerificaReimpostaPassword;
@@ -96,6 +93,15 @@ public class SchermataAccesso extends JFrame {
 	private JLabel testoConfermaNuovaPasswordReimpostaPassword;
 	private JPasswordField passwordFieldConfermaNuovaPasswordReimpostaPassword;
 	private JLabel lineaConfermaNuovaPasswordReimpostaPassword;
+	private JLabel labelComunicazioneUtenteReimpostaPassword2;
+	
+	private JPanel pannelloReimpostaPassword1;
+	private JLabel testoEmailReimpostaPassword;
+	private JTextField textFieldEmailReimpostaPassword;
+	private JLabel lineaEmailReimpostaPassword;
+	private JButton bottoneInviaCodiceReimpostaPassword;
+	private JButton bottoneTornaIndietroReimpostaPassword1;
+	private JLabel labelComunicazioneUtenteReimpostaPassword1;
 	
 	private JLabel errorePasswordUsernameLogin;
 	private JLabel notificaErroreCampiVuotiOConfermaRegistrazione;
@@ -112,13 +118,13 @@ public class SchermataAccesso extends JFrame {
 		
 		generaPannelloBottoni();
 		
-		generaPannelloReimpostaPassword();
-		
 		generaPannelloLogin();
 		
 		generaPannelloRegistrazione();
 		
+		generaPannelloReimpostaPassword1();
 		
+		generaPannelloReimpostaPassword2();
 	}
 	
 	private void layoutGeneraleFinestra() {
@@ -128,6 +134,7 @@ public class SchermataAccesso extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(1100,650);
+		
 		gestioneRiposizionamentoFinestra();
 	}
 	
@@ -182,106 +189,184 @@ public class SchermataAccesso extends JFrame {
 		}, 0, 5000);
 	}
 
-	private void generaPannelloReimpostaPassword() {
-		pannelloReimpostaPassword = new JPanel();
-		pannelloReimpostaPassword.setBackground(Color.WHITE);
-		pannelloReimpostaPassword.setBounds(550, 0, 550, 650);
-		pannelloInferiore.add(pannelloReimpostaPassword);
-		pannelloReimpostaPassword.setLayout(null);
-		pannelloReimpostaPassword.setVisible(false);
+	private void generaPannelloReimpostaPassword2() {
+		pannelloReimpostaPassword2 = new JPanel();
+		pannelloReimpostaPassword2.setBackground(Color.WHITE);
+		pannelloReimpostaPassword2.setBounds(550, 0, 550, 650);
+		pannelloInferiore.add(pannelloReimpostaPassword2);
+		pannelloReimpostaPassword2.setLayout(null);
+		pannelloReimpostaPassword2.setVisible(false);
 		
-		generaBottoneConfermaReimpostaPassword();
-		generaBottoneIndietroReimpostaPassword();
-		generaFieldEmailReimpostaPassword();
-		generaFieldCodiceVerificaReimpostaPassword();
-		generaFieldNuovaPasswordReimpostaPassword();
-		generaFieldConfermaNuovaPasswordReimpostaPassword();
+		labelComunicazioneUtenteReimpostaPassword2 = new JLabel("<html><center><p><b>Inserire il codice ricevuto via Email</b></p>"
+				+ "<p>\n</p>"
+				+ "<p><font size=\"4\"><i>Nel caso non si dovesse ricevere un'Email entro 10 minuti si prega di"
+				+ "controllare l'indirizzo inserito e riprovare!</i></font></p></center></html>");
+		labelComunicazioneUtenteReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelComunicazioneUtenteReimpostaPassword2.setBounds(80, 62, 383, 117);
+		pannelloReimpostaPassword2.add(labelComunicazioneUtenteReimpostaPassword2);
+		
+		generaBottoneConfermaReimpostaPassword2();
+		generaBottoneIndietroReimpostaPassword2();
+		generaFieldCodiceVerificaReimpostaPassword2();
+		generaFieldNuovaPasswordReimpostaPassword2();
+		generaFieldConfermaNuovaPasswordReimpostaPassword2();
 	}
 
-	private void generaFieldConfermaNuovaPasswordReimpostaPassword() {
+	private void generaFieldConfermaNuovaPasswordReimpostaPassword2() {
 		testoConfermaNuovaPasswordReimpostaPassword = new JLabel("");
 		testoConfermaNuovaPasswordReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ConfermaNuovaPassword.png")));
 		testoConfermaNuovaPasswordReimpostaPassword.setBounds(80, 370, 250, 20);
-		pannelloReimpostaPassword.add(testoConfermaNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(testoConfermaNuovaPasswordReimpostaPassword);
 		
 		passwordFieldConfermaNuovaPasswordReimpostaPassword = new JPasswordField();
 		passwordFieldConfermaNuovaPasswordReimpostaPassword.setBounds(80, 398, 383, 32);
 		passwordFieldConfermaNuovaPasswordReimpostaPassword.setFont(new Font("Roboto", Font.PLAIN, 17));
 		passwordFieldConfermaNuovaPasswordReimpostaPassword.setBackground(new Color(255,255,255));
 		passwordFieldConfermaNuovaPasswordReimpostaPassword.setBorder(new LineBorder(new Color(255,255,255),1));
-		pannelloReimpostaPassword.add(passwordFieldConfermaNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(passwordFieldConfermaNuovaPasswordReimpostaPassword);
 		
 		lineaConfermaNuovaPasswordReimpostaPassword = new JLabel("");
 		lineaConfermaNuovaPasswordReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
 		lineaConfermaNuovaPasswordReimpostaPassword.setBounds(80, 430, 383, 1);
-		pannelloReimpostaPassword.add(lineaConfermaNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(lineaConfermaNuovaPasswordReimpostaPassword);
 	}
 
-	private void generaFieldNuovaPasswordReimpostaPassword() {
+	private void generaFieldNuovaPasswordReimpostaPassword2() {
 		testoNuovaPasswordReimpostaPassword = new JLabel("");
 		testoNuovaPasswordReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/Nuova Password.png")));
 		testoNuovaPasswordReimpostaPassword.setBounds(80, 280, 185, 20);
-		pannelloReimpostaPassword.add(testoNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(testoNuovaPasswordReimpostaPassword);
 		
 		passwordFieldNuovaPasswordReimpostaPassword = new JPasswordField();
 		passwordFieldNuovaPasswordReimpostaPassword.setBounds(80, 308, 383, 32);
 		passwordFieldNuovaPasswordReimpostaPassword.setFont(new Font("Roboto", Font.PLAIN, 17));
 		passwordFieldNuovaPasswordReimpostaPassword.setBackground(new Color(255,255,255));
 		passwordFieldNuovaPasswordReimpostaPassword.setBorder(new LineBorder(new Color(255,255,255),1));
-		pannelloReimpostaPassword.add(passwordFieldNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(passwordFieldNuovaPasswordReimpostaPassword);
 		
 		lineaNuovaPasswordReimpostaPassword = new JLabel("");
 		lineaNuovaPasswordReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
 		lineaNuovaPasswordReimpostaPassword.setBounds(80, 340, 383, 1);
-		pannelloReimpostaPassword.add(lineaNuovaPasswordReimpostaPassword);
+		pannelloReimpostaPassword2.add(lineaNuovaPasswordReimpostaPassword);
 	}
 
-	private void generaFieldCodiceVerificaReimpostaPassword() {
+	private void generaFieldCodiceVerificaReimpostaPassword2() {
 		testoCodiceVerificaReimpostaPassword = new JLabel("");
 		testoCodiceVerificaReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/CodiceVerifica.png")));
 		testoCodiceVerificaReimpostaPassword.setBounds(80, 190, 140, 20);
-		pannelloReimpostaPassword.add(testoCodiceVerificaReimpostaPassword);
+		pannelloReimpostaPassword2.add(testoCodiceVerificaReimpostaPassword);
 		
 		textFieldCodiceVerificaReimpostaPassword = new JTextField();
 		textFieldCodiceVerificaReimpostaPassword.setBounds(80, 218, 383, 32);
 		textFieldCodiceVerificaReimpostaPassword.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldCodiceVerificaReimpostaPassword.setBackground(new Color(255,255,255));
 		textFieldCodiceVerificaReimpostaPassword.setBorder(new LineBorder(new Color(255,255,255),1));
-		pannelloReimpostaPassword.add(textFieldCodiceVerificaReimpostaPassword);
+		pannelloReimpostaPassword2.add(textFieldCodiceVerificaReimpostaPassword);
 		textFieldCodiceVerificaReimpostaPassword.setColumns(10);
 		
 		lineaCodiceVerificaReimpostaPassword = new JLabel("");
 		lineaCodiceVerificaReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
 		lineaCodiceVerificaReimpostaPassword.setBounds(80, 250, 383, 1);
-		pannelloReimpostaPassword.add(lineaCodiceVerificaReimpostaPassword);
+		pannelloReimpostaPassword2.add(lineaCodiceVerificaReimpostaPassword);
+	}
+	
+	public void generaPannelloReimpostaPassword1() {
+		pannelloReimpostaPassword1 = new JPanel();
+		pannelloReimpostaPassword1.setBackground(Color.WHITE);
+		pannelloReimpostaPassword1.setBounds(550, 0, 550, 650);
+		pannelloInferiore.add(pannelloReimpostaPassword1);
+		pannelloReimpostaPassword1.setLayout(null);
+		pannelloReimpostaPassword1.setVisible(false);
+		
+		generaFieldEmailReimpostaPassword1();
+		generaBottoneInviaCodiceReimpostaPassword1();
+		generaBottoneIndietroReimpostaPassword1();
+		generaLabelComunicazioneUtenteReimpostaPassword1();
 	}
 
-	private void generaFieldEmailReimpostaPassword() {
+	public void generaLabelComunicazioneUtenteReimpostaPassword1() {
+		labelComunicazioneUtenteReimpostaPassword1 = new JLabel("<html><p>Si prega di inserire l'indirizzo Email di registrazione registrazione per consentirci di verificare l'account.</p>"
+				+ "\n"
+				+ "<p><center><b>Riceverai via email un codice di verifica entro 10 minuti.</b></center></p></html>");
+		labelComunicazioneUtenteReimpostaPassword1.setVerticalAlignment(SwingConstants.TOP);
+		labelComunicazioneUtenteReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelComunicazioneUtenteReimpostaPassword1.setBounds(80, 100, 383, 114);
+		pannelloReimpostaPassword1.add(labelComunicazioneUtenteReimpostaPassword1);
+	}
+	
+	private void generaBottoneIndietroReimpostaPassword1() {
+		bottoneTornaIndietroReimpostaPassword1 = new JButton("");
+		bottoneTornaIndietroReimpostaPassword1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pannelloLogin.setVisible(true);
+				pannelloReimpostaPassword1.setVisible(false);
+			}
+		});
+		bottoneTornaIndietroReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
+		bottoneTornaIndietroReimpostaPassword1.setBounds(12, 595, 43, 43);
+		bottoneTornaIndietroReimpostaPassword1.setOpaque(false);
+		bottoneTornaIndietroReimpostaPassword1.setContentAreaFilled(false);
+		bottoneTornaIndietroReimpostaPassword1.setBorderPainted(false);
+		pannelloReimpostaPassword1.add(bottoneTornaIndietroReimpostaPassword1);
+	}
+
+	public void generaBottoneInviaCodiceReimpostaPassword1() {
+		bottoneInviaCodiceReimpostaPassword = new JButton("");
+		bottoneInviaCodiceReimpostaPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pannelloReimpostaPassword1.setVisible(false);
+				pannelloReimpostaPassword2.setVisible(true);
+				
+				//DA SCRIVERE METODO PER IL RESET DELLA PASSWORD!
+			}
+		});
+		bottoneInviaCodiceReimpostaPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneInviaCodiceReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodiceFocus.png")));
+				setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneInviaCodiceReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		
+		bottoneInviaCodiceReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
+		bottoneInviaCodiceReimpostaPassword.setBounds(132, 420, 280, 48);
+		bottoneInviaCodiceReimpostaPassword.setOpaque(false);
+		bottoneInviaCodiceReimpostaPassword.setBorderPainted(false);
+		bottoneInviaCodiceReimpostaPassword.setContentAreaFilled(false);
+		pannelloReimpostaPassword1.add(bottoneInviaCodiceReimpostaPassword);
+	}
+
+	private void generaFieldEmailReimpostaPassword1() {
 		testoEmailReimpostaPassword = new JLabel("");
 		testoEmailReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/testoEmail.png")));
-		testoEmailReimpostaPassword.setBounds(80, 100, 111, 20);
-		pannelloReimpostaPassword.add(testoEmailReimpostaPassword);
+		testoEmailReimpostaPassword.setBounds(80, 262, 140, 20);
+		pannelloReimpostaPassword1.add(testoEmailReimpostaPassword);
 		
 		textFieldEmailReimpostaPassword = new JTextField();
-		textFieldEmailReimpostaPassword.setBounds(80, 128, 383, 32);
+		textFieldEmailReimpostaPassword.setBounds(80, 290, 383, 32);
 		textFieldEmailReimpostaPassword.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldEmailReimpostaPassword.setBackground(new Color(255,255,255));
 		textFieldEmailReimpostaPassword.setBorder(new LineBorder(new Color(255,255,255),1));
-		pannelloReimpostaPassword.add(textFieldEmailReimpostaPassword);
+		pannelloReimpostaPassword1.add(textFieldEmailReimpostaPassword);
 		textFieldEmailReimpostaPassword.setColumns(10);
 		
 		lineaEmailReimpostaPassword = new JLabel("");
 		lineaEmailReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
-		lineaEmailReimpostaPassword.setBounds(80, 160, 383, 1);
-		pannelloReimpostaPassword.add(lineaEmailReimpostaPassword);
+		lineaEmailReimpostaPassword.setBounds(80, 322, 383, 1);
+		pannelloReimpostaPassword1.add(lineaEmailReimpostaPassword);
 	}
 
-	private void generaBottoneIndietroReimpostaPassword() {
+	private void generaBottoneIndietroReimpostaPassword2() {
 		bottoneTornaIndietroReimpostaPassword = new JButton("");
 		bottoneTornaIndietroReimpostaPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pannelloLogin.setVisible(true);
-				pannelloReimpostaPassword.setVisible(false);
+				pannelloReimpostaPassword2.setVisible(false);
 			}
 		});
 		bottoneTornaIndietroReimpostaPassword.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
@@ -289,11 +374,16 @@ public class SchermataAccesso extends JFrame {
 		bottoneTornaIndietroReimpostaPassword.setOpaque(false);
 		bottoneTornaIndietroReimpostaPassword.setContentAreaFilled(false);
 		bottoneTornaIndietroReimpostaPassword.setBorderPainted(false);
-		pannelloReimpostaPassword.add(bottoneTornaIndietroReimpostaPassword);
+		pannelloReimpostaPassword2.add(bottoneTornaIndietroReimpostaPassword);
 	}
 
-	private void generaBottoneConfermaReimpostaPassword() {
+	private void generaBottoneConfermaReimpostaPassword2() {
 		bottoneConfermaReimpostaPassword = new JButton("");
+		bottoneConfermaReimpostaPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//SCRIVERE METODO REIMPOSTA PASSWORD!
+			}
+		});
 		bottoneConfermaReimpostaPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -312,7 +402,7 @@ public class SchermataAccesso extends JFrame {
 		bottoneConfermaReimpostaPassword.setOpaque(false);
 		bottoneConfermaReimpostaPassword.setBorderPainted(false);
 		bottoneConfermaReimpostaPassword.setContentAreaFilled(false);
-		pannelloReimpostaPassword.add(bottoneConfermaReimpostaPassword);
+		pannelloReimpostaPassword2.add(bottoneConfermaReimpostaPassword);
 	}
 
 	private void generaPannelloLogin() {
@@ -440,7 +530,7 @@ public class SchermataAccesso extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				pannelloLogin.setVisible(false);
-				pannelloReimpostaPassword.setVisible(true);
+				pannelloReimpostaPassword1.setVisible(true);
 			}
 		});
 		testoReimpostaPasswordLogin.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/ReimpostaPassword.png")));
