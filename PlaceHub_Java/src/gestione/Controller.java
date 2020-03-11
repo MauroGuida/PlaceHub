@@ -8,6 +8,7 @@ import database.UtenteDAO;
 import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
+import res.InvioEmail;
 
 public class Controller {
 
@@ -82,6 +83,27 @@ public class Controller {
 				
 //				e.printStackTrace();
 			}
+		}
+	}
+	
+	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String Email) {
+		try {
+			InvioEmail mail=new InvioEmail();
+			
+			final String Oggetto = "Placehub - Reimposta password!";
+			String Corpo = utente.reimpostaPassword(Email);
+			
+			mail.inviaEmail(Email, Oggetto, Corpo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void impostaPassword(char[] Password) {
+		try {
+			utente.impostaPassword(Password);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

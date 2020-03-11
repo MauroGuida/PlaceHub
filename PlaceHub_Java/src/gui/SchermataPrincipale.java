@@ -9,7 +9,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
@@ -27,17 +26,15 @@ import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.awt.Scrollbar;
 import java.awt.SystemColor;
-import java.awt.CardLayout;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
+	
 	private Controller ctrl;
 	private JButton bottoneEsci;
 	private int coordinataX;

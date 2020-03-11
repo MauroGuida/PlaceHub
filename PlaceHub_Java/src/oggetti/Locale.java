@@ -7,6 +7,8 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 
 public class Locale extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel lblStelle;
 	
 	public Locale() {
