@@ -92,7 +92,25 @@ public class Controller {
 			InvioEmail mail=new InvioEmail();
 			
 			final String Oggetto = "Placehub - Reimposta password!";
-			String Corpo = utente.reimpostaPassword(Email);
+			String Corpo = "<!doctype html>\r\n" + 
+					"<html>\r\n" + 
+					"	<head>\r\n" + 
+					"		<title>PlaceHub</title>\r\n" + 
+					"	</head>\r\n" + 
+					"	<body>\r\n" + 
+					"		<p>\r\n" + 
+					"			<center>\r\n" + 
+					"				<img src=\"https://i.ibb.co/YdXbkqH/PlaceHub.png\" width=\"480\" height=\"270\" alt=\"Logo\">\r\n" + 
+					"			</center>\r\n" + 
+					"		</p>\r\n" + 
+					"		<p>\r\n" + 
+					"			\r\n" + 
+					"		</p>\r\n" + 
+					"		<p>\r\n" + 
+					"			<center>Il tuo codice di verifica: " + utente.reimpostaPassword(Email) + "</center>\r\n" + 
+					"		</p>\r\n" + 
+					"	</body>\r\n" + 
+					"</html>";
 			
 			mail.inviaEmail(Email, Oggetto, Corpo);
 			

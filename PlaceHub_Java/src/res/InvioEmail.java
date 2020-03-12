@@ -28,7 +28,8 @@ public class InvioEmail {
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(Email));
             message.setSubject(Oggetto);
-            message.setText(Corpo);
+            message.setContent(Corpo, "text/html");
+            //message.setText(Corpo);
 
             Transport.send(message);
 
