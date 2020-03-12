@@ -232,6 +232,14 @@ public class SchermataAccesso extends JFrame {
 		pannelloReimpostaPassword2.add(testoConfermaNuovaPasswordReimpostaPassword2);
 		
 		passwordFieldConfermaNuovaPasswordReimpostaPassword2 = new JPasswordField();
+		passwordFieldConfermaNuovaPasswordReimpostaPassword2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					confermaNuovaPasswordReimpostaPassword();
+				}
+			}
+		});
 		passwordFieldConfermaNuovaPasswordReimpostaPassword2.setBounds(80, 398, 383, 32);
 		passwordFieldConfermaNuovaPasswordReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 17));
 		passwordFieldConfermaNuovaPasswordReimpostaPassword2.setBackground(new Color(255,255,255));
@@ -340,7 +348,7 @@ public class SchermataAccesso extends JFrame {
 		bottoneInviaCodiceReimpostaPassword1 = new JButton("");
 		bottoneInviaCodiceReimpostaPassword1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				invioCodiceReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
+				invioCodiceReimpostaPassword();
 			}
 		});
 		bottoneInviaCodiceReimpostaPassword1.addMouseListener(new MouseAdapter() {
@@ -371,6 +379,13 @@ public class SchermataAccesso extends JFrame {
 		pannelloReimpostaPassword1.add(testoEmailReimpostaPassword1);
 		
 		textFieldEmailReimpostaPassword1 = new JTextField();
+		textFieldEmailReimpostaPassword1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) 
+					invioCodiceReimpostaPassword();
+			}
+		});
 		textFieldEmailReimpostaPassword1.setBounds(80, 290, 383, 32);
 		textFieldEmailReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldEmailReimpostaPassword1.setBackground(new Color(255,255,255));
@@ -675,6 +690,13 @@ public class SchermataAccesso extends JFrame {
 		pannelloRegistrazione.add(testoPasswordRegistrazione);
 		
 		passwordFieldRegistrazione = new JPasswordField();
+		passwordFieldRegistrazione.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+					eseguiRegistrazione();
+			}
+		});
 		passwordFieldRegistrazione.setBounds(80, 422, 383, 32);
 		passwordFieldRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		passwordFieldRegistrazione.setBackground(new Color(255,255,255));
@@ -965,8 +987,8 @@ public class SchermataAccesso extends JFrame {
 		errorePasswordNonValidaRegistrazione.setVisible(false);
 	}
 	
-	private void invioCodiceReimpostaPassword(String Email) {
-		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(Email);
+	private void invioCodiceReimpostaPassword() {
+		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
 	}
 	
 	private void confermaNuovaPasswordReimpostaPassword() {
