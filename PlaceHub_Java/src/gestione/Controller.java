@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import database.Connessione;
 import database.UtenteDAO;
+import errori.CodiceVerificaNonValidoException;
 import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
@@ -94,16 +95,27 @@ public class Controller {
 			String Corpo = utente.reimpostaPassword(Email);
 			
 			mail.inviaEmail(Email, Oggetto, Corpo);
-		} catch (SQLException e) {
+			
+			schermataAccessoFrame.mostraPannelloSuccessivoReimpostaPassword1();
+		} catch (Exception e) {
+			schermataAccessoFrame.mostraErroreReimpostaPassword1();
+			
 			e.printStackTrace();
 		}
 	}
 	
-	public void impostaPassword(char[] Password) {
+	public void impostaPassword(String codiceVerifica, char[] Password) {
 		try {
-			utente.impostaPassword(Password);
+			utente.impostaPassword(codiceVerifica, Password);
+			
+			schermataAccessoFrame.mostraAvvisoPasswordImpostataConSuccessoReimpostaPassword2();
 		} catch (SQLException e) {
+			if(e.toString().indexOf("lunghezzapassword") != -1)
+				schermataAccessoFrame.mostraErrorePasswordTroppoCortaReimpostaPassword2();
+			
 			e.printStackTrace();
+		}catch (CodiceVerificaNonValidoException e) {
+			schermataAccessoFrame.mostraErroreCodiceDiVerificaNonValidoReimpostaPassword2();
 		}
 	}
 }

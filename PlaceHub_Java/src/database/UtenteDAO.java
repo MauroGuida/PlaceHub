@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import errori.CodiceVerificaNonValidoException;
 import errori.UsernameOPasswordErratiException;
 import gestione.Controller;
 
@@ -51,7 +52,7 @@ public class UtenteDAO {
 		query.setInt(1, Integer.parseInt(codUtente));
 		query.executeUpdate();
 		
-		sql = "SELECT Password From Utente Where codUtente = ?";
+		sql = "SELECT Password From Utente WHERE codUtente = ?";
 		PreparedStatement query2;
 		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query2.setInt(1, Integer.parseInt(codUtente));
@@ -63,7 +64,7 @@ public class UtenteDAO {
 	}
 	
 	private String recuperaCodiceUtenteDaEmail(String Email) throws SQLException{	
-		String sql = "SELECT codUtente FROM utente where email=?";
+		String sql = "SELECT codUtente FROM utente WHERE email = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, Email);
@@ -74,12 +75,27 @@ public class UtenteDAO {
 		return datiRecuperati.getString(1);
 	}
 	
-	public void impostaPassword(char[] Password) throws SQLException {
-		String sql = "UPDATE Utente SET Password = ? WHERE codUtente = ?";
-		PreparedStatement query;
-		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-		query.setString(1, new String(Password));
-		query.setInt(2, Integer.parseInt(codUtente));
-		query.executeUpdate();
+	public void impostaPassword(String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
+		String sql = "SELECT codUtente FROM Utente WHERE codUtente = ? AND Password = ?";
+		PreparedStatement queryVerifica;
+		queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		queryVerifica.setInt(1, Integer.parseInt(codUtente));
+		queryVerifica.setString(2, codiceVerifica);
+		ResultSet datiRecuperati = queryVerifica.executeQuery();
+		
+		datiRecuperati.next();
+		
+		try {
+			datiRecuperati.getString(1); //Se il codice di verfica non è valido da un eccezione
+			
+			sql = "UPDATE Utente SET Password = ? WHERE codUtente = ?";
+			PreparedStatement query;
+			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+			query.setString(1, new String(Password));
+			query.setInt(2, Integer.parseInt(codUtente));
+			query.executeUpdate();
+		}catch (SQLException e) {
+			throw new CodiceVerificaNonValidoException();
+		}
 	}
 }

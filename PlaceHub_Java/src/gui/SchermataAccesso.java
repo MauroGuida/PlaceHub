@@ -88,6 +88,7 @@ public class SchermataAccesso extends JFrame {
 	private JButton bottoneInviaCodiceReimpostaPassword1;
 	private JButton bottoneTornaIndietroReimpostaPassword1;
 	private JLabel labelComunicazioneUtenteReimpostaPassword1;
+	private JLabel labelErroreReimpostaPassword1;
 	
 	private JPanel pannelloReimpostaPassword2;
 	private JButton bottoneConfermaReimpostaPassword2;
@@ -211,10 +212,10 @@ public class SchermataAccesso extends JFrame {
 		generaFieldCodiceVerificaReimpostaPassword2();
 		generaFieldNuovaPasswordReimpostaPassword2();
 		generaFieldConfermaNuovaPasswordReimpostaPassword2();
-		generaLabelMessaggioErrore();
+		generaLabelMessaggioErroreReimpostaPassword2();
 	}
 
-	private void generaLabelMessaggioErrore() {
+	private void generaLabelMessaggioErroreReimpostaPassword2() {
 		labelMessaggioErroreReimpostaPassword2 = new JLabel("Le password non corrispondono!");
 		labelMessaggioErroreReimpostaPassword2.setVisible(false);
 		labelMessaggioErroreReimpostaPassword2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -294,6 +295,17 @@ public class SchermataAccesso extends JFrame {
 		generaBottoneInviaCodiceReimpostaPassword1();
 		generaBottoneIndietroReimpostaPassword1();
 		generaLabelComunicazioneUtenteReimpostaPassword1();
+		generaLabelErroreReimpostaPassword1();
+	}
+
+	public void generaLabelErroreReimpostaPassword1() {
+		labelErroreReimpostaPassword1 = new JLabel("Non siamo riusciti a mandarti alcuna Email, riprova!");
+		labelErroreReimpostaPassword1.setVisible(false);
+		labelErroreReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelErroreReimpostaPassword1.setForeground(Color.RED);
+		labelErroreReimpostaPassword1.setHorizontalAlignment(SwingConstants.CENTER);
+		labelErroreReimpostaPassword1.setBounds(80, 360, 383, 32);
+		pannelloReimpostaPassword1.add(labelErroreReimpostaPassword1);
 	}
 
 	public void generaLabelComunicazioneUtenteReimpostaPassword1() {
@@ -312,6 +324,8 @@ public class SchermataAccesso extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				pannelloLogin.setVisible(true);
 				pannelloReimpostaPassword1.setVisible(false);
+				
+				resettaErroriReimpostaPassword();
 			}
 		});
 		bottoneTornaIndietroReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
@@ -326,9 +340,6 @@ public class SchermataAccesso extends JFrame {
 		bottoneInviaCodiceReimpostaPassword1 = new JButton("");
 		bottoneInviaCodiceReimpostaPassword1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pannelloReimpostaPassword1.setVisible(false);
-				pannelloReimpostaPassword2.setVisible(true);
-				
 				invioCodiceReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
 			}
 		});
@@ -379,6 +390,8 @@ public class SchermataAccesso extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				pannelloLogin.setVisible(true);
 				pannelloReimpostaPassword2.setVisible(false);
+				
+				resettaErroriReimpostaPassword();
 			}
 		});
 		bottoneTornaIndietroReimpostaPassword2.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
@@ -903,8 +916,46 @@ public class SchermataAccesso extends JFrame {
 		errorePasswordUsernameLogin.setVisible(controllo);
 	}
 	
-	public void mostraErroreLePasswordNonCorrispondonoReimpostPassword() {
+	public void mostraErroreLePasswordNonCorrispondonoReimpostaPassword2() {
+		labelMessaggioErroreReimpostaPassword2.setForeground(Color.RED);
+		labelMessaggioErroreReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelMessaggioErroreReimpostaPassword2.setText("Le password non corrispondono!");
 		labelMessaggioErroreReimpostaPassword2.setVisible(true);
+	}
+	
+	public void mostraErrorePasswordTroppoCortaReimpostaPassword2() {
+		labelMessaggioErroreReimpostaPassword2.setForeground(Color.RED);
+		labelMessaggioErroreReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelMessaggioErroreReimpostaPassword2.setText("La password deve essere di almeno 6 caratteri!");
+		labelMessaggioErroreReimpostaPassword2.setVisible(true);
+	}
+	
+	public void mostraErroreCodiceDiVerificaNonValidoReimpostaPassword2() {
+		labelMessaggioErroreReimpostaPassword2.setForeground(Color.RED);
+		labelMessaggioErroreReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelMessaggioErroreReimpostaPassword2.setText("Il codice di verifica NON valido!");
+		labelMessaggioErroreReimpostaPassword2.setVisible(true);
+	}
+	
+	public void mostraAvvisoPasswordImpostataConSuccessoReimpostaPassword2() {
+		labelMessaggioErroreReimpostaPassword2.setForeground(new Color(64,151,0));
+		labelMessaggioErroreReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 16));
+		labelMessaggioErroreReimpostaPassword2.setText("Password impostata con successo!");
+		labelMessaggioErroreReimpostaPassword2.setVisible(true);
+	}
+	
+	public void mostraPannelloSuccessivoReimpostaPassword1() {
+		pannelloReimpostaPassword1.setVisible(false);
+		pannelloReimpostaPassword2.setVisible(true);
+	}
+	
+	public void mostraErroreReimpostaPassword1() {
+		labelErroreReimpostaPassword1.setVisible(true);
+	}
+	
+	public void resettaErroriReimpostaPassword() {
+		labelMessaggioErroreReimpostaPassword2.setVisible(false);
+		labelErroreReimpostaPassword1.setVisible(false);
 	}
 	
 	public void resettaErroriRegistrazione() {
@@ -919,12 +970,13 @@ public class SchermataAccesso extends JFrame {
 	}
 	
 	private void confermaNuovaPasswordReimpostaPassword() {
+		String codiceVerifica = new String(textFieldCodiceVerificaReimpostaPassword2.getText());
 		String password = new String(passwordFieldNuovaPasswordReimpostaPassword2.getPassword());
 		String passwordControllo = new String(passwordFieldConfermaNuovaPasswordReimpostaPassword2.getPassword());
 		
 		if(password.equals(passwordControllo))
-			ctrl.impostaPassword(passwordFieldNuovaPasswordReimpostaPassword2.getPassword());
+			ctrl.impostaPassword(codiceVerifica, passwordFieldNuovaPasswordReimpostaPassword2.getPassword());
 		else
-			mostraErroreLePasswordNonCorrispondonoReimpostPassword();
+			mostraErroreLePasswordNonCorrispondonoReimpostaPassword2();
 	}
 }
