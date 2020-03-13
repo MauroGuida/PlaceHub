@@ -3,7 +3,7 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
   Update utente
-  set password=(select substr(md5(random()::text), 0, 10))
+  set codiceVerifica=(select substr(md5(random()::text), 0, 10))
   where codutente=$1;
 
   COMMIT;

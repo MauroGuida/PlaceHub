@@ -817,7 +817,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 880,
-											"top": -208,
+											"top": -224,
 											"height": 13
 										},
 										{
@@ -828,7 +828,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 749,
-											"top": 151,
+											"top": 143,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "Utente"
@@ -842,7 +842,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 880,
-											"top": -208,
+											"top": -224,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -856,14 +856,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 880,
-											"top": -208,
+											"top": -224,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 744,
-									"top": 144,
+									"top": 136,
 									"width": 218.48876953125,
 									"height": 25,
 									"stereotypeLabel": {
@@ -900,7 +900,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 174,
+											"top": 166,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Username",
@@ -917,7 +917,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 189,
+											"top": 181,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Nome",
@@ -934,7 +934,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 204,
+											"top": 196,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Cognome",
@@ -951,7 +951,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 219,
+											"top": 211,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Email",
@@ -968,7 +968,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 234,
+											"top": 226,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Data di Nascita",
@@ -985,7 +985,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 249,
+											"top": 241,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+CodUtente",
@@ -1002,7 +1002,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 264,
+											"top": 256,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Password",
@@ -1019,7 +1019,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 279,
+											"top": 271,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Immagine",
@@ -1036,18 +1036,35 @@
 											},
 											"font": "Arial;13;0",
 											"left": 749,
-											"top": 294,
+											"top": 286,
 											"width": 208.48876953125,
 											"height": 13,
 											"text": "+Business: Boolean default 0",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFw1MsdktSW6aU=",
+											"_parent": {
+												"$ref": "AAAAAAFwtJSJsuUH3Jc="
+											},
+											"model": {
+												"$ref": "AAAAAAFw1MsdgtSQ5+0="
+											},
+											"font": "Arial;13;0",
+											"left": 749,
+											"top": 301,
+											"width": 208.48876953125,
+											"height": 13,
+											"text": "+codiceVerifica",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 744,
-									"top": 169,
+									"top": 161,
 									"width": 218.48876953125,
-									"height": 143
+									"height": 158
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1060,7 +1077,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 744,
-									"top": 312,
+									"top": 319,
 									"width": 218.48876953125,
 									"height": 10
 								},
@@ -1076,7 +1093,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 440,
-									"top": -104,
+									"top": -112,
 									"width": 10,
 									"height": 10
 								},
@@ -1092,7 +1109,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 440,
-									"top": -104,
+									"top": -112,
 									"width": 10,
 									"height": 10
 								}
@@ -1100,9 +1117,9 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 744,
-							"top": 144,
+							"top": 136,
 							"width": 218.48876953125,
-							"height": 178,
+							"height": 193,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtJSJsuUCtUA="
 							},
@@ -1141,7 +1158,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 874,
-									"top": 353,
+									"top": 357,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1162,7 +1179,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 889,
-									"top": 353,
+									"top": 357,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -1183,7 +1200,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 845,
-									"top": 354,
+									"top": 358,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -1203,7 +1220,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 865,
-									"top": 330,
+									"top": 337,
 									"width": 33,
 									"height": 13,
 									"alpha": 0.9197197083233059,
@@ -1226,7 +1243,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 888,
-									"top": 343,
+									"top": 350,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -1246,7 +1263,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 840,
-									"top": 331,
+									"top": 338,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": -0.8156918021519433,
@@ -1359,7 +1376,7 @@
 							"tail": {
 								"$ref": "AAAAAAFwtJSJsuUB4s4="
 							},
-							"points": "860:321;860:400",
+							"points": "860:328;860:400",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFwtJcl2uYlLBo="
@@ -4307,7 +4324,7 @@
 							"tail": {
 								"$ref": "AAAAAAFwtNTrsHa+cnk="
 							},
-							"points": "664:256;664:360;859:360"
+							"points": "664:256;664:364;859:364"
 						},
 						{
 							"_type": "UMLClassView",
@@ -5179,7 +5196,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "CodBusiness"
+							"name": "CodBusiness",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5187,7 +5205,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "CodUtente"
+							"name": "CodUtente",
+							"type": ""
 						}
 					]
 				},
@@ -5333,7 +5352,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "CodUtente"
+							"name": "CodUtente",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5361,6 +5381,14 @@
 							},
 							"name": "Business",
 							"type": "Boolean default 0"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFw1MsdgtSQ5+0=",
+							"_parent": {
+								"$ref": "AAAAAAFwtJSJsuT/+hE="
+							},
+							"name": "codiceVerifica"
 						}
 					]
 				},
@@ -5393,7 +5421,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJprO+mKVRo="
 							},
-							"name": "CodBusiness"
+							"name": "CodBusiness",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5539,7 +5568,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodBusiness"
+							"name": "CodBusiness",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5547,7 +5577,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
-							"name": "CodUtente"
+							"name": "CodUtente",
+							"type": ""
 						}
 					]
 				},
@@ -5722,7 +5753,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNN4qXAGmz4="
 							},
-							"name": "CodBusiness"
+							"name": "CodBusiness",
+							"type": ""
 						}
 					]
 				},
@@ -5835,7 +5867,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtOQMH6XKvPI="
 							},
-							"name": "CodBusiness"
+							"name": "CodBusiness",
+							"type": ""
 						}
 					]
 				}

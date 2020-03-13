@@ -52,7 +52,7 @@ public class UtenteDAO {
 		query.setInt(1, Integer.parseInt(codUtente));
 		query.executeUpdate();
 		
-		sql = "SELECT Password From Utente WHERE codUtente = ?";
+		sql = "SELECT codiceVerifica From Utente WHERE codUtente = ?";
 		PreparedStatement query2;
 		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query2.setInt(1, Integer.parseInt(codUtente));
@@ -76,26 +76,32 @@ public class UtenteDAO {
 	}
 	
 	public void impostaPassword(String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
-		String sql = "SELECT codUtente FROM Utente WHERE codUtente = ? AND Password = ?";
-		PreparedStatement queryVerifica;
-		queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-		queryVerifica.setInt(1, Integer.parseInt(codUtente));
-		queryVerifica.setString(2, codiceVerifica);
-		ResultSet datiRecuperati = queryVerifica.executeQuery();
-		
-		datiRecuperati.next();
-		
-		try {
-			datiRecuperati.getString(1); //Se il codice di verfica non è valido da un eccezione
-			
-			sql = "UPDATE Utente SET Password = ? WHERE codUtente = ?";
-			PreparedStatement query;
-			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-			query.setString(1, new String(Password));
-			query.setInt(2, Integer.parseInt(codUtente));
-			query.executeUpdate();
-		}catch (SQLException e) {
+		if(codiceVerifica.isBlank() || codiceVerifica.isEmpty()) {
 			throw new CodiceVerificaNonValidoException();
+		} else {
+			String sql = "SELECT codUtente FROM Utente WHERE codUtente = ? AND codiceVerifica = ?";
+			PreparedStatement queryVerifica;
+			queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+			queryVerifica.setInt(1, Integer.parseInt(codUtente));
+			queryVerifica.setString(2, codiceVerifica);
+			ResultSet datiRecuperati = queryVerifica.executeQuery();
+			
+			datiRecuperati.next();
+			
+			try {
+				datiRecuperati.getString(1); //Se il codice di verfica non è valido da un eccezione
+				
+				sql = "UPDATE Utente SET Password = ?, codiceVerifica = ? WHERE codUtente = ?";
+				PreparedStatement query;
+				query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+				query.setString(1, new String(Password));
+				query.setString(2, null);
+				query.setInt(3, Integer.parseInt(codUtente));
+				query.executeUpdate();
+			}catch (SQLException e) {
+				e.printStackTrace();
+				throw new CodiceVerificaNonValidoException();
+			}
 		}
 	}
 }
