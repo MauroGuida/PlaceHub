@@ -74,7 +74,7 @@ public class Controller {
 				schermataAccessoFrame.mostraConfermaRegistrazione();
 			} catch (Exception e) {		
 				if(e.toString().indexOf("utente_username_key") != -1)
-					schermataAccessoFrame.mostraErroreUsernameNonDisponibileRegistrazione();;
+					schermataAccessoFrame.mostraErroreUsernameNonDisponibileRegistrazione();
 				if(e.toString().indexOf("utente_email_check") != -1)
 					schermataAccessoFrame.mostraErroreEmailNonValidaRegistrazione();
 				if(e.toString().indexOf("utente_email_key") != -1)
