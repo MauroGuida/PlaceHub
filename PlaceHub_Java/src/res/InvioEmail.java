@@ -5,7 +5,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 public class InvioEmail {
-	public void inviaEmail(String Email, String Oggetto, String Corpo) {
+	public void inviaEmail(String Email, String Oggetto, String Corpo) throws MessagingException {
 		final String username = "placehub@gmx.com";
         final String password = "35GQUwr!";
 
@@ -21,22 +21,18 @@ public class InvioEmail {
             }
           });
 
-        try {
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("placehub@gmx.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(Email));
-            message.setSubject(Oggetto);
-            message.setContent(Corpo, "text/html");
-            //message.setText(Corpo);
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("placehub@gmx.com"));
+        message.setRecipients(Message.RecipientType.TO,
+        InternetAddress.parse(Email));
+        message.setSubject(Oggetto);
+        message.setContent(Corpo, "text/html");
+      //message.setText(Corpo);
 
-            Transport.send(message);
+        Transport.send(message);
 
-            System.out.println("Done");
+        System.out.println("Done");
 
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
 	}
 }

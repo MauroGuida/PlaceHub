@@ -3,6 +3,8 @@ package gestione;
 import java.awt.EventQueue;
 import java.sql.SQLException;
 
+import javax.mail.MessagingException;
+
 import database.Connessione;
 import database.UtenteDAO;
 import errori.CodiceVerificaNonValidoException;
@@ -76,11 +78,12 @@ public class Controller {
 			schermataAccessoFrame.mostraErroreNonPossonoEsserciCampiVuotiRegistrazione();
 		}else {
 			try {
+				final String oggetto = "Benvenuto su PlaceHub";
+				mail.inviaEmail(Email, oggetto, corpoMail.corpoEmailBenvenutoRegistrazione(Username));
 				utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
-				schermataAccessoFrame.mostraConfermaRegistrazione();
 				
-				mail.inviaEmail(Email, "Benvenuto su PlaceHub", corpoMail.corpoEmailBenvenutoRegistrazione(Username));
-			} catch (Exception e) {		
+				schermataAccessoFrame.mostraConfermaRegistrazione();
+			} catch (SQLException e) {		
 				if(e.toString().indexOf("utente_username_key") != -1)
 					schermataAccessoFrame.mostraErroreUsernameNonDisponibileRegistrazione();
 				if(e.toString().indexOf("utente_email_check") != -1)
@@ -90,7 +93,11 @@ public class Controller {
 				if(e.toString().indexOf("lunghezzapassword") != -1)
 					schermataAccessoFrame.mostraErrorePasswordNonValidaRegistrazione();
 				
-//				e.printStackTrace();
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				schermataAccessoFrame.mostraErroreEmailNonValidaRegistrazione();
+				
+				e.printStackTrace();
 			}
 		}
 	}
@@ -101,7 +108,7 @@ public class Controller {
 			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
 			
 			schermataAccessoFrame.mostraPannelloSuccessivoReimpostaPassword1();
-		} catch (Exception e) {
+		} catch (MessagingException | SQLException e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
 			
 			e.printStackTrace();
