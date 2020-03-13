@@ -87,32 +87,13 @@ public class Controller {
 		}
 	}
 	
-	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String Email) {
+	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			InvioEmail mail=new InvioEmail();
+			InvioEmail mail = new InvioEmail();
+			LayoutEmail corpo = new LayoutEmail();
 			
-			final String Oggetto = "Placehub - Reimposta password!";
-			String Corpo = "<!doctype html>\r\n" + 
-					"<html>\r\n" + 
-					"	<head>\r\n" + 
-					"		<title>PlaceHub</title>\r\n" + 
-					"	</head>\r\n" + 
-					"	<body>\r\n" + 
-					"		<p>\r\n" + 
-					"			<center>\r\n" + 
-					"				<img src=\"https://i.ibb.co/YdXbkqH/PlaceHub.png\" width=\"480\" height=\"270\" alt=\"Logo\">\r\n" + 
-					"			</center>\r\n" + 
-					"		</p>\r\n" + 
-					"		<p>\r\n" + 
-					"			\r\n" + 
-					"		</p>\r\n" + 
-					"		<p>\r\n" + 
-					"			<center>Il tuo codice di verifica: " + utente.reimpostaPassword(Email) + "</center>\r\n" + 
-					"		</p>\r\n" + 
-					"	</body>\r\n" + 
-					"</html>";
-			
-			mail.inviaEmail(Email, Oggetto, Corpo);
+			final String oggetto = "Placehub - Reimposta password!";
+			mail.inviaEmail(email, oggetto, corpo.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
 			
 			schermataAccessoFrame.mostraPannelloSuccessivoReimpostaPassword1();
 		} catch (Exception e) {
