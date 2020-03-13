@@ -19,6 +19,9 @@ public class Controller {
 	private static Connessione connessioneAlDatabase;
 	private UtenteDAO utente;
 	
+	private InvioEmail mail;
+	private LayoutEmail corpoMail;
+	
 	//Inizializzazione programma
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,6 +42,9 @@ public class Controller {
 		try {
 			connessioneAlDatabase = new Connessione();
 			utente = new UtenteDAO();
+			
+			mail = new InvioEmail();
+			corpoMail = new LayoutEmail();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +78,8 @@ public class Controller {
 			try {
 				utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
 				schermataAccessoFrame.mostraConfermaRegistrazione();
+				
+				mail.inviaEmail(Email, "Benvenuto su PlaceHub", corpoMail.corpoEmailBenvenutoRegistrazione(Username));
 			} catch (Exception e) {		
 				if(e.toString().indexOf("utente_username_key") != -1)
 					schermataAccessoFrame.mostraErroreUsernameNonDisponibileRegistrazione();
@@ -89,11 +97,8 @@ public class Controller {
 	
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			InvioEmail mail = new InvioEmail();
-			LayoutEmail corpo = new LayoutEmail();
-			
 			final String oggetto = "Placehub - Reimposta password!";
-			mail.inviaEmail(email, oggetto, corpo.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
+			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
 			
 			schermataAccessoFrame.mostraPannelloSuccessivoReimpostaPassword1();
 		} catch (Exception e) {
