@@ -944,19 +944,19 @@ public class SchermataPrincipale extends JFrame {
 		textAreaScriviRecensione.setBounds(42, 53, 766, 240);
 		pannelloScriviRecensione.add(textAreaScriviRecensione);
 		
-		JLabel testoInfoScriviRegistrazione_1 = new JLabel("La tua recensione verrà pubblicata e sarà visibile a tutti gli utenti registrati");
+		JLabel testoInfoScriviRegistrazione_1 = new JLabel("La tua recensione verra'\u00A0 pubblicata e sara'\u00A0 visibile a tutti gli utenti registrati");
 		testoInfoScriviRegistrazione_1.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfoScriviRegistrazione_1.setBounds(42, 25, 427, 16);
+		testoInfoScriviRegistrazione_1.setBounds(42, 11, 766, 30);
 		pannelloScriviRecensione.add(testoInfoScriviRegistrazione_1);
 		
-		JLabel lblUnaVoltaPubblicata = new JLabel("Una volta pubblicata la recensione non sarà più possibile recensire di nuovo questa attività ");
+		JLabel lblUnaVoltaPubblicata = new JLabel("Una volta pubblicata la recensione non sara' piu' possibile recensire di nuovo questa attivita' ");
 		lblUnaVoltaPubblicata.setFont(new Font("Roboto", Font.PLAIN, 13));
-		lblUnaVoltaPubblicata.setBounds(42, 303, 550, 16);
+		lblUnaVoltaPubblicata.setBounds(42, 303, 766, 26);
 		pannelloScriviRecensione.add(lblUnaVoltaPubblicata);
 		
 		JLabel lblNewLabel = new JLabel("Trascina qui le tue immagini");
 		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 24));
-		lblNewLabel.setBounds(42, 340, 304, 29);
+		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
 		
 		JPanel pannelloConfermaRegistrazione = new JPanel();
