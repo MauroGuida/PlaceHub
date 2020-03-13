@@ -3,8 +3,11 @@ package gui;
 import javax.swing.JFrame;
 
 import gestione.Controller;
+import res.ComponentResizer;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -21,6 +24,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Insets;
+import java.awt.Point;
 
 import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
@@ -30,6 +35,7 @@ import java.awt.Scrollbar;
 import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import java.awt.event.MouseMotionAdapter;
 
 
 public class SchermataPrincipale extends JFrame {
@@ -37,8 +43,6 @@ public class SchermataPrincipale extends JFrame {
 	
 	private Controller ctrl;
 	private JButton bottoneEsci;
-	private int coordinataX;
-	private int coordinataY;
 	private JTextField textFieldCosa;
 	private JTextField textFieldDove;
 	private JButton bottoneHomepage;
@@ -54,7 +58,10 @@ public class SchermataPrincipale extends JFrame {
 	private JButton bottoneRistoranteGestisciBusiness1;
 	private JButton bottoneIntrattenimentoGestisciBusiness1;
 	private JButton bottoneAlloggioGestisciBusiness1;
-	
+	private JButton bottoneAvantiGestisciBusiness2;
+	private DialogConfermaRegistrazioneBusiness dialogConfermaRegistrazioneBusiness;
+	private JPanel pannelloBottoni;
+	private Point clickIniziale;
 	
 	public SchermataPrincipale(Controller Ctrl) {
 		getContentPane().setBackground(Color.WHITE);
@@ -63,29 +70,21 @@ public class SchermataPrincipale extends JFrame {
 		setBounds(100, 100, 450, 300);
 		setSize(1100,650);
 		setMinimumSize(new Dimension(1100,650));
+		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setResizable(true);
 	
 		
-		addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                coordinataX = e.getX();
-                coordinataY = e.getY();
-                setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-            @Override
-			public void mouseReleased(MouseEvent e) {
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-        });
-        addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                setLocation(e.getXOnScreen()- coordinataX,e.getYOnScreen()-coordinataY);
-            }
-        });
+		ComponentResizer componentResizer = new ComponentResizer();
+		componentResizer.registerComponent(this);
+		componentResizer.setSnapSize(new Dimension(5,5));
+		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 		
+		
+		dialogConfermaRegistrazioneBusiness = new DialogConfermaRegistrazioneBusiness();
+		dialogConfermaRegistrazioneBusiness.setVisible(true);
+		dialogConfermaRegistrazioneBusiness.setLocationRelativeTo(null);
+	
 		JPanel pannelloSideBar = new JPanel();
 		pannelloSideBar.setBounds(0, 0, 250, 650);
 		pannelloSideBar.setBackground(new Color(51,51,51));
@@ -333,7 +332,24 @@ public class SchermataPrincipale extends JFrame {
 		pannelloCerca.setLayout(gl_pannelloCerca);
 		pannelloSideBar.setLayout(gl_pannelloSideBar);
 		
-		JPanel pannelloBottoni = new JPanel();
+		pannelloBottoni = new JPanel();
+		pannelloBottoni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				clickIniziale = e.getPoint();
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+		});
+		pannelloBottoni.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = getLocation().x;
+				int y = getLocation().y;
+				int xMoved = e.getX() - clickIniziale.x;
+				int yMoved = e.getY() - clickIniziale.y;
+				setLocation(x + xMoved, y + yMoved);
+			}
+		});
 		pannelloBottoni.setBounds(250, 0, 850, 36);
 		pannelloBottoni.setBackground(Color.WHITE);
 		
@@ -381,11 +397,6 @@ public class SchermataPrincipale extends JFrame {
 		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
 		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
-		
-		JPanel pannelloGestisciBusiness2 = new JPanel();
-		pannelloGestisciBusiness2.setBounds(250, 36, 825, 614);
-		pannelloGestisciBusiness2.setVisible(false); // temporaneo
-		pannelloGestisciBusiness2.setBackground(new Color(255, 255, 255));
 		JLabel label1 = new JLabel("1");	JLabel label2 = new JLabel("2");	JLabel label3 = new JLabel("3");
 		JLabel label4 = new JLabel("4");	JLabel label5 = new JLabel("5");	JLabel label6 = new JLabel("6");
 		JLabel label7 = new JLabel("7");	JLabel label8 = new JLabel("8");	JLabel label9 = new JLabel("9");
@@ -394,122 +405,6 @@ public class SchermataPrincipale extends JFrame {
 		JPanel pannelloScrollbar = new JPanel();
 		pannelloScrollbar.setBounds(1074, 36, 26, 614);
 		pannelloScrollbar.setBackground(SystemColor.activeCaptionBorder);
-		
-		JTextArea areaTestoDescriviBusiness2 = new JTextArea();
-		areaTestoDescriviBusiness2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				areaTestoDescriviBusiness2.setText("");
-				areaTestoDescriviBusiness2.setForeground(Color.BLACK);
-			}
-		});
-		areaTestoDescriviBusiness2.setForeground(new Color(192, 192, 192));
-		areaTestoDescriviBusiness2.setBackground(new Color(255, 255, 255));
-		areaTestoDescriviBusiness2.setFont(new Font("Roboto", Font.PLAIN, 17));
-		areaTestoDescriviBusiness2.setRows(20);
-		areaTestoDescriviBusiness2.setColumns(55);
-		areaTestoDescriviBusiness2.setText("Scrivi qui! MAX(2000 caratteri)");
-		areaTestoDescriviBusiness2.setForeground(Color.DARK_GRAY);
-		areaTestoDescriviBusiness2.setBorder(new LineBorder(Color.BLACK,1));
-		
-		JLabel testoDescriviBusiness = new JLabel("Descrivi la tua attivita'");
-		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		
-		JButton bottoneIndietroGestisciBusiness2 = new JButton("");
-		bottoneIndietroGestisciBusiness2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButtonFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
-			}
-		});
-		bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
-		bottoneIndietroGestisciBusiness2.setOpaque(false);
-		bottoneIndietroGestisciBusiness2.setContentAreaFilled(false);
-		bottoneIndietroGestisciBusiness2.setBorderPainted(false);
-		
-		JButton bottoneAvantiGestisciBusiness2 = new JButton("");
-		bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
-		bottoneAvantiGestisciBusiness2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButtonFocus.png")));
-
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
-			}
-		});
-		bottoneAvantiGestisciBusiness2.setOpaque(false);
-		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
-		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
-		
-		JLabel testoTrascinaImmagini = new JLabel("Trascina Immagini");
-		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
-		
-		JLabel immaginiFoto2 = new JLabel("");
-		immaginiFoto2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		
-		JLabel immagineFoto1 = new JLabel("");
-		immagineFoto1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		
-		JLabel imagineFoto3 = new JLabel("");
-		imagineFoto3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		GroupLayout gl_pannelloGestisciBusiness2 = new GroupLayout(pannelloGestisciBusiness2);
-		gl_pannelloGestisciBusiness2.setHorizontalGroup(
-			gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-					.addGap(100)
-					.addComponent(immagineFoto1, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-					.addGap(122)
-					.addComponent(immaginiFoto2, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-					.addGap(122)
-					.addComponent(imagineFoto3)
-					.addGap(97))
-				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-					.addGap(27)
-					.addComponent(bottoneIndietroGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
-					.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-					.addGap(28))
-				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-					.addGap(27)
-					.addGroup(gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-							.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-							.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-						.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-							.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(294, Short.MAX_VALUE))))
-		);
-		gl_pannelloGestisciBusiness2.setVerticalGroup(
-			gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
-					.addGap(8)
-					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-					.addGap(41)
-					.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(immagineFoto1)
-						.addComponent(immaginiFoto2)
-						.addComponent(imagineFoto3))
-					.addGap(32)
-					.addGroup(gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(bottoneIndietroGestisciBusiness2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(24))
-		);
-		pannelloGestisciBusiness2.setLayout(gl_pannelloGestisciBusiness2);
 		GroupLayout gl_pannelloScrollbar = new GroupLayout(pannelloScrollbar);
 		gl_pannelloScrollbar.setHorizontalGroup(
 			gl_pannelloScrollbar.createParallelGroup(Alignment.LEADING)
@@ -871,6 +766,126 @@ public class SchermataPrincipale extends JFrame {
 		pannelloGestisciBusiness3.setLayout(gl_pannelloGestisciBusiness3);
 		getContentPane().setLayout(null);
 		
+		JPanel pannelloGestisciBusiness2 = new JPanel();
+		pannelloGestisciBusiness2.setBounds(250, 36, 850, 614);
+		pannelloGestisciBusiness2.setVisible(false); // temporaneo
+		pannelloGestisciBusiness2.setBackground(new Color(255, 255, 255));
+		
+		JTextArea areaTestoDescriviBusiness2 = new JTextArea();
+		areaTestoDescriviBusiness2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				areaTestoDescriviBusiness2.setText("");
+				areaTestoDescriviBusiness2.setForeground(Color.BLACK);
+			}
+		});
+		areaTestoDescriviBusiness2.setForeground(new Color(192, 192, 192));
+		areaTestoDescriviBusiness2.setBackground(new Color(255, 255, 255));
+		areaTestoDescriviBusiness2.setFont(new Font("Roboto", Font.PLAIN, 17));
+		areaTestoDescriviBusiness2.setRows(20);
+		areaTestoDescriviBusiness2.setColumns(55);
+		areaTestoDescriviBusiness2.setText("Scrivi qui! MAX(2000 caratteri)");
+		areaTestoDescriviBusiness2.setForeground(Color.DARK_GRAY);
+		areaTestoDescriviBusiness2.setBorder(new LineBorder(Color.BLACK,1));
+		
+		JLabel testoDescriviBusiness = new JLabel("Descrivi la tua attivita'");
+		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
+		
+		JButton bottoneIndietroGestisciBusiness2 = new JButton("");
+		bottoneIndietroGestisciBusiness2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButtonFocus.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
+			}
+		});
+		bottoneIndietroGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
+		bottoneIndietroGestisciBusiness2.setOpaque(false);
+		bottoneIndietroGestisciBusiness2.setContentAreaFilled(false);
+		bottoneIndietroGestisciBusiness2.setBorderPainted(false);
+		
+		bottoneAvantiGestisciBusiness2 = new JButton("");
+		bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+		bottoneAvantiGestisciBusiness2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButtonFocus.png")));
+
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+			}
+		});
+		bottoneAvantiGestisciBusiness2.setOpaque(false);
+		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
+		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
+		
+		JLabel testoTrascinaImmagini = new JLabel("Trascina Immagini");
+		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
+		
+		JLabel immaginiFoto2 = new JLabel("");
+		immaginiFoto2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		
+		JLabel immagineFoto1 = new JLabel("");
+		immagineFoto1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		
+		JLabel imagineFoto3 = new JLabel("");
+		imagineFoto3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		getContentPane().add(pannelloGestisciBusiness2);
+		GroupLayout gl_pannelloGestisciBusiness2 = new GroupLayout(pannelloGestisciBusiness2);
+		gl_pannelloGestisciBusiness2.setHorizontalGroup(
+			gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+					.addGap(28))
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(100)
+					.addComponent(immagineFoto1, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+					.addGap(122)
+					.addComponent(immaginiFoto2, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+					.addGap(122)
+					.addComponent(imagineFoto3, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+					.addGap(97))
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(27)
+					.addComponent(bottoneIndietroGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 515, Short.MAX_VALUE)
+					.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addGap(28))
+		);
+		gl_pannelloGestisciBusiness2.setVerticalGroup(
+			gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloGestisciBusiness2.createSequentialGroup()
+					.addGap(8)
+					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(areaTestoDescriviBusiness2, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+					.addGap(41)
+					.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addGroup(gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+						.addComponent(immagineFoto1)
+						.addComponent(immaginiFoto2)
+						.addComponent(imagineFoto3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(32)
+					.addGroup(gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
+						.addComponent(bottoneIndietroGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bottoneAvantiGestisciBusiness2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(24))
+		);
+		pannelloGestisciBusiness2.setLayout(gl_pannelloGestisciBusiness2);
+		
 		JPanel pannelloScriviRecensione = new JPanel();
 		pannelloScriviRecensione.setBackground(Color.WHITE);
 		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
@@ -958,83 +973,8 @@ public class SchermataPrincipale extends JFrame {
 		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 24));
 		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
-		
-		JPanel pannelloConfermaRegistrazione = new JPanel();
-		pannelloConfermaRegistrazione.setBackground(Color.WHITE);
-		pannelloConfermaRegistrazione.setBorder(new LineBorder(Color.BLACK,1));
-		pannelloConfermaRegistrazione.setBounds(380, 190, 560, 270);
-		getContentPane().add(pannelloConfermaRegistrazione);
-		pannelloConfermaRegistrazione.setLayout(null);
-		
-		JButton bottoneOKConfermaRegistrazione = new JButton("");
-		bottoneOKConfermaRegistrazione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOKFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
-			}
-		});
-		bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
-		bottoneOKConfermaRegistrazione.setBounds(396, 202, 140, 50);
-		bottoneOKConfermaRegistrazione.setOpaque(false);
-		bottoneOKConfermaRegistrazione.setBorderPainted(false);
-		bottoneOKConfermaRegistrazione.setContentAreaFilled(false);
-		pannelloConfermaRegistrazione.add(bottoneOKConfermaRegistrazione);
-		
-		JButton bottoneCancellaConfermaRegistrazione = new JButton("");
-		bottoneCancellaConfermaRegistrazione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneCancellaConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancellaFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneCancellaConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-			}
-		});
-		bottoneCancellaConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancellaConfermaRegistrazione.setBounds(232, 202, 140, 50);
-		bottoneCancellaConfermaRegistrazione.setOpaque(false);
-		bottoneCancellaConfermaRegistrazione.setBorderPainted(false);
-		bottoneCancellaConfermaRegistrazione.setContentAreaFilled(false);
-		pannelloConfermaRegistrazione.add(bottoneCancellaConfermaRegistrazione);
-		
-		JLabel testoConfermaRegistrazione = new JLabel("Confermi quanto scritto?");
-		testoConfermaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 36));
-		testoConfermaRegistrazione.setBounds(75, 121, 410, 35);
-		pannelloConfermaRegistrazione.add(testoConfermaRegistrazione);
-		
-		JLabel immagineAvvertenzaConfermaRegistrazione = new JLabel("");
-		immagineAvvertenzaConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/immagineAvvertenza.png")));
-		immagineAvvertenzaConfermaRegistrazione.setBounds(248, 50, 64, 64);
-		pannelloConfermaRegistrazione.add(immagineAvvertenzaConfermaRegistrazione);
-		
-		JPanel pannelloBottoniConfermaRegistrazione = new JPanel();
-		pannelloBottoniConfermaRegistrazione.setBackground(Color.WHITE);
-		pannelloBottoniConfermaRegistrazione.setBounds(1, 1, 558, 36);
-		pannelloConfermaRegistrazione.add(pannelloBottoniConfermaRegistrazione);
-		pannelloBottoniConfermaRegistrazione.setLayout(null);
-		
-		JButton bottoneEsciConfermaRegistrazione = new JButton("");
-		bottoneEsciConfermaRegistrazione.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				pannelloConfermaRegistrazione.setEnabled(false);
-				pannelloConfermaRegistrazione.setVisible(false);
-			}
-		});
-		bottoneEsciConfermaRegistrazione.setOpaque(false);
-		bottoneEsciConfermaRegistrazione.setBorderPainted(false);
-		bottoneEsciConfermaRegistrazione.setContentAreaFilled(false);
-		bottoneEsciConfermaRegistrazione.setFocusPainted(false);
-		bottoneEsciConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/X.png")));
-		bottoneEsciConfermaRegistrazione.setBounds(525, 6, 25, 25);
-		pannelloBottoniConfermaRegistrazione.add(bottoneEsciConfermaRegistrazione);
 		getContentPane().add(pannelloSideBar);
 		getContentPane().add(pannelloBottoni);
-		getContentPane().add(pannelloGestisciBusiness2);
 		getContentPane().add(pannelloGestisciBusiness1);
 		getContentPane().add(pannelloScrollbar);
 		getContentPane().add(pannelloGestisciBusiness3);

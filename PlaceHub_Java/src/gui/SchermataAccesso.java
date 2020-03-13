@@ -136,6 +136,7 @@ public class SchermataAccesso extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(1100,650);
+		setLocationRelativeTo(null);
 		
 		gestioneRiposizionamentoFinestra();
 	}
