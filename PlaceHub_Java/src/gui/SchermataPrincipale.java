@@ -7,7 +7,6 @@ import res.ComponentResizer;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -36,7 +35,6 @@ import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.event.MouseMotionAdapter;
-
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -84,323 +82,6 @@ public class SchermataPrincipale extends JFrame {
 		dialogConfermaRegistrazioneBusiness = new DialogConfermaRegistrazioneBusiness();
 		dialogConfermaRegistrazioneBusiness.setVisible(true);
 		dialogConfermaRegistrazioneBusiness.setLocationRelativeTo(null);
-	
-		JPanel pannelloSideBar = new JPanel();
-		pannelloSideBar.setBounds(0, 0, 250, 650);
-		pannelloSideBar.setBackground(new Color(51,51,51));
-		
-	    bottoneHomepage = new JButton("");
-	    bottoneHomepage.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent arg0) {
-	    		flagFocusBottone = 1;
-	    		cambiaIcona(flagFocusBottone);
-	    		resettaIcone(flagFocusBottone);
-	    	}
-	    });
-		bottoneHomepage.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(flagFocusBottone != 1)
-					bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-				else 
-					resettaIcone(flagFocusBottone);
-			}
-
-		});
-		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-		bottoneHomepage.setOpaque(false);
-		bottoneHomepage.setFocusPainted(false);
-		bottoneHomepage.setContentAreaFilled(false);
-		bottoneHomepage.setBorderPainted(false);
-		
-		bottoneRistoranti = new JButton("");
-		bottoneRistoranti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				flagFocusBottone = 2;
-				cambiaIcona(flagFocusBottone);
-				resettaIcone(flagFocusBottone);
-			}
-		});
-		bottoneRistoranti.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(flagFocusBottone != 2)
-					bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-				else
-					resettaIcone(flagFocusBottone);
-			}
-		});
-		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-		bottoneRistoranti.setOpaque(false);
-		bottoneRistoranti.setFocusPainted(false);
-		bottoneRistoranti.setContentAreaFilled(false);
-		bottoneRistoranti.setBorderPainted(false);
-		
-		
-		bottoneIntrattenimento = new JButton("");
-		bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(flagFocusBottone != 3)
-					bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
-				else
-					resettaIcone(flagFocusBottone);
-			}
-		});
-		bottoneIntrattenimento.setOpaque(false);
-		bottoneIntrattenimento.setFocusPainted(false);
-		bottoneIntrattenimento.setContentAreaFilled(false);
-		bottoneIntrattenimento.setBorderPainted(false);
-		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
-		bottoneIntrattenimento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				flagFocusBottone = 3;
-				cambiaIcona(flagFocusBottone);
-				resettaIcone(flagFocusBottone);
-			}
-		});
-		
-		bottoneAlloggi = new JButton("");
-		bottoneAlloggi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				flagFocusBottone = 4;
-				cambiaIcona(flagFocusBottone);
-				resettaIcone(flagFocusBottone);
-			}
-		});
-		bottoneAlloggi.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(flagFocusBottone != 4)
-					bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
-				else
-					resettaIcone(flagFocusBottone);
-			}
-		});
-		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
-		bottoneAlloggi.setOpaque(false);
-		bottoneAlloggi.setFocusPainted(false);
-		bottoneAlloggi.setContentAreaFilled(false);
-		bottoneAlloggi.setBorderPainted(false);
-		JPanel pannelloCerca = new JPanel();
-		pannelloCerca.setBackground(new Color(51,51,51));
-		
-		JButton bottoneGestisciBusiness = new JButton("");
-		bottoneGestisciBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/gestisciAttvita.png")));
-		bottoneGestisciBusiness.setOpaque(false);
-		bottoneGestisciBusiness.setFocusPainted(false);
-		bottoneGestisciBusiness.setContentAreaFilled(false);
-		bottoneGestisciBusiness.setBorderPainted(false);
-		
-		GroupLayout gl_pannelloSideBar = new GroupLayout(pannelloSideBar);
-		gl_pannelloSideBar.setHorizontalGroup(
-			gl_pannelloSideBar.createParallelGroup(Alignment.LEADING)
-				.addComponent(bottoneHomepage, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-				.addComponent(bottoneRistoranti, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-				.addComponent(bottoneIntrattenimento, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-				.addComponent(bottoneAlloggi, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-				.addComponent(pannelloCerca, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-				.addComponent(bottoneGestisciBusiness, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_pannelloSideBar.setVerticalGroup(
-			gl_pannelloSideBar.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloSideBar.createSequentialGroup()
-					.addComponent(bottoneHomepage, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-					.addComponent(bottoneRistoranti, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-					.addComponent(bottoneIntrattenimento, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-					.addComponent(bottoneAlloggi, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-					.addComponent(pannelloCerca, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-					.addComponent(bottoneGestisciBusiness, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-		);
-		
-		textFieldCosa = new JTextField();
-		textFieldCosa.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				textFieldCosa.setText("");
-				textFieldCosa.setForeground(Color.WHITE);
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textFieldCosa.getText().isEmpty() ){
-					textFieldCosa.setText("Cosa?");
-					textFieldCosa.setForeground(Color.LIGHT_GRAY);
-				}
-			}
-		});
-		textFieldCosa.setColumns(10);
-		textFieldCosa.setFont(new Font("Roboto", Font.PLAIN, 20));
-		textFieldCosa.setBackground(new Color(51,51,51));
-		textFieldCosa.setBorder(new LineBorder(new Color(51,51,51),1));
-		textFieldCosa.setText("Cosa?");
-		textFieldCosa.setForeground(Color.LIGHT_GRAY);
-		textFieldCosa.setCaretColor(Color.WHITE);
-		
-		textFieldDove = new JTextField();
-		textFieldDove.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				textFieldDove.setText("");
-				textFieldDove.setForeground(Color.WHITE);
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textFieldDove.getText().isEmpty()) {
-					textFieldDove.setText("Dove?");
-					textFieldDove.setForeground(Color.LIGHT_GRAY);
-				}
-			}
-		});
-		textFieldDove.setColumns(10);
-		textFieldDove.setFont(new Font("Roboto", Font.PLAIN, 20));
-		textFieldDove.setBackground(new Color(51,51,51));
-		textFieldDove.setBorder(new LineBorder(new Color(51,51,51),1));
-		textFieldDove.setText("Dove?");
-		textFieldDove.setForeground(Color.LIGHT_GRAY);
-		textFieldDove.setCaretColor(Color.WHITE);
-		
-		JButton bottoneCercaSideBar = new JButton("");
-		bottoneCercaSideBar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButtonFocus.png")));
-				setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
-			}
-		});
-		bottoneCercaSideBar.setOpaque(false);
-		bottoneCercaSideBar.setBorderPainted(false);
-		bottoneCercaSideBar.setContentAreaFilled(false);
-		bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
-		
-		JLabel lineaTestoCosaSideBar = new JLabel("");
-		lineaTestoCosaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
-		
-		JLabel lineaTestoDoveSideBar = new JLabel("");
-		lineaTestoDoveSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
-		GroupLayout gl_pannelloCerca = new GroupLayout(pannelloCerca);
-		gl_pannelloCerca.setHorizontalGroup(
-			gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(20)
-					.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lineaTestoCosaSideBar))
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(20)
-					.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(20)
-					.addComponent(lineaTestoDoveSideBar))
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(70)
-					.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_pannelloCerca.setVerticalGroup(
-			gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloCerca.createSequentialGroup()
-					.addGap(20)
-					.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addComponent(lineaTestoCosaSideBar)
-					.addGap(19)
-					.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addComponent(lineaTestoDoveSideBar)
-					.addGap(19)
-					.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-		);
-		pannelloCerca.setLayout(gl_pannelloCerca);
-		pannelloSideBar.setLayout(gl_pannelloSideBar);
-		
-		pannelloBottoni = new JPanel();
-		pannelloBottoni.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				clickIniziale = e.getPoint();
-                setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-		});
-		pannelloBottoni.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int x = getLocation().x;
-				int y = getLocation().y;
-				int xMoved = e.getX() - clickIniziale.x;
-				int yMoved = e.getY() - clickIniziale.y;
-				setLocation(x + xMoved, y + yMoved);
-			}
-		});
-		pannelloBottoni.setBounds(250, 0, 850, 36);
-		pannelloBottoni.setBackground(Color.WHITE);
-		
-		bottoneEsci = new JButton("");
-		bottoneEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
-		bottoneEsci.setBorderPainted(false);
-		bottoneEsci.setContentAreaFilled(false);
-		bottoneEsci.setOpaque(false);
-		bottoneEsci.setFocusPainted(false);
-		
-		JButton bottoneMassimizza = new JButton("");
-		bottoneMassimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(getExtendedState() != SchermataPrincipale.MAXIMIZED_BOTH) {
-					setExtendedState(SchermataPrincipale.MAXIMIZED_BOTH);
-				}else {
-					setExtendedState(SchermataPrincipale.NORMAL);
-				}
-			}
-		});
-		bottoneMassimizza.setOpaque(false);
-		bottoneMassimizza.setContentAreaFilled(false);
-		bottoneMassimizza.setBorderPainted(false);
-		bottoneMassimizza.setFocusPainted(false);
-		bottoneMassimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IncreaseSize.png")));
-		
-		JButton bottoneMinimizza = new JButton("");
-		bottoneMinimizza.setOpaque(false);
-		bottoneMinimizza.setBorderPainted(false);
-		bottoneMinimizza.setContentAreaFilled(false);
-		bottoneMinimizza.setFocusPainted(false);
-		bottoneMinimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/minimizza.png")));
-		bottoneMinimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setState(ICONIFIED);
-			}
-		});
-		
-		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
-		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
-		JLabel label1 = new JLabel("1");	JLabel label2 = new JLabel("2");	JLabel label3 = new JLabel("3");
-		JLabel label4 = new JLabel("4");	JLabel label5 = new JLabel("5");	JLabel label6 = new JLabel("6");
-		JLabel label7 = new JLabel("7");	JLabel label8 = new JLabel("8");	JLabel label9 = new JLabel("9");
-		JLabel label10 = new JLabel("10");	JLabel label11 = new JLabel("11");	JLabel label12 = new JLabel("12");
 		
 		JPanel pannelloScrollbar = new JPanel();
 		pannelloScrollbar.setBounds(1074, 36, 26, 614);
@@ -820,6 +501,325 @@ public class SchermataPrincipale extends JFrame {
 				bottoneAvantiGestisciBusiness2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 			}
 		});
+		
+		pannelloBottoni = new JPanel();
+		pannelloBottoni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				clickIniziale = e.getPoint();
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		pannelloBottoni.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = getLocation().x;
+				int y = getLocation().y;
+				int xMoved = e.getX() - clickIniziale.x;
+				int yMoved = e.getY() - clickIniziale.y;
+				setLocation(x + xMoved, y + yMoved);
+			}
+		});
+		pannelloBottoni.setBounds(250, 0, 850, 36);
+		pannelloBottoni.setBackground(Color.WHITE);
+		
+		bottoneEsci = new JButton("");
+		bottoneEsci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
+		bottoneEsci.setBorderPainted(false);
+		bottoneEsci.setContentAreaFilled(false);
+		bottoneEsci.setOpaque(false);
+		bottoneEsci.setFocusPainted(false);
+		
+		JButton bottoneMassimizza = new JButton("");
+		bottoneMassimizza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(getExtendedState() != SchermataPrincipale.MAXIMIZED_BOTH) {
+					setExtendedState(SchermataPrincipale.MAXIMIZED_BOTH);
+				}else {
+					setExtendedState(SchermataPrincipale.NORMAL);
+				}
+			}
+		});
+		bottoneMassimizza.setOpaque(false);
+		bottoneMassimizza.setContentAreaFilled(false);
+		bottoneMassimizza.setBorderPainted(false);
+		bottoneMassimizza.setFocusPainted(false);
+		bottoneMassimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IncreaseSize.png")));
+		
+		JButton bottoneMinimizza = new JButton("");
+		bottoneMinimizza.setOpaque(false);
+		bottoneMinimizza.setBorderPainted(false);
+		bottoneMinimizza.setContentAreaFilled(false);
+		bottoneMinimizza.setFocusPainted(false);
+		bottoneMinimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/minimizza.png")));
+		bottoneMinimizza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setState(ICONIFIED);
+			}
+		});
+		
+			JPanel pannelloSideBar = new JPanel();
+			pannelloSideBar.setBounds(0, 0, 250, 650);
+			pannelloSideBar.setBackground(new Color(51,51,51));
+			
+	    bottoneHomepage = new JButton("");
+	    bottoneHomepage.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		flagFocusBottone = 1;
+	    		cambiaIcona(flagFocusBottone);
+	    		resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneHomepage.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		if(flagFocusBottone != 1)
+	    			bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+	    		else 
+	    			resettaIcone(flagFocusBottone);
+	    	}
+
+	    });
+	    bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+	    bottoneHomepage.setOpaque(false);
+	    bottoneHomepage.setFocusPainted(false);
+	    bottoneHomepage.setContentAreaFilled(false);
+	    bottoneHomepage.setBorderPainted(false);
+	    
+	    bottoneRistoranti = new JButton("");
+	    bottoneRistoranti.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		flagFocusBottone = 2;
+	    		cambiaIcona(flagFocusBottone);
+	    		resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneRistoranti.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		if(flagFocusBottone != 2)
+	    			bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+	    		else
+	    			resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+	    bottoneRistoranti.setOpaque(false);
+	    bottoneRistoranti.setFocusPainted(false);
+	    bottoneRistoranti.setContentAreaFilled(false);
+	    bottoneRistoranti.setBorderPainted(false);
+	    
+	    
+	    bottoneIntrattenimento = new JButton("");
+	    bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		if(flagFocusBottone != 3)
+	    			bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+	    		else
+	    			resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneIntrattenimento.setOpaque(false);
+	    bottoneIntrattenimento.setFocusPainted(false);
+	    bottoneIntrattenimento.setContentAreaFilled(false);
+	    bottoneIntrattenimento.setBorderPainted(false);
+	    bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+	    bottoneIntrattenimento.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		flagFocusBottone = 3;
+	    		cambiaIcona(flagFocusBottone);
+	    		resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    
+	    bottoneAlloggi = new JButton("");
+	    bottoneAlloggi.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		flagFocusBottone = 4;
+	    		cambiaIcona(flagFocusBottone);
+	    		resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		if(flagFocusBottone != 4)
+	    			bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+	    		else
+	    			resettaIcone(flagFocusBottone);
+	    	}
+	    });
+	    bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+	    bottoneAlloggi.setOpaque(false);
+	    bottoneAlloggi.setFocusPainted(false);
+	    bottoneAlloggi.setContentAreaFilled(false);
+	    bottoneAlloggi.setBorderPainted(false);
+	    JPanel pannelloCerca = new JPanel();
+	    pannelloCerca.setBackground(new Color(51,51,51));
+	    
+	    JButton bottoneGestisciBusiness = new JButton("");
+	    bottoneGestisciBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/gestisciAttvita.png")));
+	    bottoneGestisciBusiness.setOpaque(false);
+	    bottoneGestisciBusiness.setFocusPainted(false);
+	    bottoneGestisciBusiness.setContentAreaFilled(false);
+	    bottoneGestisciBusiness.setBorderPainted(false);
+	    
+	    GroupLayout gl_pannelloSideBar = new GroupLayout(pannelloSideBar);
+	    gl_pannelloSideBar.setHorizontalGroup(
+	    	gl_pannelloSideBar.createParallelGroup(Alignment.LEADING)
+	    		.addComponent(bottoneHomepage, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    		.addComponent(bottoneRistoranti, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    		.addComponent(bottoneIntrattenimento, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    		.addComponent(bottoneAlloggi, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    		.addComponent(pannelloCerca, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    		.addComponent(bottoneGestisciBusiness, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+	    );
+	    gl_pannelloSideBar.setVerticalGroup(
+	    	gl_pannelloSideBar.createParallelGroup(Alignment.LEADING)
+	    		.addGroup(gl_pannelloSideBar.createSequentialGroup()
+	    			.addComponent(bottoneHomepage, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+	    			.addComponent(bottoneRistoranti, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+	    			.addComponent(bottoneIntrattenimento, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+	    			.addComponent(bottoneAlloggi, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+	    			.addComponent(pannelloCerca, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+	    			.addComponent(bottoneGestisciBusiness, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+	    );
+	    
+	    textFieldCosa = new JTextField();
+	    textFieldCosa.addFocusListener(new FocusAdapter() {
+	    	@Override
+	    	public void focusGained(FocusEvent e) {
+	    		textFieldCosa.setText("");
+	    		textFieldCosa.setForeground(Color.WHITE);
+	    	}
+	    	@Override
+	    	public void focusLost(FocusEvent e) {
+	    		if(textFieldCosa.getText().isEmpty() ){
+	    			textFieldCosa.setText("Cosa?");
+	    			textFieldCosa.setForeground(Color.LIGHT_GRAY);
+	    		}
+	    	}
+	    });
+	    textFieldCosa.setColumns(10);
+	    textFieldCosa.setFont(new Font("Roboto", Font.PLAIN, 20));
+	    textFieldCosa.setBackground(new Color(51,51,51));
+	    textFieldCosa.setBorder(new LineBorder(new Color(51,51,51),1));
+	    textFieldCosa.setText("Cosa?");
+	    textFieldCosa.setForeground(Color.LIGHT_GRAY);
+	    textFieldCosa.setCaretColor(Color.WHITE);
+	    
+	    textFieldDove = new JTextField();
+	    textFieldDove.addFocusListener(new FocusAdapter() {
+	    	@Override
+	    	public void focusGained(FocusEvent e) {
+	    		textFieldDove.setText("");
+	    		textFieldDove.setForeground(Color.WHITE);
+	    	}
+	    	@Override
+	    	public void focusLost(FocusEvent e) {
+	    		if(textFieldDove.getText().isEmpty()) {
+	    			textFieldDove.setText("Dove?");
+	    			textFieldDove.setForeground(Color.LIGHT_GRAY);
+	    		}
+	    	}
+	    });
+	    textFieldDove.setColumns(10);
+	    textFieldDove.setFont(new Font("Roboto", Font.PLAIN, 20));
+	    textFieldDove.setBackground(new Color(51,51,51));
+	    textFieldDove.setBorder(new LineBorder(new Color(51,51,51),1));
+	    textFieldDove.setText("Dove?");
+	    textFieldDove.setForeground(Color.LIGHT_GRAY);
+	    textFieldDove.setCaretColor(Color.WHITE);
+	    
+	    JButton bottoneCercaSideBar = new JButton("");
+	    bottoneCercaSideBar.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButtonFocus.png")));
+	    		setCursor(new Cursor(Cursor.HAND_CURSOR));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	    		bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
+	    	}
+	    });
+	    bottoneCercaSideBar.setOpaque(false);
+	    bottoneCercaSideBar.setBorderPainted(false);
+	    bottoneCercaSideBar.setContentAreaFilled(false);
+	    bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
+	    
+	    JLabel lineaTestoCosaSideBar = new JLabel("");
+	    lineaTestoCosaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
+	    
+	    JLabel lineaTestoDoveSideBar = new JLabel("");
+	    lineaTestoDoveSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaTestoBianca.png")));
+	    GroupLayout gl_pannelloCerca = new GroupLayout(pannelloCerca);
+	    gl_pannelloCerca.setHorizontalGroup(
+	    	gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(20)
+	    			.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(20)
+	    			.addComponent(lineaTestoCosaSideBar))
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(20)
+	    			.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(20)
+	    			.addComponent(lineaTestoDoveSideBar))
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(70)
+	    			.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+	    );
+	    gl_pannelloCerca.setVerticalGroup(
+	    	gl_pannelloCerca.createParallelGroup(Alignment.LEADING)
+	    		.addGroup(gl_pannelloCerca.createSequentialGroup()
+	    			.addGap(20)
+	    			.addComponent(textFieldCosa, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+	    			.addComponent(lineaTestoCosaSideBar)
+	    			.addGap(19)
+	    			.addComponent(textFieldDove, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+	    			.addComponent(lineaTestoDoveSideBar)
+	    			.addGap(19)
+	    			.addComponent(bottoneCercaSideBar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+	    );
+	    pannelloCerca.setLayout(gl_pannelloCerca);
+	    pannelloSideBar.setLayout(gl_pannelloSideBar);
+	    getContentPane().add(pannelloSideBar);
+		
+		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
+		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
+		getContentPane().add(pannelloBottoni);
 		bottoneAvantiGestisciBusiness2.setOpaque(false);
 		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
 		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
@@ -973,8 +973,6 @@ public class SchermataPrincipale extends JFrame {
 		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 24));
 		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
-		getContentPane().add(pannelloSideBar);
-		getContentPane().add(pannelloBottoni);
 		getContentPane().add(pannelloGestisciBusiness1);
 		getContentPane().add(pannelloScrollbar);
 		getContentPane().add(pannelloGestisciBusiness3);
