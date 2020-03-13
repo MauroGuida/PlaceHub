@@ -40,10 +40,10 @@ public class LayoutEmail {
 				"		<p>\r\n" + 
 				"			<center><b>Grazie per averci scelti</b></center>\r\n" +
 				"			<h>\r\n</h>" +
-				"			<center>Il tuo account è adesso attivo, da ora potrai vedere e recensire centinaia di posti sulla nosta APP!</center>\r\n" +
+				"			<center>Il tuo account e' adesso attivo, da ora potrai vedere e recensire centinaia di posti sulla nosta APP!</center>\r\n" +
 				"		</p>\r\n" + 
 				"		<p>\r\n" + 
-				"			<center>Non ci resta che augurarti una buona navigazione, <b>" + username + "</b></center>\r\n" + 
+				"			<center>Non ci resta che augurarti una buona navigazione, <b>" + username + "!</b></center>\r\n" + 
 				"		</p>\r\n" + 
 				"	</body>\r\n" + 
 				"</html>";
