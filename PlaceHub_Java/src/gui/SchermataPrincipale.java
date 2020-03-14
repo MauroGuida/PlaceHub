@@ -8,6 +8,7 @@ import res.WrapLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -65,6 +66,8 @@ public class SchermataPrincipale extends JFrame {
 	private JPanel pannelloBottoni;
 	private Point clickIniziale;
 	
+	private JPanel PannelloRicerche;
+	
 	public SchermataPrincipale(Controller Ctrl) {
 		getContentPane().setBackground(Color.WHITE);
 		this.ctrl = Ctrl;
@@ -75,7 +78,8 @@ public class SchermataPrincipale extends JFrame {
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setResizable(true);
-	
+		
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
 		
 		ComponentResizer componentResizer = new ComponentResizer();
 		componentResizer.registerComponent(this);
@@ -950,16 +954,31 @@ public class SchermataPrincipale extends JFrame {
 		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
 		
+		JPanel pannelloRicerche = new JPanel();
+		
 	    JPanel pannelloRisulatoRicerca = new JPanel();
 	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
 	    
 	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
+	    scorrimentoRisultati.setBounds(250, 36, 850, 614);
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
+	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
 	    
-		for(int i=0; i<200; i++)
+		for(int i=0; i<20; i++)
 			pannelloRisulatoRicerca.add(new Locale("dio","dio",1,"https://www.epicentrofestival.com/wp-content/uploads/2020/02/epicentrofestival-line-angle-sky-plc-font-english-books-2jft3gypi5-250x120.jpg"));
 		
+		GroupLayout gl_pannelloRicerche = new GroupLayout(pannelloRicerche);
+		gl_pannelloRicerche.setHorizontalGroup(
+			gl_pannelloRicerche.createParallelGroup(Alignment.LEADING)
+				.addComponent(scorrimentoRisultati, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+		);
+		gl_pannelloRicerche.setVerticalGroup(
+			gl_pannelloRicerche.createParallelGroup(Alignment.LEADING)
+				.addComponent(scorrimentoRisultati, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+		);
+		pannelloRicerche.setLayout(gl_pannelloRicerche);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -967,10 +986,10 @@ public class SchermataPrincipale extends JFrame {
 					.addComponent(pannelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(pannelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(scorrimentoRisultati, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
+						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -978,12 +997,14 @@ public class SchermataPrincipale extends JFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(pannelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(scorrimentoRisultati, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)))
+						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
-		getContentPane().setLayout(groupLayout);	}
+		getContentPane().setLayout(groupLayout);
+		
+	}
 	
 	private void cambiaIcona(int flag) {
 		switch(flag) {
