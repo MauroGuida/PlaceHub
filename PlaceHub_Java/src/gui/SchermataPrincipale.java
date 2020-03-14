@@ -26,6 +26,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.ScrollPane;
 
 import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
@@ -34,6 +35,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.JScrollPane;
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -951,13 +953,14 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.add(lblNewLabel);
 		
 		JPanel pannelloRicerca = new JPanel();
+		pannelloRicerca.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pannelloRicerca.setBounds(250, 36, 850, 614);
 		pannelloRicerca.setBackground(Color.WHITE);
-		pannelloRicerca.setLayout(new FlowLayout(FlowLayout.LEFT));
 	    for(int i=0; i<10; i++)
-	    	pannelloRicerca.add(new Locale());
-		
+	    	pannelloRicerca.add(new Locale()); 
 	    getContentPane().add(pannelloRicerca);
+	    
+	    
 		getContentPane().add(pannelloSideBar);
 		getContentPane().add(pannelloBottoni);
 		getContentPane().add(pannelloGestisciBusiness1);
