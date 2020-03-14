@@ -3,7 +3,6 @@ package gui;
 import javax.swing.JFrame;
 
 import gestione.Controller;
-import oggetti.Locale;
 import res.ComponentResizer;
 
 import javax.swing.JPanel;
@@ -13,6 +12,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
+
+import oggetti.Locale;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,6 +25,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.ScrollPane;
@@ -36,6 +38,7 @@ import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -952,13 +955,19 @@ public class SchermataPrincipale extends JFrame {
 		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
 		
-		JPanel pannelloRicerca = new JPanel();
-		pannelloRicerca.setLayout(new FlowLayout(FlowLayout.LEFT));
-		pannelloRicerca.setBounds(250, 36, 850, 614);
-		pannelloRicerca.setBackground(Color.WHITE);
-	    for(int i=0; i<10; i++)
-	    	pannelloRicerca.add(new Locale()); 
-	    getContentPane().add(pannelloRicerca);
+	    JPanel pannelloRisulatoRicerca = new JPanel();
+	    pannelloRisulatoRicerca.setLayout(new GridLayout(0, 3, 3, 3));
+	    
+	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
+	    scorrimentoRisultati.setLocation(250, 36);
+	    scorrimentoRisultati.setSize(850, 614);
+	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    
+	    getContentPane().add(scorrimentoRisultati);
+	    
+		for(int i=0; i<200; i++)
+			pannelloRisulatoRicerca.add(new Locale());
 	    
 	    
 		getContentPane().add(pannelloSideBar);
