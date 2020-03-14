@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import gestione.Controller;
+
 public class DialogConfermaRegistrazioneBusiness extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -21,9 +23,10 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 	private JLabel testoConfermaRegistrazione;
 	private JLabel immagineAvvertenzaConfermaRegistrazione;
 	private JPanel pannelloBottoniConfermaRegistrazione;
+	private Controller ctrl;
 	
-	
-	public DialogConfermaRegistrazioneBusiness() {
+	public DialogConfermaRegistrazioneBusiness(Controller Ctrl) {
+		this.ctrl = Ctrl;
 		layoutGeneraleDialog();
 		generaBottoneOKConfermaRegistrazione();
 		generaBottoneEsciConfermaRegistrazione();

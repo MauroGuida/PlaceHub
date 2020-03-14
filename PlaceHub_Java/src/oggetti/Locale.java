@@ -13,7 +13,7 @@ public class Locale extends JPanel {
 	
 	public Locale() {
 		setBackground(new Color(255, 255, 255));
-		setBounds(0,0,274,204);
+		setSize(274,204);
 		setLayout(null);
 		
 		lblStelle = new JLabel();
