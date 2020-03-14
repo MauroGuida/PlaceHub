@@ -951,7 +951,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.add(lblNewLabel);
 		
 	    JPanel pannelloRisulatoRicerca = new JPanel();
-	    pannelloRisulatoRicerca.setLayout(new WrapLayout());
+	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.LEFT));
 	    
 	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
