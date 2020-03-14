@@ -962,7 +962,7 @@ public class SchermataPrincipale extends JFrame {
 	    scorrimentoRisultati.setLocation(250, 36);
 	    scorrimentoRisultati.setSize(850, 614);
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	    
 	    getContentPane().add(scorrimentoRisultati);
 	    
