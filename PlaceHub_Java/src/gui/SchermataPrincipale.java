@@ -31,8 +31,6 @@ import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JLabel;
-import java.awt.Scrollbar;
-import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import java.awt.event.MouseMotionAdapter;
@@ -71,6 +69,7 @@ public class SchermataPrincipale extends JFrame {
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setResizable(true);
+		getContentPane().setLayout(null);
 	
 		
 		ComponentResizer componentResizer = new ComponentResizer();
@@ -79,7 +78,7 @@ public class SchermataPrincipale extends JFrame {
 		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 		
 		JPanel pannelloGestisciBusiness1 = new JPanel();
-		pannelloGestisciBusiness1.setBounds(250, 36, 825, 614);
+		pannelloGestisciBusiness1.setBounds(250, 36, 850, 614);
 		pannelloGestisciBusiness1.setVisible(false);
 		pannelloGestisciBusiness1.setVisible(false);
 		pannelloGestisciBusiness1.setBackground(Color.WHITE);
@@ -371,7 +370,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloGestisciBusiness1.setLayout(gl_pannelloGestisciBusiness1);
 		
 		JPanel pannelloGestisciBusiness3 = new JPanel();
-		pannelloGestisciBusiness3.setBounds(250, 36, 825, 614);
+		pannelloGestisciBusiness3.setBounds(250, 36, 850, 614);
 		pannelloGestisciBusiness3.setVisible(false);
 		pannelloGestisciBusiness3.setBackground(Color.WHITE);
 		
@@ -544,6 +543,11 @@ public class SchermataPrincipale extends JFrame {
 				setState(ICONIFIED);
 			}
 		});
+		
+		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
+		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
+		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
 		
 			JPanel pannelloSideBar = new JPanel();
 			pannelloSideBar.setBounds(0, 0, 250, 650);
@@ -748,37 +752,7 @@ public class SchermataPrincipale extends JFrame {
 	    		bottoneCercaSideBar.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
 	    	}
 	    });
-	    getContentPane().setLayout(null);
 	    
-	    JPanel pannelloRicerca = new JPanel();
-	    pannelloRicerca.setBackground(Color.WHITE);
-	    pannelloRicerca.setBounds(250, 36, 825, 614);
-	    getContentPane().add(pannelloRicerca);
-	    pannelloRicerca.setLayout(new FlowLayout(FlowLayout.LEFT));
-	    getContentPane().add(pannelloRicerca);
-	    Locale l1 = new Locale();
-	    l1.setVisible(true);
-	    pannelloRicerca.add(l1);
-	    l1.setLayout(null);
-	    
-	    JPanel pannelloScrollbar = new JPanel();
-	    pannelloScrollbar.setBounds(1074, 36, 26, 614);
-	    pannelloScrollbar.setBackground(SystemColor.activeCaptionBorder);
-	    GroupLayout gl_pannelloScrollbar = new GroupLayout(pannelloScrollbar);
-	    gl_pannelloScrollbar.setHorizontalGroup(
-	    	gl_pannelloScrollbar.createParallelGroup(Alignment.LEADING)
-	    		.addGap(0, 26, Short.MAX_VALUE)
-	    );
-	    gl_pannelloScrollbar.setVerticalGroup(
-	    	gl_pannelloScrollbar.createParallelGroup(Alignment.LEADING)
-	    		.addGap(0, 614, Short.MAX_VALUE)
-	    );
-	    pannelloScrollbar.setLayout(gl_pannelloScrollbar);
-	    
-	    Scrollbar s = new Scrollbar();
-	    s.setBounds(1074, 36, 26, 614);
-	    pannelloScrollbar.add(s);
-	    getContentPane().add(pannelloScrollbar);
 	    bottoneCercaSideBar.setOpaque(false);
 	    bottoneCercaSideBar.setBorderPainted(false);
 	    bottoneCercaSideBar.setContentAreaFilled(false);
@@ -822,13 +796,7 @@ public class SchermataPrincipale extends JFrame {
 	    );
 	    pannelloCerca.setLayout(gl_pannelloCerca);
 	    pannelloSideBar.setLayout(gl_pannelloSideBar);
-	    getContentPane().add(pannelloSideBar);
 		
-		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
-		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
-		getContentPane().add(pannelloBottoni);
 		bottoneAvantiGestisciBusiness2.setOpaque(false);
 		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
 		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
@@ -844,7 +812,6 @@ public class SchermataPrincipale extends JFrame {
 		
 		JLabel imagineFoto3 = new JLabel("");
 		imagineFoto3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		getContentPane().add(pannelloGestisciBusiness2);
 		GroupLayout gl_pannelloGestisciBusiness2 = new GroupLayout(pannelloGestisciBusiness2);
 		gl_pannelloGestisciBusiness2.setHorizontalGroup(
 			gl_pannelloGestisciBusiness2.createParallelGroup(Alignment.LEADING)
@@ -899,7 +866,6 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
 		pannelloScriviRecensione.setVisible(false); // temporaneo
 		pannelloScriviRecensione.setBackground(Color.WHITE);
-		getContentPane().add(pannelloScriviRecensione);
 		pannelloScriviRecensione.setLayout(null);
 		
 		JButton bottonePubblicaScriviRecensione = new JButton("");
@@ -983,9 +949,20 @@ public class SchermataPrincipale extends JFrame {
 		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 24));
 		lblNewLabel.setBounds(42, 340, 766, 39);
 		pannelloScriviRecensione.add(lblNewLabel);
-		getContentPane().add(pannelloGestisciBusiness1);
-		getContentPane().add(pannelloGestisciBusiness3);
 		
+		JPanel pannelloRicerca = new JPanel();
+		pannelloRicerca.setBounds(250, 36, 850, 614);
+		pannelloRicerca.setBackground(Color.WHITE);
+		pannelloRicerca.setLayout(new FlowLayout(FlowLayout.LEFT));
+	    for(int i=0; i<10; i++)
+	    	pannelloRicerca.add(new Locale());
+		
+	    getContentPane().add(pannelloRicerca);
+		getContentPane().add(pannelloSideBar);
+		getContentPane().add(pannelloBottoni);
+		getContentPane().add(pannelloGestisciBusiness1);
+		getContentPane().add(pannelloGestisciBusiness2);
+		getContentPane().add(pannelloScriviRecensione);	
 	}
 	
 	private void cambiaIcona(int flag) {
