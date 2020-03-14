@@ -951,14 +951,14 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.add(lblNewLabel);
 		
 	    JPanel pannelloRisulatoRicerca = new JPanel();
-	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.LEFT));
+	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
 	    
 	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	    
 		for(int i=0; i<200; i++)
-			pannelloRisulatoRicerca.add(new Locale());
+			pannelloRisulatoRicerca.add(new Locale("dio","dio",1,"https://www.epicentrofestival.com/wp-content/uploads/2020/02/epicentrofestival-line-angle-sky-plc-font-english-books-2jft3gypi5-250x120.jpg"));
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
