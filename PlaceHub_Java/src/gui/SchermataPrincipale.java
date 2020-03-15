@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
+import errori.NumeroStelleNonValidoException;
 import oggetti.Locale;
 
 import java.awt.event.ActionListener;
@@ -148,7 +149,6 @@ public class SchermataPrincipale extends JFrame {
 				flagFocusBottoneGestisciBusiness1 = 1;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
-				
 			}
 		});
 		bottoneRistoranteGestisciBusiness1.addMouseListener(new MouseAdapter() {
@@ -173,7 +173,6 @@ public class SchermataPrincipale extends JFrame {
 				flagFocusBottoneGestisciBusiness1 = 2;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
-				
 			}
 		});
 		bottoneIntrattenimentoGestisciBusiness1.addMouseListener(new MouseAdapter() {
@@ -562,8 +561,8 @@ public class SchermataPrincipale extends JFrame {
 	    bottoneHomepage.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 1;
-	    		cambiaIcona(flagFocusBottone);
-	    		resettaIcone(flagFocusBottone);
+	    		resettaFocusIconeSideBar(flagFocusBottone);
+	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    	}
 	    });
 	    bottoneHomepage.addMouseListener(new MouseAdapter() {
@@ -576,7 +575,7 @@ public class SchermataPrincipale extends JFrame {
 	    		if(flagFocusBottone != 1)
 	    			bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
 	    		else 
-	    			resettaIcone(flagFocusBottone);
+	    			bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
 	    	}
 
 	    });
@@ -590,8 +589,8 @@ public class SchermataPrincipale extends JFrame {
 	    bottoneRistoranti.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 2;
-	    		cambiaIcona(flagFocusBottone);
-	    		resettaIcone(flagFocusBottone);
+	    		resettaFocusIconeSideBar(flagFocusBottone);
+	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    	}
 	    });
 	    bottoneRistoranti.addMouseListener(new MouseAdapter() {
@@ -604,7 +603,7 @@ public class SchermataPrincipale extends JFrame {
 	    		if(flagFocusBottone != 2)
 	    			bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
 	    		else
-	    			resettaIcone(flagFocusBottone);
+	    			bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
 	    	}
 	    });
 	    bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
@@ -625,7 +624,7 @@ public class SchermataPrincipale extends JFrame {
 	    		if(flagFocusBottone != 3)
 	    			bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
 	    		else
-	    			resettaIcone(flagFocusBottone);
+	    			bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
 	    	}
 	    });
 	    bottoneIntrattenimento.setOpaque(false);
@@ -636,8 +635,8 @@ public class SchermataPrincipale extends JFrame {
 	    bottoneIntrattenimento.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 3;
-	    		cambiaIcona(flagFocusBottone);
-	    		resettaIcone(flagFocusBottone);
+	    		resettaFocusIconeSideBar(flagFocusBottone);
+	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    	}
 	    });
 	    
@@ -645,8 +644,8 @@ public class SchermataPrincipale extends JFrame {
 	    bottoneAlloggi.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 4;
-	    		cambiaIcona(flagFocusBottone);
-	    		resettaIcone(flagFocusBottone);
+	    		resettaFocusIconeSideBar(flagFocusBottone);
+	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    	}
 	    });
 	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
@@ -659,7 +658,7 @@ public class SchermataPrincipale extends JFrame {
 	    		if(flagFocusBottone != 4)
 	    			bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 	    		else
-	    			resettaIcone(flagFocusBottone);
+	    			bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
 	    	}
 	    });
 	    bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
@@ -970,8 +969,16 @@ public class SchermataPrincipale extends JFrame {
 	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
 	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
 	    
-		for(int i=0; i<20; i++)
-			pannelloRisulatoRicerca.add(new Locale("dio","dio",4,true,"https://www.lalucedimaria.it/wp-content/uploads/2018/10/Ges%C3%B9-MIsericordioso-1-e1569917989814.jpg"));
+		for(int i=0; i<20; i++) {
+			try {
+				Locale aggiungiLocale = new Locale("dio", "dio",
+						"https://www.lalucedimaria.it/wp-content/uploads/2018/10/Ges%C3%B9-MIsericordioso-1-e1569917989814.jpg");
+				aggiungiLocale.gestioneStelle(4, true);
+				pannelloRisulatoRicerca.add(aggiungiLocale);
+			} catch (NumeroStelleNonValidoException e) {
+				// TODO: handle exception
+			}
+		}
 		
 		GroupLayout gl_pannelloRicerche = new GroupLayout(pannelloRicerche);
 		gl_pannelloRicerche.setHorizontalGroup(
@@ -1010,7 +1017,7 @@ public class SchermataPrincipale extends JFrame {
 		
 	}
 	
-	private void cambiaIcona(int flag) {
+	private void cambiaFocusIconeSideBar(int flag) {
 		switch(flag) {
 			case 1:
 				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
@@ -1027,29 +1034,11 @@ public class SchermataPrincipale extends JFrame {
 		}
 	}
 	
-	private void resettaIcone(int flag) {
-		switch(flag) {
-			case 1:
-				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
-				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
-				break;
-			case 2:
-				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
-				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
-				break;
-			case 3:
-				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
-				break;
-			case 4:
-				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
-				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
-				break;		
-		}
+	private void resettaFocusIconeSideBar(int flag) {
+		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
+		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
+		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 	}
 	
 	private void cambiaIconeGestisciBusiness1(int flag) {
@@ -1067,19 +1056,8 @@ public class SchermataPrincipale extends JFrame {
 	}
 	
 	private void resettaIconeGestisciBusiness1(int flag) {
-		switch(flag) {
-			case 1:
-				bottoneAlloggioGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
-				bottoneIntrattenimentoGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
-				break;
-			case 2:
-				bottoneRistoranteGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
-				bottoneAlloggioGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
-				break;
-			case 3:
-				bottoneRistoranteGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
-				bottoneIntrattenimentoGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
-				break;
-		}
+		bottoneRistoranteGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
+		bottoneAlloggioGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
+		bottoneIntrattenimentoGestisciBusiness1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 	}
 }

@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
 import javax.swing.border.LineBorder;
 
+import errori.NumeroStelleNonValidoException;
 import res.WrapLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -21,11 +22,17 @@ import javax.swing.GroupLayout.Alignment;
 public class Locale extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	public Locale(String nomeBusiness, String indirizzo, int numStelle, boolean mezzaStella, String urlImmagine) {
+	private JPanel stelle;
+	
+	public Locale(String nomeBusiness, String indirizzo, String urlImmagine) {
 		setBackground(Color.WHITE);
 		setSize(400,250);
 		setVisible(true);
 		setBorder(new LineBorder(Color.DARK_GRAY,1));
+		
+		stelle = new JPanel();
+		stelle.setBackground(Color.WHITE);
+		stelle.setLayout(new WrapLayout(WrapLayout.LEFT, 1 ,1));
 		
 		JLabel labelNome = new JLabel(nomeBusiness);
 		labelNome.setFont(new Font("Roboto", Font.PLAIN, 17));
@@ -41,22 +48,6 @@ public class Locale extends JPanel {
 			labelmmagine.setIcon(new ImageIcon(immagineScalata));
 		}catch(IOException e) {
 			e.printStackTrace();
-		}
-		
-		JPanel stelle = new JPanel();
-		stelle.setBackground(Color.WHITE);
-		stelle.setLayout(new WrapLayout(WrapLayout.LEFT, 1 ,1));
-
-		for(int i=0; i<numStelle; i++) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
-			stelle.add(stellaPiena);
-		}
-		
-		if(mezzaStella) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
-			stelle.add(stellaPiena);
 		}
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -93,5 +84,22 @@ public class Locale extends JPanel {
 					.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
 		);
 		setLayout(groupLayout);
+	}
+
+	public void gestioneStelle(int numStelle, boolean mezzaStella) throws NumeroStelleNonValidoException{
+		if((numStelle==5 && mezzaStella) || numStelle>5)
+			throw new NumeroStelleNonValidoException();
+		
+		for(int i=0; i<numStelle; i++) {
+			JLabel stellaPiena = new JLabel();
+			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
+			stelle.add(stellaPiena);
+		}
+		
+		if(mezzaStella) {
+			JLabel stellaPiena = new JLabel();
+			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
+			stelle.add(stellaPiena);
+		}
 	}
 }
