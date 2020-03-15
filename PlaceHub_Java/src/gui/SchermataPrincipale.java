@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import gestione.Controller;
 import res.ComponentResizer;
+import res.ScrollPaneVerde;
 import res.WrapLayout;
 
 import javax.swing.JPanel;
@@ -969,40 +970,12 @@ public class SchermataPrincipale extends JFrame {
 	    pannelloRisulatoRicerca.setBackground(Color.WHITE);
 	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
 	    
-	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
+	    ScrollPaneVerde scorrimentoRisultati = new ScrollPaneVerde();
+	    scorrimentoRisultati.setViewportView(pannelloRisulatoRicerca);
 	    scorrimentoRisultati.setBounds(250, 36, 850, 614);
 	    scorrimentoRisultati.setBackground(Color.WHITE);
 	    scorrimentoRisultati.setBorder(new LineBorder(Color.WHITE,1));
 	    
-	    
-//	    UIManager.put("ScrollBar.thumb", new ColorUIResource(new Color(64,151,0)));
-//	    scorrimentoRisultati.getVerticalScrollBar().setUI(new BasicScrollBarUI());
-	  
-	    
-//	    scorrimentoRisultati.getVerticalScrollBar().setUI(new BasicScrollBarUI()  {
-//            @Override 
-//            protected void configureScrollBarColors(){
-//                this.thumbColor = new Color(64,151,0);
-//            }
-//            @Override
-//            protected JButton createDecreaseButton(int orientation) {
-//                return createZeroButton();
-//            }
-//
-//            @Override    
-//            protected JButton createIncreaseButton(int orientation) {
-//                return createZeroButton();
-//            }
-//
-//            private JButton createZeroButton() {
-//                JButton jbutton = new JButton();
-//                jbutton.setPreferredSize(new Dimension(0, 0));
-//                jbutton.setMinimumSize(new Dimension(0, 0));
-//                jbutton.setMaximumSize(new Dimension(0, 0));
-//                return jbutton;
-//            }
-//        });
-//	    
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
