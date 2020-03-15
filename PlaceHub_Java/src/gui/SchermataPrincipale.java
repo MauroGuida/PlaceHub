@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 
 import gestione.Controller;
 import gui.pannelliSchermataPrincipale.Bottoni;
-import gui.pannelliSchermataPrincipale.GestisciBusiness1;
-import gui.pannelliSchermataPrincipale.GestisciBusiness2;
-import gui.pannelliSchermataPrincipale.GestisciBusiness3;
+import gui.pannelliSchermataPrincipale.PubblicaBusiness1;
+import gui.pannelliSchermataPrincipale.PubblicaBusiness2;
+import gui.pannelliSchermataPrincipale.PubblicaBusiness3;
 import gui.pannelliSchermataPrincipale.Ricerche;
 import gui.pannelliSchermataPrincipale.ScriviRecensione;
 import gui.pannelliSchermataPrincipale.SideBar;
@@ -31,9 +31,9 @@ public class SchermataPrincipale extends JFrame {
 	private SideBar pannelloSideBar;
 	private ScriviRecensione pannelloScriviRecensione;
 	private Ricerche pannelloRicerche;
-	private GestisciBusiness1 pannelloGestisciBusiness1;
-	private GestisciBusiness2 pannelloGestisciBusiness2;
-	private GestisciBusiness3 pannelloGestisciBusiness3;
+	private PubblicaBusiness1 pannelloPubblicaBusiness1;
+	private PubblicaBusiness2 pannelloPubblicaBusiness2;
+	private PubblicaBusiness3 pannelloPubblicaBusiness3;
 	
 	
 	public SchermataPrincipale(Controller Ctrl) {
@@ -61,14 +61,14 @@ public class SchermataPrincipale extends JFrame {
 		
 		pannelloRicerche = new Ricerche();
 		
-		pannelloGestisciBusiness3 = new GestisciBusiness3();
-		pannelloGestisciBusiness3.setVisible(false);
+		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
+		pannelloPubblicaBusiness3.setVisible(false);
 		
-		pannelloGestisciBusiness2 = new GestisciBusiness2();
-		pannelloGestisciBusiness2.setVisible(false);
+		pannelloPubblicaBusiness2 = new PubblicaBusiness2();
+		pannelloPubblicaBusiness2.setVisible(false);
         
-        pannelloGestisciBusiness1 = new GestisciBusiness1();
-        pannelloGestisciBusiness1.setVisible(false);
+        pannelloPubblicaBusiness1 = new PubblicaBusiness1();
+        pannelloPubblicaBusiness1.setVisible(false);
         
         
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -79,10 +79,10 @@ public class SchermataPrincipale extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness3, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -91,10 +91,10 @@ public class SchermataPrincipale extends JFrame {
 					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
 						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addComponent(pannelloGestisciBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)))
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)))
 		);
 		getContentPane().setLayout(groupLayout);
 		
