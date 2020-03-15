@@ -21,7 +21,7 @@ import javax.swing.GroupLayout.Alignment;
 public class Locale extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	public Locale(String nomeBusiness, String indirizzo, int numStelle, String urlImmagine) {
+	public Locale(String nomeBusiness, String indirizzo, int numStelle, boolean mezzaStella, String urlImmagine) {
 		setBackground(Color.WHITE);
 		setSize(400,250);
 		setVisible(true);
@@ -50,6 +50,12 @@ public class Locale extends JPanel {
 		for(int i=0; i<numStelle; i++) {
 			JLabel stellaPiena = new JLabel();
 			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
+			stelle.add(stellaPiena);
+		}
+		
+		if(mezzaStella) {
+			JLabel stellaPiena = new JLabel();
+			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
 			stelle.add(stellaPiena);
 		}
 		

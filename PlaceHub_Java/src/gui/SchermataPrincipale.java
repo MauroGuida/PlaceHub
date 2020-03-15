@@ -971,7 +971,7 @@ public class SchermataPrincipale extends JFrame {
 	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
 	    
 		for(int i=0; i<20; i++)
-			pannelloRisulatoRicerca.add(new Locale("dio","dio",5,"https://www.lalucedimaria.it/wp-content/uploads/2018/10/Ges%C3%B9-MIsericordioso-1-e1569917989814.jpg"));
+			pannelloRisulatoRicerca.add(new Locale("dio","dio",4,true,"https://www.lalucedimaria.it/wp-content/uploads/2018/10/Ges%C3%B9-MIsericordioso-1-e1569917989814.jpg"));
 		
 		GroupLayout gl_pannelloRicerche = new GroupLayout(pannelloRicerche);
 		gl_pannelloRicerche.setHorizontalGroup(
