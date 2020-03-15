@@ -751,35 +751,6 @@ public class SchermataPrincipale extends JFrame {
 		pannelloRicerche.setLayout(gl_pannelloRicerche);
 		getContentPane().setLayout(null);
 		
-		JPanel pannelloRecensioni = new JPanel();
-		pannelloRecensioni.setBackground(Color.WHITE);
-		pannelloRecensioni.setBounds(250, 36, 850, 614);
-		getContentPane().add(pannelloRecensioni);
-		pannelloRecensioni.setLayout(null);
-		
-		JButton bottoneRecensisci = new JButton("");
-		bottoneRecensisci.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneRecensisci.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRecensioneFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneRecensisci.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRecensione.png")));
-			}
-		});
-		bottoneRecensisci.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRecensione.png")));
-		bottoneRecensisci.setBounds(612, 36, 199, 50);
-		bottoneRecensisci.setOpaque(false);
-		bottoneRecensisci.setContentAreaFilled(false);
-		bottoneRecensisci.setBorderPainted(false);
-		pannelloRecensioni.add(bottoneRecensisci);
-		
-		JLabel testoNomeBusinessRecensioni = new JLabel("Nome");
-		testoNomeBusinessRecensioni.setFont(new Font("Roboto", Font.PLAIN, 18));
-		testoNomeBusinessRecensioni.setBounds(31, 36, 280, 50);
-		pannelloRecensioni.add(testoNomeBusinessRecensioni);
-		
 		SideBar pannelloSideBar = new SideBar();
 		pannelloSideBar.setBounds(0, 0, 250, 650);
 		getContentPane().add(pannelloSideBar);
