@@ -40,6 +40,10 @@ public class Controller {
 		});
 	}
 	
+	public static SchermataAccesso getSchermataAccessoFrame() {
+		return schermataAccessoFrame;
+	}
+	
 	private Controller() {
 		try {
 			connessioneAlDatabase = new Connessione();
@@ -107,7 +111,8 @@ public class Controller {
 			final String oggetto = "Placehub - Reimposta password!";
 			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
 			
-			schermataAccessoFrame.mostraPannelloSuccessivoReimpostaPassword1();
+			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
+			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
 		} catch (MessagingException | SQLException e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
 			
