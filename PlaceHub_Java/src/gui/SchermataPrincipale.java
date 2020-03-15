@@ -955,19 +955,23 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.add(lblNewLabel);
 		
 		JPanel pannelloRicerche = new JPanel();
+		pannelloRicerche.setBackground(Color.WHITE);
 		
 	    JPanel pannelloRisulatoRicerca = new JPanel();
+	    pannelloRisulatoRicerca.setBackground(Color.WHITE);
 	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
 	    
 	    JScrollPane scorrimentoRisultati = new JScrollPane(pannelloRisulatoRicerca);
 	    scorrimentoRisultati.setBounds(250, 36, 850, 614);
+	    scorrimentoRisultati.setBackground(Color.WHITE);
+	    scorrimentoRisultati.setBorder(new LineBorder(Color.WHITE,1));
 	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
 	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
 	    
 		for(int i=0; i<20; i++)
-			pannelloRisulatoRicerca.add(new Locale("dio","dio",1,"https://www.epicentrofestival.com/wp-content/uploads/2020/02/epicentrofestival-line-angle-sky-plc-font-english-books-2jft3gypi5-250x120.jpg"));
+			pannelloRisulatoRicerca.add(new Locale("dio","dio",1,"https://www.lalucedimaria.it/wp-content/uploads/2018/10/Ges%C3%B9-MIsericordioso-1-e1569917989814.jpg"));
 		
 		GroupLayout gl_pannelloRicerche = new GroupLayout(pannelloRicerche);
 		gl_pannelloRicerche.setHorizontalGroup(
