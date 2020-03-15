@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import gui.SchermataPrincipale;
 
 public class ScriviRecensione extends JPanel {
+	private static final long serialVersionUID = 1L;
 	
 	private JButton bottonePubblica;
 	private JButton bottoneCancella;

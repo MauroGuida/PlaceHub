@@ -1,6 +1,5 @@
 package gui.pannelliSchermataPrincipale;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
@@ -26,20 +25,23 @@ public class Bottoni extends JPanel {
 	private JButton bottoneEsci;
 	private JButton bottoneMinimizza;
 	private JButton bottoneMassimizza;
+	
 	private Point clickIniziale;
 	
 	
 	public Bottoni() {
 		setSize(850, 36);
 		setBackground(Color.WHITE);
-		setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
+		FlowLayout flowLayout = new FlowLayout(FlowLayout.RIGHT);
+		flowLayout.setVgap(3);
+		flowLayout.setHgap(-7);
+		setLayout(flowLayout);
 		
 		generaBottoneMinimizza();
 		generaBottoneMassimizza();
 		generaBottoneEsci();
 		
-		movimentoSchermataPrincipale();
-		
+		movimentoSchermataPrincipale();	
 	}
 
 	private void movimentoSchermataPrincipale() {
@@ -68,7 +70,7 @@ public class Bottoni extends JPanel {
 
 	private void generaBottoneEsci() {
 		bottoneEsci = new JButton("");
-		bottoneEsci.setBounds(795, 0, 57, 34);
+		bottoneEsci.setSize(57, 33);
 		bottoneEsci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -79,12 +81,13 @@ public class Bottoni extends JPanel {
 		bottoneEsci.setContentAreaFilled(false);
 		bottoneEsci.setOpaque(false);
 		bottoneEsci.setFocusPainted(false);
-		add(bottoneEsci, BorderLayout.EAST);
+		
+		add(bottoneEsci);
 	}
 
 	private void generaBottoneMassimizza() {
 		bottoneMassimizza = new JButton("");
-		bottoneMassimizza.setBounds(749, 1, 56, 32);
+		bottoneMassimizza.setSize(57, 33);
 		bottoneMassimizza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(Controller.getSchermataPrincipaleFrame().getExtendedState() != Frame.MAXIMIZED_BOTH) {
@@ -94,29 +97,31 @@ public class Bottoni extends JPanel {
 				}
 			}
 		});
+		bottoneMassimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IncreaseSize.png")));
 		bottoneMassimizza.setOpaque(false);
 		bottoneMassimizza.setContentAreaFilled(false);
 		bottoneMassimizza.setBorderPainted(false);
 		bottoneMassimizza.setFocusPainted(false);
-		bottoneMassimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IncreaseSize.png")));
-		add(bottoneMassimizza, BorderLayout.EAST);
+		
+		
+		add(bottoneMassimizza);
 	}
 
 	private void generaBottoneMinimizza() {
 		bottoneMinimizza = new JButton("");
+		bottoneMinimizza.setSize(57, 33);
 		bottoneMinimizza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 Controller.getSchermataPrincipaleFrame().setState(Frame.ICONIFIED);
 			}
 		});
-		setLayout(null);
 		bottoneMinimizza.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/minimizza.png")));
-		bottoneMinimizza.setBounds(700, 0, 59, 35);
 		bottoneMinimizza.setOpaque(false);
 		bottoneMinimizza.setContentAreaFilled(false);
 		bottoneMinimizza.setFocusPainted(false);
 		bottoneMinimizza.setBorderPainted(false);
-		add(bottoneMinimizza, BorderLayout.EAST);
+		
+		add(bottoneMinimizza);
 	}
 	
 }
