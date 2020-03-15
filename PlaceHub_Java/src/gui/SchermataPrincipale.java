@@ -62,10 +62,13 @@ public class SchermataPrincipale extends JFrame {
 	private JButton bottoneIntrattenimentoGestisciBusiness1;
 	private JButton bottoneAlloggioGestisciBusiness1;
 	private JButton bottoneAvantiGestisciBusiness2;
-	private JPanel pannelloBottoni;
-	private Point clickIniziale;
+	//private JPanel pannelloBottoni;
 	
 	private JPanel PannelloRicerche;
+	private gui.pannelliSchermataPrincipale.Bottoni pannelloBottoni;
+	private SideBar pannelloSideBar;
+	private gui.pannelliSchermataPrincipale.ScriviRecensione pannelloScriviRecensione;
+	
 	
 	public SchermataPrincipale(Controller Ctrl) {
 		getContentPane().setBackground(Color.WHITE);
@@ -488,75 +491,7 @@ public class SchermataPrincipale extends JFrame {
 		bottoneAvantiGestisciBusiness2.setContentAreaFilled(false);
 		bottoneAvantiGestisciBusiness2.setBorderPainted(false);
 		
-		pannelloBottoni = new JPanel();
-		pannelloBottoni.setBounds(250, 0, 850, 36);
-		pannelloBottoni.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				clickIniziale = e.getPoint();
-                setCursor(new Cursor(Cursor.HAND_CURSOR));
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		pannelloBottoni.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int x = getLocation().x;
-				int y = getLocation().y;
-				int xMoved = e.getX() - clickIniziale.x;
-				int yMoved = e.getY() - clickIniziale.y;
-				setLocation(x + xMoved, y + yMoved);
-			}
-		});
-		pannelloBottoni.setBackground(Color.WHITE);
 		
-		bottoneEsci = new JButton("");
-		bottoneEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
-		bottoneEsci.setBorderPainted(false);
-		bottoneEsci.setContentAreaFilled(false);
-		bottoneEsci.setOpaque(false);
-		bottoneEsci.setFocusPainted(false);
-		
-		JButton bottoneMassimizza = new JButton("");
-		bottoneMassimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(getExtendedState() != SchermataPrincipale.MAXIMIZED_BOTH) {
-					setExtendedState(SchermataPrincipale.MAXIMIZED_BOTH);
-				}else {
-					setExtendedState(SchermataPrincipale.NORMAL);
-				}
-			}
-		});
-		bottoneMassimizza.setOpaque(false);
-		bottoneMassimizza.setContentAreaFilled(false);
-		bottoneMassimizza.setBorderPainted(false);
-		bottoneMassimizza.setFocusPainted(false);
-		bottoneMassimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IncreaseSize.png")));
-		
-		JButton bottoneMinimizza = new JButton("");
-		bottoneMinimizza.setOpaque(false);
-		bottoneMinimizza.setBorderPainted(false);
-		bottoneMinimizza.setContentAreaFilled(false);
-		bottoneMinimizza.setFocusPainted(false);
-		bottoneMinimizza.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/minimizza.png")));
-		bottoneMinimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setState(ICONIFIED);
-			}
-		});
-		
-		pannelloBottoni.setLayout(new FlowLayout(FlowLayout.RIGHT, -10, 0));
-		pannelloBottoni.add(bottoneMinimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneMassimizza, BorderLayout.EAST);
-		pannelloBottoni.add(bottoneEsci, BorderLayout.EAST);
 		
 		
 		
@@ -621,94 +556,6 @@ public class SchermataPrincipale extends JFrame {
 		);
 		pannelloGestisciBusiness2.setLayout(gl_pannelloGestisciBusiness2);
 		
-		JPanel pannelloScriviRecensione = new JPanel();
-		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
-		pannelloScriviRecensione.setVisible(false); // temporaneo
-		pannelloScriviRecensione.setBackground(Color.WHITE);
-		pannelloScriviRecensione.setLayout(null);
-		
-		JButton bottonePubblicaScriviRecensione = new JButton("");
-		bottonePubblicaScriviRecensione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottonePubblicaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblicaFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottonePubblicaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblica.png")));
-			}
-		});
-		bottonePubblicaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblica.png")));
-		bottonePubblicaScriviRecensione.setBounds(668, 537, 140, 50);
-		bottonePubblicaScriviRecensione.setOpaque(false);
-		bottonePubblicaScriviRecensione.setBorderPainted(false);
-		bottonePubblicaScriviRecensione.setContentAreaFilled(false);
-		pannelloScriviRecensione.add(bottonePubblicaScriviRecensione);
-		
-		JButton bottoneCancellaScriviRecensione = new JButton("");
-		bottoneCancellaScriviRecensione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				bottoneCancellaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancellaFocus.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				bottoneCancellaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-			}
-		});
-		bottoneCancellaScriviRecensione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancellaScriviRecensione.setBounds(42, 537, 140, 50);
-		bottoneCancellaScriviRecensione.setOpaque(false);
-		bottoneCancellaScriviRecensione.setBorderPainted(false);
-		bottoneCancellaScriviRecensione.setContentAreaFilled(false);
-		pannelloScriviRecensione.add(bottoneCancellaScriviRecensione);
-		
-		JLabel immagineScriviRecensione_1 = new JLabel("");
-		immagineScriviRecensione_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineScriviRecensione_1.setBounds(104, 390, 128, 128);
-		pannelloScriviRecensione.add(immagineScriviRecensione_1);
-		
-		JLabel immagineScriviRecensione_2 = new JLabel("");
-		immagineScriviRecensione_2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineScriviRecensione_2.setBounds(361, 390, 128, 128);
-		pannelloScriviRecensione.add(immagineScriviRecensione_2);
-		
-		JLabel immagineScriviRecensione_3 = new JLabel("");
-		immagineScriviRecensione_3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineScriviRecensione_3.setBounds(617, 390, 128, 128);
-		pannelloScriviRecensione.add(immagineScriviRecensione_3);
-		
-		JTextArea textAreaScriviRecensione = new JTextArea();
-		textAreaScriviRecensione.setRows(30);
-		textAreaScriviRecensione.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				textAreaScriviRecensione.setText("");
-				textAreaScriviRecensione.setForeground(Color.BLACK);
-			}
-		});
-		textAreaScriviRecensione.setForeground(Color.DARK_GRAY);
-		textAreaScriviRecensione.setBorder(new LineBorder(Color.BLACK,1));
-		textAreaScriviRecensione.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textAreaScriviRecensione.setText("Scrivi qui la tua recensione (MAX 2000 caratteri)");
-		textAreaScriviRecensione.setBounds(42, 53, 766, 240);
-		pannelloScriviRecensione.add(textAreaScriviRecensione);
-		
-		JLabel testoInfoScriviRegistrazione_1 = new JLabel("La tua recensione verra'\u00A0 pubblicata e sara'\u00A0 visibile a tutti gli utenti registrati");
-		testoInfoScriviRegistrazione_1.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfoScriviRegistrazione_1.setBounds(42, 11, 766, 30);
-		pannelloScriviRecensione.add(testoInfoScriviRegistrazione_1);
-		
-		JLabel lblUnaVoltaPubblicata = new JLabel("Una volta pubblicata la recensione non sara' piu' possibile recensire di nuovo questa attivita' ");
-		lblUnaVoltaPubblicata.setFont(new Font("Roboto", Font.PLAIN, 13));
-		lblUnaVoltaPubblicata.setBounds(42, 303, 766, 26);
-		pannelloScriviRecensione.add(lblUnaVoltaPubblicata);
-		
-		JLabel lblNewLabel = new JLabel("Trascina qui le tue immagini");
-		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 24));
-		lblNewLabel.setBounds(42, 340, 766, 39);
-		pannelloScriviRecensione.add(lblNewLabel);
-		
 		JPanel pannelloRicerche = new JPanel();
 		pannelloRicerche.setBounds(250, 36, 850, 614);
 		pannelloRicerche.setBackground(Color.WHITE);
@@ -750,15 +597,23 @@ public class SchermataPrincipale extends JFrame {
 		);
 		pannelloRicerche.setLayout(gl_pannelloRicerche);
 		getContentPane().setLayout(null);
+	
 		
-		SideBar pannelloSideBar = new SideBar();
+		pannelloScriviRecensione = new gui.pannelliSchermataPrincipale.ScriviRecensione();
+		pannelloScriviRecensione.setLocation(250, 36);
+		add(pannelloScriviRecensione);
+		
+		pannelloSideBar = new SideBar();
 		pannelloSideBar.setBounds(0, 0, 250, 650);
-		getContentPane().add(pannelloSideBar);
+		add(pannelloSideBar);
+
+		pannelloBottoni = new gui.pannelliSchermataPrincipale.Bottoni();
+		pannelloBottoni.setLocation(250, 0);
+		add(pannelloBottoni);
 		
-		getContentPane().add(pannelloBottoni);
+		
 		getContentPane().add(pannelloRicerche);
 		getContentPane().add(pannelloGestisciBusiness2);
-		getContentPane().add(pannelloScriviRecensione);
 		getContentPane().add(pannelloGestisciBusiness1);
 		
 	}

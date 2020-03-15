@@ -44,6 +44,10 @@ public class Controller {
 		return schermataAccessoFrame;
 	}
 	
+	public static SchermataPrincipale getSchermataPrincipaleFrame() {
+		return schermataPrincipaleFrame;
+	}
+	
 	private Controller() {
 		try {
 			connessioneAlDatabase = new Connessione();

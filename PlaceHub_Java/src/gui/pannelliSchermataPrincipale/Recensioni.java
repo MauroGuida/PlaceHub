@@ -142,7 +142,7 @@ public class Recensioni extends JPanel {
 	private void generaTestoDescrizioneBusiness(String descrizioneBusiness) {
 		testoDescrizioneBusiness = new JTextArea(descrizioneBusiness);
 		testoDescrizioneBusiness.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoDescrizioneBusiness.setBorder(new LineBorder(Color.W,1));
+		testoDescrizioneBusiness.setBorder(new LineBorder(Color.WHITE,1));
 		testoDescrizioneBusiness.setEditable(false);
 	}
 
