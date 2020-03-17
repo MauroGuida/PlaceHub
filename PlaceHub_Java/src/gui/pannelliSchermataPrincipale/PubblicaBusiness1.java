@@ -42,8 +42,6 @@ public class PubblicaBusiness1 extends JPanel {
 	private JButton bottoneIntrattenimento;
 	private JButton bottoneAlloggio;
 	private JButton bottoneAvanti;
-	private JLabel testoTipologia;
-	private JComboBox comboBoxTipologia;
 	int flagFocusBottoneGestisciBusiness1;
 	
 	public PubblicaBusiness1() {
@@ -67,15 +65,6 @@ public class PubblicaBusiness1 extends JPanel {
 		generaBottoneAlloggio();
 		
 		generaBottoneAvanti();
-		
-		testoTipologia = new JLabel("Tipologia:");
-		testoTipologia.setBounds(201, 501, 100, 32);
-		testoTipologia.setFont(new Font("Roboto", Font.PLAIN, 20));
-		add(testoTipologia);
-		
-		comboBoxTipologia = new JComboBox();
-		comboBoxTipologia.setBounds(319, 500, 240, 40);
-		add(comboBoxTipologia);
 	}
 
 

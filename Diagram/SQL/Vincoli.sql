@@ -20,7 +20,8 @@ DECLARE
 BEGIN
 	FOR raff IN SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = NEW.codBusiness
 	LOOP
-		IF raff.raffinazione NOT IN ('Bar','Braceria','Pizzeria','Paninoteca') THEN
+		IF raff.raffinazione NOT IN ('Pizzeria', 'Braceria', 'FastFood',
+				      	     'Paninoteca', 'Osteria', 'Tavola Calda',               					  					             'Taverna', 'Trattoria', 'Pesce') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
 	END LOOP;
@@ -47,7 +48,7 @@ DECLARE
 BEGIN
 	FOR raff IN SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = NEW.codBusiness
 	LOOP
-		IF raff.raffinazione NOT IN ('Hotel','Casa Vacanze') THEN
+		IF raff.raffinazione NOT IN ('Hotel', 'Bed&Breakfast', 'Ostello', 'CasaVacanze' ,'Residence') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
 	END LOOP;
@@ -74,7 +75,7 @@ DECLARE
 BEGIN
 	FOR raff IN SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = NEW.codBusiness
 	LOOP
-		IF raff.raffinazione NOT IN ('Cinema','ParcoGiochi','Museo','Shopping','Piscina') THEN
+		IF raff.raffinazione NOT IN ('Cinema', 'Shopping','Monumento', 'Museo', 'Parco Giochi', 'Piscina', 'Bar/Lounge') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
 	END LOOP;

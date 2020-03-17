@@ -31,7 +31,12 @@ CREATE TABLE ImmagineProprietà(
   codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
 
-CREATE TYPE tipoRaffinazione AS ENUM ('Bar','Braceria','Pizzeria','Paninoteca','Hotel','Casa Vacanze',               					  						'Cinema','ParcoGiochi','Museo','Shopping','Piscina');
+CREATE TYPE tipoRaffinazione AS ENUM ('Pizzeria', 'Braceria', 'FastFood',
+				      'Paninoteca', 'Osteria', 'Tavola Calda',               					  					      'Taverna', 'Trattoria', 'Pesce',
+				      'Cinema', 'Shopping','Monumento',
+				      'Museo', 'Parco Giochi', 'Piscina',
+				      'Bar/Lounge', 'Hotel', 'Bed&Breakfast',
+				      'Ostello', 'CasaVacanze' ,'Residence');
 CREATE TABLE Raffinazione(
    nomeRaffinazione tipoRaffinazione PRIMARY KEY
 );
