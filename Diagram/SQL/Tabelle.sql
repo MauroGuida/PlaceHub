@@ -54,3 +54,6 @@ CREATE TABLE ImmagineRecensione(
   Url VARCHAR(1000) NOT NULL,
   codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
+
+
+
