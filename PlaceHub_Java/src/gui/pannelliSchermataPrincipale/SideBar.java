@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import gui.SchermataPrincipale;
 
 public class SideBar extends JPanel {
@@ -134,10 +135,13 @@ public class SideBar extends JPanel {
 	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
 	    	@Override
 	    	public void mouseEntered(MouseEvent e) {
+	    		Controller.getSchermataPrincipaleFrame().mostraTendinaAlloggi();
 	    		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
+	    		Controller.getSchermataPrincipaleFrame().nascondiTendinaAlloggi();
+	    		
 	    		if(flagFocusBottone != 4)
 	    			bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 	    		else

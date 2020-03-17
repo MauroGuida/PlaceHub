@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JFrame;
 
 import gestione.Controller;
+import gui.pannelliSchermataAccesso.menuATendina.Alloggi;
 import gui.pannelliSchermataPrincipale.Bottoni;
 import gui.pannelliSchermataPrincipale.PubblicaBusiness1;
 import gui.pannelliSchermataPrincipale.PubblicaBusiness2;
@@ -35,6 +36,7 @@ public class SchermataPrincipale extends JFrame {
 	private PubblicaBusiness2 pannelloPubblicaBusiness2;
 	private PubblicaBusiness3 pannelloPubblicaBusiness3;
 	
+	public Alloggi tendinaAlloggi;
 	
 	public SchermataPrincipale(Controller Ctrl) {
 		this.ctrl = Ctrl;
@@ -60,6 +62,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloScriviRecensione.setVisible(false);
 		
 		pannelloRicerche = new Ricerche();
+		pannelloRicerche.setVisible(true);
 		
 		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
 		pannelloPubblicaBusiness3.setVisible(false);
@@ -70,6 +73,8 @@ public class SchermataPrincipale extends JFrame {
         pannelloPubblicaBusiness1 = new PubblicaBusiness1();
         pannelloPubblicaBusiness1.setVisible(false);
         
+        tendinaAlloggi = new Alloggi();
+        tendinaAlloggi.setVisible(false);
         
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -80,9 +85,10 @@ public class SchermataPrincipale extends JFrame {
 						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)))
+						.addComponent(tendinaAlloggi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -92,15 +98,27 @@ public class SchermataPrincipale extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
 						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
 						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(208)
+							.addComponent(tendinaAlloggi, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(176))))
 		);
 		getContentPane().setLayout(groupLayout);
 		
 		PROVE();
 	}
 
+	public void mostraTendinaAlloggi() {
+		tendinaAlloggi.setVisible(true);
+		tendinaAlloggi.requestFocus();
+	}
+	
+	public void nascondiTendinaAlloggi() {
+		tendinaAlloggi.setVisible(false);
+	}
 
 	private void PROVE() {
 		try {
