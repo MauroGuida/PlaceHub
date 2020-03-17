@@ -1,7 +1,10 @@
+ALTER TABLE Utente
+  ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
+
 ALTER TABLE Recensione
   ADD CONSTRAINT recensioneUnicaUtenteLuogo UNIQUE(codBusiness, codUtente);
 
-ALTER TABLE Associazione_Tipo
+ALTER TABLE AssociazioneRaffinazione
 	ADD CONSTRAINT raffinazioneUnica UNIQUE(codBusiness,raffinazione);
 
 ALTER TABLE ImmagineProprietà

@@ -16,22 +16,6 @@ CREATE TABLE Utente(
   RetroDocumento VARCHAR(1000) DEFAULT NULL
 );
 
-ALTER TABLE Utente ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
-
-CREATE TABLE Recensione(
-  Testo VARCHAR(2000) NOT NULL,
-  Stelle INTEGER NOT NULL,
-  CodRecensione SERIAL PRIMARY KEY,
-  CodBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE,
-  CodUtente INTEGER FOREIGN KEY REFERENCES Utente(codUtente) ON DELETE CASCADE
-);
-
-CREATE TABLE ImmagineRecensione(
-  Url VARCHAR(1000) NOT NULL,
-  codRecensione INTEGER FOREIGN KEY REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
-);
-
-
 CREATE TYPE tipoBusiness AS ENUM ('Attrazione', 'Alloggio', 'Ristorante');
 CREATE TABLE Business(
   codBusiness SERIAL PRIMARY KEY,
@@ -40,12 +24,12 @@ CREATE TABLE Business(
   PartitaIVA VARCHAR(100) NOT NULL,
   tipo tipoBusiness NOT NULL,
   Descrizione VARCHAR(2000) NOT NULL,
-  codUtente INTEGER FOREIGN KEY REFERENCES Utente(codUtente) ON DELETE CASCADE
+  codUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
 );
 
 CREATE TABLE ImmagineProprietà(
   Url VARCHAR(1000) PRIMARY KEY,
-  codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE
+  codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
 
 CREATE TYPE tipoRaffinazione AS ENUM ('Bar','Braceria','Pizzeria','Paninoteca','Hotel','Casa Vacanze',               					  						'Cinema','ParcoGiochi','Museo','Shopping','Piscina');
@@ -54,6 +38,19 @@ CREATE TABLE Raffinazione(
 );
 
 CREATE TABLE AssociazioneRaffinazione(
-  codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE,
-  raffinazione tipoRaffazione FOREIGN KEY REFERENCES RaffinazioneTipo(raffinazione)
+  codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE,
+  raffinazione tipoRaffinazione REFERENCES Raffinazione(nomeRaffinazione)
+);
+
+CREATE TABLE Recensione(
+  Testo VARCHAR(2000) NOT NULL,
+  Stelle INTEGER NOT NULL,
+  CodRecensione SERIAL PRIMARY KEY,
+  CodBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE,
+  CodUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
+);
+
+CREATE TABLE ImmagineRecensione(
+  Url VARCHAR(1000) NOT NULL,
+  codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
