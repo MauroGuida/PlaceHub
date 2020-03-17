@@ -1003,7 +1003,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -544,
+											"left": -608,
 											"top": 592,
 											"height": 13
 										},
@@ -1014,9 +1014,9 @@
 												"$ref": "AAAAAAFwtLZ4Qex9uVQ="
 											},
 											"font": "Arial;13;1",
-											"left": 405,
+											"left": 373,
 											"top": 463,
-											"width": 208.97119140625,
+											"width": 241.490234375,
 											"height": 13,
 											"text": "RaffinazioneTipo"
 										},
@@ -1028,7 +1028,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -544,
+											"left": -608,
 											"top": 592,
 											"width": 73.67724609375,
 											"height": 13,
@@ -1042,16 +1042,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -544,
+											"left": -608,
 											"top": 592,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 400,
+									"left": 368,
 									"top": 456,
-									"width": 218.97119140625,
+									"width": 251.490234375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFwtLZ4Qex+kxY="
@@ -1086,11 +1086,11 @@
 												"$ref": "AAAAAAFwtLbQp+1cHSw="
 											},
 											"font": "Arial;13;0",
-											"left": 405,
+											"left": 373,
 											"top": 486,
-											"width": 208.97119140625,
+											"width": 241.490234375,
 											"height": 13,
-											"text": "+Raffinazione: Enum TipiAffinazione",
+											"text": "+nomeRaffinazione: Enum TipiAffinazione",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1104,7 +1104,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 309,
 											"top": 565,
 											"width": 158.12646484375,
 											"height": 13,
@@ -1113,9 +1113,9 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 400,
+									"left": 368,
 									"top": 481,
-									"width": 218.97119140625,
+									"width": 251.490234375,
 									"height": 23
 								},
 								{
@@ -1128,9 +1128,9 @@
 										"$ref": "AAAAAAFwtLZ4Qex6pXA="
 									},
 									"font": "Arial;13;0",
-									"left": 400,
+									"left": 368,
 									"top": 504,
-									"width": 218.97119140625,
+									"width": 251.490234375,
 									"height": 10
 								},
 								{
@@ -1144,7 +1144,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -272,
+									"left": -304,
 									"top": 296,
 									"width": 10,
 									"height": 10
@@ -1160,7 +1160,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -272,
+									"left": -304,
 									"top": 296,
 									"width": 10,
 									"height": 10
@@ -1168,9 +1168,9 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 400,
+							"left": 368,
 							"top": 456,
-							"width": 218.97119140625,
+							"width": 251.490234375,
 							"height": 58,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtLZ4Qex9uVQ="
@@ -2315,7 +2315,7 @@
 											"top": 108,
 											"width": 134,
 											"height": 13,
-											"text": "TipoAttività"
+											"text": "TipoBusiness"
 										},
 										{
 											"_type": "LabelView",
@@ -2485,7 +2485,7 @@
 											"top": 161,
 											"width": 134,
 											"height": 13,
-											"text": "Intrattenimento",
+											"text": "Attrazione",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2567,7 +2567,7 @@
 											"top": 204,
 											"width": 135,
 											"height": 13,
-											"text": "TipiAffinazione"
+											"text": "TipiRaffinazione"
 										},
 										{
 											"_type": "LabelView",
@@ -3956,7 +3956,7 @@
 											"top": 343,
 											"width": 208.97119140625,
 											"height": 13,
-											"text": "Associazione_Tipo"
+											"text": "Associazione_Raffinazione"
 										},
 										{
 											"_type": "LabelView",
@@ -4277,7 +4277,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "codUtente"
+							"name": "codUtente",
+							"type": ""
 						}
 					]
 				},
@@ -4449,7 +4450,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Fronte documento"
+							"name": "Fronte documento",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4457,7 +4459,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
-							"name": "Retro documento"
+							"name": "Retro documento",
+							"type": ""
 						}
 					]
 				},
@@ -4475,7 +4478,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtLZ4Qex6pXA="
 							},
-							"name": "Raffinazione",
+							"name": "nomeRaffinazione",
 							"type": "Enum TipiAffinazione"
 						},
 						{
@@ -4614,7 +4617,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "TipoAttività",
+					"name": "TipoBusiness",
 					"literals": [
 						{
 							"_type": "UMLEnumerationLiteral",
@@ -4638,7 +4641,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtMaWZlIWsVI="
 							},
-							"name": "Intrattenimento"
+							"name": "Attrazione"
 						}
 					]
 				},
@@ -4648,7 +4651,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "TipiAffinazione",
+					"name": "TipiRaffinazione",
 					"literals": [
 						{
 							"_type": "UMLEnumerationLiteral",
@@ -4831,7 +4834,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNTrsHa8hJk="
 							},
-							"name": "codUtente"
+							"name": "codUtente",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4839,7 +4843,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtNTrsHa8hJk="
 							},
-							"name": "codBusiness"
+							"name": "codBusiness",
+							"type": ""
 						}
 					]
 				},
@@ -4877,7 +4882,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Associazione_Tipo",
+					"name": "Associazione_Raffinazione",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociationClassLink",
