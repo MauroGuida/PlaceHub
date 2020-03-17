@@ -77,6 +77,11 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 
 	private void generaBottoneCancellaConfermaRegistrazione() {
 		bottoneCancellaConfermaRegistrazione = new JButton("");
+		bottoneCancellaConfermaRegistrazione.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		bottoneCancellaConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
 		bottoneCancellaConfermaRegistrazione.setBounds(232, 202, 140, 50);
 		bottoneCancellaConfermaRegistrazione.setOpaque(false);
