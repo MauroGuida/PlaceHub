@@ -1,22 +1,22 @@
 CREATE TABLE Utente(
+  codUtente SERIAL PRIMARY KEY,
+
   Username VARCHAR(50) NOT NULL UNIQUE,
   Nome VARCHAR(50) NOT NULL,
   Cognome VARCHAR(50) NOT NULL,
   Email VARCHAR(100) NOT NULL UNIQUE CHECK(Email LIKE '_%@%.__%'),
   DataDiNascita date NOT NULL,
-  codUtente SERIAL PRIMARY KEY,
   Password VARCHAR(100) NOT NULL,
+
   Immagine VARCHAR(1000) DEFAULT NULL,
+  codiceVerifica VARCHAR(10) DEFAULT NULL,
+
   Business bool NOT NULL DEFAULT '0',
-  codiceVerifica VARCHAR(10) DEFAULT NULL
-);
-
-ALTER TABLE Utente ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
-
-CREATE TABLE Verifica(
   FronteDocumento VARCHAR(1000) NOT NULL,
   RetroDocumento VARCHAR(1000) NOT NULL
 );
+
+ALTER TABLE Utente ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
 
 CREATE TABLE Recensione(
   Testo VARCHAR(2000) NOT NULL,
@@ -44,15 +44,6 @@ CREATE TABLE Business(
 CREATE TABLE ImmagineProprietà(
   Url VARCHAR(1000) PRIMARY KEY,
   codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE
-);
-
-CREATE TABLE Tag(
-  parola VARCHAR(50) PRIMARY KEY
-);
-
-CREATE TABLE Associazione_Tag(
-  codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE,
-  parola VARCHAR(50) FOREIGN KEY REFERENCES Tag(parola) ON DELETE CASCADE
 );
 
 CREATE TABLE RaffinazioneTipo(

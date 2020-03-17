@@ -2,9 +2,6 @@ ALTER TABLE Recensione
   ADD CONSTRAINT recensioneUnicaUtenteLuogo UNIQUE(codBusiness, codUtente);
 
 ALTER TABLE Associazione_Tipo
-	ADD CONSTRAINT tagUnico UNIQUE(codBusiness,parola);
-
-ALTER TABLE Associazione_Tag
 	ADD CONSTRAINT raffinazioneUnica UNIQUE(codBusiness,raffinazione);
 
 ALTER TABLE ImmagineProprietà
