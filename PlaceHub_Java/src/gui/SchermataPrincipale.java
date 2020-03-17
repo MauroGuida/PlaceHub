@@ -22,6 +22,7 @@ import errori.NumeroStelleNonValidoException;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -55,58 +56,43 @@ public class SchermataPrincipale extends JFrame {
 		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 		
 		pannelloSideBar = new SideBar();
+		pannelloSideBar.setBounds(0, 0, 250, 650);
 
 		pannelloBottoni = new Bottoni();
+		pannelloBottoni.setBounds(250, 0, 850, 36);
 		
 		pannelloScriviRecensione = new ScriviRecensione();
+		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
 		pannelloScriviRecensione.setVisible(false);
 		
 		pannelloRicerche = new Ricerche();
+		pannelloRicerche.setBounds(250, 36, 850, 614);
 		pannelloRicerche.setVisible(true);
 		
 		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
+		pannelloPubblicaBusiness3.setBounds(250, 36, 850, 614);
 		pannelloPubblicaBusiness3.setVisible(false);
 		
 		pannelloPubblicaBusiness2 = new PubblicaBusiness2();
+		pannelloPubblicaBusiness2.setBounds(250, 36, 850, 614);
 		pannelloPubblicaBusiness2.setVisible(false);
         
         pannelloPubblicaBusiness1 = new PubblicaBusiness1();
+        pannelloPubblicaBusiness1.setBounds(250, 36, 850, 614);
         pannelloPubblicaBusiness1.setVisible(false);
-        
+		getContentPane().setLayout(null);
+		
         tendinaAlloggi = new Alloggi();
+        tendinaAlloggi.setBounds(250, 244, 184, 206);
         tendinaAlloggi.setVisible(false);
-        
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(pannelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-						.addComponent(tendinaAlloggi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(pannelloSideBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(pannelloRicerche, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addComponent(pannelloPubblicaBusiness1, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addComponent(pannelloScriviRecensione, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(208)
-							.addComponent(tendinaAlloggi, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(176))))
-		);
-		getContentPane().setLayout(groupLayout);
+        getContentPane().add(tendinaAlloggi);
+		getContentPane().add(pannelloSideBar);
+		getContentPane().add(pannelloBottoni);
+		getContentPane().add(pannelloScriviRecensione);
+		getContentPane().add(pannelloPubblicaBusiness1);
+		getContentPane().add(pannelloRicerche);
+		getContentPane().add(pannelloPubblicaBusiness3);
+		getContentPane().add(pannelloPubblicaBusiness2);
 		
 		PROVE();
 	}
