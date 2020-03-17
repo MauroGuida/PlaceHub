@@ -12,8 +12,8 @@ CREATE TABLE Utente(
   codiceVerifica VARCHAR(10) DEFAULT NULL,
 
   Business bool NOT NULL DEFAULT '0',
-  FronteDocumento VARCHAR(1000) NOT NULL,
-  RetroDocumento VARCHAR(1000) NOT NULL
+  FronteDocumento VARCHAR(1000) DEFAULT NULL,
+  RetroDocumento VARCHAR(1000) DEFAULT NULL
 );
 
 ALTER TABLE Utente ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
@@ -31,12 +31,14 @@ CREATE TABLE ImmagineRecensione(
   codRecensione INTEGER FOREIGN KEY REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
 
+
+CREATE TYPE tipoBusiness AS ENUM ('Attrazione', 'Alloggio', 'Ristorante');
 CREATE TABLE Business(
   codBusiness SERIAL PRIMARY KEY,
   Nome VARCHAR(50) NOT NULL,
   Indirizzo VARCHAR(100) NOT NULL,
   PartitaIVA VARCHAR(100) NOT NULL,
-  Tipo ENUM ('Ristorante','Intrattenimento','Alloggio'),
+  tipo tipoBusiness NOT NULL,
   Descrizione VARCHAR(2000) NOT NULL,
   codUtente INTEGER FOREIGN KEY REFERENCES Utente(codUtente) ON DELETE CASCADE
 );
@@ -46,16 +48,12 @@ CREATE TABLE ImmagineProprietà(
   codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
 
-CREATE TABLE RaffinazioneTipo(
-  raffinazione ENUM ('Bar','Braceria','Pizzeria',
-					           'Paninoteca','Hotel','Casa Vacanze',
-					           'Cinema','ParcoGiochi','Museo','Shopping','Piscina') PRIMARY KEY
+CREATE TYPE tipoRaffinazione AS ENUM ('Bar','Braceria','Pizzeria','Paninoteca','Hotel','Casa Vacanze',               					  						'Cinema','ParcoGiochi','Museo','Shopping','Piscina');
+CREATE TABLE Raffinazione(
+   nomeRaffinazione tipoRaffinazione PRIMARY KEY
 );
 
-CREATE TABLE Associazione_Tipo(
+CREATE TABLE AssociazioneRaffinazione(
   codBusiness INTEGER FOREIGN KEY REFERENCES Business(codBusiness) ON DELETE CASCADE,
-  raffinazione ENUM ('Bar','Braceria','Pizzeria',
-					           'Paninoteca','Hotel','Casa Vacanze',
-					           'Cinema','ParcoGiochi','Museo','Shopping','Piscina')
-					           FOREIGN KEY REFERENCES RaffinazioneTipo(raffinazione)
+  raffinazione tipoRaffazione FOREIGN KEY REFERENCES RaffinazioneTipo(raffinazione)
 );

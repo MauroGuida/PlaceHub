@@ -10,11 +10,15 @@ import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
+import res.ScrollPaneVerde;
+import javax.swing.JLabel;
+import java.awt.Font;
+
 public class GestisciBusiness extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private JButton bottonePubblica;
-	private JScrollPane scrollPaneBusiness;
+	private ScrollPaneVerde scrollPaneBusiness;
 	private JPanel pannelloVediBusiness;
 	
 	public GestisciBusiness() {
@@ -41,13 +45,18 @@ public class GestisciBusiness extends JPanel {
 		});
 		add(bottonePubblica);
 		
-		scrollPaneBusiness = new JScrollPane();
+		scrollPaneBusiness = new ScrollPaneVerde();
 		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
-		scrollPaneBusiness.setBounds(72, 125, 680, 250);
+		scrollPaneBusiness.setBounds(85, 125, 680, 250);
 		add(scrollPaneBusiness);
 		
 		pannelloVediBusiness = new JPanel();
-		pannelloVediBusiness.setBounds(72, 129, 680, 250);
-		add(pannelloVediBusiness);
+		pannelloVediBusiness.setBounds(85, 125, 680, 250);
+		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
+		
+		JLabel testoSelezionaBusiness = new JLabel("Seleziona quale business modificare");
+		testoSelezionaBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoSelezionaBusiness.setBounds(85, 64, 680, 38);
+		add(testoSelezionaBusiness);
 	}
 }
