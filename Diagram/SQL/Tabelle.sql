@@ -11,7 +11,6 @@ CREATE TABLE Utente(
   Immagine VARCHAR(1000) DEFAULT NULL,
   codiceVerifica VARCHAR(10) DEFAULT NULL,
 
-  Business bool NOT NULL DEFAULT '0',
   FronteDocumento VARCHAR(1000) DEFAULT NULL,
   RetroDocumento VARCHAR(1000) DEFAULT NULL
 );
@@ -54,6 +53,3 @@ CREATE TABLE ImmagineRecensione(
   Url VARCHAR(1000) NOT NULL,
   codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
-
-
-
