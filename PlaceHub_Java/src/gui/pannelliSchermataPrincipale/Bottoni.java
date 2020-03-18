@@ -31,6 +31,7 @@ public class Bottoni extends JPanel {
 	
 	public Bottoni() {
 		setSize(850, 36);
+		setVisible(true);
 		setBackground(Color.WHITE);
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.RIGHT);
 		flowLayout.setVgap(3);

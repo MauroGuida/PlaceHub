@@ -44,6 +44,7 @@ public class Recensioni extends JPanel {
 					  String descrizioneBusiness, int numStelle) {
 		setBackground(Color.WHITE);
 		setSize(850, 614);
+		setVisible(false);
 		
 		generaBottoneRecensisci();
 		generaTestoNomeBusiness(nomeBusiness);

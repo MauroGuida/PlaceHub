@@ -23,6 +23,7 @@ public class PubblicaBusiness3 extends JPanel {
 
 	public PubblicaBusiness3() {
 		setSize(850, 614);
+		setVisible(false);
 		setBackground(Color.WHITE);
 		
 		testoRegistrazioneAvvenutaConSuccesso = new JLabel("Registrazione avvenuta con successo!");

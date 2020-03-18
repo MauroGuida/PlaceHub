@@ -46,6 +46,7 @@ public class PubblicaBusiness1 extends JPanel {
 	public PubblicaBusiness1() {
 		setLayout(null);
 		setSize(850, 614);
+		setVisible(false);
 		setBackground(Color.WHITE);
 		
 		

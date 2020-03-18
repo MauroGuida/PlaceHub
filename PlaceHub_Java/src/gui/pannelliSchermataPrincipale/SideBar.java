@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import gui.SchermataPrincipale;
 
 public class SideBar extends JPanel {
@@ -37,8 +38,12 @@ public class SideBar extends JPanel {
 	private JButton bottoneGestisciBusiness;
 	private int flagFocusBottone;
 	
-	public SideBar() {
+	private Controller ctrl;
+	
+	public SideBar(Controller Ctrl) {
+		this.ctrl = Ctrl;
 		setSize(250, 650);
+		setVisible(true);
 		setBackground(new Color(51,51,51));
 			
 	    bottoneHomepage = new JButton("");
@@ -47,6 +52,9 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 1;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
+	    		ctrl.generaRisultatiHomePage();
 	    	}
 	    });
 	    bottoneHomepage.addMouseListener(new MouseAdapter() {
@@ -75,6 +83,9 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 2;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
+	    		ctrl.generaRisultatiRistoranti();
 	    	}
 	    });
 	    bottoneRistoranti.addMouseListener(new MouseAdapter() {
@@ -151,6 +162,11 @@ public class SideBar extends JPanel {
 	    bottoneAlloggi.setBorderPainted(false);
 	    
 	    bottoneGestisciBusiness = new JButton("");
+	    bottoneGestisciBusiness.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		Controller.getSchermataPrincipaleFrame().mostraGestisciBusiness();
+	    	}
+	    });
 	    bottoneGestisciBusiness.addMouseListener(new MouseAdapter() {
 	    	@Override
 	    	public void mouseEntered(MouseEvent e) {

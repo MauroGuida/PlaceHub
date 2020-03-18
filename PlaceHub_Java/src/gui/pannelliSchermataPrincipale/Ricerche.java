@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
-import errori.NumeroStelleNonValidoException;
 import oggetti.Locale;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
@@ -20,6 +19,7 @@ public class Ricerche extends JPanel {
 	
 	public Ricerche() {
 		setSize(850, 614);
+		setVisible(false);
 		setBackground(Color.WHITE);
 		
 	    pannelloRisulatoRicerca = new JPanel();
@@ -39,12 +39,6 @@ public class Ricerche extends JPanel {
 	    generaLayout();
 	}
 
-	public void addRisultatoRicerca(String nomeBusiness, String indirizzo, String urlImmagine) throws NumeroStelleNonValidoException {
-		Locale aggiungiLocale = new Locale(nomeBusiness, indirizzo, urlImmagine);
-		aggiungiLocale.gestioneStelle(4, true);
-		pannelloRisulatoRicerca.add(aggiungiLocale);
-	}
-
 	private void generaLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 	    groupLayout.setHorizontalGroup(
@@ -57,5 +51,16 @@ public class Ricerche extends JPanel {
 	    );
 	    setLayout(groupLayout);
 	}
-
+	
+	
+	//METODI
+	
+	
+	public void addRisultatoRicerca(Locale risultatoRicerca) {
+		pannelloRisulatoRicerca.add(risultatoRicerca);
+	}
+	
+	public void svuotaRicerche() {
+		pannelloRisulatoRicerca.removeAll();
+	}
 }

@@ -31,6 +31,7 @@ public class PubblicaBusiness2 extends JPanel {
 	 public PubblicaBusiness2() {
 		setLayout(null);
 		setSize(850, 614);
+		setVisible(false);
 		setBackground(Color.WHITE);
 		
 		generaCampoDescriviBusiness();

@@ -23,6 +23,7 @@ public class GestisciBusiness extends JPanel {
 	public GestisciBusiness() {
 		setSize(850, 614);
 		setBackground(Color.WHITE);
+		setVisible(false);
 		setLayout(null);
 		
 		bottonePubblica = new JButton("");

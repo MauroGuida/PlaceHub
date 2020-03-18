@@ -31,6 +31,7 @@ public class ScriviRecensione extends JPanel {
 	
 	public ScriviRecensione() {
 		setSize(850, 614);
+		setVisible(false);
 		setBackground(Color.WHITE);
 		setLayout(null);
 		

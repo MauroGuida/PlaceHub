@@ -2,15 +2,18 @@ package gestione;
 
 import java.awt.EventQueue;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 
+import database.BusinessDAO;
 import database.Connessione;
 import database.UtenteDAO;
 import errori.CodiceVerificaNonValidoException;
 import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
+import oggetti.Locale;
 import res.InvioEmail;
 
 public class Controller {
@@ -20,6 +23,7 @@ public class Controller {
 	
 	private static Connessione connessioneAlDatabase;
 	private UtenteDAO utente;
+	private BusinessDAO business;
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
@@ -52,6 +56,7 @@ public class Controller {
 		try {
 			connessioneAlDatabase = new Connessione();
 			utente = new UtenteDAO();
+			business = new BusinessDAO();
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
@@ -63,6 +68,10 @@ public class Controller {
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
 	}
+	
+	
+	//SCHERMATA ACCESSO 
+	
 	
 	public void loginSchermataAccesso(String Username, char[] Password) {
 		try {
@@ -137,5 +146,26 @@ public class Controller {
 		}catch (CodiceVerificaNonValidoException e) {
 			schermataAccessoFrame.mostraErroreCodiceDiVerificaNonValidoReimpostaPassword2();
 		}
+	}
+	
+	
+	//SCEHRMATA PRINCIPALE
+	
+	public void generaRisultatiHomePage() {
+		ArrayList<Locale> risultato = business.ricercaInVoga();
+		
+		schermataPrincipaleFrame.svuotaRicerche();
+		
+		for (Locale locale : risultato)
+			schermataPrincipaleFrame.addRisultatoRicerca(locale);
+	}
+	
+	public void generaRisultatiRistoranti() {
+		ArrayList<Locale> risultato = business.ricercaRistoranti();
+		
+		schermataPrincipaleFrame.svuotaRicerche();
+		
+		for (Locale locale : risultato)
+			schermataPrincipaleFrame.addRisultatoRicerca(locale);
 	}
 }
