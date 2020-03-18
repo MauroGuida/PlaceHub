@@ -133,15 +133,30 @@ public class PubblicaBusiness1 extends JPanel {
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				mostraRaffinazioni(3);
-				pulisciScelteRaffinazioniAlloggio();
+				pulisciScelteRaffinazioniRistorante();
+				pulisciScelteRaffinazioniAttrazione();
 			}
 
-			private void pulisciScelteRaffinazioniAlloggio() {
-				pannelloRaffAlloggi.getCheckBoxBedBreakfast().setSelected(false);
-				pannelloRaffAlloggi.getCheckBoxCasaVacanze().setSelected(false);
-				pannelloRaffAlloggi.getCheckBoxHotel().setSelected(false);
-				pannelloRaffAlloggi.getCheckBoxOstello().setSelected(false);
-				pannelloRaffAlloggi.getCheckBoxResidence().setSelected(false);
+			private void pulisciScelteRaffinazioniRistorante() {
+				pannelloRaffRistorante.getCheckboxBraceria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxFastFood().setSelected(false);
+				pannelloRaffRistorante.getCheckboxOsteria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPaninoteca().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPesce().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPizzeria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTaverna().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTavolaCalda().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTrattoria().setSelected(false);
+			}
+			
+			private void pulisciScelteRaffinazioniAttrazione() {
+				pannelloRaffAttrazioni.getCheckBoxBar_Lounge().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxCinema().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMonumento().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMuseo().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxParcoGiochi().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxPiscina().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxShopping().setSelected(false);
 			}
 		});
 		bottoneAlloggio.addMouseListener(new MouseAdapter() {
@@ -172,18 +187,30 @@ public class PubblicaBusiness1 extends JPanel {
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				mostraRaffinazioni(2);
-				pulisciScelteRaffinazioniAttrazione();
+				pulisciScelteRaffinazioniRistorante();
+				pulisciScelteRaffinazioniAlloggio();
+			}
+			
+			private void pulisciScelteRaffinazioniRistorante() {
+				pannelloRaffRistorante.getCheckboxBraceria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxFastFood().setSelected(false);
+				pannelloRaffRistorante.getCheckboxOsteria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPaninoteca().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPesce().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPizzeria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTaverna().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTavolaCalda().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTrattoria().setSelected(false);
+			}
+			
+			private void pulisciScelteRaffinazioniAlloggio() {
+				pannelloRaffAlloggi.getCheckBoxBedBreakfast().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxCasaVacanze().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxHotel().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxOstello().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxResidence().setSelected(false);
 			}
 
-			private void pulisciScelteRaffinazioniAttrazione() {
-				pannelloRaffAttrazioni.getCheckBoxBar_Lounge().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxCinema().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxMonumento().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxMuseo().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxParcoGiochi().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxPiscina().setSelected(false);
-				pannelloRaffAttrazioni.getCheckBoxShopping().setSelected(false);
-			}
 		});
 		bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
 			@Override
@@ -212,19 +239,26 @@ public class PubblicaBusiness1 extends JPanel {
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				mostraRaffinazioni(1);
-				pulisciScelteRaffinazioniRIstorante();
+				pulisciScelteRaffinazioniAttrazione();
+				pulisciScelteRaffinazioniAlloggio();
 			}
 
-			private void pulisciScelteRaffinazioniRIstorante() {
-				pannelloRaffRistorante.getCheckboxBraceria().setSelected(false);
-				pannelloRaffRistorante.getCheckboxFastFood().setSelected(false);
-				pannelloRaffRistorante.getCheckboxOsteria().setSelected(false);
-				pannelloRaffRistorante.getCheckboxPaninoteca().setSelected(false);
-				pannelloRaffRistorante.getCheckboxPesce().setSelected(false);
-				pannelloRaffRistorante.getCheckboxPizzeria().setSelected(false);
-				pannelloRaffRistorante.getCheckboxTaverna().setSelected(false);
-				pannelloRaffRistorante.getCheckboxTavolaCalda().setSelected(false);
-				pannelloRaffRistorante.getCheckboxTrattoria().setSelected(false);
+			private void pulisciScelteRaffinazioniAttrazione() {
+				pannelloRaffAttrazioni.getCheckBoxBar_Lounge().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxCinema().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMonumento().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMuseo().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxParcoGiochi().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxPiscina().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxShopping().setSelected(false);
+			}
+			
+			private void pulisciScelteRaffinazioniAlloggio() {
+				pannelloRaffAlloggi.getCheckBoxBedBreakfast().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxCasaVacanze().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxHotel().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxOstello().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxResidence().setSelected(false);
 			}
 		});
 		bottoneRistorante.addMouseListener(new MouseAdapter() {
