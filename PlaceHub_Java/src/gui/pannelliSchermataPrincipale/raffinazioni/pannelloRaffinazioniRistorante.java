@@ -114,4 +114,40 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 		checkboxPizzeria.setFocusPainted(false);
 		add(checkboxPizzeria);
 	}
+	
+	public JCheckBox getCheckboxPizzeria() {
+		return checkboxPizzeria;
+	}
+
+	public JCheckBox getCheckboxBraceria() {
+		return checkboxBraceria;
+	}
+
+	public JCheckBox getCheckboxPaninoteca() {
+		return checkboxPaninoteca;
+	}
+
+	public JCheckBox getCheckboxFastFood() {
+		return checkboxFastFood;
+	}
+
+	public JCheckBox getCheckboxOsteria() {
+		return checkboxOsteria;
+	}
+
+	public JCheckBox getCheckboxTavolaCalda() {
+		return checkboxTavolaCalda;
+	}
+
+	public JCheckBox getCheckboxTaverna() {
+		return checkboxTaverna;
+	}
+
+	public JCheckBox getCheckboxTrattoria() {
+		return checkboxTrattoria;
+	}
+
+	public JCheckBox getCheckboxPesce() {
+		return checkboxPesce;
+	}
 }

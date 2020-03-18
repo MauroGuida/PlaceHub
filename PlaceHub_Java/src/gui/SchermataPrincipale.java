@@ -118,17 +118,17 @@ public class SchermataPrincipale extends JFrame {
 			pannelloScriviRecensione.setVisible(true);
 		}
 		
-		public void mostraPublicaBusiness1() {
+		public void mostraPubblicaBusiness1() {
 			nascondiTuttiIPannelli();
 			pannelloPubblicaBusiness1.setVisible(true);
 		}
 		
-		public void mostraPublicaBusiness2() {
+		public void mostraPubblicaBusiness2() {
 			nascondiTuttiIPannelli();
 			pannelloPubblicaBusiness2.setVisible(true);
 		}
 		
-		public void mostraPublicaBusiness3() {
+		public void mostraPubblicaBusiness3() {
 			nascondiTuttiIPannelli();
 			pannelloPubblicaBusiness3.setVisible(true);
 		}
@@ -140,5 +140,25 @@ public class SchermataPrincipale extends JFrame {
 		
 		public void addRisultatoRicerca(Locale risultatoRicerca) {
 			pannelloRicerche.addRisultatoRicerca(risultatoRicerca);
+		}
+		
+		
+		public GestisciBusiness getPannelloGestisciBusiness() {
+			return pannelloGestisciBusiness;
+		}
+
+
+		public PubblicaBusiness1 getPannelloPubblicaBusiness1() {
+			return pannelloPubblicaBusiness1;
+		}
+
+
+		public PubblicaBusiness2 getPannelloPubblicaBusiness2() {
+			return pannelloPubblicaBusiness2;
+		}
+
+
+		public PubblicaBusiness3 getPannelloPubblicaBusiness3() {
+			return pannelloPubblicaBusiness3;
 		}
 }

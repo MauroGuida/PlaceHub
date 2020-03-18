@@ -42,6 +42,9 @@ public class PubblicaBusiness1 extends JPanel {
 	private JButton bottoneAlloggio;
 	private JButton bottoneAvanti;
 	int flagFocusBottoneGestisciBusiness1;
+	private gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante pannelloRaffRistorante;
+	private gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi pannelloRaffAlloggi;
+	private gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni pannelloRaffAttrazioni;
 	
 	public PubblicaBusiness1() {
 		setLayout(null);
@@ -65,6 +68,34 @@ public class PubblicaBusiness1 extends JPanel {
 		generaBottoneAlloggio();
 		
 		generaBottoneAvanti();
+		
+		generaPannelloRaffRistorante();
+		generaRaffinazioniAlloggio();
+		generaRaffinazioniAttrazione();
+	}
+
+
+	private void generaRaffinazioniAttrazione() {
+		pannelloRaffAttrazioni = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni();
+		pannelloRaffAttrazioni.setLocation(100, 480);
+		pannelloRaffAttrazioni.setVisible(false);
+		add(pannelloRaffAttrazioni);
+	}
+
+
+	private void generaRaffinazioniAlloggio() {
+		pannelloRaffAlloggi = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi();
+		pannelloRaffAlloggi.setLocation(100, 480);
+		pannelloRaffAlloggi.setVisible(false);
+		add(pannelloRaffAlloggi);
+	}
+
+
+	private void generaPannelloRaffRistorante() {
+		pannelloRaffRistorante = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante();
+		pannelloRaffRistorante.setLocation(100, 480);
+		pannelloRaffRistorante.setVisible(false);
+		add(pannelloRaffRistorante);
 	}
 
 
@@ -101,7 +132,16 @@ public class PubblicaBusiness1 extends JPanel {
 				flagFocusBottoneGestisciBusiness1 = 3;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
-				
+				mostraRaffinazioni(3);
+				pulisciScelteRaffinazioniAlloggio();
+			}
+
+			private void pulisciScelteRaffinazioniAlloggio() {
+				pannelloRaffAlloggi.getCheckBoxBedBreakfast().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxCasaVacanze().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxHotel().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxOstello().setSelected(false);
+				pannelloRaffAlloggi.getCheckBoxResidence().setSelected(false);
 			}
 		});
 		bottoneAlloggio.addMouseListener(new MouseAdapter() {
@@ -131,6 +171,18 @@ public class PubblicaBusiness1 extends JPanel {
 				flagFocusBottoneGestisciBusiness1 = 2;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
+				mostraRaffinazioni(2);
+				pulisciScelteRaffinazioniAttrazione();
+			}
+
+			private void pulisciScelteRaffinazioniAttrazione() {
+				pannelloRaffAttrazioni.getCheckBoxBar_Lounge().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxCinema().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMonumento().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxMuseo().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxParcoGiochi().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxPiscina().setSelected(false);
+				pannelloRaffAttrazioni.getCheckBoxShopping().setSelected(false);
 			}
 		});
 		bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
@@ -159,6 +211,20 @@ public class PubblicaBusiness1 extends JPanel {
 				flagFocusBottoneGestisciBusiness1 = 1;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
+				mostraRaffinazioni(1);
+				pulisciScelteRaffinazioniRIstorante();
+			}
+
+			private void pulisciScelteRaffinazioniRIstorante() {
+				pannelloRaffRistorante.getCheckboxBraceria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxFastFood().setSelected(false);
+				pannelloRaffRistorante.getCheckboxOsteria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPaninoteca().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPesce().setSelected(false);
+				pannelloRaffRistorante.getCheckboxPizzeria().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTaverna().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTavolaCalda().setSelected(false);
+				pannelloRaffRistorante.getCheckboxTrattoria().setSelected(false);
 			}
 		});
 		bottoneRistorante.addMouseListener(new MouseAdapter() {
@@ -314,5 +380,28 @@ public class PubblicaBusiness1 extends JPanel {
 		lineaTestoNomeBusiness.setBounds(53, 91, 262, 1);
 		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoNomeBusiness);
+	}
+	
+	
+	private void mostraRaffinazioni(int flagRaffinazione) {
+		switch(flagRaffinazione) {
+			case 1:
+				pannelloRaffRistorante.setVisible(true);
+				pannelloRaffAttrazioni.setVisible(false);
+				pannelloRaffAlloggi.setVisible(false);
+				break;
+			
+			case 2:
+				pannelloRaffAttrazioni.setVisible(true);
+				pannelloRaffRistorante.setVisible(false);
+				pannelloRaffAlloggi.setVisible(false);
+				break;
+			
+			case 3:
+				pannelloRaffAlloggi.setVisible(true);
+				pannelloRaffAttrazioni.setVisible(false);
+				pannelloRaffRistorante.setVisible(false);
+				break;
+		}
 	}
 }

@@ -25,6 +25,7 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 		generaCheckBoxBedBreakfast();
 		generaBoxResidence();
 		generaCheckBoxCasVacanze();
+		
 	}
 
 	private void generaCheckBoxCasVacanze() {
@@ -71,4 +72,25 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 		checkBoxHotel.setFocusPainted(false);
 		add(checkBoxHotel);
 	}
+	
+	public JCheckBox getCheckBoxHotel() {
+		return checkBoxHotel;
+	}
+
+	public JCheckBox getCheckBoxOstello() {
+		return checkBoxOstello;
+	}
+
+	public JCheckBox getCheckBoxBedBreakfast() {
+		return checkBoxBedBreakfast;
+	}
+
+	public JCheckBox getCheckBoxResidence() {
+		return checkBoxResidence;
+	}
+
+	public JCheckBox getCheckBoxCasaVacanze() {
+		return checkBoxCasaVacanze;
+	}
+
 }

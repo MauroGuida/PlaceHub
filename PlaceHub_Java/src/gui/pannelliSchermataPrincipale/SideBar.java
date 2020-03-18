@@ -52,7 +52,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 1;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
 	    		ctrl.generaRisultatiHomePage();
 	    	}
@@ -83,7 +83,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 2;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
 	    		ctrl.generaRisultatiRistoranti();
 	    	}
@@ -131,6 +131,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 3;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
 	    
@@ -140,6 +141,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 4;
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
 	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
@@ -174,9 +176,14 @@ public class SideBar extends JPanel {
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
+	    		if(!Controller.getSchermataPrincipaleFrame().getPannelloGestisciBusiness().isVisible() &&
+	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness1().isVisible() &&
+	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness2().isVisible() &&
+	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness3().isVisible())
 	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
+	    
 	    bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    bottoneGestisciBusiness.setOpaque(false);
 	    bottoneGestisciBusiness.setFocusPainted(false);
@@ -233,6 +240,11 @@ public class SideBar extends JPanel {
 	    textFieldDove.setCaretColor(Color.WHITE);
 	    
 	    bottoneCercaSideBar = new JButton("");
+	    bottoneCercaSideBar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    	}
+	    });
 	    bottoneCercaSideBar.addMouseListener(new MouseAdapter() {
 	    	@Override
 	    	public void mouseEntered(MouseEvent e) {
@@ -313,6 +325,7 @@ public class SideBar extends JPanel {
 	    setLayout(gl_pannelloSideBar);
 	}
 	
+
 	private void cambiaFocusIconeSideBar(int flag) {
 		switch(flag) {
 			case 1:

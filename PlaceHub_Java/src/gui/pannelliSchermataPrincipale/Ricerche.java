@@ -14,7 +14,7 @@ import javax.swing.GroupLayout.Alignment;
 
 public class Ricerche extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JPanel pannelloRisulatoRicerca;
+	private JPanel pannelloRisultatoRicerca;
 	private ScrollPaneVerde scorrimentoRisultati;
 	
 	public Ricerche() {
@@ -22,12 +22,12 @@ public class Ricerche extends JPanel {
 		setVisible(false);
 		setBackground(Color.WHITE);
 		
-	    pannelloRisulatoRicerca = new JPanel();
-	    pannelloRisulatoRicerca.setBackground(Color.WHITE);
-	    pannelloRisulatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
+	    pannelloRisultatoRicerca = new JPanel();
+	    pannelloRisultatoRicerca.setBackground(Color.WHITE);
+	    pannelloRisultatoRicerca.setLayout(new WrapLayout(WrapLayout.CENTER));
 	    
 	    scorrimentoRisultati = new ScrollPaneVerde();
-	    scorrimentoRisultati.setViewportView(pannelloRisulatoRicerca);
+	    scorrimentoRisultati.setViewportView(pannelloRisultatoRicerca);
 	    scorrimentoRisultati.setBackground(Color.WHITE);
 	    scorrimentoRisultati.setBorder(new LineBorder(Color.WHITE,1));
 	    
@@ -57,10 +57,10 @@ public class Ricerche extends JPanel {
 	
 	
 	public void addRisultatoRicerca(Locale risultatoRicerca) {
-		pannelloRisulatoRicerca.add(risultatoRicerca);
+		pannelloRisultatoRicerca.add(risultatoRicerca);
 	}
 	
 	public void svuotaRicerche() {
-		pannelloRisulatoRicerca.removeAll();
+		pannelloRisultatoRicerca.removeAll();
 	}
 }

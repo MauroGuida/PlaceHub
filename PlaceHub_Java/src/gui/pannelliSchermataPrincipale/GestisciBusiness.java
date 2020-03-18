@@ -9,9 +9,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import res.ScrollPaneVerde;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GestisciBusiness extends JPanel {
 	
@@ -41,6 +44,11 @@ public class GestisciBusiness extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				bottonePubblica.setIcon(new ImageIcon(GestisciBusiness.class.getResource("/Icone/bottonePubblicaNuovo.png")));
+			}
+		});
+		bottonePubblica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1();
 			}
 		});
 		add(bottonePubblica);

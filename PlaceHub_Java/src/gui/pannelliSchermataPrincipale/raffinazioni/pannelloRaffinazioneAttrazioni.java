@@ -93,4 +93,33 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 		checkBoxCinema.setFocusPainted(false);
 		add(checkBoxCinema);
 	}
+	
+	public JCheckBox getCheckBoxCinema() {
+		return checkBoxCinema;
+	}
+
+	public JCheckBox getCheckBoxMuseo() {
+		return checkBoxMuseo;
+	}
+
+	public JCheckBox getCheckBoxPiscina() {
+		return checkBoxPiscina;
+	}
+
+	public JCheckBox getCheckBoxShopping() {
+		return checkBoxShopping;
+	}
+
+	public JCheckBox getCheckBoxParcoGiochi() {
+		return checkBoxParcoGiochi;
+	}
+
+	public JCheckBox getCheckBoxBar_Lounge() {
+		return checkBoxBar_Lounge;
+	}
+
+	public JCheckBox getCheckBoxMonumento() {
+		return checkBoxMonumento;
+	}
+
 }
