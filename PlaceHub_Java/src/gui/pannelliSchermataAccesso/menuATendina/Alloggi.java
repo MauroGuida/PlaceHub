@@ -22,7 +22,7 @@ public class Alloggi extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				resize(184, 206);
+				setSize(184, 206);
 			}
 		});
 		setSize(184,206);
