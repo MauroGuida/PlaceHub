@@ -151,7 +151,17 @@ public class SideBar extends JPanel {
 	    bottoneAlloggi.setBorderPainted(false);
 	    
 	    bottoneGestisciBusiness = new JButton("");
-	    bottoneGestisciBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/gestisciAttvita.png")));
+	    bottoneGestisciBusiness.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseEntered(MouseEvent e) {
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusinessFocus.png")));
+	    	}
+	    	@Override
+	    	public void mouseExited(MouseEvent e) {
+	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    	}
+	    });
+	    bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    bottoneGestisciBusiness.setOpaque(false);
 	    bottoneGestisciBusiness.setFocusPainted(false);
 	    bottoneGestisciBusiness.setContentAreaFilled(false);
