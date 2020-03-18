@@ -5,7 +5,6 @@ import java.awt.Font;
 
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
 public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private static final long serialVersionUID = 1L;
