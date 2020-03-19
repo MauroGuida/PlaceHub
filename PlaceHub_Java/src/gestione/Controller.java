@@ -151,21 +151,17 @@ public class Controller {
 	
 	//SCEHRMATA PRINCIPALE
 	
-	public void generaRisultatiHomePage() {
-		ArrayList<Locale> risultato = business.ricercaInVoga();
-		
+	public void generaRisultatiHomePage() {	
 		schermataPrincipaleFrame.svuotaRicerche();
 		
-		for (Locale locale : risultato)
+		for (Locale locale : business.ricercaInVoga())
 			schermataPrincipaleFrame.addRisultatoRicerca(locale);
 	}
 	
 	public void generaRisultatiRistoranti() {
-		ArrayList<Locale> risultato = business.ricercaRistoranti();
-		
 		schermataPrincipaleFrame.svuotaRicerche();
 		
-		for (Locale locale : risultato)
+		for (Locale locale : business.ricercaRistoranti())
 			schermataPrincipaleFrame.addRisultatoRicerca(locale);
 	}
 }
