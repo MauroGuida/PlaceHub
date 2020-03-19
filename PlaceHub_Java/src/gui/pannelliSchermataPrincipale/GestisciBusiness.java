@@ -22,6 +22,7 @@ public class GestisciBusiness extends JPanel {
 	private JButton bottonePubblica;
 	private ScrollPaneVerde scrollPaneBusiness;
 	private JPanel pannelloVediBusiness;
+	private JLabel testoSelezionaBusiness;
 	
 	public GestisciBusiness() {
 		setSize(850, 614);
@@ -29,6 +30,33 @@ public class GestisciBusiness extends JPanel {
 		setVisible(false);
 		setLayout(null);
 		
+		generaBottonePubblica();
+		generaPannelloVisualizzazioneAttivitaInTuoPossesso();
+		generaTestoSelezionaBusiness();
+	}
+
+
+	private void generaPannelloVisualizzazioneAttivitaInTuoPossesso() {
+		scrollPaneBusiness = new ScrollPaneVerde();
+		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
+		scrollPaneBusiness.setBounds(85, 125, 680, 250);
+		add(scrollPaneBusiness);
+		
+		pannelloVediBusiness = new JPanel();
+		pannelloVediBusiness.setBounds(85, 125, 680, 250);
+		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
+	}
+
+
+	private void generaTestoSelezionaBusiness() {
+		testoSelezionaBusiness = new JLabel("Seleziona quale business modificare");
+		testoSelezionaBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoSelezionaBusiness.setBounds(85, 64, 680, 38);
+		add(testoSelezionaBusiness);
+	}
+
+
+	private void generaBottonePubblica() {
 		bottonePubblica = new JButton("");
 		bottonePubblica.setBounds(229, 414, 365, 50);
 		bottonePubblica.setOpaque(false);
@@ -52,19 +80,5 @@ public class GestisciBusiness extends JPanel {
 			}
 		});
 		add(bottonePubblica);
-		
-		scrollPaneBusiness = new ScrollPaneVerde();
-		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
-		scrollPaneBusiness.setBounds(85, 125, 680, 250);
-		add(scrollPaneBusiness);
-		
-		pannelloVediBusiness = new JPanel();
-		pannelloVediBusiness.setBounds(85, 125, 680, 250);
-		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
-		
-		JLabel testoSelezionaBusiness = new JLabel("Seleziona quale business modificare");
-		testoSelezionaBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoSelezionaBusiness.setBounds(85, 64, 680, 38);
-		add(testoSelezionaBusiness);
 	}
 }

@@ -72,7 +72,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloPubblicaBusiness2 = new PubblicaBusiness2();
 		pannelloPubblicaBusiness2.setBounds(250, 36, 850, 614);
         
-        pannelloPubblicaBusiness1 = new PubblicaBusiness1();
+        pannelloPubblicaBusiness1 = new PubblicaBusiness1(ctrl);
         pannelloPubblicaBusiness1.setBounds(250, 36, 850, 614);
         
         pannelloGestisciBusiness = new GestisciBusiness();
@@ -160,4 +160,21 @@ public class SchermataPrincipale extends JFrame {
 		public PubblicaBusiness3 getPannelloPubblicaBusiness3() {
 			return pannelloPubblicaBusiness3;
 		}
+		
+		
+		
+	//Gestione pannello PubblicaBusiness1
+		public void mostraErroreCampiVuotiPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.mostraErroreCampiVuoti();
+		}
+		
+		public void mostraErroreTipologiaVuotaPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.mostraErroreTipologiaVuota();
+		}
+		
+		public void resettaVisibilitaErroriPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.resettaVisibilitaErrori();
+		}
+		
+		
 }

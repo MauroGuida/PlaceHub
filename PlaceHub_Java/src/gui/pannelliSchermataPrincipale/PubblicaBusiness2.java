@@ -14,7 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import gui.SchermataPrincipale;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -29,6 +32,7 @@ public class PubblicaBusiness2 extends JPanel {
 	private JButton bottoneAvanti;
 	
 	 public PubblicaBusiness2() {
+		
 		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
@@ -69,6 +73,11 @@ public class PubblicaBusiness2 extends JPanel {
 
 	private void generaBottoneIndietro() {
 		bottoneIndietro = new JButton("");
+		bottoneIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1();
+			}
+		});
 		bottoneIndietro.setBounds(27, 540, 140, 50);
 		bottoneIndietro.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
 		bottoneIndietro.setOpaque(false);

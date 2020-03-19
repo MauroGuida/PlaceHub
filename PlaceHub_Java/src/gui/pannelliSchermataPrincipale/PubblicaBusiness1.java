@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import gui.SchermataPrincipale;
+import javax.swing.SwingConstants;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -32,10 +34,6 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel lineaTestoTelefono;
 	private JLabel lineaTestoIndirizzo;
 	private JLabel lineaTestoPartitaIVA ;
-	private JLabel immagineDocumentoFronte;
-	private JLabel testoDocumentoFronte;
-	private JLabel immagineDocumentroRetro;
-	private JLabel testoDocumentroRetro;
 	private JLabel testoSelezionaOpzione;
 	private JButton bottoneRistorante;
 	private JButton bottoneIntrattenimento;
@@ -46,12 +44,17 @@ public class PubblicaBusiness1 extends JPanel {
 	private gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi pannelloRaffAlloggi;
 	private gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni pannelloRaffAttrazioni;
 	
-	public PubblicaBusiness1() {
+	private JLabel testoErrori;
+	
+	private Controller ctrl;
+	private JLabel testoErroreTipologiaVuota;
+	
+	public PubblicaBusiness1(Controller ctrl) {
+		this.ctrl = ctrl;
 		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
-		
 		
 		generaCampoNomeBusiness();
 		generaCampoTelefono();
@@ -72,12 +75,38 @@ public class PubblicaBusiness1 extends JPanel {
 		generaPannelloRaffRistorante();
 		generaRaffinazioniAlloggio();
 		generaRaffinazioniAttrazione();
+		
+		generaTestoErroreCampiVuoti();
+		
+		generaTestoErroreTipologiaVuota();
+	}
+
+
+	private void generaTestoErroreTipologiaVuota() {
+		testoErroreTipologiaVuota = new JLabel("Seleziona una tipologia");
+		testoErroreTipologiaVuota.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreTipologiaVuota.setForeground(Color.RED);
+		testoErroreTipologiaVuota.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErroreTipologiaVuota.setBounds(100, 555, 506, 19);
+		testoErroreTipologiaVuota.setVisible(false);
+		add(testoErroreTipologiaVuota);
+	}
+
+
+	private void generaTestoErroreCampiVuoti() {
+		testoErrori = new JLabel("Non possono esserci campi vuoti");
+		testoErrori.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErrori.setForeground(Color.RED);
+		testoErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErrori.setBounds(53, 205, 675, 19);
+		testoErrori.setVisible(false);
+		add(testoErrori);
 	}
 
 
 	private void generaRaffinazioniAttrazione() {
 		pannelloRaffAttrazioni = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni();
-		pannelloRaffAttrazioni.setLocation(100, 480);
+		pannelloRaffAttrazioni.setLocation(100, 440);
 		pannelloRaffAttrazioni.setVisible(false);
 		add(pannelloRaffAttrazioni);
 	}
@@ -85,7 +114,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaRaffinazioniAlloggio() {
 		pannelloRaffAlloggi = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi();
-		pannelloRaffAlloggi.setLocation(100, 480);
+		pannelloRaffAlloggi.setLocation(100, 440);
 		pannelloRaffAlloggi.setVisible(false);
 		add(pannelloRaffAlloggi);
 	}
@@ -93,7 +122,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaPannelloRaffRistorante() {
 		pannelloRaffRistorante = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante();
-		pannelloRaffRistorante.setLocation(100, 480);
+		pannelloRaffRistorante.setLocation(100, 440);
 		pannelloRaffRistorante.setVisible(false);
 		add(pannelloRaffRistorante);
 	}
@@ -101,6 +130,15 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ctrl.procediInPubblicaBusiness2(textFieldNomeBusiness.getText(),
+												textFieldIndirizzo.getText(),
+												textFieldTelefono.getText(),
+												textFieldPartitaIVA.getText(),
+												checkTipoBusiness());
+			}
+		});
 		bottoneAvanti.setBounds(668, 537, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
@@ -122,7 +160,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneAlloggio() {
 		bottoneAlloggio = new JButton("");
-		bottoneAlloggio.setBounds(572, 350, 209, 110);
+		bottoneAlloggio.setBounds(572, 300, 209, 110);
 		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
 		bottoneAlloggio.setOpaque(false);
 		bottoneAlloggio.setContentAreaFilled(false);
@@ -132,6 +170,7 @@ public class PubblicaBusiness1 extends JPanel {
 				flagFocusBottoneGestisciBusiness1 = 3;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
+				
 				mostraRaffinazioni(3);
 			}
 		});
@@ -152,7 +191,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneIntrattenimento() {
 		bottoneIntrattenimento = new JButton("");
-		bottoneIntrattenimento.setBounds(320, 350, 208, 110);
+		bottoneIntrattenimento.setBounds(320, 300, 208, 110);
 		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 		bottoneIntrattenimento.setOpaque(false);
 		bottoneIntrattenimento.setContentAreaFilled(false);
@@ -162,6 +201,7 @@ public class PubblicaBusiness1 extends JPanel {
 				flagFocusBottoneGestisciBusiness1 = 2;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
 				cambiaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
+				
 				mostraRaffinazioni(2);
 			}
 		});
@@ -182,7 +222,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneRistorante() {
 		bottoneRistorante = new JButton("");
-		bottoneRistorante.setBounds(68, 350, 208, 110);
+		bottoneRistorante.setBounds(68, 300, 208, 110);
 		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
 		bottoneRistorante.setOpaque(false);
 		bottoneRistorante.setContentAreaFilled(false);
@@ -212,35 +252,17 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	private void generaTestoSelezionaOpzione() {
 		testoSelezionaOpzione = new JLabel("Seleziona una opzione");
-		testoSelezionaOpzione.setBounds(53, 307, 257, 23);
+		testoSelezionaOpzione.setBounds(53, 240, 257, 23);
 		testoSelezionaOpzione.setFont(new Font("Roboto", Font.PLAIN, 20));
 		add(testoSelezionaOpzione);
 	}
 
 
 	private void generaCampoDocumentoRetro() {
-		immagineDocumentroRetro = new JLabel("");
-		immagineDocumentroRetro.setBounds(446, 220, 40, 40);
-		immagineDocumentroRetro.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/InserisciDocumento.png")));
-		add(immagineDocumentroRetro);
-		
-		testoDocumentroRetro = new JLabel("Documentro Retro");
-		testoDocumentroRetro.setBounds(496, 230, 275, 20);
-		testoDocumentroRetro.setFont(new Font("Roboto", Font.PLAIN, 20));
-		add(testoDocumentroRetro);
 	}
 
 
 	private void generaCampoDocumentoFronte() {
-		immagineDocumentoFronte = new JLabel("");
-		immagineDocumentoFronte.setBounds(53, 220, 40, 40);
-		immagineDocumentoFronte.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/InserisciDocumento.png")));
-		add(immagineDocumentoFronte);
-		
-		testoDocumentoFronte = new JLabel("Documento Fronte");
-		testoDocumentoFronte.setBounds(103, 230, 250, 20);
-		testoDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 20));
-		add(testoDocumentoFronte);
 	}
 
 
@@ -259,8 +281,8 @@ public class PubblicaBusiness1 extends JPanel {
 		add(textFieldPartitaIVA);
 		
 		lineaTestoPartitaIVA = new JLabel("");
-		lineaTestoPartitaIVA.setBounds(471, 181, 262, 1);
-		lineaTestoPartitaIVA.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
+		lineaTestoPartitaIVA.setBounds(446, 181, 287, 1);
+		lineaTestoPartitaIVA.setIcon(new ImageIcon(PubblicaBusiness1.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoPartitaIVA);
 	}
 
@@ -373,5 +395,33 @@ public class PubblicaBusiness1 extends JPanel {
 				pannelloRaffRistorante.setVisible(false);
 				break;
 		}
+	}
+	
+	
+	private int checkTipoBusiness() {
+		if(pannelloRaffRistorante.isVisible()) {
+			return 1;
+		}else if (pannelloRaffAttrazioni.isVisible()) {
+			return 2;
+		}else if (pannelloRaffAlloggi.isVisible()) {
+			return 3;
+		}
+		return 0;
+	}
+	
+	
+	public void mostraErroreCampiVuoti() {
+		testoErrori.setText("Non possono esserci campi vuoti");
+		testoErrori.setVisible(true);
+	}
+	
+	public void mostraErroreTipologiaVuota() {
+		testoErroreTipologiaVuota.setText("Seleziona una tipologia");
+		testoErroreTipologiaVuota.setVisible(true);
+	}
+		
+	public void resettaVisibilitaErrori() {
+		testoErrori.setVisible(false);
+		testoErroreTipologiaVuota.setVisible(false);
 	}
 }

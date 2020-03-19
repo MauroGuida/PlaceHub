@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 import database.BusinessDAO;
 import database.Connessione;
 import database.UtenteDAO;
+import errori.CambiVuotiException;
 import errori.CodiceVerificaNonValidoException;
 import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
@@ -26,6 +27,7 @@ public class Controller {
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
+	
 	
 	//Inizializzazione programma
 	public static void main(String[] args) {
@@ -148,7 +150,7 @@ public class Controller {
 	}
 	
 	
-	//SCEHRMATA PRINCIPALE
+	//SCHERMATA PRINCIPALE
 	
 	public void generaRisultatiHomePage() {	
 		schermataPrincipaleFrame.svuotaRicerche();
@@ -163,4 +165,29 @@ public class Controller {
 		for (Locale locale : business.ricercaRistoranti())
 			schermataPrincipaleFrame.addRisultatoRicerca(locale);
 	}
+	
+	
+	
+	//PUBBLICA BUSINESS
+	
+	public void procediInPubblicaBusiness2(String nomeBusiness, String Indirizzo, 
+										   String Telefono, String PartitaIVA, int flagTipologia) {
+		
+		boolean flagErrore = false;
+		schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
+		if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || Indirizzo.isBlank() || Indirizzo.isEmpty() ||
+		   Telefono.isBlank() || Telefono.isEmpty() || PartitaIVA.isBlank() || PartitaIVA.isEmpty()) {
+			schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
+			flagErrore = true;
+		}
+		if(flagTipologia == 0) {
+			schermataPrincipaleFrame.mostraErroreTipologiaVuotaPubblicaBusiness1();
+			flagErrore = true;
+		}
+		
+		if(!flagErrore) {
+			schermataPrincipaleFrame.mostraPubblicaBusiness2();
+		}
+	}
+	
 }
