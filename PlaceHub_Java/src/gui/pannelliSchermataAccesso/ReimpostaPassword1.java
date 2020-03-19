@@ -152,6 +152,7 @@ public class ReimpostaPassword1 extends JPanel {
 	}
 	
 	private void invioCodiceReimpostaPassword() {
+		ctrl.richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
 		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
 	}
 }

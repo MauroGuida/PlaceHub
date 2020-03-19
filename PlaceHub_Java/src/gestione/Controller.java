@@ -8,9 +8,11 @@ import javax.mail.MessagingException;
 import database.BusinessDAO;
 import database.Connessione;
 import database.UtenteDAO;
-import errori.CambiVuotiException;
+import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
+import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
+import errori.UtenteNonTrovatoException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.Locale;
@@ -120,14 +122,24 @@ public class Controller {
 		}
 	}
 	
+	public void richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
+		try {
+			utente.generaCodiceVerifica(utente.recuperaCodiceUtenteDaEmail(email));
+		} catch(EmailSconosciutaException e) {
+			schermataAccessoFrame.mostraErroreReimpostaPassword1();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
 			final String oggetto = "Placehub - Reimposta password!";
-			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.reimpostaPassword(email)));
+			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.recuperaCodiceVerifica(utente.recuperaCodiceUtenteDaEmail(email))));
 			
 			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
 			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
-		} catch (MessagingException | SQLException e) {
+		} catch (MessagingException | SQLException | CodiceVerificaNonTrovatoException | EmailSconosciutaException  e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
 			
 			e.printStackTrace();
