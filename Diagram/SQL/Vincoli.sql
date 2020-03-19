@@ -7,8 +7,15 @@ ALTER TABLE Recensione
 ALTER TABLE AssociazioneRaffinazione
 	ADD CONSTRAINT raffinazioneUnica UNIQUE(codBusiness,raffinazione);
 
-ALTER TABLE ImmagineProprietà
+ALTER TABLE ImmagineProprieta
 	ADD CONSTRAINT immagineUnica UNIQUE(Url,codBusiness);
+
+ALTER TABLE Business
+  ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono LIKE '[0-9]*10')
+
+ALTER TABLE Business
+  ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(length(Telefono)>10 OR
+    length(Telefono)<10)
 
 --------------
 
@@ -28,12 +35,12 @@ BEGIN
 END;
 $BODY$
 LANGUAGE PLPGSQL;
-	
 
-CREATE TRIGGER checkRaffinazioneRistoranti 
+
+CREATE TRIGGER checkRaffinazioneRistoranti
 BEFORE INSERT ON Business
 FOR EACH ROW
-WHEN (NEW.tipo = 'Ristorante') 
+WHEN (NEW.tipo = 'Ristorante')
 EXECUTE PROCEDURE checkRaffinazioneRistoranti();
 
 
@@ -55,12 +62,12 @@ BEGIN
 END;
 $BODY$
 LANGUAGE PLPGSQL;
-	
+
 
 CREATE TRIGGER checkRaffinazioneAlloggio
 BEFORE INSERT ON Business
 FOR EACH ROW
-WHEN (NEW.tipo = 'Alloggio') 
+WHEN (NEW.tipo = 'Alloggio')
 EXECUTE PROCEDURE checkRaffinazioneAlloggio();
 
 
@@ -82,16 +89,13 @@ BEGIN
 END;
 $BODY$
 LANGUAGE PLPGSQL;
-	
+
 
 CREATE TRIGGER checkRaffinazioneAttrazioni
 BEFORE INSERT ON Business
 FOR EACH ROW
-WHEN (NEW.tipo = 'Attrazione') 
+WHEN (NEW.tipo = 'Attrazione')
 EXECUTE PROCEDURE checkRaffinazioneAttrazioni();
 
 
 ------------
-
-
-

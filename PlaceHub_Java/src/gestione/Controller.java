@@ -2,7 +2,6 @@ package gestione;
 
 import java.awt.EventQueue;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 

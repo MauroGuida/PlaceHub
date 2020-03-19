@@ -23,10 +23,11 @@ CREATE TABLE Business(
   PartitaIVA VARCHAR(100) NOT NULL,
   tipo tipoBusiness NOT NULL,
   Descrizione VARCHAR(2000) NOT NULL,
+  Telefono VARCHAR(10) NOT NULL,
   codUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
 );
 
-CREATE TABLE ImmagineProprietà(
+CREATE TABLE ImmagineProprieta(
   Url VARCHAR(1000) PRIMARY KEY,
   codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
