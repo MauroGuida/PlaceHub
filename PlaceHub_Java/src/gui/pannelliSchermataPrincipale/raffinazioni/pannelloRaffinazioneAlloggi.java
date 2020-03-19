@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class pannelloRaffinazioneAlloggi extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -16,6 +18,12 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 	private JCheckBox checkBoxCasaVacanze;
 	
 	public pannelloRaffinazioneAlloggi() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				rimuoviTutteLeSpunte();
+			}
+		});
 		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(506,106);
@@ -73,24 +81,15 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 		add(checkBoxHotel);
 	}
 	
-	public JCheckBox getCheckBoxHotel() {
-		return checkBoxHotel;
-	}
+	
+	//Metodi
 
-	public JCheckBox getCheckBoxOstello() {
-		return checkBoxOstello;
+	
+	private void rimuoviTutteLeSpunte() {
+		checkBoxBedBreakfast.setSelected(false);
+		checkBoxCasaVacanze.setSelected(false);
+		checkBoxHotel.setSelected(false);
+		checkBoxOstello.setSelected(false);
+		checkBoxResidence.setSelected(false);
 	}
-
-	public JCheckBox getCheckBoxBedBreakfast() {
-		return checkBoxBedBreakfast;
-	}
-
-	public JCheckBox getCheckBoxResidence() {
-		return checkBoxResidence;
-	}
-
-	public JCheckBox getCheckBoxCasaVacanze() {
-		return checkBoxCasaVacanze;
-	}
-
 }

@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class pannelloRaffinazioniRistorante extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +21,12 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 	private JCheckBox checkboxPesce;
 	
 	public pannelloRaffinazioniRistorante() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				rimuoviTutteLeSpunte();
+			}
+		});
 		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(506,106);
@@ -115,39 +123,17 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 		add(checkboxPizzeria);
 	}
 	
-	public JCheckBox getCheckboxPizzeria() {
-		return checkboxPizzeria;
-	}
+	//Metodi
 
-	public JCheckBox getCheckboxBraceria() {
-		return checkboxBraceria;
-	}
-
-	public JCheckBox getCheckboxPaninoteca() {
-		return checkboxPaninoteca;
-	}
-
-	public JCheckBox getCheckboxFastFood() {
-		return checkboxFastFood;
-	}
-
-	public JCheckBox getCheckboxOsteria() {
-		return checkboxOsteria;
-	}
-
-	public JCheckBox getCheckboxTavolaCalda() {
-		return checkboxTavolaCalda;
-	}
-
-	public JCheckBox getCheckboxTaverna() {
-		return checkboxTaverna;
-	}
-
-	public JCheckBox getCheckboxTrattoria() {
-		return checkboxTrattoria;
-	}
-
-	public JCheckBox getCheckboxPesce() {
-		return checkboxPesce;
+	private void rimuoviTutteLeSpunte() {
+		checkboxBraceria.setSelected(false);
+		checkboxFastFood.setSelected(false);
+		checkboxOsteria.setSelected(false);
+		checkboxPaninoteca.setSelected(false);
+		checkboxPesce.setSelected(false);
+		checkboxPizzeria.setSelected(false);
+		checkboxTaverna.setSelected(false);
+		checkboxTavolaCalda.setSelected(false);
+		checkboxTrattoria.setSelected(false);
 	}
 }

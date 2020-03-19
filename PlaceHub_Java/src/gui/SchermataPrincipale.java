@@ -15,7 +15,6 @@ import oggetti.Locale;
 import res.ComponentResizer;
 
 import javax.swing.BorderFactory;
-import errori.NumeroStelleNonValidoException;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -5,6 +5,8 @@ import java.awt.Font;
 
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,12 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private JCheckBox checkBoxMonumento;
 	
 	public pannelloRaffinazioneAttrazioni() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				rimuoviTutteLeSpunte();
+			}
+		});
 		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(506,106);
@@ -94,32 +102,15 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 		add(checkBoxCinema);
 	}
 	
-	public JCheckBox getCheckBoxCinema() {
-		return checkBoxCinema;
-	}
+	//Metodi
 
-	public JCheckBox getCheckBoxMuseo() {
-		return checkBoxMuseo;
+	private void rimuoviTutteLeSpunte() {
+		checkBoxBar_Lounge.setSelected(false);
+		checkBoxCinema.setSelected(false);
+		checkBoxMonumento.setSelected(false);
+		checkBoxMuseo.setSelected(false);
+		checkBoxParcoGiochi.setSelected(false);
+		checkBoxPiscina.setSelected(false);
+		checkBoxShopping.setSelected(false);
 	}
-
-	public JCheckBox getCheckBoxPiscina() {
-		return checkBoxPiscina;
-	}
-
-	public JCheckBox getCheckBoxShopping() {
-		return checkBoxShopping;
-	}
-
-	public JCheckBox getCheckBoxParcoGiochi() {
-		return checkBoxParcoGiochi;
-	}
-
-	public JCheckBox getCheckBoxBar_Lounge() {
-		return checkBoxBar_Lounge;
-	}
-
-	public JCheckBox getCheckBoxMonumento() {
-		return checkBoxMonumento;
-	}
-
 }
