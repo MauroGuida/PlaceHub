@@ -275,28 +275,6 @@ public class PubblicaBusiness1 extends JPanel {
 		bottoneRistorante.setBorderPainted(false);
 		add(bottoneRistorante);
 	}
-
-	
-	private void cambiaIconeGestisciBusiness1(int flag) {
-		switch(flag) {
-			case 1:
-				bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistoranteFocus.png")));
-				break;
-			case 2:
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
-				break;
-			case 3:
-				bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggioFocus.png")));
-				break;
-		}
-	}
-	
-	
-	private void resettaIconeGestisciBusiness1(int flag) {
-		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
-		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
-		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
-	}
 	
 	
 	private void generaTestoSelezionaOpzione() {
@@ -414,6 +392,31 @@ public class PubblicaBusiness1 extends JPanel {
 		lineaTestoNomeBusiness.setBounds(53, 91, 262, 1);
 		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoNomeBusiness);
+	}
+	
+	
+	//METODI
+	
+	
+	private void cambiaIconeGestisciBusiness1(int flag) {
+		switch(flag) {
+			case 1:
+				bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistoranteFocus.png")));
+				break;
+			case 2:
+				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
+				break;
+			case 3:
+				bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggioFocus.png")));
+				break;
+		}
+	}
+	
+	
+	private void resettaIconeGestisciBusiness1(int flag) {
+		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
+		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
+		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 	}
 	
 	
