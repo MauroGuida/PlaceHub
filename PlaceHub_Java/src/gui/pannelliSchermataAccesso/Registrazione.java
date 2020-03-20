@@ -46,7 +46,7 @@ public class Registrazione extends JPanel {
 	private JPasswordField passwordFieldRegistrazione;
 	private JLabel lineaPasswordRegistrazione;
 
-	private JLabel notificaErroreCampiVuotiOConfermaRegistrazione;
+	private JLabel notificaErrori;
 	private JLabel erroreUsernameNonDisponibileRegistrazione;
 	private JLabel erroreEmailNonValidaOInUsoRegistrazione;
 	private JLabel errorePasswordNonValidaRegistrazione;
@@ -129,13 +129,13 @@ public class Registrazione extends JPanel {
 		erroreUsernameNonDisponibileRegistrazione.setVisible(false);
 		add(erroreUsernameNonDisponibileRegistrazione);
 		
-		notificaErroreCampiVuotiOConfermaRegistrazione = new JLabel("Errore/Conferma");
-		notificaErroreCampiVuotiOConfermaRegistrazione.setHorizontalAlignment(SwingConstants.CENTER);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setForeground(Color.RED);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 16));
-		notificaErroreCampiVuotiOConfermaRegistrazione.setBounds(80, 469, 383, 20);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setVisible(false);
-		add(notificaErroreCampiVuotiOConfermaRegistrazione);
+		notificaErrori = new JLabel("Errore/Conferma");
+		notificaErrori.setHorizontalAlignment(SwingConstants.CENTER);
+		notificaErrori.setForeground(Color.RED);
+		notificaErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		notificaErrori.setBounds(80, 469, 383, 20);
+		notificaErrori.setVisible(false);
+		add(notificaErrori);
 		
 		erroreEmailNonValidaOInUsoRegistrazione = new JLabel("Email non valida");
 		erroreEmailNonValidaOInUsoRegistrazione.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -299,27 +299,27 @@ public class Registrazione extends JPanel {
 	}
 	
 	public void mostraErroreNonPossonoEsserciCampiVuotiRegistrazione() {
-		notificaErroreCampiVuotiOConfermaRegistrazione.setForeground(Color.RED);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 16));
-		notificaErroreCampiVuotiOConfermaRegistrazione.setText("Non possono esserci campi vuoti!");
+		notificaErrori.setForeground(Color.RED);
+		notificaErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		notificaErrori.setText("Non possono esserci campi vuoti!");
 		
-		notificaErroreCampiVuotiOConfermaRegistrazione.setVisible(true);
+		notificaErrori.setVisible(true);
 	}
 	
 	public void mostraConfermaRegistrazione() {
-		notificaErroreCampiVuotiOConfermaRegistrazione.setForeground(new Color(64,151,0));
-		notificaErroreCampiVuotiOConfermaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 16));
-		notificaErroreCampiVuotiOConfermaRegistrazione.setText("Registrazione effettuata con successo!");
+		notificaErrori.setForeground(new Color(64,151,0));
+		notificaErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		notificaErrori.setText("Registrazione effettuata con successo!");
 		
-		notificaErroreCampiVuotiOConfermaRegistrazione.setVisible(true);
+		notificaErrori.setVisible(true);
 	}
 
 	public void mostraErrorePasswordNonValidaRegistrazione() {
-		notificaErroreCampiVuotiOConfermaRegistrazione.setForeground(Color.RED);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 16));
-		notificaErroreCampiVuotiOConfermaRegistrazione.setText("La password deve essere di almeno 6 caratteri");
+		notificaErrori.setForeground(Color.RED);
+		notificaErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		notificaErrori.setText("La password deve essere di almeno 6 caratteri");
 		
-		notificaErroreCampiVuotiOConfermaRegistrazione.setVisible(true);
+		notificaErrori.setVisible(true);
 		errorePasswordNonValidaRegistrazione.setVisible(true);
 	}
 
@@ -337,11 +337,18 @@ public class Registrazione extends JPanel {
 		erroreUsernameNonDisponibileRegistrazione.setVisible(true);
 	}
 	
+	public void mostraErroreDataDiNascitaNonValida() {
+		notificaErrori.setForeground(Color.RED);
+		notificaErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
+		notificaErrori.setText("Non sono accettati utenti provenienti dal futuro!");
+		
+		notificaErrori.setVisible(true);
+	}
+	
 	public void resettaErroriRegistrazione() {
 		erroreUsernameNonDisponibileRegistrazione.setVisible(false);
-		notificaErroreCampiVuotiOConfermaRegistrazione.setVisible(false);
+		notificaErrori.setVisible(false);
 		erroreEmailNonValidaOInUsoRegistrazione.setVisible(false);
 		errorePasswordNonValidaRegistrazione.setVisible(false);
 	}
-
 }

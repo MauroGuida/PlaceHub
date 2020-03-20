@@ -98,8 +98,9 @@ public class Controller {
 		}else {
 			try {
 				final String oggetto = "Benvenuto su PlaceHub";
-				mail.inviaEmail(Email, oggetto, corpoMail.corpoEmailBenvenutoRegistrazione(Username));
+				
 				utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
+				mail.inviaEmail(Email, oggetto, corpoMail.corpoEmailBenvenutoRegistrazione(Username));
 				
 				schermataAccessoFrame.mostraConfermaRegistrazione();
 			} catch (SQLException e) {		
@@ -111,6 +112,8 @@ public class Controller {
 					schermataAccessoFrame.mostraErroreEmailGiaInUsoRegistrazione();
 				if(e.toString().indexOf("lunghezzapassword") != -1)
 					schermataAccessoFrame.mostraErrorePasswordNonValidaRegistrazione();
+				if(e.toString().indexOf("datadinascitanonvalida") != -1)
+					schermataAccessoFrame.mostraErroreDataDiNascitaNonValida();
 				
 				e.printStackTrace();
 			} catch (MessagingException e) {

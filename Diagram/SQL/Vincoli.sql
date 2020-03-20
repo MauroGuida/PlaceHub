@@ -2,21 +2,23 @@ ALTER TABLE Utente
   ADD CONSTRAINT LunghezzaPassword CHECK(length(Password)>=6);
 
 ALTER TABLE Recensione
-  ADD CONSTRAINT recensioneUnicaUtenteLuogo UNIQUE(codBusiness, codUtente);
+  ADD CONSTRAINT RecensioneUnicaUtenteLuogo UNIQUE(codBusiness, codUtente);
 
 ALTER TABLE AssociazioneRaffinazione
-	ADD CONSTRAINT raffinazioneUnica UNIQUE(codBusiness,raffinazione);
+	ADD CONSTRAINT RaffinazioneUnica UNIQUE(codBusiness,raffinazione);
 
 ALTER TABLE ImmagineProprieta
-	ADD CONSTRAINT immagineUnica UNIQUE(Url,codBusiness);
+	ADD CONSTRAINT ImmagineUnica UNIQUE(Url,codBusiness);
 
 ALTER TABLE Business
-  ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono LIKE '[0-9]*10')
+  ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono LIKE '[0-9]*10');
 
 ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(length(Telefono)>10 OR
-    length(Telefono)<10)
+    length(Telefono)<10);
 
+ALTER TABLE Utente
+  ADD CONSTRAINT DataDiNascitaNonValida CHECK(NOT(DataDiNascita >= date('now')));
 --------------
 
 

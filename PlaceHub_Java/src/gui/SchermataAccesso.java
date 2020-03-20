@@ -129,6 +129,11 @@ public class SchermataAccesso extends JFrame {
 		pannelloRegistrazione.mostraErroreUsernameNonDisponibileRegistrazione();
 	}
 	
+	public void mostraErroreDataDiNascitaNonValida() {
+		pannelloRegistrazione.mostraErroreDataDiNascitaNonValida();
+		immaginiSinistra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/GrandeGiove.png")));
+	}
+	
 	public void resettaErroriRegistrazione() {
 		pannelloRegistrazione.resettaErroriRegistrazione();
 	}
