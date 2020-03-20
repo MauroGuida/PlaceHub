@@ -10,9 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import gestione.Controller;
+
 import javax.swing.GroupLayout.Alignment;
 
 import gui.SchermataPrincipale;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PubblicaBusiness3 extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -33,6 +38,11 @@ public class PubblicaBusiness3 extends JPanel {
 		immagineVerificato.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/verified.png")));
 		
 		bottoneOK = new JButton("");
+		bottoneOK.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller.getSchermataPrincipaleFrame().mostraHomepage();
+			}
+		});
 		bottoneOK.setOpaque(false);
 		bottoneOK.setBorderPainted(false);
 		bottoneOK.setContentAreaFilled(false);

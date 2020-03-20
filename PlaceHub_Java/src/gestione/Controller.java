@@ -12,7 +12,6 @@ import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
-import errori.UtenteNonTrovatoException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.Locale;

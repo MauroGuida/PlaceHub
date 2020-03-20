@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,18 +17,16 @@ import javax.swing.JPanel;
 import gestione.Controller;
 
 public class DialogConfermaRegistrazioneBusiness extends JDialog {
-
 	private static final long serialVersionUID = 1L;
+	
 	private JButton bottoneOKConfermaRegistrazione;
 	private JButton bottoneEsciConfermaRegistrazione;
 	private JButton bottoneCancellaConfermaRegistrazione;
 	private JLabel testoConfermaRegistrazione;
 	private JLabel immagineAvvertenzaConfermaRegistrazione;
 	private JPanel pannelloBottoniConfermaRegistrazione;
-	private Controller ctrl;
 	
-	public DialogConfermaRegistrazioneBusiness(Controller Ctrl) {
-		this.ctrl = Ctrl;
+	public DialogConfermaRegistrazioneBusiness() {
 		layoutGeneraleDialog();
 		generaBottoneOKConfermaRegistrazione();
 		generaBottoneEsciConfermaRegistrazione();
@@ -47,6 +47,7 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
 		setAlwaysOnTop(true);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
 	}
 
 
@@ -121,6 +122,12 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 
 	private void generaBottoneOKConfermaRegistrazione() {
 		bottoneOKConfermaRegistrazione = new JButton("");
+		bottoneOKConfermaRegistrazione.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness3();
+			}
+		});
 		bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
 		bottoneOKConfermaRegistrazione.setBounds(396, 202, 140, 50);
 		bottoneOKConfermaRegistrazione.setOpaque(false);

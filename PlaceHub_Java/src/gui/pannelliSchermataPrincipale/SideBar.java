@@ -38,10 +38,7 @@ public class SideBar extends JPanel {
 	private JButton bottoneGestisciBusiness;
 	private int flagFocusBottone;
 	
-	private Controller ctrl;
-	
-	public SideBar(Controller Ctrl) {
-		this.ctrl = Ctrl;
+	public SideBar() {
 		setSize(250, 650);
 		setVisible(true);
 		setBackground(new Color(51,51,51));
@@ -53,8 +50,8 @@ public class SideBar extends JPanel {
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
-	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
-	    		ctrl.generaRisultatiHomePage();
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraHomepage();
 	    	}
 	    });
 	    bottoneHomepage.addMouseListener(new MouseAdapter() {
@@ -84,8 +81,8 @@ public class SideBar extends JPanel {
 	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
-	    		Controller.getSchermataPrincipaleFrame().mostraRicerche();
-	    		ctrl.generaRisultatiRistoranti();
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraRistornati();
 	    	}
 	    });
 	    bottoneRistoranti.addMouseListener(new MouseAdapter() {

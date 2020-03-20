@@ -54,7 +54,7 @@ public class SchermataPrincipale extends JFrame {
 		componentResizer.setSnapSize(new Dimension(5,5));
 		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 		
-		pannelloSideBar = new SideBar(ctrl);
+		pannelloSideBar = new SideBar();
 		pannelloSideBar.setBounds(0, 0, 250, 650);
 
 		pannelloBottoni = new Bottoni();
@@ -107,9 +107,19 @@ public class SchermataPrincipale extends JFrame {
 			pannelloGestisciBusiness.setVisible(true);
 		}
 		
-		public void mostraRicerche() {
+		private void mostraRicerche() {
 			nascondiTuttiIPannelli();
 			pannelloRicerche.setVisible(true);
+		}
+		
+		public void mostraHomepage() {
+			mostraRicerche();
+			ctrl.generaRisultatiHomePage();
+		}
+		
+		public void mostraRistornati() {
+			mostraRicerche();
+			ctrl.generaRisultatiRistoranti();
 		}
 		
 		public void mostraScriviRecensione() {

@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
+import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataPrincipale;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,8 +32,9 @@ public class PubblicaBusiness2 extends JPanel {
 	private JButton bottoneIndietro;
 	private JButton bottoneAvanti;
 	
+	private DialogConfermaRegistrazioneBusiness dialogConferma;
+	
 	 public PubblicaBusiness2() {
-		
 		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
@@ -47,10 +49,19 @@ public class PubblicaBusiness2 extends JPanel {
 		
 		generaBottoneIndietro();
 		generaBottoneAvanti();
+		
+		dialogConferma = new DialogConfermaRegistrazioneBusiness();
+		dialogConferma.setVisible(false);
 	}
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dialogConferma.setVisible(true);
+				dialogConferma.setLocationRelativeTo(getRootPane());
+			}
+		});
 		bottoneAvanti.setBounds(682, 540, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
