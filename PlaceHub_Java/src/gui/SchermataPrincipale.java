@@ -68,7 +68,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloRicerche = new Ricerche();
 		pannelloRicerche.setBounds(250, 36, 850, 614);
 		
-		pannelloVerificaPubblicaBusiness = new VerificaPubblicaBusiness();
+		pannelloVerificaPubblicaBusiness = new VerificaPubblicaBusiness(ctrl);
 		pannelloVerificaPubblicaBusiness.setBounds(250, 36, 850, 614);
 
 		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
@@ -198,5 +198,18 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.resettaVisibilitaErrori();
 		}
 		
+		
+	//Gestione Pannello VerificaPubblicaBusiness
+		public void resettaVisibilitaErroriVerificaPubblicaBusiness() {
+			pannelloVerificaPubblicaBusiness.resettaVisibilitaErrori();
+		}
+		
+		public void mostraErroreInserisciDocumentiVerificaPubblicaBusiness() {
+			pannelloVerificaPubblicaBusiness.mostraErroreInserisciDocumenti();
+		}
+		
+		public void mostraErroreCodiceVerificaVerificaPubblicaBusiness() {
+			pannelloVerificaPubblicaBusiness.mostraErroreCodiceVerifica();
+		}
 		
 }

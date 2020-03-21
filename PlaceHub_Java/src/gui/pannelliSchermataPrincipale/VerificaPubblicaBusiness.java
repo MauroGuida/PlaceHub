@@ -7,10 +7,18 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import gestione.Controller;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+
 import javax.swing.JTextField;
 
 public class VerificaPubblicaBusiness extends JPanel {
@@ -25,10 +33,14 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel immagineDocumentoRetro;
 	private JLabel testoDocumentoFronte;
 	private JLabel testoDocumentoRetro;
+	
 	private JLabel testoErroreInserisciDocumenti;
 	private JLabel testoErroreCodiceVerifica;
 	
-	public VerificaPubblicaBusiness() {
+	private Controller ctrl;
+	
+	public VerificaPubblicaBusiness(Controller Ctrl) {
+		this.ctrl = Ctrl;
 		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
@@ -43,8 +55,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 		
 		generaTestoErroreInserisciDocumenti();
 		generaTestoErroreCodiceVerifica();
-		
-
 	}
 
 	private void generaTestoErroreCodiceVerifica() {
@@ -69,6 +79,12 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private void generaCampoDocumentoRetro() {
 		immagineDocumentoRetro = new JLabel("");
+		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrl.uploadFile(selezionaFile());
+			}
+		});
 		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
 		immagineDocumentoRetro.setBounds(540, 100, 128, 128);
 		add(immagineDocumentoRetro);
@@ -81,6 +97,12 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private void generaCampoDocumentoFronte() {
 		immagineDocumentoFronte = new JLabel("");
+		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			    ctrl.uploadFile(selezionaFile());
+			}
+		});
 		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
 		immagineDocumentoFronte.setBounds(199, 100, 128, 128);
 		add(immagineDocumentoFronte);
@@ -157,5 +179,36 @@ public class VerificaPubblicaBusiness extends JPanel {
 			}
 		});
 		add(bottoneInviaCodiceVerifica);
+	}
+	
+	
+	//METODI
+	
+	
+	public void resettaVisibilitaErrori() {
+		testoErroreInserisciDocumenti.setVisible(false);
+		testoErroreCodiceVerifica.setVisible(false);
+	}
+	
+	public void mostraErroreInserisciDocumenti() {
+		testoErroreInserisciDocumenti.setVisible(true);
+	}
+	
+	public void mostraErroreCodiceVerifica() {
+		testoErroreCodiceVerifica.setVisible(true);
+	}
+
+	public File selezionaFile() {
+		File documento = null;
+		
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif", "png");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(getRootPane());
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+		        documento = new File(chooser.getSelectedFile().getPath());
+		}
+		
+		return documento;
 	}
 }

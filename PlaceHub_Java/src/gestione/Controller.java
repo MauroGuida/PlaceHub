@@ -1,6 +1,7 @@
 package gestione;
 
 import java.awt.EventQueue;
+import java.io.File;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
@@ -218,6 +219,13 @@ public class Controller {
 				e.printStackTrace();
 			}
 				
+		}
+		
+		
+		//VERIFICA PUBBLICA BUSINESS
+		
+		public void uploadFile(File documento) {
+			System.out.println("CIAO");
 		}
 	
 }
