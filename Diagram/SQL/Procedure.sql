@@ -50,6 +50,19 @@ END;
 $$;
 
 
+CREATE FUNCTION controllaDocumentiUtente(INT)
+RETURNS BOOLEAN AS $$
+DECLARE flag BOOLEAN = '1';
+BEGIN
+	IF EXISTS (SELECT 1
+		   	   FROM Utente U
+		       WHERE U.codUtente = $1 AND U.FronteDocumento IS NULL AND U.RetroDocumento IS NULL) THEN
+		flag = '0';
+	END IF;
+	RETURN flag;
+END;
+$$  LANGUAGE plpgsql;
+
 
 
 
