@@ -166,6 +166,7 @@ public class PubblicaBusiness2 extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagine());
+				revalidate();
 			}
 		});
 		add(iconaImmagine);
@@ -224,7 +225,6 @@ public class PubblicaBusiness2 extends JPanel {
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
-		System.out.println(nuovaImmagine.toString()); //PROVA
 		try {
 			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(150, 250, java.awt.Image.SCALE_SMOOTH);
 			
