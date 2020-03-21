@@ -1,6 +1,5 @@
 package oggetti;
 
-
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -58,14 +57,6 @@ public class Locale extends JPanel {
 		generaImmagineLocale();
 		
 		generaLayout();
-	}
-	
-	public void aggiungiImmagini(File nuovaImmagini) {
-		listaImmagini.add(nuovaImmagini);
-	}
-
-	public int getNumeroImmagini() {
-		return listaImmagini.size();
 	}
 	
 	private void generaEsteticaPannello() {
@@ -142,23 +133,6 @@ public class Locale extends JPanel {
 		setLayout(groupLayout);
 	}
 	
-	public void gestioneStelle(int numStelle, boolean mezzaStella) throws NumeroStelleNonValidoException{
-		if((numStelle==5 && mezzaStella) || numStelle>5)
-			throw new NumeroStelleNonValidoException();
-		
-		for(int i=0; i<numStelle; i++) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
-			stelle.add(stellaPiena);
-		}
-		
-		if(mezzaStella) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
-			stelle.add(stellaPiena);
-		}
-	}
-	
 	//generaCANI
 	public void setCodBusiness(String codBusiness) {
 		this.codBusiness = codBusiness;
@@ -197,6 +171,35 @@ public class Locale extends JPanel {
 
 	public void setImmagineLocale(JLabel immagineLocale) {
 		this.immagineLocale = immagineLocale;
+	}
+	
+	
+	//METODI
+	
+	
+	public void aggiungiImmagini(File nuovaImmagini) {
+		listaImmagini.add(nuovaImmagini);
+	}
+
+	public int getNumeroImmagini() {
+		return listaImmagini.size();
+	}
+	
+	public void aggiungiStelle(int numStelle, boolean mezzaStella) throws NumeroStelleNonValidoException{
+		if((numStelle==5 && mezzaStella) || numStelle>5)
+			throw new NumeroStelleNonValidoException();
+		
+		for(int i=0; i<numStelle; i++) {
+			JLabel stellaPiena = new JLabel();
+			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
+			stelle.add(stellaPiena);
+		}
+		
+		if(mezzaStella) {
+			JLabel stellaPiena = new JLabel();
+			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
+			stelle.add(stellaPiena);
+		}
 	}
 
 }

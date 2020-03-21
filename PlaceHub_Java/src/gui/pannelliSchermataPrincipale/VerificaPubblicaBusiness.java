@@ -17,6 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VerificaPubblicaBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -79,7 +81,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.uploadDocumentoRetro();
+				ctrl.caricaDocumentoRetro();
 			}
 		});
 		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -97,7 +99,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			   ctrl.uploadDocumentoFronte();
+			   ctrl.caricaDocumentoFronte();
 			}
 		});
 		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -140,6 +142,11 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1(); //MOMENTANEO PER DEBUG
+			}
+		});
 		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setBounds(355, 530, 140, 50);
 		bottoneAvanti.setOpaque(false);

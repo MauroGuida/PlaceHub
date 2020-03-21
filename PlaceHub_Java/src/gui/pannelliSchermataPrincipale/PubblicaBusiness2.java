@@ -2,24 +2,28 @@ package gui.pannelliSchermataPrincipale;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import gestione.Controller;
 import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataPrincipale;
+import res.ScrollPaneVerde;
+import res.WrapLayout;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
@@ -30,13 +34,13 @@ public class PubblicaBusiness2 extends JPanel {
 	private JLabel testoDescriviBusiness;
 	private JTextArea textAreaDescriviBusiness;
 	private JLabel testoTrascinaImmagini;
-	private JLabel immagineFoto_1;
-	private JLabel immagineFoto_2;
-	private JLabel immagineFoto_3;
+	private JLabel iconaImmagine;
 	private JButton bottoneIndietro;
 	private JButton bottoneAvanti;
 	private JLabel testoErroreInserisciDescrizione;
 	private JLabel testoErroreInserisciImmagine;
+	
+	private JPanel pannelloImmagini;
 	
 	private DialogConfermaRegistrazioneBusiness dialogConferma;
 	
@@ -52,9 +56,7 @@ public class PubblicaBusiness2 extends JPanel {
 		generaCampoDescriviBusiness();
 		generaTestoTrascinaImmagini();
 		
-		generaImmagineFoto_1();
-		generaImmagineFoto_2();
-		generaImmagineFoto_3();
+		generaAggiungiImmagine();
 		
 		generaBottoneIndietro();
 		generaBottoneAvanti();
@@ -62,9 +64,21 @@ public class PubblicaBusiness2 extends JPanel {
 		generaTestoErroreInserisciDescrizione();
 		generaTestoErroreInserisciImmagine();
 		
+		generaVisualizzatoreImmagini();
 		
 		dialogConferma = new DialogConfermaRegistrazioneBusiness();
 		dialogConferma.setVisible(false);
+	}
+
+	public void generaVisualizzatoreImmagini() {
+		pannelloImmagini = new JPanel();
+		pannelloImmagini.setBackground(Color.WHITE);
+		pannelloImmagini.setLayout(new WrapLayout(WrapLayout.LEFT));
+		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini.setBounds(27, 380, 650, 128);
+		add(elencoImmagini);
+		
+		elencoImmagini.setViewportView(pannelloImmagini);
 	}
 
 	private void generaTestoErroreInserisciImmagine() {
@@ -72,7 +86,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreInserisciImmagine.setForeground(Color.RED);
 		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciImmagine.setBounds(0, 510, 850, 22);
+		testoErroreInserisciImmagine.setBounds(27, 510, 650, 22);
 		testoErroreInserisciImmagine.setVisible(false);
 		add(testoErroreInserisciImmagine);
 	}
@@ -82,7 +96,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreInserisciDescrizione.setFont(new Font("Roboto", Font.PLAIN, 16));
 		testoErroreInserisciDescrizione.setForeground(Color.RED);
-		testoErroreInserisciDescrizione.setBounds(0, 300, 850, 23);
+		testoErroreInserisciDescrizione.setBounds(27, 300, 795, 23);
 		testoErroreInserisciDescrizione.setVisible(false);
 		add(testoErroreInserisciDescrizione);
 	}
@@ -140,44 +154,17 @@ public class PubblicaBusiness2 extends JPanel {
 		add(bottoneIndietro);
 	}
 
-	private void generaImmagineFoto_3() {
-		immagineFoto_3 = new JLabel("");
-		immagineFoto_3.setBounds(624, 380, 128, 128);
-		immagineFoto_3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_3.addMouseListener(new MouseAdapter() {
+	private void generaAggiungiImmagine() {
+		iconaImmagine = new JLabel("");
+		iconaImmagine.setBounds(694, 380, 128, 128);
+		iconaImmagine.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		iconaImmagine.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.caricaImmagine();
+				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagine());
 			}
 		});
-		add(immagineFoto_3);
-	}
-
-	private void generaImmagineFoto_2() {
-		immagineFoto_2 = new JLabel("");
-		immagineFoto_2.setBounds(362, 380, 128, 128);
-		immagineFoto_2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ctrl.caricaImmagine();
-			}
-		});
-		add(immagineFoto_2);
-	}
-
-	private void generaImmagineFoto_1() {
-		immagineFoto_1 = new JLabel("");
-		immagineFoto_1.setBounds(100, 380, 128, 128);
-		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-
-		immagineFoto_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			    ctrl.caricaImmagine();
-			}
-		});
-		add(immagineFoto_1);
+		add(iconaImmagine);
 	}
 
 	private void generaTestoTrascinaImmagini() {
@@ -213,6 +200,9 @@ public class PubblicaBusiness2 extends JPanel {
 		add(textAreaDescriviBusiness);
 	}
 	
+	
+	//METODI
+	
 
 	public void resettaVisibilitaErrori() {
 		testoErroreInserisciDescrizione.setVisible(false);
@@ -229,4 +219,19 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciImmagine.setVisible(true);
 	}
 	
+	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
+		try {
+			Image img = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage();
+			Image imgScalata = img.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
+			
+			JLabel immagine = new JLabel();
+			immagine.setSize(25, 25);
+			immagine.setIcon(new ImageIcon(imgScalata));
+			System.out.println(immagine.toString());
+			
+			pannelloImmagini.add(immagine);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

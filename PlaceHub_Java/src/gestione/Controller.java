@@ -1,6 +1,7 @@
 package gestione;
 
 import java.awt.EventQueue;
+import java.io.File;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
@@ -229,10 +230,13 @@ public class Controller {
 				}
 		}
 		
-		public void caricaImmagine() {
-			business.getLocaleBuffer().aggiungiImmagini(uploadFile.selezionaFile());
+		public File caricaImmagine() {
+			File nuovaImmagine = uploadFile.selezionaFile();
+			
+			business.getLocaleBuffer().aggiungiImmagini(nuovaImmagine);
+			
+			return nuovaImmagine;
 		}
-
 
 		
 		//GESTISCI BUSINESS
@@ -253,12 +257,18 @@ public class Controller {
 		
 		//VERIFICA PUBBLICA BUSINESS
 		
-		public void uploadDocumentoFronte() {
-			uploadFile.selezionaFile(); //DA GESTIRE
+		public File caricaDocumentoFronte() {
+			File docFronte = uploadFile.selezionaFile();
+			 //DA GESTIRE
+			
+			return docFronte;
 		}
 		
-		public void uploadDocumentoRetro() {
-			uploadFile.selezionaFile(); //DA GESTIRE
+		public File caricaDocumentoRetro() {
+			File docRetro = uploadFile.selezionaFile();
+			 //DA GESTIRE
+			
+			return docRetro;
 		}
 	
 }
