@@ -79,7 +79,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.uploadFile(getRootPane());
+				ctrl.uploadDocumentoRetro();
 			}
 		});
 		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -97,7 +97,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			   ctrl.uploadFile(getRootPane());
+			   ctrl.uploadDocumentoFronte();
 			}
 		});
 		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));

@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
-import javax.swing.JRootPane;
 
 import database.BusinessDAO;
 import database.Connessione;
@@ -30,6 +29,7 @@ public class Controller {
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
+	private FileChooser uploadFile;
 	
 	
 	//Inizializzazione programma
@@ -64,6 +64,7 @@ public class Controller {
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
+			uploadFile = new FileChooser();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,7 +73,6 @@ public class Controller {
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
 	}
-	
 	
 	//SCHERMATA ACCESSO 
 	
@@ -224,10 +224,12 @@ public class Controller {
 		
 		//VERIFICA PUBBLICA BUSINESS
 		
-		public void uploadFile(JRootPane frame) {
-			FileChooser file = new FileChooser();
-			
-			System.out.println(file.selezionaFile(frame));
+		public void uploadDocumentoFronte() {
+			uploadFile.selezionaFile();
+		}
+		
+		public void uploadDocumentoRetro() {
+			uploadFile.selezionaFile();
 		}
 	
 }
