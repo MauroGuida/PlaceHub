@@ -25,6 +25,8 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel immagineDocumentoRetro;
 	private JLabel testoDocumentoFronte;
 	private JLabel testoDocumentoRetro;
+	private JLabel testoErroreInserisciDocumenti;
+	private JLabel testoErroreCodiceVerifica;
 	
 	public VerificaPubblicaBusiness() {
 		setLayout(null);
@@ -39,7 +41,30 @@ public class VerificaPubblicaBusiness extends JPanel {
 		generaBottoneInviaCodiceVerifica();
 		generaBottoneAvanti();
 		
+		generaTestoErroreInserisciDocumenti();
+		generaTestoErroreCodiceVerifica();
+		
 
+	}
+
+	private void generaTestoErroreCodiceVerifica() {
+		testoErroreCodiceVerifica = new JLabel("Codice non valido");
+		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreCodiceVerifica.setForeground(Color.RED);
+		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoErroreCodiceVerifica.setBounds(0, 500, 850, 18);
+		testoErroreCodiceVerifica.setVisible(false);
+		add(testoErroreCodiceVerifica);
+	}
+
+	private void generaTestoErroreInserisciDocumenti() {
+		testoErroreInserisciDocumenti = new JLabel("Inserisci i documenti richiesti");
+		testoErroreInserisciDocumenti.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreInserisciDocumenti.setForeground(Color.RED);
+		testoErroreInserisciDocumenti.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoErroreInserisciDocumenti.setBounds(0, 280, 850, 18);
+		testoErroreInserisciDocumenti.setVisible(false);
+		add(testoErroreInserisciDocumenti);
 	}
 
 	private void generaCampoDocumentoRetro() {
@@ -133,6 +158,4 @@ public class VerificaPubblicaBusiness extends JPanel {
 		});
 		add(bottoneInviaCodiceVerifica);
 	}
-
-	
 }

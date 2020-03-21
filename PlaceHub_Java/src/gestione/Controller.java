@@ -207,12 +207,18 @@ public class Controller {
 		
 		//GESTISCI BUSINESS
 		
-		public boolean controllaDocumentiUtente() {
+		public void controllaDocumentiUtente() {
 			
-			if(utente.controllaDocumentiUtente())
-				return true;
+			try {
+				if(utente.controllaDocumentiUtente())
+					schermataPrincipaleFrame.mostraPubblicaBusiness1();
+				else
+					schermataPrincipaleFrame.mostraVerificaPubblicaBusiness();
 				
-			return false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+				
 		}
 	
 }

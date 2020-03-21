@@ -98,7 +98,7 @@ public class UtenteDAO {
 			ResultSet datiRecuperati = queryVerifica.executeQuery();
 			
 			if(datiRecuperati.next()){
-				datiRecuperati.getString(1); //Se il codice di verfica non è valido da un eccezione
+				datiRecuperati.getString(1); //Se il codice di verfica non ï¿½ valido da un eccezione
 				
 				sql = "CALL impostaNuovaPassword(?, ?)";
 				PreparedStatement query;
@@ -111,8 +111,15 @@ public class UtenteDAO {
 		}
 	}
 	
-	public boolean controllaDocumentiUtente() {
+	public boolean controllaDocumentiUtente() throws SQLException {
+		String sql = "SELECT controllaDocumentiUtente(?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql); 
+		query.setString(1, codUtente);
+		ResultSet datiRecuperati = query.executeQuery();
 		
-		return false;
+		datiRecuperati.next();
+
+		return datiRecuperati.getBoolean(1);
 	}
 }
