@@ -225,11 +225,11 @@ public class Controller {
 		//VERIFICA PUBBLICA BUSINESS
 		
 		public void uploadDocumentoFronte() {
-			uploadFile.selezionaFile();
+			uploadFile.selezionaFile(); //DA GESTIRE
 		}
 		
 		public void uploadDocumentoRetro() {
-			uploadFile.selezionaFile();
+			uploadFile.selezionaFile(); //DA GESTIRE
 		}
 	
 }
