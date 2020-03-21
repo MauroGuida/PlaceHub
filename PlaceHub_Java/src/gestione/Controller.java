@@ -13,6 +13,7 @@ import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
+import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.Locale;
@@ -226,7 +227,9 @@ public class Controller {
 
 				if(!flagErrore) {
 					business.getLocaleBuffer().setDescrizione(testoDescriviBusiness);
-					schermataPrincipaleFrame.mostraPubblicaBusiness3();
+					DialogConfermaRegistrazioneBusiness dialogConferma = new DialogConfermaRegistrazioneBusiness();
+					dialogConferma.setLocationRelativeTo(schermataPrincipaleFrame);
+					dialogConferma.setVisible(true);
 				}
 		}
 		

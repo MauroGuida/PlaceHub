@@ -1,10 +1,9 @@
 package gui.pannelliSchermataPrincipale;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -20,10 +19,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
-import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataPrincipale;
 import res.ScrollPaneVerde;
-import res.WrapLayout;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,8 +39,6 @@ public class PubblicaBusiness2 extends JPanel {
 	private JLabel testoErroreInserisciImmagine;
 	
 	private JPanel pannelloImmagini;
-	
-	private DialogConfermaRegistrazioneBusiness dialogConferma;
 	
 	private Controller ctrl;
 	
@@ -66,15 +61,12 @@ public class PubblicaBusiness2 extends JPanel {
 		generaTestoErroreInserisciImmagine();
 		
 		generaVisualizzatoreImmagini();
-		
-		dialogConferma = new DialogConfermaRegistrazioneBusiness();
-		dialogConferma.setVisible(false);
 	}
 
 	public void generaVisualizzatoreImmagini() {
 		pannelloImmagini = new JPanel();
 		pannelloImmagini.setBackground(Color.WHITE);
-		pannelloImmagini.setLayout(new WrapLayout(WrapLayout.LEFT));
+		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
 		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
