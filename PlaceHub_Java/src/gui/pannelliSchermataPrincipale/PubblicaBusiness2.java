@@ -127,7 +127,8 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
-				svuotaPannelloImmagini();
+				
+				pulisciPannello();
 			}
 		});
 		add(bottoneAvanti);
@@ -167,7 +168,7 @@ public class PubblicaBusiness2 extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagine());
-				revalidate();
+				pannelloImmagini.revalidate();
 			}
 		});
 		add(iconaImmagine);
@@ -187,6 +188,13 @@ public class PubblicaBusiness2 extends JPanel {
 		add(testoDescriviBusiness);
 		
 		textAreaDescriviBusiness = new JTextArea();
+		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textAreaDescriviBusiness.setText("");
+				textAreaDescriviBusiness.setForeground(Color.BLACK);
+			}
+		});
 		textAreaDescriviBusiness.setForeground(new Color(192, 192, 192));
 		textAreaDescriviBusiness.setBackground(new Color(255, 255, 255));
 		textAreaDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 17));
@@ -196,13 +204,6 @@ public class PubblicaBusiness2 extends JPanel {
 		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
 		textAreaDescriviBusiness.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaDescriviBusiness.setBounds(27, 43, 795, 247);
-		textAreaDescriviBusiness.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				textAreaDescriviBusiness.setText("");
-				textAreaDescriviBusiness.setForeground(Color.BLACK);
-			}
-		});
 		add(textAreaDescriviBusiness);
 	}
 	
@@ -225,7 +226,8 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciImmagine.setVisible(true);
 	}
 	
-	public void svuotaPannelloImmagini() {
+	public void pulisciPannello() {
+		textAreaDescriviBusiness.removeAll();
 		pannelloImmagini.removeAll();
 	}
 	
