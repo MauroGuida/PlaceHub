@@ -110,4 +110,9 @@ public class UtenteDAO {
 				throw new CodiceVerificaNonValidoException();
 		}
 	}
+	
+	public boolean controllaDocumentiUtente() {
+		
+		return false;
+	}
 }

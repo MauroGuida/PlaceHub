@@ -182,26 +182,37 @@ public class Controller {
 	
 	
 	
-	//PUBBLICA BUSINESS
-	
-	public void procediInPubblicaBusiness2(String nomeBusiness, String Indirizzo, 
-										   String Telefono, String PartitaIVA, int flagTipologia) {
+		//PUBBLICA BUSINESS
 		
-		boolean flagErrore = false;
-		schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
-		if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || Indirizzo.isBlank() || Indirizzo.isEmpty() ||
-		   Telefono.isBlank() || Telefono.isEmpty() || PartitaIVA.isBlank() || PartitaIVA.isEmpty()) {
-			schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
-			flagErrore = true;
-		}
-		if(flagTipologia == 0) {
-			schermataPrincipaleFrame.mostraErroreTipologiaVuotaPubblicaBusiness1();
-			flagErrore = true;
+		public void procediInPubblicaBusiness2(String nomeBusiness, String Indirizzo, 
+											   String Telefono, String PartitaIVA, int flagTipologia) {
+			
+			boolean flagErrore = false;
+			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
+			if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || Indirizzo.isBlank() || Indirizzo.isEmpty() ||
+			   Telefono.isBlank() || Telefono.isEmpty() || PartitaIVA.isBlank() || PartitaIVA.isEmpty()) {
+				schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
+				flagErrore = true;
+			}
+			if(flagTipologia == 0) {
+				schermataPrincipaleFrame.mostraErroreTipologiaVuotaPubblicaBusiness1();
+				flagErrore = true;
+			}
+			
+			if(!flagErrore) {
+				schermataPrincipaleFrame.mostraPubblicaBusiness2();
+			}
 		}
 		
-		if(!flagErrore) {
-			schermataPrincipaleFrame.mostraPubblicaBusiness2();
+		
+		//GESTISCI BUSINESS
+		
+		public boolean controllaDocumentiUtente() {
+			
+			if(utente.controllaDocumentiUtente())
+				return true;
+				
+			return false;
 		}
-	}
 	
 }

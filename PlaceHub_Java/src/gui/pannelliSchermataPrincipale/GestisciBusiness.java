@@ -17,14 +17,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GestisciBusiness extends JPanel {
-	
 	private static final long serialVersionUID = 1L;
+	
 	private JButton bottonePubblica;
 	private ScrollPaneVerde scrollPaneBusiness;
 	private JPanel pannelloVediBusiness;
 	private JLabel testoSelezionaBusiness;
 	
-	public GestisciBusiness() {
+	private Controller ctrl;
+	
+	public GestisciBusiness(Controller Ctrl) {
+		this.ctrl = Ctrl;
 		setSize(850, 614);
 		setBackground(Color.WHITE);
 		setVisible(false);
@@ -76,9 +79,18 @@ public class GestisciBusiness extends JPanel {
 		});
 		bottonePubblica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1();
+				swicthPannello();
 			}
 		});
 		add(bottonePubblica);
+	}
+
+	//METODI
+
+	public void swicthPannello() {
+		if(ctrl.controllaDocumentiUtente())
+			Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1();
+		else
+			Controller.getSchermataPrincipaleFrame().mostraVerificaPubblicaBusiness();
 	}
 }

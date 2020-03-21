@@ -11,6 +11,7 @@ import gui.pannelliSchermataPrincipale.PubblicaBusiness3;
 import gui.pannelliSchermataPrincipale.Ricerche;
 import gui.pannelliSchermataPrincipale.ScriviRecensione;
 import gui.pannelliSchermataPrincipale.SideBar;
+import gui.pannelliSchermataPrincipale.VerificaPubblicaBusiness;
 import oggetti.Locale;
 import res.ComponentResizer;
 
@@ -33,6 +34,7 @@ public class SchermataPrincipale extends JFrame {
 	
 	private Ricerche pannelloRicerche;
 	
+	private VerificaPubblicaBusiness pannelloVerificaPubblicaBusiness;
 	private GestisciBusiness pannelloGestisciBusiness;
 	private PubblicaBusiness1 pannelloPubblicaBusiness1;
 	private PubblicaBusiness2 pannelloPubblicaBusiness2;
@@ -65,6 +67,9 @@ public class SchermataPrincipale extends JFrame {
 		
 		pannelloRicerche = new Ricerche();
 		pannelloRicerche.setBounds(250, 36, 850, 614);
+		
+		pannelloVerificaPubblicaBusiness = new VerificaPubblicaBusiness();
+		pannelloVerificaPubblicaBusiness.setBounds(250, 36, 850, 614);
 
 		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
 		pannelloPubblicaBusiness3.setBounds(250, 36, 850, 614);
@@ -75,7 +80,7 @@ public class SchermataPrincipale extends JFrame {
         pannelloPubblicaBusiness1 = new PubblicaBusiness1(ctrl);
         pannelloPubblicaBusiness1.setBounds(250, 36, 850, 614);
         
-        pannelloGestisciBusiness = new GestisciBusiness();
+        pannelloGestisciBusiness = new GestisciBusiness(ctrl);
         pannelloGestisciBusiness.setBounds(250, 36, 850, 614);
 		
 		getContentPane().setLayout(null);
@@ -96,6 +101,7 @@ public class SchermataPrincipale extends JFrame {
 		private void nascondiTuttiIPannelli() {
 			pannelloScriviRecensione.setVisible(false);
 			pannelloRicerche.setVisible(false);
+			pannelloVerificaPubblicaBusiness.setVisible(false);
 			pannelloPubblicaBusiness3.setVisible(false);
 			pannelloPubblicaBusiness2.setVisible(false);
 	        pannelloPubblicaBusiness1.setVisible(false);
@@ -125,6 +131,11 @@ public class SchermataPrincipale extends JFrame {
 		public void mostraScriviRecensione() {
 			nascondiTuttiIPannelli();
 			pannelloScriviRecensione.setVisible(true);
+		}
+		
+		public void mostraVerificaPubblicaBusiness() {
+			nascondiTuttiIPannelli();
+			pannelloVerificaPubblicaBusiness.setVisible(true);
 		}
 		
 		public void mostraPubblicaBusiness1() {
