@@ -227,7 +227,7 @@ public class PubblicaBusiness2 extends JPanel {
 	}
 	
 	public void pulisciPannello() {
-		textAreaDescriviBusiness.removeAll();
+		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
 		pannelloImmagini.removeAll();
 	}
 	

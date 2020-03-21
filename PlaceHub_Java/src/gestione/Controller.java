@@ -214,7 +214,7 @@ public class Controller {
 				schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness2();
 
 				if(testoDescriviBusiness.isBlank() || testoDescriviBusiness.isEmpty() || 
-				   testoDescriviBusiness == "Scrivi qui! MAX(2000 caratteri") {
+				   testoDescriviBusiness.equals("Scrivi qui! MAX(2000 caratteri)")) {
 					schermataPrincipaleFrame.mostraErroreInserisciDescrizionePubblicaBusiness2();
 					flagErrore = true;
 				}

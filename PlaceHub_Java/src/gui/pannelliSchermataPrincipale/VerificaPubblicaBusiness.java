@@ -32,9 +32,11 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel immagineDocumentoRetro;
 	private JLabel testoDocumentoFronte;
 	private JLabel testoDocumentoRetro;
-	
+
 	private JLabel testoErroreInserisciDocumenti;
 	private JLabel testoErroreCodiceVerifica;
+	
+	private int flagDocumenti = 0;
 	
 	private Controller ctrl;
 	
@@ -81,7 +83,16 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.caricaDocumentoRetro();
+				resettaVisibilitaErrori();
+				if (ctrl.caricaDocumentoRetro()==null) {
+					mostraErroreInserisciDocumenti();
+					flagDocumenti = 0;
+				}else {
+					flagDocumenti++;
+					if(flagDocumenti == 2) {
+						bottoneInviaCodiceVerifica.setEnabled(true);
+					}
+				}
 			}
 		});
 		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -99,7 +110,16 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			   ctrl.caricaDocumentoFronte();
+			   resettaVisibilitaErrori();
+			   if( ctrl.caricaDocumentoFronte() == null ) {
+				  mostraErroreInserisciDocumenti();
+				  flagDocumenti = 0;
+			   }else {
+				   flagDocumenti++;
+				   if(flagDocumenti == 2) {
+					   bottoneInviaCodiceVerifica.setEnabled(true);
+				   }
+			   }
 			}
 		});
 		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -172,6 +192,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneInviaCodiceVerifica.setOpaque(false);
 		bottoneInviaCodiceVerifica.setBorderPainted(false);
 		bottoneInviaCodiceVerifica.setContentAreaFilled(false);
+		bottoneInviaCodiceVerifica.setEnabled(false);
 		bottoneInviaCodiceVerifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -180,6 +201,11 @@ public class VerificaPubblicaBusiness extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				bottoneInviaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/bottoneInviaCodiceVerifica.png")));
+			}
+		});
+		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		add(bottoneInviaCodiceVerifica);
