@@ -115,7 +115,7 @@ public class UtenteDAO {
 		String sql = "SELECT controllaDocumentiUtente(?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql); 
-		query.setString(1, codUtente);
+		query.setInt(1, Integer.parseInt(codUtente));
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		datiRecuperati.next();

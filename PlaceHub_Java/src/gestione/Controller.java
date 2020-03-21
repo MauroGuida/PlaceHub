@@ -208,7 +208,6 @@ public class Controller {
 		//GESTISCI BUSINESS
 		
 		public void controllaDocumentiUtente() {
-			
 			try {
 				if(utente.controllaDocumentiUtente())
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();

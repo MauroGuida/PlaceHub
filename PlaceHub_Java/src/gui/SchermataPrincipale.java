@@ -87,6 +87,7 @@ public class SchermataPrincipale extends JFrame {
 		getContentPane().add(pannelloSideBar);
 		getContentPane().add(pannelloBottoni);
 		getContentPane().add(pannelloGestisciBusiness);
+		getContentPane().add(pannelloVerificaPubblicaBusiness);
 		getContentPane().add(pannelloPubblicaBusiness1);
 		getContentPane().add(pannelloPubblicaBusiness2);
 		getContentPane().add(pannelloPubblicaBusiness3);
