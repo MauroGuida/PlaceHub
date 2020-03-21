@@ -79,7 +79,7 @@ public class GestisciBusiness extends JPanel {
 		});
 		bottonePubblica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				switchPannello();
+				mostraPannelloVerifica_PubblicaBusiness1();
 			}
 		});
 		add(bottonePubblica);
@@ -87,7 +87,7 @@ public class GestisciBusiness extends JPanel {
 
 	//METODI
 
-	public void switchPannello() {
+	public void mostraPannelloVerifica_PubblicaBusiness1() {
 		ctrl.controllaDocumentiUtente();
 	}
 }

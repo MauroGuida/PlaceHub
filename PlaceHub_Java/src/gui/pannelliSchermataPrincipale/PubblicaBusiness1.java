@@ -130,15 +130,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
-		bottoneAvanti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ctrl.procediInPubblicaBusiness2(textFieldNomeBusiness.getText(),
-												textFieldIndirizzo.getText(),
-												textFieldTelefono.getText(),
-												textFieldPartitaIVA.getText(),
-												checkTipoBusiness());
-			}
-		});
+
 		bottoneAvanti.setBounds(668, 537, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
@@ -152,6 +144,15 @@ public class PubblicaBusiness1 extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+			}
+		});
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ctrl.procediInPubblicaBusiness2(textFieldNomeBusiness.getText(),
+												textFieldIndirizzo.getText(),
+												textFieldTelefono.getText(),
+												textFieldPartitaIVA.getText(),
+												checkTipoBusiness());
 			}
 		});
 		add(bottoneAvanti);

@@ -6,19 +6,23 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import gestione.Controller;
 import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataPrincipale;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -31,10 +35,15 @@ public class PubblicaBusiness2 extends JPanel {
 	private JLabel immagineFoto_3;
 	private JButton bottoneIndietro;
 	private JButton bottoneAvanti;
+	private JLabel testoErroreInserisciDescrizione;
+	private JLabel testoErroreInserisciImmagine;
 	
 	private DialogConfermaRegistrazioneBusiness dialogConferma;
 	
-	 public PubblicaBusiness2() {
+	private Controller ctrl;
+	
+	 public PubblicaBusiness2(Controller ctrl) {
+		this.ctrl = ctrl;
 		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
@@ -50,18 +59,36 @@ public class PubblicaBusiness2 extends JPanel {
 		generaBottoneIndietro();
 		generaBottoneAvanti();
 		
+		generaTestoErroreInserisciDescrizione();
+		generaTestoErroreInserisciImmagine();
+		
+		
 		dialogConferma = new DialogConfermaRegistrazioneBusiness();
 		dialogConferma.setVisible(false);
 	}
 
+	private void generaTestoErroreInserisciImmagine() {
+		testoErroreInserisciImmagine = new JLabel("Inserisci almeno una immagine");
+		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreInserisciImmagine.setForeground(Color.RED);
+		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErroreInserisciImmagine.setBounds(0, 510, 850, 22);
+		testoErroreInserisciImmagine.setVisible(false);
+		add(testoErroreInserisciImmagine);
+	}
+
+	private void generaTestoErroreInserisciDescrizione() {
+		testoErroreInserisciDescrizione = new JLabel("Inserisci la descrizione");
+		testoErroreInserisciDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreInserisciDescrizione.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErroreInserisciDescrizione.setForeground(Color.RED);
+		testoErroreInserisciDescrizione.setBounds(0, 300, 850, 23);
+		testoErroreInserisciDescrizione.setVisible(false);
+		add(testoErroreInserisciDescrizione);
+	}
+
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
-		bottoneAvanti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dialogConferma.setVisible(true);
-				dialogConferma.setLocationRelativeTo(getRootPane());
-			}
-		});
 		bottoneAvanti.setBounds(682, 540, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
@@ -77,6 +104,11 @@ public class PubblicaBusiness2 extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
+			}
+		});
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
 			}
 		});
 		add(bottoneAvanti);
@@ -110,28 +142,47 @@ public class PubblicaBusiness2 extends JPanel {
 
 	private void generaImmagineFoto_3() {
 		immagineFoto_3 = new JLabel("");
-		immagineFoto_3.setBounds(625, 380, 128, 128);
+		immagineFoto_3.setBounds(624, 380, 128, 128);
 		immagineFoto_3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		immagineFoto_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrl.caricaImmagine();
+			}
+		});
 		add(immagineFoto_3);
 	}
 
 	private void generaImmagineFoto_2() {
 		immagineFoto_2 = new JLabel("");
-		immagineFoto_2.setBounds(362, 380, 141, 128);
+		immagineFoto_2.setBounds(362, 380, 128, 128);
 		immagineFoto_2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		immagineFoto_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrl.caricaImmagine();
+			}
+		});
 		add(immagineFoto_2);
 	}
 
 	private void generaImmagineFoto_1() {
 		immagineFoto_1 = new JLabel("");
-		immagineFoto_1.setBounds(100, 380, 140, 128);
+		immagineFoto_1.setBounds(100, 380, 128, 128);
 		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+
+		immagineFoto_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			    ctrl.caricaImmagine();
+			}
+		});
 		add(immagineFoto_1);
 	}
 
 	private void generaTestoTrascinaImmagini() {
 		testoTrascinaImmagini = new JLabel("Trascina Immagini");
-		testoTrascinaImmagini.setBounds(27, 331, 252, 37);
+		testoTrascinaImmagini.setBounds(27, 331, 417, 37);
 		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
 		add(testoTrascinaImmagini);
 	}
@@ -161,4 +212,21 @@ public class PubblicaBusiness2 extends JPanel {
 		});
 		add(textAreaDescriviBusiness);
 	}
+	
+
+	public void resettaVisibilitaErrori() {
+		testoErroreInserisciDescrizione.setVisible(false);
+		testoErroreInserisciImmagine.setVisible(false);
+	}
+	
+	public void mostraErroreInserisciDescrizione() {
+		testoErroreInserisciDescrizione.setText("Inserisci la descrizione");
+		testoErroreInserisciDescrizione.setVisible(true);
+	}
+	
+	public void mostraErroreInserisciImmagine() {
+		testoErroreInserisciImmagine.setText("Inserisci almeno una immagine");
+		testoErroreInserisciImmagine.setVisible(true);
+	}
+	
 }

@@ -183,15 +183,15 @@ public class Controller {
 	}
 	
 	
-		//PUBBLICA BUSINESS
+		//PUBBLICA BUSINESS 1
 		
-		public void procediInPubblicaBusiness2(String nomeBusiness, String Indirizzo, 
-											   String Telefono, String PartitaIVA, int flagTipologia) {
+		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
+											   String telefono, String partitaIVA, int flagTipologia) {
 			
 			boolean flagErrore = false;
 			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
-			if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || Indirizzo.isBlank() || Indirizzo.isEmpty() ||
-			   Telefono.isBlank() || Telefono.isEmpty() || PartitaIVA.isBlank() || PartitaIVA.isEmpty()) {
+			if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || indirizzo.isBlank() || indirizzo.isEmpty() ||
+			   telefono.isBlank() || telefono.isEmpty() || partitaIVA.isBlank() || partitaIVA.isEmpty()) {
 				schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
 				flagErrore = true;
 			}
@@ -201,10 +201,39 @@ public class Controller {
 			}
 			
 			if(!flagErrore) {
+				business.setLocaleBuffer(new Locale(nomeBusiness,indirizzo,null,telefono,partitaIVA,null,null));
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
 		
+		
+		// PUBBLICA BUSINESS 2
+		public void procediInPubblicaBusiness3(String testoDescriviBusiness) {
+				boolean flagErrore = false;
+				schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness2();
+
+				if(testoDescriviBusiness.isBlank() || testoDescriviBusiness.isEmpty() || 
+				   testoDescriviBusiness == "Scrivi qui! MAX(2000 caratteri") {
+					schermataPrincipaleFrame.mostraErroreInserisciDescrizionePubblicaBusiness2();
+					flagErrore = true;
+				}
+				
+				if(business.getLocaleBuffer().getNumeroImmagini() < 1) {
+					schermataPrincipaleFrame.mostraErroreInserisciImmaginePubblicaBusiness2();
+					flagErrore = true;
+				}
+
+				if(!flagErrore) {
+					business.getLocaleBuffer().setDescrizione(testoDescriviBusiness);
+					schermataPrincipaleFrame.mostraPubblicaBusiness3();
+				}
+		}
+		
+		public void caricaImmagine() {
+			business.getLocaleBuffer().aggiungiImmagini(uploadFile.selezionaFile());
+		}
+
+
 		
 		//GESTISCI BUSINESS
 		
