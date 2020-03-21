@@ -14,7 +14,7 @@ public class FileChooser {
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
-		        documento = new File(chooser.getSelectedFile().getPath());
+		        documento = chooser.getSelectedFile().getAbsoluteFile();
 		}
 		
 		return documento;

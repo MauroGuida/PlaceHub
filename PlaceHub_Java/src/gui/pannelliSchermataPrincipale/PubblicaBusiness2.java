@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
@@ -74,7 +75,10 @@ public class PubblicaBusiness2 extends JPanel {
 		pannelloImmagini = new JPanel();
 		pannelloImmagini.setBackground(Color.WHITE);
 		pannelloImmagini.setLayout(new WrapLayout(WrapLayout.LEFT));
+		
 		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		elencoImmagini.setBounds(27, 380, 650, 128);
 		add(elencoImmagini);
 		
@@ -220,14 +224,13 @@ public class PubblicaBusiness2 extends JPanel {
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
+		System.out.println(nuovaImmagine.toString()); //PROVA
 		try {
-			Image img = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage();
-			Image imgScalata = img.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
+			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(150, 250, java.awt.Image.SCALE_SMOOTH);
 			
 			JLabel immagine = new JLabel();
-			immagine.setSize(25, 25);
+			immagine.setSize(150, 250);
 			immagine.setIcon(new ImageIcon(imgScalata));
-			System.out.println(immagine.toString());
 			
 			pannelloImmagini.add(immagine);
 		} catch (IOException e) {

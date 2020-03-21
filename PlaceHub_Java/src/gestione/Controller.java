@@ -30,7 +30,7 @@ public class Controller {
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
-	private FileChooser uploadFile;
+	private FileChooser selettoreFile;
 	
 	
 	//Inizializzazione programma
@@ -65,7 +65,7 @@ public class Controller {
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
-			uploadFile = new FileChooser();
+			selettoreFile = new FileChooser();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -231,7 +231,7 @@ public class Controller {
 		}
 		
 		public File caricaImmagine() {
-			File nuovaImmagine = uploadFile.selezionaFile();
+			File nuovaImmagine = selettoreFile.selezionaFile();
 			
 			business.getLocaleBuffer().aggiungiImmagini(nuovaImmagine);
 			
@@ -258,14 +258,14 @@ public class Controller {
 		//VERIFICA PUBBLICA BUSINESS
 		
 		public File caricaDocumentoFronte() {
-			File docFronte = uploadFile.selezionaFile();
+			File docFronte = selettoreFile.selezionaFile();
 			 //DA GESTIRE
 			
 			return docFronte;
 		}
 		
 		public File caricaDocumentoRetro() {
-			File docRetro = uploadFile.selezionaFile();
+			File docRetro = selettoreFile.selezionaFile();
 			 //DA GESTIRE
 			
 			return docRetro;
