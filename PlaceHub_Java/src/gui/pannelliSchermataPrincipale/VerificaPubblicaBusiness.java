@@ -7,17 +7,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import gestione.Controller;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
 import javax.swing.JTextField;
 
@@ -82,7 +79,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.uploadFile(selezionaFile());
+				ctrl.uploadFile(getRootPane());
 			}
 		});
 		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -100,7 +97,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			    ctrl.uploadFile(selezionaFile());
+			   ctrl.uploadFile(getRootPane());
 			}
 		});
 		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
@@ -196,19 +193,5 @@ public class VerificaPubblicaBusiness extends JPanel {
 	
 	public void mostraErroreCodiceVerifica() {
 		testoErroreCodiceVerifica.setVisible(true);
-	}
-
-	public File selezionaFile() {
-		File documento = null;
-		
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif", "png");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(getRootPane());
-		if(returnVal == JFileChooser.APPROVE_OPTION) {
-		        documento = new File(chooser.getSelectedFile().getPath());
-		}
-		
-		return documento;
 	}
 }

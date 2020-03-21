@@ -1,10 +1,10 @@
 package gestione;
 
 import java.awt.EventQueue;
-import java.io.File;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
+import javax.swing.JRootPane;
 
 import database.BusinessDAO;
 import database.Connessione;
@@ -16,6 +16,7 @@ import errori.UsernameOPasswordErratiException;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.Locale;
+import res.FileChooser;
 import res.InvioEmail;
 
 public class Controller {
@@ -182,7 +183,6 @@ public class Controller {
 	}
 	
 	
-	
 		//PUBBLICA BUSINESS
 		
 		public void procediInPubblicaBusiness2(String nomeBusiness, String Indirizzo, 
@@ -224,8 +224,10 @@ public class Controller {
 		
 		//VERIFICA PUBBLICA BUSINESS
 		
-		public void uploadFile(File documento) {
-			System.out.println("CIAO");
+		public void uploadFile(JRootPane frame) {
+			FileChooser file = new FileChooser();
+			
+			System.out.println(file.selezionaFile(frame));
 		}
 	
 }
