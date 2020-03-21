@@ -127,6 +127,7 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
+				svuotaPannelloImmagini();
 			}
 		});
 		add(bottoneAvanti);
@@ -222,6 +223,10 @@ public class PubblicaBusiness2 extends JPanel {
 	public void mostraErroreInserisciImmagine() {
 		testoErroreInserisciImmagine.setText("Inserisci almeno una immagine");
 		testoErroreInserisciImmagine.setVisible(true);
+	}
+	
+	public void svuotaPannelloImmagini() {
+		pannelloImmagini.removeAll();
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
