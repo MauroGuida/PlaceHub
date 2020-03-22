@@ -85,7 +85,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
 		testoMessaggioMail.setForeground(Color.RED);
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
-		testoMessaggioMail.setBounds(0, 381, 850, 18);
+		testoMessaggioMail.setBounds(0, 371, 850, 31);
 		testoMessaggioMail.setVisible(false);
 		add(testoMessaggioMail);
 	}
@@ -159,6 +159,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		add(testoCodiceVerifica);
 		
 		textFieldCodiceVerifica = new JTextField();
+		textFieldCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldCodiceVerifica.setBounds(342, 450, 166, 29);
 		textFieldCodiceVerifica.setBackground(new Color(255,255,255));
