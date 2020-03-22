@@ -22,7 +22,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Recensioni extends JPanel {
+public class VisitaBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private JButton bottoneRecensisci;
@@ -39,7 +39,7 @@ public class Recensioni extends JPanel {
 	private ScrollPaneVerde scrollPaneRecensioni;
 	private JTextArea testoDescrizioneBusiness;
 	
-	public Recensioni(String nomeBusiness, String indirizzoBusiness, 
+	public VisitaBusiness(String nomeBusiness, String indirizzoBusiness, 
 					  String telefono, String tipoBusiness,
 					  String descrizioneBusiness, int numStelle) {
 		setBackground(Color.WHITE);
@@ -161,7 +161,7 @@ public class Recensioni extends JPanel {
 	
 	private void generaImmagineTelefono() {
 		immagineTelefono = new JLabel("");
-		immagineTelefono.setIcon(new ImageIcon(Recensioni.class.getResource("/Icone/iconaTelefono.png")));
+		immagineTelefono.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/iconaTelefono.png")));
 	}
 
 	
@@ -172,7 +172,7 @@ public class Recensioni extends JPanel {
 
 	private void generaImmagineIndirizzo() {
 		immagineIndirizzo = new JLabel("");
-		immagineIndirizzo.setIcon(new ImageIcon(Recensioni.class.getResource("/Icone/iconaIndirizzo.png")));
+		immagineIndirizzo.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/iconaIndirizzo.png")));
 	}
 
 
@@ -195,7 +195,7 @@ public class Recensioni extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		bottoneRecensisci.setIcon(new ImageIcon(Recensioni.class.getResource("/Icone/bottoneRecensione.png")));
+		bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensione.png")));
 		bottoneRecensisci.setOpaque(false);
 		bottoneRecensisci.setBorderPainted(false);
 		bottoneRecensisci.setContentAreaFilled(false);
@@ -203,11 +203,11 @@ public class Recensioni extends JPanel {
 		bottoneRecensisci.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bottoneRecensisci.setIcon(new ImageIcon(Recensioni.class.getResource("/Icone/bottoneRecensioneFocus.png")));
+				bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensioneFocus.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bottoneRecensisci.setIcon(new ImageIcon(Recensioni.class.getResource("/Icone/bottoneRecensione.png")));
+				bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensione.png")));
 			}
 		});
 	}
