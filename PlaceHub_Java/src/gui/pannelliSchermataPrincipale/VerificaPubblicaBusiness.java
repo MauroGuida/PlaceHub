@@ -35,6 +35,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private JLabel testoErroreInserisciDocumenti;
 	private JLabel testoErroreCodiceVerifica;
+	private JLabel testoErroreErroreMail;
 	
 	private int flagDocumenti = 0;
 	
@@ -56,6 +57,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		
 		generaTestoErroreInserisciDocumenti();
 		generaTestoErroreCodiceVerifica();
+		generaTestoErroreInvioEmail();
 	}
 
 	private void generaTestoErroreCodiceVerifica() {
@@ -76,6 +78,16 @@ public class VerificaPubblicaBusiness extends JPanel {
 		testoErroreInserisciDocumenti.setBounds(0, 280, 850, 18);
 		testoErroreInserisciDocumenti.setVisible(false);
 		add(testoErroreInserisciDocumenti);
+	}
+	
+	private void generaTestoErroreInvioEmail() {
+		testoErroreErroreMail = new JLabel("Non è stato possibile inviarti alcuna email. Riprova!");
+		testoErroreErroreMail.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreErroreMail.setForeground(Color.RED);
+		testoErroreErroreMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoErroreErroreMail.setBounds(0, 384, 850, 18);
+		testoErroreErroreMail.setVisible(false);
+		add(testoErroreErroreMail);
 	}
 
 	private void generaCampoDocumentoRetro() {
@@ -205,7 +217,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		});
 		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				ctrl.inviaCodiceVerificaPubblicaBusiness();
 			}
 		});
 		add(bottoneInviaCodiceVerifica);
@@ -218,6 +230,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 	public void resettaVisibilitaErrori() {
 		testoErroreInserisciDocumenti.setVisible(false);
 		testoErroreCodiceVerifica.setVisible(false);
+		testoErroreErroreMail.setVisible(false);
 	}
 	
 	public void mostraErroreInserisciDocumenti() {
@@ -226,5 +239,9 @@ public class VerificaPubblicaBusiness extends JPanel {
 	
 	public void mostraErroreCodiceVerifica() {
 		testoErroreCodiceVerifica.setVisible(true);
+	}
+	
+	public void mostraErroreEmail() {
+		testoErroreErroreMail.setVisible(true);
 	}
 }

@@ -228,4 +228,8 @@ public class SchermataPrincipale extends JFrame {
 			pannelloVerificaPubblicaBusiness.mostraErroreCodiceVerifica();
 		}
 		
+		public void mostraErroreEmailVerificaPubblicaBusiness() {
+			pannelloVerificaPubblicaBusiness.mostraErroreEmail();
+		}
+		
 }

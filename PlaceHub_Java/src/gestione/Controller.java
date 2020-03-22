@@ -273,5 +273,22 @@ public class Controller {
 			
 			return docRetro;
 		}
+		
+		public void inviaCodiceVerificaPubblicaBusiness() {
+			String codUtente;
+			try {
+				codUtente = utente.getcodUtente();
+				utente.generaCodiceVerifica(codUtente);
+				
+				final String oggetto = "Placehub - Verifica i tuoi documenti!";
+				mail.inviaEmail(utente.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utente.recuperaCodiceVerifica(codUtente)));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}catch ( MessagingException e) {
+				schermataPrincipaleFrame.mostraErroreEmailVerificaPubblicaBusiness();
+			}catch (CodiceVerificaNonTrovatoException e) {
+				
+			}
+		}
 	
 }

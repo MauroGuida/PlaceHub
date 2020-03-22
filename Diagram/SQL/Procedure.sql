@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE resetPassword(INT)
+CREATE OR REPLACE PROCEDURE generaCodiceVerifica(INT)
 LANGUAGE plpgsql
 AS $$
 BEGIN
@@ -21,7 +21,7 @@ BEGIN
 
         RETURN codUtenteDaRestituire;
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE PROCEDURE registrati(INusername VARCHAR(50), INnome VARCHAR(50),
@@ -62,7 +62,3 @@ BEGIN
 	RETURN flag;
 END;
 $$  LANGUAGE plpgsql;
-
-
-
-

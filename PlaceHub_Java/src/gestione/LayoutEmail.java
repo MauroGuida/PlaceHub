@@ -25,6 +25,31 @@ public class LayoutEmail {
 				"</html>";
 	}
 	
+	public String corpoEmailVerificaDocumenti(String codiceVerifica) {
+		return "<!doctype html>\r\n" + 
+				"<html>\r\n" + 
+				"	<head>\r\n" + 
+				"		<title>PlaceHub</title>\r\n" + 
+				"	</head>\r\n" + 
+				"	<body>\r\n" + 
+				"		<p>\r\n" + 
+				"			<center>\r\n" + 
+				"				<img src=\"https://i.ibb.co/YdXbkqH/PlaceHub.png\" width=\"480\" height=\"270\" alt=\"Logo\">\r\n" + 
+				"			</center>\r\n" + 
+				"		</p>\r\n" + 
+				"		<p>\r\n" + 
+				"			<center><b>Grazie per aver usato i nostri servizi!</b></center>\r\n" +
+				"			<h>\r\n</h>" +
+				"			<h><center>Abbiamo ricevuto i tuoi documenti e ci riserviamo il diritto di sospendere il tuo account in caso di dichiarazione mendace.</center></h>" +
+				"			<center>Se non hai richesto tu di ricevere questa email controlla il tuo account!</center>\r\n" + 
+				"		</p>\r\n" + 
+				"		<p>\r\n" + 
+				"			<center>Il tuo codice di verifica: " + codiceVerifica + "</center>\r\n" + 
+				"		</p>\r\n" + 
+				"	</body>\r\n" + 
+				"</html>";
+	}
+	
 	public String corpoEmailBenvenutoRegistrazione(String username) {
 		return "<!doctype html>\r\n" + 
 				"<html>\r\n" + 

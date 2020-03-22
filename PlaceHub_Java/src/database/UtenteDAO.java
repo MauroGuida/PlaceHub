@@ -14,7 +14,7 @@ public class UtenteDAO {
 	
 	private String codUtente = null;
 
-	public String getIdUtente() {
+	public String getcodUtente() {
 		return codUtente;
 	}
 	
@@ -46,7 +46,7 @@ public class UtenteDAO {
 	}
 	
 	public void generaCodiceVerifica(String codiceUtente) throws SQLException{
-		String sql = "CALL ResetPassword(?)";
+		String sql = "CALL generaCodiceVerifica(?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codiceUtente));
@@ -54,8 +54,7 @@ public class UtenteDAO {
 	}
 
 	public String recuperaCodiceVerifica(String codiceUtente) throws SQLException, CodiceVerificaNonTrovatoException{
-		String sql;
-		sql = "SELECT codiceVerifica From Utente WHERE codUtente = ?";
+		String sql = "SELECT codiceVerifica From Utente WHERE codUtente = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codiceUtente));
@@ -65,6 +64,18 @@ public class UtenteDAO {
 			return datiRecuperati.getString(1);
 		else
 			throw new CodiceVerificaNonTrovatoException();
+	}
+	
+	public String recuperaEmail(String codUtente) throws SQLException {
+		String sql = "SELECT email FROM utente WHERE codUtente = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codUtente));
+		
+		ResultSet datiRecuperati = query.executeQuery();
+		datiRecuperati.next();
+		
+		return datiRecuperati.getString(1);
 	}
 	
 	public String recuperaCodiceUtenteDaEmail(String Email) throws SQLException, EmailSconosciutaException{	
