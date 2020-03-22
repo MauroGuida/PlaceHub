@@ -19,6 +19,29 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private JCheckBox checkBoxBar_Lounge;
 	private JCheckBox checkBoxMonumento;
 	
+	@Override
+	public String toString() {
+		String raffinazioni = "";
+		
+		if(checkBoxCinema.isSelected())
+			raffinazioni = raffinazioni.concat("Cinema,");
+		if(checkBoxMuseo.isSelected())
+			raffinazioni = raffinazioni.concat("Museo,");
+		if(checkBoxPiscina.isSelected())
+			raffinazioni = raffinazioni.concat("Piscina,");
+		if(checkBoxShopping.isSelected())
+			raffinazioni = raffinazioni.concat("Shopping,");
+		if(checkBoxParcoGiochi.isSelected())
+			raffinazioni = raffinazioni.concat("ParcoGiochi,");
+		if(checkBoxBar_Lounge.isSelected())
+			raffinazioni = raffinazioni.concat("Bar/Lounge,");
+		if(checkBoxMonumento.isSelected())
+			raffinazioni = raffinazioni.concat("Monumento,");
+		
+		return raffinazioni;
+	}
+	
+	
 	public pannelloRaffinazioneAttrazioni() {
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -104,7 +127,7 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	
 	//Metodi
 
-	private void rimuoviTutteLeSpunte() {
+	public void rimuoviTutteLeSpunte() {
 		checkBoxBar_Lounge.setSelected(false);
 		checkBoxCinema.setSelected(false);
 		checkBoxMonumento.setSelected(false);

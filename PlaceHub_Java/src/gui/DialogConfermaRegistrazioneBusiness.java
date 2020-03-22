@@ -26,7 +26,10 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 	private JLabel immagineAvvertenzaConfermaRegistrazione;
 	private JPanel pannelloBottoniConfermaRegistrazione;
 	
-	public DialogConfermaRegistrazioneBusiness() {
+	private Controller ctrl;
+	
+	public DialogConfermaRegistrazioneBusiness(Controller ctrl) {
+		this.ctrl = ctrl;
 		layoutGeneraleDialog();
 		generaBottoneOKConfermaRegistrazione();
 		generaBottoneEsciConfermaRegistrazione();
@@ -126,6 +129,7 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness3();
+				ctrl.pulisciPannelliPubblicaBusiness();
 			}
 		});
 		bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));

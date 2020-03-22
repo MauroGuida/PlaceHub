@@ -20,6 +20,33 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 	private JCheckBox checkboxTrattoria;
 	private JCheckBox checkboxPesce;
 	
+	
+	@Override
+	public String toString() {
+		String raffinazioni = "";
+		
+		if(checkboxPizzeria.isSelected())
+			raffinazioni = raffinazioni.concat("Pizzeria,");
+		if(checkboxBraceria.isSelected())
+			raffinazioni = raffinazioni.concat("Braceria,");
+		if(checkboxPaninoteca.isSelected())
+			raffinazioni = raffinazioni.concat("Paninoteca,");
+		if(checkboxFastFood.isSelected())
+			raffinazioni = raffinazioni.concat("FastFood,");
+		if(checkboxOsteria.isSelected())
+			raffinazioni = raffinazioni.concat("Osteria,");
+		if(checkboxTavolaCalda.isSelected())
+			raffinazioni = raffinazioni.concat("TavolaCalda,");
+		if(checkboxTaverna.isSelected())
+			raffinazioni = raffinazioni.concat("Taverna,");
+		if(checkboxTrattoria.isSelected())
+			raffinazioni = raffinazioni.concat("Taverna,");
+		if(checkboxPesce.isSelected())
+			raffinazioni = raffinazioni.concat("Pesce,");
+		
+		return raffinazioni;
+	}
+	
 	public pannelloRaffinazioniRistorante() {
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -125,7 +152,7 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 	
 	//Metodi
 
-	private void rimuoviTutteLeSpunte() {
+	public void rimuoviTutteLeSpunte() {
 		checkboxBraceria.setSelected(false);
 		checkboxFastFood.setSelected(false);
 		checkboxOsteria.setSelected(false);

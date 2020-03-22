@@ -198,6 +198,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.resettaVisibilitaErrori();
 		}
 		
+		public void pulisciPannelloPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.pulisciPannello();
+		}
+		
 		
 	//Gestione pannello PubblicaBusiness2
 		public void resettaVisibilitaErroriPubblicaBusiness2() {
@@ -212,7 +216,9 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness2.mostraErroreInserisciImmagine();
 		}
 		
-		
+		public void pulisciPannelloPubblicaBusiness2() {
+			pannelloPubblicaBusiness2.pulisciPannello();
+		}
 		
 		
 	//Gestione Pannello VerificaPubblicaBusiness

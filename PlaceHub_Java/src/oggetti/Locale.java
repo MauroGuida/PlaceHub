@@ -29,6 +29,7 @@ public class Locale extends JPanel {
 	private String telefono;
 	private String partitaIVA;
 	private String descrizione;
+	private String raffinazioni;
 	private String urlImmagine;
 	
 	private JPanel stelle;
@@ -65,7 +66,8 @@ public class Locale extends JPanel {
 		setVisible(true);
 		setBorder(new LineBorder(Color.DARK_GRAY,1));
 	}
-
+	
+	
 
 	private void generaStelle() {
 		stelle = new JPanel();
@@ -173,6 +175,9 @@ public class Locale extends JPanel {
 		this.immagineLocale = immagineLocale;
 	}
 	
+	public void setRaffinazini(String raffinazini) {
+		this.raffinazioni = raffinazini;
+	}
 	
 	//METODI
 	

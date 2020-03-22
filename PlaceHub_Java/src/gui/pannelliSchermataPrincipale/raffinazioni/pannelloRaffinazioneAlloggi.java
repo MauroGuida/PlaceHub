@@ -17,6 +17,24 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 	private JCheckBox checkBoxResidence;
 	private JCheckBox checkBoxCasaVacanze;
 	
+	@Override
+	public String toString() {
+		String raffinazioni = "";
+		if(checkBoxHotel.isSelected())
+			raffinazioni = raffinazioni.concat("Hotel,");
+		if(checkBoxOstello.isSelected())
+			raffinazioni = raffinazioni.concat("Ostello,");
+		if(checkBoxBedBreakfast.isSelected())
+			raffinazioni = raffinazioni.concat("Bed&Breakfast,");
+		if(checkBoxResidence.isSelected())
+			raffinazioni = raffinazioni.concat("Residence,");
+		if(checkBoxCasaVacanze.isSelected())
+			raffinazioni = raffinazioni.concat("CasaVacanze,");
+		
+		return raffinazioni; 
+	}
+	
+	
 	public pannelloRaffinazioneAlloggi() {
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -85,7 +103,7 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 	//Metodi
 
 	
-	private void rimuoviTutteLeSpunte() {
+	public void rimuoviTutteLeSpunte() {
 		checkBoxBedBreakfast.setSelected(false);
 		checkBoxCasaVacanze.setSelected(false);
 		checkBoxHotel.setSelected(false);

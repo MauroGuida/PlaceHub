@@ -227,7 +227,7 @@ public class Controller {
 
 				if(!flagErrore) {
 					business.getLocaleBuffer().setDescrizione(testoDescriviBusiness);
-					DialogConfermaRegistrazioneBusiness dialogConferma = new DialogConfermaRegistrazioneBusiness();
+					DialogConfermaRegistrazioneBusiness dialogConferma = new DialogConfermaRegistrazioneBusiness(this);
 					dialogConferma.setLocationRelativeTo(schermataPrincipaleFrame);
 					dialogConferma.setVisible(true);
 				}
@@ -240,7 +240,7 @@ public class Controller {
 			
 			return nuovaImmagine;
 		}
-
+		
 		
 		//GESTISCI BUSINESS
 		
@@ -291,6 +291,13 @@ public class Controller {
 			}catch (CodiceVerificaNonTrovatoException e) {
 				
 			}
+		}
+		
+		
+		//CONFERMA REGISTRAZIONE BUSINESS
+		public void pulisciPannelliPubblicaBusiness() {
+			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness1();
+			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness2();
 		}
 	
 }

@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.SchermataPrincipale;
 import javax.swing.SwingConstants;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -36,7 +38,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel lineaTestoPartitaIVA ;
 	private JLabel testoSelezionaOpzione;
 	private JButton bottoneRistorante;
-	private JButton bottoneIntrattenimento;
+	private JButton bottoneAttrazioni;
 	private JButton bottoneAlloggio;
 	private JButton bottoneAvanti;
 	int flagFocusBottoneGestisciBusiness1;
@@ -50,6 +52,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoErroreTipologiaVuota;
 	
 	public PubblicaBusiness1(Controller ctrl) {
+		
 		this.ctrl = ctrl;
 		setLayout(null);
 		setSize(850, 614);
@@ -153,6 +156,7 @@ public class PubblicaBusiness1 extends JPanel {
 												textFieldTelefono.getText(),
 												textFieldPartitaIVA.getText(),
 												checkTipoBusiness());
+				
 			}
 		});
 		add(bottoneAvanti);
@@ -191,13 +195,13 @@ public class PubblicaBusiness1 extends JPanel {
 
 
 	private void generaBottoneIntrattenimento() {
-		bottoneIntrattenimento = new JButton("");
-		bottoneIntrattenimento.setBounds(320, 300, 208, 110);
-		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
-		bottoneIntrattenimento.setOpaque(false);
-		bottoneIntrattenimento.setContentAreaFilled(false);
-		bottoneIntrattenimento.setBorderPainted(false);
-		bottoneIntrattenimento.addActionListener(new ActionListener() {
+		bottoneAttrazioni = new JButton("");
+		bottoneAttrazioni.setBounds(320, 300, 208, 110);
+		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
+		bottoneAttrazioni.setOpaque(false);
+		bottoneAttrazioni.setContentAreaFilled(false);
+		bottoneAttrazioni.setBorderPainted(false);
+		bottoneAttrazioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				flagFocusBottoneGestisciBusiness1 = 2;
 				resettaIconeGestisciBusiness1(flagFocusBottoneGestisciBusiness1);
@@ -206,18 +210,18 @@ public class PubblicaBusiness1 extends JPanel {
 				mostraRaffinazioni(2);
 			}
 		});
-		bottoneIntrattenimento.addMouseListener(new MouseAdapter() {
+		bottoneAttrazioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
+				bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if(flagFocusBottoneGestisciBusiness1 != 2)
-					bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
+					bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 			}
 		});
-		add(bottoneIntrattenimento);
+		add(bottoneAttrazioni);
 	}
 
 
@@ -354,13 +358,26 @@ public class PubblicaBusiness1 extends JPanel {
 	//METODI
 	
 	
+	public void pulisciPannello() {
+		textFieldNomeBusiness.setText("");
+		textFieldIndirizzo.setText("");
+		textFieldTelefono.setText("");
+		textFieldPartitaIVA.setText("");
+		bottoneRistorante.setSelected(false);
+		bottoneAttrazioni.setSelected(false);
+		bottoneAlloggio.setSelected(false);
+		pannelloRaffRistorante.rimuoviTutteLeSpunte();
+		pannelloRaffAttrazioni.rimuoviTutteLeSpunte();
+		pannelloRaffAlloggi.rimuoviTutteLeSpunte();
+	}
+	
 	private void cambiaIconeGestisciBusiness1(int flag) {
 		switch(flag) {
 			case 1:
 				bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistoranteFocus.png")));
 				break;
 			case 2:
-				bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
+				bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
 				break;
 			case 3:
 				bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggioFocus.png")));
@@ -372,7 +389,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private void resettaIconeGestisciBusiness1(int flag) {
 		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
 		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
-		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
+		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 	}
 	
 	

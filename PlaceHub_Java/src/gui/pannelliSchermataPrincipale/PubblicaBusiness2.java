@@ -25,6 +25,8 @@ import res.ScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -43,6 +45,7 @@ public class PubblicaBusiness2 extends JPanel {
 	private Controller ctrl;
 	
 	 public PubblicaBusiness2(Controller ctrl) {
+
 		this.ctrl = ctrl;
 		setLayout(null);
 		setSize(850, 614);
@@ -119,13 +122,11 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
-				
-				pulisciPannello();
 			}
 		});
 		add(bottoneAvanti);
 	}
-
+	
 	private void generaBottoneIndietro() {
 		bottoneIndietro = new JButton("");
 		bottoneIndietro.addActionListener(new ActionListener() {
@@ -180,13 +181,6 @@ public class PubblicaBusiness2 extends JPanel {
 		add(testoDescriviBusiness);
 		
 		textAreaDescriviBusiness = new JTextArea();
-		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textAreaDescriviBusiness.setText("");
-				textAreaDescriviBusiness.setForeground(Color.BLACK);
-			}
-		});
 		textAreaDescriviBusiness.setForeground(new Color(192, 192, 192));
 		textAreaDescriviBusiness.setBackground(new Color(255, 255, 255));
 		textAreaDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 17));
@@ -196,12 +190,25 @@ public class PubblicaBusiness2 extends JPanel {
 		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
 		textAreaDescriviBusiness.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaDescriviBusiness.setBounds(27, 43, 795, 247);
+		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textAreaDescriviBusiness.setText("");
+				textAreaDescriviBusiness.setForeground(Color.BLACK);
+			}
+		});
 		add(textAreaDescriviBusiness);
 	}
 	
 	
 	//METODI
 	
+	
+	public void pulisciPannello() {
+		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
+		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
+		pannelloImmagini.removeAll();
+	}
 
 	public void resettaVisibilitaErrori() {
 		testoErroreInserisciDescrizione.setVisible(false);
@@ -216,11 +223,6 @@ public class PubblicaBusiness2 extends JPanel {
 	public void mostraErroreInserisciImmagine() {
 		testoErroreInserisciImmagine.setText("Inserisci almeno una immagine");
 		testoErroreInserisciImmagine.setVisible(true);
-	}
-	
-	public void pulisciPannello() {
-		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
-		pannelloImmagini.removeAll();
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
