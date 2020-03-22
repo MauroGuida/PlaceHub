@@ -35,7 +35,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private JLabel testoErroreInserisciDocumenti;
 	private JLabel testoErroreCodiceVerifica;
-	private JLabel testoErroreErroreMail;
+	private JLabel testoMessaggioMail;
 	
 	private int flagDocumenti = 0;
 	
@@ -81,13 +81,13 @@ public class VerificaPubblicaBusiness extends JPanel {
 	}
 	
 	private void generaTestoErroreInvioEmail() {
-		testoErroreErroreMail = new JLabel("Non è stato possibile inviarti alcuna email. Riprova!");
-		testoErroreErroreMail.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreErroreMail.setForeground(Color.RED);
-		testoErroreErroreMail.setFont(new Font("Roboto", Font.PLAIN, 17));
-		testoErroreErroreMail.setBounds(0, 384, 850, 18);
-		testoErroreErroreMail.setVisible(false);
-		add(testoErroreErroreMail);
+		testoMessaggioMail = new JLabel("Non è stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
+		testoMessaggioMail.setForeground(Color.RED);
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setBounds(0, 381, 850, 18);
+		testoMessaggioMail.setVisible(false);
+		add(testoMessaggioMail);
 	}
 
 	private void generaCampoDocumentoRetro() {
@@ -230,7 +230,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 	public void resettaVisibilitaErrori() {
 		testoErroreInserisciDocumenti.setVisible(false);
 		testoErroreCodiceVerifica.setVisible(false);
-		testoErroreErroreMail.setVisible(false);
+		testoMessaggioMail.setVisible(false);
 	}
 	
 	public void mostraErroreInserisciDocumenti() {
@@ -242,6 +242,16 @@ public class VerificaPubblicaBusiness extends JPanel {
 	}
 	
 	public void mostraErroreEmail() {
-		testoErroreErroreMail.setVisible(true);
+		testoMessaggioMail.setText("Non è stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail.setForeground(Color.RED);
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setVisible(true);
+	}
+	
+	public void mostraEmailInviata() {
+		testoMessaggioMail.setText("Email inviata con successo!");
+		testoMessaggioMail.setForeground(new Color(64,151,0));
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setVisible(true);
 	}
 }

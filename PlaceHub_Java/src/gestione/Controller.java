@@ -282,6 +282,8 @@ public class Controller {
 				
 				final String oggetto = "Placehub - Verifica i tuoi documenti!";
 				mail.inviaEmail(utente.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utente.recuperaCodiceVerifica(codUtente)));
+				
+				schermataPrincipaleFrame.mostraEmailInviataVerificaPubblicaBusiness();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}catch ( MessagingException e) {

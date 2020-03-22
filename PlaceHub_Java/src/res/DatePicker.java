@@ -22,6 +22,7 @@ public class DatePicker extends JDialog
 
         public DatePicker(JFrame parent)//create constructor 
         {
+        		setAlwaysOnTop(true);
         		ActionListener esciShortcut = new ActionListener(){
                     public void actionPerformed(ActionEvent ae){
                         dispose();
