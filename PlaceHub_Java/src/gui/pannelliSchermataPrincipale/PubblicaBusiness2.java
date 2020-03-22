@@ -25,8 +25,6 @@ import res.ScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness2 extends JPanel {
 

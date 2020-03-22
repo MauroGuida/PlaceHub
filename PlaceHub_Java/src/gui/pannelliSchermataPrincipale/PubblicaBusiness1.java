@@ -17,8 +17,6 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.SchermataPrincipale;
 import javax.swing.SwingConstants;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness1 extends JPanel {
 
