@@ -226,10 +226,6 @@ public class SchermataPrincipale extends JFrame {
 			pannelloVerificaPubblicaBusiness.resettaVisibilitaErrori();
 		}
 		
-		public void mostraErroreInserisciDocumentiVerificaPubblicaBusiness() {
-			pannelloVerificaPubblicaBusiness.mostraErroreInserisciDocumenti();
-		}
-		
 		public void mostraErroreCodiceVerificaVerificaPubblicaBusiness() {
 			pannelloVerificaPubblicaBusiness.mostraErroreCodiceVerifica();
 		}

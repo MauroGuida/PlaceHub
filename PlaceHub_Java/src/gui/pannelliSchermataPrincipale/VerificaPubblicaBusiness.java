@@ -32,10 +32,11 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel immagineDocumentoRetro;
 	private JLabel testoDocumentoFronte;
 	private JLabel testoDocumentoRetro;
-
-	private JLabel testoErroreInserisciDocumenti;
 	private JLabel testoErroreCodiceVerifica;
 	private JLabel testoMessaggioMail;
+	
+	private JLabel testoDocumentoCaricatoFronte;
+	private JLabel testoDocumentoCaricatoRetro;
 	
 	private int flagDocumenti = 0;
 	
@@ -58,6 +59,29 @@ public class VerificaPubblicaBusiness extends JPanel {
 		generaTestoErroreInserisciDocumenti();
 		generaTestoErroreCodiceVerifica();
 		generaTestoErroreInvioEmail();
+		
+		generaTestoDocumentoCaricatoFronte();
+		generaTestoDocumentoCaricatoRetro();
+	}
+
+	private void generaTestoDocumentoCaricatoRetro() {
+		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
+		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoRetro.setBounds(500, 80, 198, 25);
+		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoRetro.setVisible(false);
+		add(testoDocumentoCaricatoRetro);
+	}
+
+	private void generaTestoDocumentoCaricatoFronte() {
+		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
+		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoFronte.setBounds(162, 80, 198, 25);
+		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoFronte.setVisible(false);
+		add(testoDocumentoCaricatoFronte);
 	}
 
 	private void generaTestoErroreCodiceVerifica() {
@@ -71,17 +95,10 @@ public class VerificaPubblicaBusiness extends JPanel {
 	}
 
 	private void generaTestoErroreInserisciDocumenti() {
-		testoErroreInserisciDocumenti = new JLabel("Inserisci i documenti richiesti");
-		testoErroreInserisciDocumenti.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreInserisciDocumenti.setForeground(Color.RED);
-		testoErroreInserisciDocumenti.setFont(new Font("Roboto", Font.PLAIN, 17));
-		testoErroreInserisciDocumenti.setBounds(0, 280, 850, 18);
-		testoErroreInserisciDocumenti.setVisible(false);
-		add(testoErroreInserisciDocumenti);
 	}
 	
 	private void generaTestoErroreInvioEmail() {
-		testoMessaggioMail = new JLabel("Non è stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail = new JLabel("Non ï¿½ stato possibile inviarti alcuna email. Riprova!");
 		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
 		testoMessaggioMail.setForeground(Color.RED);
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
@@ -97,13 +114,11 @@ public class VerificaPubblicaBusiness extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				resettaVisibilitaErrori();
 				if (ctrl.caricaDocumentoRetro()==null) {
-					mostraErroreInserisciDocumenti();
-					flagDocumenti = 0;
+					testoDocumentoCaricatoRetro.setVisible(false);
+					bottoneInviaCodiceVerifica.setEnabled(false);
 				}else {
-					flagDocumenti++;
-					if(flagDocumenti == 2) {
-						bottoneInviaCodiceVerifica.setEnabled(true);
-					}
+					testoDocumentoCaricatoRetro.setVisible(true);
+					abilitaBottoneInviaCodiceVerifica();
 				}
 			}
 		});
@@ -119,18 +134,17 @@ public class VerificaPubblicaBusiness extends JPanel {
 
 	private void generaCampoDocumentoFronte() {
 		immagineDocumentoFronte = new JLabel("");
+		immagineDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			   resettaVisibilitaErrori();
 			   if( ctrl.caricaDocumentoFronte() == null ) {
-				  mostraErroreInserisciDocumenti();
-				  flagDocumenti = 0;
+				  testoDocumentoCaricatoFronte.setVisible(false);
+				  bottoneInviaCodiceVerifica.setEnabled(false);
 			   }else {
-				   flagDocumenti++;
-				   if(flagDocumenti == 2) {
-					   bottoneInviaCodiceVerifica.setEnabled(true);
-				   }
+				   testoDocumentoCaricatoFronte.setVisible(true);
+				   abilitaBottoneInviaCodiceVerifica();
 			   }
 			}
 		});
@@ -185,6 +199,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
 		bottoneAvanti.setBorderPainted(false);
+		bottoneAvanti.setEnabled(false);
 		bottoneAvanti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -219,6 +234,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ctrl.inviaCodiceVerificaPubblicaBusiness();
+				bottoneAvanti.setEnabled(true);
 			}
 		});
 		add(bottoneInviaCodiceVerifica);
@@ -227,23 +243,23 @@ public class VerificaPubblicaBusiness extends JPanel {
 	
 	//METODI
 	
+	private void abilitaBottoneInviaCodiceVerifica() {
+		if(testoDocumentoCaricatoFronte.isVisible() && testoDocumentoCaricatoRetro.isVisible())
+				bottoneInviaCodiceVerifica.setEnabled(true);
+	}
 	
 	public void resettaVisibilitaErrori() {
-		testoErroreInserisciDocumenti.setVisible(false);
 		testoErroreCodiceVerifica.setVisible(false);
 		testoMessaggioMail.setVisible(false);
 	}
 	
-	public void mostraErroreInserisciDocumenti() {
-		testoErroreInserisciDocumenti.setVisible(true);
-	}
 	
 	public void mostraErroreCodiceVerifica() {
 		testoErroreCodiceVerifica.setVisible(true);
 	}
 	
 	public void mostraErroreEmail() {
-		testoMessaggioMail.setText("Non è stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail.setText("Non ï¿½ stato possibile inviarti alcuna email. Riprova!");
 		testoMessaggioMail.setForeground(Color.RED);
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
 		testoMessaggioMail.setVisible(true);
