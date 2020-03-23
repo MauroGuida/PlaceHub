@@ -98,28 +98,30 @@ public class UtenteDAO {
 	* una valore corretto viene impostato dalla funzione recuperaCodiceUtenteDaEmail
 	*/
 	public void impostaPassword(String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
-		if(codiceVerifica.isBlank() || codiceVerifica.isEmpty()) {
-			throw new CodiceVerificaNonValidoException();
-		} else {
-			String sql = "SELECT codUtente FROM Utente WHERE codUtente = ? AND codiceVerifica = ?";
-			PreparedStatement queryVerifica;
-			queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-			queryVerifica.setInt(1, Integer.parseInt(codUtente));
-			queryVerifica.setString(2, codiceVerifica);
-			ResultSet datiRecuperati = queryVerifica.executeQuery();
-			
-			if(datiRecuperati.next()){
-				datiRecuperati.getString(1); //Se il codice di verfica non � valido da un eccezione
-				
-				sql = "CALL impostaNuovaPassword(?, ?)";
-				PreparedStatement query;
-				query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-				query.setInt(1, Integer.parseInt(codUtente));
-				query.setString(2, new String(Password));
-				query.executeUpdate();
-			}else
-				throw new CodiceVerificaNonValidoException();
+		if(controllaCodiceVerrifica(codUtente, codiceVerifica)){
+			String sql = "CALL impostaNuovaPassword(?, ?)";
+			PreparedStatement query;
+			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+			query.setInt(1, Integer.parseInt(codUtente));
+			query.setString(2, new String(Password));
+			query.executeUpdate();
 		}
+	}
+	
+	public boolean controllaCodiceVerrifica(String codUtente, String codiceVerifica) throws SQLException, CodiceVerificaNonValidoException {
+		String sql = "SELECT controllacodiceverifica(?, ?)";
+		PreparedStatement queryVerifica;
+		queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		queryVerifica.setInt(1, Integer.parseInt(codUtente));
+		queryVerifica.setString(2, codiceVerifica);
+		ResultSet datiRecuperati = queryVerifica.executeQuery();
+		
+		datiRecuperati.next();
+		
+		if(datiRecuperati.getBoolean(1))
+			return true;
+		else
+			throw new CodiceVerificaNonValidoException();
 	}
 	
 	public boolean controllaDocumentiUtente() throws SQLException {

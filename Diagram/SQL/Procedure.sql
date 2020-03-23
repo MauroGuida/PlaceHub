@@ -42,7 +42,7 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
   UPDATE utente
-  SET password = $2, codiceVerifica = null
+  SET password = $2
   WHERE codutente=$1;
 
   COMMIT;
@@ -58,6 +58,21 @@ BEGIN
 		   FROM Utente U
 		   WHERE U.codUtente = $1 AND U.FronteDocumento IS NULL AND U.RetroDocumento IS NULL) THEN
 		flag = '0';
+	END IF;
+	RETURN flag;
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE FUNCTION controllaCodiceVerifica(INT, VARCHAR(10))
+RETURNS BOOLEAN AS $$
+DECLARE flag BOOLEAN = '0';
+BEGIN
+	IF EXISTS (SELECT 1
+		   FROM Utente U
+		   WHERE codUtente = $1 AND U.codiceVerifica = $2)  THEN
+		flag = '1';
+    UPDATE Utente SET codiceVerifica = null WHERE codUtente = $1;
 	END IF;
 	RETURN flag;
 END;
