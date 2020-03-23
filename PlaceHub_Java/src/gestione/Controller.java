@@ -76,9 +76,8 @@ public class Controller {
 		return connessioneAlDatabase;
 	}
 	
+	
 	//SCHERMATA ACCESSO 
-	
-	
 	public void loginSchermataAccesso(String Username, char[] Password) {
 		try {
 			utente.login(Username, Password);
@@ -169,7 +168,6 @@ public class Controller {
 	
 	
 	//SCHERMATA PRINCIPALE
-	
 	public void generaRisultatiHomePage() {	
 		schermataPrincipaleFrame.svuotaRicerche();
 		
@@ -186,7 +184,6 @@ public class Controller {
 	
 	
 		//PUBBLICA BUSINESS 1
-		
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
 											   String telefono, String partitaIVA, int flagTipologia) {
 			
@@ -243,7 +240,6 @@ public class Controller {
 		
 		
 		//GESTISCI BUSINESS
-		
 		public void controllaDocumentiUtente() {
 			try {
 				if(utente.controllaDocumentiUtente())
@@ -259,7 +255,6 @@ public class Controller {
 		
 		
 		//VERIFICA PUBBLICA BUSINESS
-		
 		public File caricaDocumentoFronte() {
 			File docFronte = selettoreFile.selezionaFile();
 			 //DA GESTIRE
