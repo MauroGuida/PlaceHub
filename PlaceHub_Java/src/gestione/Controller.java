@@ -288,6 +288,15 @@ public class Controller {
 			}
 		}
 		
+		public void controllaCodiceVerifica(String codiceVerifica) {
+			try {
+				if(utente.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
+					schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
+			} catch (SQLException | CodiceVerificaNonValidoException e) {
+				schermataPrincipaleFrame.mostraErroreCodiceVerificaVerificaPubblicaBusiness();
+			}
+		}
+		
 		
 		//CONFERMA REGISTRAZIONE BUSINESS
 		public void pulisciPannelliPubblicaBusiness() {

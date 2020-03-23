@@ -38,8 +38,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel testoDocumentoCaricatoFronte;
 	private JLabel testoDocumentoCaricatoRetro;
 	
-	private int flagDocumenti = 0;
-	
 	private Controller ctrl;
 	
 	public VerificaPubblicaBusiness(Controller Ctrl) {
@@ -56,7 +54,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 		generaBottoneInviaCodiceVerifica();
 		generaBottoneAvanti();
 		
-		generaTestoErroreInserisciDocumenti();
 		generaTestoErroreCodiceVerifica();
 		generaTestoErroreInvioEmail();
 		
@@ -93,12 +90,9 @@ public class VerificaPubblicaBusiness extends JPanel {
 		testoErroreCodiceVerifica.setVisible(false);
 		add(testoErroreCodiceVerifica);
 	}
-
-	private void generaTestoErroreInserisciDocumenti() {
-	}
 	
 	private void generaTestoErroreInvioEmail() {
-		testoMessaggioMail = new JLabel("Non � stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
 		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
 		testoMessaggioMail.setForeground(Color.RED);
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
@@ -191,7 +185,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneAvanti = new JButton("");
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1(); //MOMENTANEO PER DEBUG
+				ctrl.controllaCodiceVerifica(textFieldCodiceVerifica.getText());
 			}
 		});
 		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
@@ -259,7 +253,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 	}
 	
 	public void mostraErroreEmail() {
-		testoMessaggioMail.setText("Non � stato possibile inviarti alcuna email. Riprova!");
+		testoMessaggioMail.setText("Non e' stato possibile inviarti alcuna email. Riprova!");
 		testoMessaggioMail.setForeground(Color.RED);
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
 		testoMessaggioMail.setVisible(true);
