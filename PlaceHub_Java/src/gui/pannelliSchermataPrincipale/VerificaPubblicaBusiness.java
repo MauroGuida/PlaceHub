@@ -189,7 +189,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneAvanti = new JButton("");
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.controllaCodiceVerificaVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
+				ctrl.controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
 			}
 		});
 		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
@@ -232,7 +232,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ctrl.inviaCodiceVerificaVerificaPubblicaBusiness();
-				disabilitaCaricaDocumento();
 				bottoneAvanti.setEnabled(true);
 			}
 		});
@@ -271,7 +270,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		testoMessaggioMail.setVisible(true);
 	}
 	
-	private void disabilitaCaricaDocumento() {
+	public void disabilitaCaricaDocumento() {
 		immagineDocumentoFronte.setEnabled(false);
 		immagineDocumentoRetro.setEnabled(false);
 	}

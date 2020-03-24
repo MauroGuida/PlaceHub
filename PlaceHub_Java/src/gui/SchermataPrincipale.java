@@ -217,6 +217,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloVerificaPubblicaBusiness.mostraEmailInviata();
 		}
 		
+		public void disabilitaCaricaDocumentoVerificaPubblicaBusiness() {
+			pannelloVerificaPubblicaBusiness.disabilitaCaricaDocumento();
+		}
+		
 		
 	//Controllo pannelli visibili
 		private boolean pannelloGestisciBusiness_IsVisible() {

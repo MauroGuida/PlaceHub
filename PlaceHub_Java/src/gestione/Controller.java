@@ -274,7 +274,7 @@ public class Controller {
 			return docRetro;
 		}
 		
-		public void caricaDocumentiInDatabase() {
+		private void caricaDocumentiInDatabase() {
 			try {
 				utente.inserisciDocumentiUtente(utente.getcodUtente(), bufferDocumenti.getFronteDocumento(), 
 												bufferDocumenti.getRetroDocumento());
@@ -293,6 +293,7 @@ public class Controller {
 				final String oggetto = "Placehub - Verifica i tuoi documenti!";
 				mail.inviaEmail(utente.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utente.recuperaCodiceVerifica(codUtente)));
 				
+				schermataPrincipaleFrame.disabilitaCaricaDocumentoVerificaPubblicaBusiness();
 				schermataPrincipaleFrame.mostraEmailInviataVerificaPubblicaBusiness();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -303,11 +304,11 @@ public class Controller {
 			}
 		}
 		
-		public void controllaCodiceVerificaVerificaPubblicaBusiness(String codiceVerifica) {
+		public void controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(String codiceVerifica) {
 			try {
 				if(utente.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
-					
+					caricaDocumentiInDatabase();
 			} catch (SQLException | CodiceVerificaNonValidoException e) {
 				schermataPrincipaleFrame.mostraErroreCodiceVerificaVerificaPubblicaBusiness();
 			}

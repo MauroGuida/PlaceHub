@@ -10,7 +10,6 @@ import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
 import gestione.Controller;
-import oggetti.DocumentiUtente;
 
 public class UtenteDAO {
 	
