@@ -57,9 +57,9 @@ public class Locale extends JPanel {
 		generaStelle();
 		generaTestoNome();
 		generaTestoLuogo();
-		generaImmagineLocale();
+		//generaImmagineLocale();
 		
-		generaLayout();
+		//generaLayout();
 	}
 	
 	private void generaEsteticaPannello() {

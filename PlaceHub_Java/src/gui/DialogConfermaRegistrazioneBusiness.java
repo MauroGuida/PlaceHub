@@ -128,6 +128,7 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 		bottoneOKConfermaRegistrazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				ctrl.inserisciBusinessInDatabase();
 				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness3();
 				ctrl.pulisciPannelliPubblicaBusiness();
 			}

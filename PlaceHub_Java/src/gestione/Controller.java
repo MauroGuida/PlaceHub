@@ -322,4 +322,13 @@ public class Controller {
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness1();
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness2();
 		}
+		
+		public void inserisciBusinessInDatabase() {
+			try {
+				business.inserisciBusiness(localeBuffer, utente.getcodUtente());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }
