@@ -189,7 +189,8 @@ public class Controller {
 	
 		//PUBBLICA BUSINESS 1
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
-											   String telefono, String partitaIVA, int flagTipologia) {
+											   String telefono, String partitaIVA, 
+											   int flagTipologia, String raffinazioni) {
 			
 			boolean flagErrore = false;
 			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
@@ -204,7 +205,7 @@ public class Controller {
 			}
 			
 			if(!flagErrore) {
-				business.setLocaleBuffer(new Locale(nomeBusiness,indirizzo,null,telefono,partitaIVA,null,null));
+				business.setLocaleBuffer(new Locale(null,nomeBusiness,indirizzo,telefono,partitaIVA,null,null));
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}

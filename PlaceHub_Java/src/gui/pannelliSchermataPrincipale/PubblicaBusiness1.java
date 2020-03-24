@@ -151,7 +151,8 @@ public class PubblicaBusiness1 extends JPanel {
 												textFieldIndirizzo.getText(),
 												textFieldTelefono.getText(),
 												textFieldPartitaIVA.getText(),
-												checkTipoBusiness());
+												checkTipoBusiness(),
+												prendiRaffinazioni(checkTipoBusiness()));
 				
 			}
 		});
@@ -414,6 +415,20 @@ public class PubblicaBusiness1 extends JPanel {
 		return 0;
 	}
 	
+	private String prendiRaffinazioni(int tipoBusiness) {
+		switch(tipoBusiness) {
+			case 1:
+				return pannelloRaffRistorante.toString();
+				
+			case 2:
+				return pannelloRaffAttrazioni.toString();
+				
+			case 3:
+				return pannelloRaffAlloggi.toString();
+		}
+		
+		return null;
+	}
 	
 	public void mostraErroreCampiVuoti() {
 		testoErrori.setText("Non possono esserci campi vuoti");
