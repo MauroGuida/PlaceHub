@@ -106,13 +106,15 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				resettaVisibilitaErrori();
-				if (ctrl.caricaDocumentoRetroInBuffer()==null) {
-					testoDocumentoCaricatoRetro.setVisible(false);
-					bottoneInviaCodiceVerifica.setEnabled(false);
-				}else {
-					testoDocumentoCaricatoRetro.setVisible(true);
-					abilitaBottoneInviaCodiceVerifica();
+				if(immagineDocumentoRetro.isEnabled()) {
+					resettaVisibilitaErrori();
+					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
+						testoDocumentoCaricatoRetro.setVisible(false);
+						bottoneInviaCodiceVerifica.setEnabled(false);
+					}else {
+						testoDocumentoCaricatoRetro.setVisible(true);
+						abilitaBottoneInviaCodiceVerifica();
+					}
 				}
 			}
 		});
@@ -132,13 +134,15 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			   resettaVisibilitaErrori();
-			   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
-				  testoDocumentoCaricatoFronte.setVisible(false);
-				  bottoneInviaCodiceVerifica.setEnabled(false);
-			   }else {
-				   testoDocumentoCaricatoFronte.setVisible(true);
-				   abilitaBottoneInviaCodiceVerifica();
+			   if(immagineDocumentoFronte.isEnabled()) {
+				   resettaVisibilitaErrori();
+				   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
+					  testoDocumentoCaricatoFronte.setVisible(false);
+					  bottoneInviaCodiceVerifica.setEnabled(false);
+				   }else {
+					   testoDocumentoCaricatoFronte.setVisible(true);
+					   abilitaBottoneInviaCodiceVerifica();
+				   }
 			   }
 			}
 		});
