@@ -94,7 +94,7 @@ public class Locale extends JPanel {
 			immagineLocale.setIcon(new ImageIcon(immagineScalata));
 		} catch(IOException e) {
 			e.printStackTrace();
-		} catch(ArrayIndexOutOfBoundsException e) {
+		} catch(IndexOutOfBoundsException e) {
 			
 		}
 	}
