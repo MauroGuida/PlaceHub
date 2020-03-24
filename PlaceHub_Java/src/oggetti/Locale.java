@@ -23,13 +23,14 @@ import javax.swing.GroupLayout.Alignment;
 public class Locale extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
+	@SuppressWarnings("unused")
 	private String codBusiness;
 	private String nome;
 	private String indirizzo;
 	private String telefono;
-
 	private String partitaIVA;
 	private String descrizione;
+	private String tipoBusiness;
 	private String raffinazioni;
 	
 	private JPanel stelle;
@@ -40,13 +41,14 @@ public class Locale extends JPanel {
 	private ArrayList<File> listaImmagini;
 	
 	public Locale(String codBusiness, String nome, String indirizzo,
-				  String telefono, String partitaIVA, String descrizione, String raffinazioni) {
+				  String telefono, String partitaIVA, String descrizione, String tipoBusiness, String raffinazioni) {
 		this.codBusiness = codBusiness;
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.telefono = telefono;
 		this.partitaIVA = partitaIVA;
 		this.descrizione = descrizione;
+		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
 		listaImmagini = new ArrayList<File>();
 		
@@ -159,11 +161,15 @@ public class Locale extends JPanel {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	public void setTipoBusiness(String tipoBusiness) {
+		this.tipoBusiness = tipoBusiness;
+	}
 	
 	public void setRaffinazini(String raffinazini) {
 		this.raffinazioni = raffinazini;
 	}
-	
+
 	
 	//Getters
 	
@@ -187,6 +193,10 @@ public class Locale extends JPanel {
 	public String getDescrizione() {
 		return descrizione;
 	}
+	
+	public String getTipoBusiness() {
+		return tipoBusiness;
+	}
 
 	public String getRaffinazioni() {
 		return raffinazioni;
@@ -197,8 +207,8 @@ public class Locale extends JPanel {
 	//METODI
 	
 	
-	public void aggiungiImmagini(File nuovaImmagini) {
-		listaImmagini.add(nuovaImmagini);
+	public void aggiungiImmagini(String filePath) {
+		listaImmagini.add(new File(filePath));
 	}
 
 	public int getNumeroImmagini() {

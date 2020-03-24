@@ -191,7 +191,7 @@ public class Controller {
 		//PUBBLICA BUSINESS 1
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
 											   String telefono, String partitaIVA, 
-											   int flagTipologia, String raffinazioni) {
+											   String tipoBusiness, String raffinazioni) {
 			
 			boolean flagErrore = false;
 			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
@@ -200,13 +200,14 @@ public class Controller {
 				schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
 				flagErrore = true;
 			}
-			if(flagTipologia == 0) {
+			
+			if(tipoBusiness == null) {
 				schermataPrincipaleFrame.mostraErroreTipologiaVuotaPubblicaBusiness1();
 				flagErrore = true;
 			}
 			
 			if(!flagErrore) {
-				localeBuffer = new Locale(null,nomeBusiness,indirizzo,telefono,partitaIVA,null,null);
+				localeBuffer = new Locale(null, nomeBusiness, indirizzo, telefono, partitaIVA, null, tipoBusiness, raffinazioni);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
@@ -239,7 +240,7 @@ public class Controller {
 		public File caricaImmagineLocale() {
 			File nuovaImmagine = selettoreFile.selezionaFile();
 			
-			localeBuffer.aggiungiImmagini(nuovaImmagine);
+			localeBuffer.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
 			
 			return nuovaImmagine;
 		}

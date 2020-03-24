@@ -152,8 +152,7 @@ public class PubblicaBusiness1 extends JPanel {
 												textFieldTelefono.getText(),
 												textFieldPartitaIVA.getText(),
 												checkTipoBusiness(),
-												prendiRaffinazioni(checkTipoBusiness()));
-				
+												prendiRaffinazioni());
 			}
 		});
 		add(bottoneAvanti);
@@ -404,29 +403,25 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 	
 	
-	private int checkTipoBusiness() {
+	private String checkTipoBusiness() {
 		if(pannelloRaffRistorante.isVisible()) {
-			return 1;
+			return "Ristorante";
 		}else if (pannelloRaffAttrazioni.isVisible()) {
-			return 2;
+			return "Attrazioni";
 		}else if (pannelloRaffAlloggi.isVisible()) {
-			return 3;
+			return "Alloggi";
 		}
-		return 0;
+		return null;
 	}
 	
-	private String prendiRaffinazioni(int tipoBusiness) {
-		switch(tipoBusiness) {
-			case 1:
-				return pannelloRaffRistorante.toString();
-				
-			case 2:
-				return pannelloRaffAttrazioni.toString();
-				
-			case 3:
-				return pannelloRaffAlloggi.toString();
+	private String prendiRaffinazioni() {
+		if(pannelloRaffRistorante.isVisible()) {
+			return pannelloRaffRistorante.toString();
+		}else if (pannelloRaffAttrazioni.isVisible()) {
+			return pannelloRaffAttrazioni.toString();
+		}else if (pannelloRaffAlloggi.isVisible()) {
+			return pannelloRaffAlloggi.toString();
 		}
-		
 		return null;
 	}
 	
