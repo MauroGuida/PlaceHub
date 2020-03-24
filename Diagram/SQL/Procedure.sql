@@ -77,3 +77,28 @@ BEGIN
 	RETURN flag;
 END;
 $$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE PROCEDURE inserisciDocumentiUtente(INT, VARCHAR(1000), VARCHAR(1000))
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  UPDATE Utente
+  SET FronteDocumento = $2, RetroDocumento = $3
+  WHERE codUtente = $1;
+
+  COMMIT;
+END;
+$$;
+
+
+
+
+
+
+
+
+
+
+
+

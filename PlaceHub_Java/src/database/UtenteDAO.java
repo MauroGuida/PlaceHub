@@ -1,5 +1,6 @@
 package database;
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
 import gestione.Controller;
+import oggetti.DocumentiUtente;
 
 public class UtenteDAO {
 	
@@ -134,5 +136,15 @@ public class UtenteDAO {
 		datiRecuperati.next();
 
 		return datiRecuperati.getBoolean(1);
+	}
+	
+	public void inserisciDocumentiUtente(String codUtente, File fronteDocumento, File retroDocumento) throws SQLException {
+		String sql = "CALL inserisciDocumentiUtente(?,?,?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codUtente));
+		query.setString(2, fronteDocumento.getAbsolutePath());
+		query.setString(3, retroDocumento.getAbsolutePath());
+		query.executeUpdate();
 	}
 }

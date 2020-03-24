@@ -107,7 +107,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				resettaVisibilitaErrori();
-				if (ctrl.caricaDocumentoRetro()==null) {
+				if (ctrl.caricaDocumentoRetroInBuffer()==null) {
 					testoDocumentoCaricatoRetro.setVisible(false);
 					bottoneInviaCodiceVerifica.setEnabled(false);
 				}else {
@@ -133,7 +133,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			   resettaVisibilitaErrori();
-			   if( ctrl.caricaDocumentoFronte() == null ) {
+			   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
 				  testoDocumentoCaricatoFronte.setVisible(false);
 				  bottoneInviaCodiceVerifica.setEnabled(false);
 			   }else {
@@ -228,6 +228,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ctrl.inviaCodiceVerificaVerificaPubblicaBusiness();
+				disabilitaCaricaDocumento();
 				bottoneAvanti.setEnabled(true);
 			}
 		});
@@ -264,5 +265,10 @@ public class VerificaPubblicaBusiness extends JPanel {
 		testoMessaggioMail.setForeground(new Color(64,151,0));
 		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
 		testoMessaggioMail.setVisible(true);
+	}
+	
+	private void disabilitaCaricaDocumento() {
+		immagineDocumentoFronte.setEnabled(false);
+		immagineDocumentoRetro.setEnabled(false);
 	}
 }

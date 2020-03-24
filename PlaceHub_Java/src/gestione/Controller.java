@@ -16,12 +16,15 @@ import errori.UsernameOPasswordErratiException;
 import gui.DialogConfermaRegistrazioneBusiness;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
+import oggetti.DocumentiUtente;
 import oggetti.Locale;
 import res.FileChooser;
 import res.InvioEmail;
 
 public class Controller {
-
+	
+	private DocumentiUtente bufferDocumenti;
+	
 	private static SchermataAccesso schermataAccessoFrame;
 	private static SchermataPrincipale schermataPrincipaleFrame;
 	
@@ -67,6 +70,8 @@ public class Controller {
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
 			selettoreFile = new FileChooser();
+			
+			bufferDocumenti = new DocumentiUtente();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -255,18 +260,28 @@ public class Controller {
 		
 		
 		//VERIFICA PUBBLICA BUSINESS
-		public File caricaDocumentoFronte() {
+		public File caricaDocumentoFronteInBuffer() {
 			File docFronte = selettoreFile.selezionaFile();
-			 //DA GESTIRE
+			bufferDocumenti.setFronteDocumento(docFronte);
 			
 			return docFronte;
 		}
 		
-		public File caricaDocumentoRetro() {
+		public File caricaDocumentoRetroInBuffer() {
 			File docRetro = selettoreFile.selezionaFile();
-			 //DA GESTIRE
+			bufferDocumenti.setRetroDocumento(docRetro);
 			
 			return docRetro;
+		}
+		
+		public void caricaDocumentiInDatabase() {
+			try {
+				utente.inserisciDocumentiUtente(utente.getcodUtente(), bufferDocumenti.getFronteDocumento(), 
+												bufferDocumenti.getRetroDocumento());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		public void inviaCodiceVerificaVerificaPubblicaBusiness() {
@@ -292,6 +307,7 @@ public class Controller {
 			try {
 				if(utente.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
+					
 			} catch (SQLException | CodiceVerificaNonValidoException e) {
 				schermataPrincipaleFrame.mostraErroreCodiceVerificaVerificaPubblicaBusiness();
 			}
@@ -303,5 +319,7 @@ public class Controller {
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness1();
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness2();
 		}
+		
+		
 	
 }
