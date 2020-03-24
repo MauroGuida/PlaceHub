@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.SchermataPrincipale;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -307,6 +309,16 @@ public class PubblicaBusiness1 extends JPanel {
 		add(testoTelefono);
 		
 		textFieldTelefono = new JTextField();
+		textFieldTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' && textFieldTelefono.getText().length() <= 10)
+						|| e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldTelefono.setEditable(true);
+				else
+					textFieldTelefono.setEditable(false);
+			}
+		});
 		textFieldTelefono.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldTelefono.setBackground(new Color(255,255,255));
 		textFieldTelefono.setBorder(new LineBorder(new Color(255,255,255),1));
