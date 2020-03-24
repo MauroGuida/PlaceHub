@@ -23,6 +23,7 @@ import res.InvioEmail;
 
 public class Controller {
 	private DocumentiUtente bufferDocumenti;
+	private Locale localeBuffer;
 	
 	private static SchermataAccesso schermataAccessoFrame;
 	private static SchermataPrincipale schermataPrincipaleFrame;
@@ -205,7 +206,7 @@ public class Controller {
 			}
 			
 			if(!flagErrore) {
-				business.setLocaleBuffer(new Locale(null,nomeBusiness,indirizzo,telefono,partitaIVA,null,null));
+				localeBuffer = new Locale(null,nomeBusiness,indirizzo,telefono,partitaIVA,null,null);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
@@ -222,23 +223,23 @@ public class Controller {
 					flagErrore = true;
 				}
 				
-				if(business.getLocaleBuffer().getNumeroImmagini() < 1) {
+				if(localeBuffer.getNumeroImmagini() < 1) {
 					schermataPrincipaleFrame.mostraErroreInserisciImmaginePubblicaBusiness2();
 					flagErrore = true;
 				}
 
 				if(!flagErrore) {
-					business.getLocaleBuffer().setDescrizione(testoDescriviBusiness);
+					localeBuffer.setDescrizione(testoDescriviBusiness);
 					DialogConfermaRegistrazioneBusiness dialogConferma = new DialogConfermaRegistrazioneBusiness(this);
 					dialogConferma.setLocationRelativeTo(schermataPrincipaleFrame);
 					dialogConferma.setVisible(true);
 				}
 		}
 		
-		public File caricaImmagine() {
+		public File caricaImmagineLocale() {
 			File nuovaImmagine = selettoreFile.selezionaFile();
 			
-			business.getLocaleBuffer().aggiungiImmagini(nuovaImmagine);
+			localeBuffer.aggiungiImmagini(nuovaImmagine);
 			
 			return nuovaImmagine;
 		}

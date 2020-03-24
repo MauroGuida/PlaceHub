@@ -158,7 +158,7 @@ public class PubblicaBusiness2 extends JPanel {
 		iconaImmagine.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagine());
+				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagineLocale());
 				pannelloImmagini.revalidate();
 			}
 		});
