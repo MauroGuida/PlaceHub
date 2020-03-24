@@ -22,7 +22,6 @@ import res.FileChooser;
 import res.InvioEmail;
 
 public class Controller {
-	
 	private DocumentiUtente bufferDocumenti;
 	
 	private static SchermataAccesso schermataAccessoFrame;
@@ -320,7 +319,4 @@ public class Controller {
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness1();
 			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness2();
 		}
-		
-		
-	
 }
