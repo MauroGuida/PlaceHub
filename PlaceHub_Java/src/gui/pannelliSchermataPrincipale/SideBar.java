@@ -38,7 +38,9 @@ public class SideBar extends JPanel {
 	private JButton bottoneGestisciBusiness;
 	private int flagFocusBottone;
 	
+	
 	public SideBar() {
+
 		setSize(250, 650);
 		setVisible(true);
 		setBackground(new Color(51,51,51));
@@ -173,11 +175,8 @@ public class SideBar extends JPanel {
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
-	    		if(!Controller.getSchermataPrincipaleFrame().getPannelloGestisciBusiness().isVisible() &&
-	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness1().isVisible() &&
-	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness2().isVisible() &&
-	    		   !Controller.getSchermataPrincipaleFrame().getPannelloPubblicaBusiness3().isVisible())
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    		if(!Controller.getSchermataPrincipaleFrame().controlloPannelliBusinessVisibili())
+	    			bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
 	    
@@ -340,11 +339,14 @@ public class SideBar extends JPanel {
 		}
 	}
 	
+	
 	private void resettaFocusIconeSideBar(int flag) {
 		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
 		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
 		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
 		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 	}
+	
+	
 
 }

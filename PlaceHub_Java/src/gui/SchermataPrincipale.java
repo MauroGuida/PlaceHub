@@ -164,27 +164,6 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 		
-		public GestisciBusiness getPannelloGestisciBusiness() {
-			return pannelloGestisciBusiness;
-		}
-
-
-		public PubblicaBusiness1 getPannelloPubblicaBusiness1() {
-			return pannelloPubblicaBusiness1;
-		}
-
-
-		public PubblicaBusiness2 getPannelloPubblicaBusiness2() {
-			return pannelloPubblicaBusiness2;
-		}
-
-
-		public PubblicaBusiness3 getPannelloPubblicaBusiness3() {
-			return pannelloPubblicaBusiness3;
-		}
-		
-		
-		
 	//Gestione pannello PubblicaBusiness1
 		public void mostraErroreCampiVuotiPubblicaBusiness1() {
 			pannelloPubblicaBusiness1.mostraErroreCampiVuoti();
@@ -238,4 +217,39 @@ public class SchermataPrincipale extends JFrame {
 			pannelloVerificaPubblicaBusiness.mostraEmailInviata();
 		}
 		
+		
+	//Controllo pannelli visibili
+		private boolean pannelloGestisciBusiness_IsVisible() {
+			return pannelloGestisciBusiness.isVisible();
+		}
+		
+		
+		private boolean pannelloPubblicaBusiness1_IsVisible() {
+			return pannelloPubblicaBusiness1.isVisible();
+		}
+		
+		
+		private boolean pannelloPubblicaBusiness2_IsVisible() {
+			return pannelloPubblicaBusiness2.isVisible();
+		}
+		
+		
+		private boolean pannelloPubblicaBusiness3_IsVisible() {
+			return pannelloPubblicaBusiness3.isVisible();
+		}
+		
+		
+		private boolean pannelloVerificaPubblicaBusiness_IsVisible() {
+			return pannelloVerificaPubblicaBusiness.isVisible();
+		}
+		
+		
+		public boolean controlloPannelliBusinessVisibili() {
+			if(pannelloGestisciBusiness_IsVisible() || pannelloPubblicaBusiness1_IsVisible() || 
+			   pannelloPubblicaBusiness2_IsVisible() || pannelloPubblicaBusiness3_IsVisible() ||
+			   pannelloVerificaPubblicaBusiness_IsVisible())
+				return true;
+				
+			return false;
+		}
 }
