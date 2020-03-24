@@ -407,9 +407,9 @@ public class PubblicaBusiness1 extends JPanel {
 		if(pannelloRaffRistorante.isVisible()) {
 			return "Ristorante";
 		}else if (pannelloRaffAttrazioni.isVisible()) {
-			return "Attrazioni";
+			return "Attrazione";
 		}else if (pannelloRaffAlloggi.isVisible()) {
-			return "Alloggi";
+			return "Alloggio";
 		}
 		return null;
 	}
