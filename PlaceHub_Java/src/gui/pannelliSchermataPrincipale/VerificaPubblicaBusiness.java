@@ -185,7 +185,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		bottoneAvanti = new JButton("");
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.controllaCodiceVerifica(textFieldCodiceVerifica.getText());
+				ctrl.controllaCodiceVerificaVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
 			}
 		});
 		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
@@ -227,7 +227,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 		});
 		bottoneInviaCodiceVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrl.inviaCodiceVerificaPubblicaBusiness();
+				ctrl.inviaCodiceVerificaVerificaPubblicaBusiness();
 				bottoneAvanti.setEnabled(true);
 			}
 		});

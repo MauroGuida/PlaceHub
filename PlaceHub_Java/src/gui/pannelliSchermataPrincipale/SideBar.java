@@ -321,6 +321,9 @@ public class SideBar extends JPanel {
 	    setLayout(gl_pannelloSideBar);
 	}
 	
+	
+	//METODI
+	
 
 	private void cambiaFocusIconeSideBar(int flag) {
 		switch(flag) {
@@ -346,7 +349,4 @@ public class SideBar extends JPanel {
 		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
 		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 	}
-	
-	
-
 }

@@ -269,7 +269,7 @@ public class Controller {
 			return docRetro;
 		}
 		
-		public void inviaCodiceVerificaPubblicaBusiness() {
+		public void inviaCodiceVerificaVerificaPubblicaBusiness() {
 			String codUtente;
 			try {
 				codUtente = utente.getcodUtente();
@@ -288,7 +288,7 @@ public class Controller {
 			}
 		}
 		
-		public void controllaCodiceVerifica(String codiceVerifica) {
+		public void controllaCodiceVerificaVerificaPubblicaBusiness(String codiceVerifica) {
 			try {
 				if(utente.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();

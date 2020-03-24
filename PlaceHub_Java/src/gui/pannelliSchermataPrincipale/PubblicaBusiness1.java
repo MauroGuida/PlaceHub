@@ -62,8 +62,6 @@ public class PubblicaBusiness1 extends JPanel {
 		generaCampoIndirizzo();
 		generaCampoPartitaIVA();
 		
-		generaCampoDocumentoFronte();
-		generaCampoDocumentoRetro();	
 		generaTestoSelezionaOpzione();
 		
 		generaTestoSelezionaOpzione();
@@ -259,15 +257,6 @@ public class PubblicaBusiness1 extends JPanel {
 		testoSelezionaOpzione.setFont(new Font("Roboto", Font.PLAIN, 20));
 		add(testoSelezionaOpzione);
 	}
-
-
-	private void generaCampoDocumentoRetro() {
-	}
-
-
-	private void generaCampoDocumentoFronte() {
-	}
-
 
 	private void generaCampoPartitaIVA() {
 		testoPartitaIva = new JLabel("Partita IVA");
