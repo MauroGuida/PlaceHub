@@ -27,10 +27,10 @@ public class Locale extends JPanel {
 	private String nome;
 	private String indirizzo;
 	private String telefono;
+
 	private String partitaIVA;
 	private String descrizione;
 	private String raffinazioni;
-	private String urlImmagine;
 	
 	private JPanel stelle;
 	private JLabel testoNome;
@@ -39,15 +39,15 @@ public class Locale extends JPanel {
 	
 	private ArrayList<File> listaImmagini;
 	
-	public Locale(String nome, String indirizzo, String codBusiness,
-				  String telefono, String partitaIVA, String descrizione, String urlImmagine) {
+	public Locale(String codBusiness, String nome, String indirizzo,
+				  String telefono, String partitaIVA, String descrizione, String raffinazioni) {
 		this.codBusiness = codBusiness;
 		this.nome = nome;
 		this.indirizzo = indirizzo;
-		this.urlImmagine = urlImmagine;
 		this.telefono = telefono;
 		this.partitaIVA = partitaIVA;
 		this.descrizione = descrizione;
+		this.raffinazioni = raffinazioni;
 		listaImmagini = new ArrayList<File>();
 		
 		generaEsteticaPannello();
@@ -66,8 +66,6 @@ public class Locale extends JPanel {
 		setVisible(true);
 		setBorder(new LineBorder(Color.DARK_GRAY,1));
 	}
-	
-	
 
 	private void generaStelle() {
 		stelle = new JPanel();
@@ -87,9 +85,8 @@ public class Locale extends JPanel {
 	}
 
 	private void generaImmagineLocale() {
-		immagineLocale = new JLabel();
 		try {
-			URL url = new URL(this.urlImmagine);
+			URL url = new URL(listaImmagini.get(1).getAbsolutePath()); //DA GESTIRE
 			Image immagine = new ImageIcon(ImageIO.read(url)).getImage();
 			Image immagineScalata = immagine.getScaledInstance(374, 180, java.awt.Image.SCALE_SMOOTH);
 			immagineLocale.setIcon(new ImageIcon(immagineScalata));
@@ -135,12 +132,10 @@ public class Locale extends JPanel {
 		setLayout(groupLayout);
 	}
 	
-	//generaCANI
-	public void setCodBusiness(String codBusiness) {
-		this.codBusiness = codBusiness;
-	}
 
+	//CANI
 
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -164,20 +159,40 @@ public class Locale extends JPanel {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-
-
-	public void setUrlImmagine(String urlImmagine) {
-		this.urlImmagine = urlImmagine;
-	}
-
-
-	public void setImmagineLocale(JLabel immagineLocale) {
-		this.immagineLocale = immagineLocale;
-	}
 	
 	public void setRaffinazini(String raffinazini) {
 		this.raffinazioni = raffinazini;
 	}
+	
+	
+	//Getters
+	
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public String getPartitaIVA() {
+		return partitaIVA;
+	}
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public String getRaffinazioni() {
+		return raffinazioni;
+	}
+
+	
 	
 	//METODI
 	
