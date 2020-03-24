@@ -92,8 +92,10 @@ public class Locale extends JPanel {
 			Image immagine = new ImageIcon(ImageIO.read(url)).getImage();
 			Image immagineScalata = immagine.getScaledInstance(374, 180, java.awt.Image.SCALE_SMOOTH);
 			immagineLocale.setIcon(new ImageIcon(immagineScalata));
-		}catch(IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
+		} catch(ArrayIndexOutOfBoundsException e) {
+			
 		}
 	}
 
