@@ -312,7 +312,7 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldTelefono.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' && textFieldTelefono.getText().length() <= 10)
+				if((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' && textFieldTelefono.getText().length() <= 9)
 						|| e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textFieldTelefono.setEditable(true);
 				else
