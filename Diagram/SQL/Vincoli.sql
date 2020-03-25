@@ -11,7 +11,7 @@ ALTER TABLE ImmagineProprieta
 	ADD CONSTRAINT ImmagineUnica UNIQUE(Url,codBusiness);
 
 ALTER TABLE Business
-  ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono LIKE '[0-9]*10');
+  ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono ~ '^[0-9 ]*$');
 
 ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(length(Telefono)>10 OR
@@ -30,7 +30,8 @@ BEGIN
 	FOR raff IN SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = NEW.codBusiness
 	LOOP
 		IF raff.raffinazione NOT IN ('Pizzeria', 'Braceria', 'FastFood',
-				      	     'Paninoteca', 'Osteria', 'Tavola Calda',               					  					             'Taverna', 'Trattoria', 'Pesce') THEN
+				      	     'Paninoteca', 'Osteria', 'Tavola Calda', 
+						'Taverna','Trattoria', 'Pesce') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
 	END LOOP;

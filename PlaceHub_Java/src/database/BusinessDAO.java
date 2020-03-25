@@ -38,6 +38,6 @@ public class BusinessDAO {
 		query.setString(6, bufferLocale.getDescrizione());
 		query.setInt(7, Integer.parseInt(codUtente));
 		
-		query.execute();
+		query.executeUpdate();
 	}
 }
