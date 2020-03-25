@@ -16,6 +16,9 @@ ALTER TABLE Business
 ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(LENGTH(Telefono) = 10);
 
+ALTER TABLE PartitaIVA
+  ADD CONSTRAINT lunghezzaPartitaIVA CHECK(LENGTH(PartitaIVA) = 11);
+
 ALTER TABLE Utente
   ADD CONSTRAINT DataDiNascitaNonValida CHECK(NOT(DataDiNascita >= date('now')));
 --------------
@@ -101,3 +104,4 @@ EXECUTE PROCEDURE checkRaffinazioneAttrazioni();
 
 
 ------------
+
