@@ -272,6 +272,18 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldPartitaIVA.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldPartitaIVA.setColumns(10);
 		textFieldPartitaIVA.setBounds(446, 148, 287, 32);
+		textFieldPartitaIVA.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || 
+					(e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z')) &&
+                    textFieldPartitaIVA.getText().length() <= 10)
+						|| e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldPartitaIVA.setEditable(true);
+				else
+					textFieldPartitaIVA.setEditable(false);
+			}
+		});
 		add(textFieldPartitaIVA);
 		
 		lineaTestoPartitaIVA = new JLabel("");
@@ -447,11 +459,21 @@ public class PubblicaBusiness1 extends JPanel {
 		testoErrori.setVisible(true);
 	}
 	
+	public void mostraErrorePatternCampi() {
+		testoErrori.setText("I valori inseriti per certi campi non sono accettati");
+		testoErrori.setVisible(true);
+	}
+	
 	public void mostraErroreTipologiaVuota() {
 		testoErroreTipologiaVuota.setText("Seleziona una tipologia");
 		testoErroreTipologiaVuota.setVisible(true);
 	}
-		
+	
+	public void mostraErrorePartitaIVA() {
+		testoErrori.setText("La partita IVA non e' valida");
+		testoErrori.setVisible(true);
+	}
+	
 	public void resettaVisibilitaErrori() {
 		testoErrori.setVisible(false);
 		testoErroreTipologiaVuota.setVisible(false);

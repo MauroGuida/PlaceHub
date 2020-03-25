@@ -211,8 +211,18 @@ public class Controller {
 				flagErrore = true;
 			}
 			
+			if(nomeBusiness.matches("[0-9]+") || indirizzo.matches("[0-9]+")) {
+				schermataPrincipaleFrame.mostraErrorePatternCampiPubblicaBusiness1();
+				flagErrore = true;
+			}
+			
 			if(telefono.length()!=10) {
 				schermataPrincipaleFrame.mostraErroreNumeroDiTelefonoPubblicaBusiness1();
+				flagErrore = true;
+			}
+			
+			if(partitaIVA.length()!=11) {
+				schermataPrincipaleFrame.mostraErrorePartitaIVAPubblicaBusiness1();
 				flagErrore = true;
 			}
 			
