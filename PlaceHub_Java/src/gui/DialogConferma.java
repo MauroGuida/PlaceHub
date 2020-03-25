@@ -14,9 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import gestione.Controller;
-
-public class DialogConfermaRegistrazioneBusiness extends JDialog {
+public class DialogConferma extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
 	private JButton bottoneOKConfermaRegistrazione;
@@ -26,10 +24,9 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 	private JLabel immagineAvvertenzaConfermaRegistrazione;
 	private JPanel pannelloBottoniConfermaRegistrazione;
 	
-	private Controller ctrl;
+	private boolean risposta = false;
 	
-	public DialogConfermaRegistrazioneBusiness(Controller ctrl) {
-		this.ctrl = ctrl;
+	public DialogConferma() {
 		layoutGeneraleDialog();
 		generaBottoneOKConfermaRegistrazione();
 		generaBottoneEsciConfermaRegistrazione();
@@ -116,6 +113,7 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 		bottoneEsciConfermaRegistrazione.setBounds(525, 6, 25, 25);
 		bottoneEsciConfermaRegistrazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				risposta = false;
 				dispose();
 			}
 		});
@@ -127,10 +125,8 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 		bottoneOKConfermaRegistrazione = new JButton("");
 		bottoneOKConfermaRegistrazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				risposta = true;
 				dispose();
-				ctrl.inserisciBusinessInDatabase();
-				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness3();
-				ctrl.pulisciPannelliPubblicaBusiness();
 			}
 		});
 		bottoneOKConfermaRegistrazione.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
@@ -149,5 +145,13 @@ public class DialogConfermaRegistrazioneBusiness extends JDialog {
 			}
 		});
 		getContentPane().add(bottoneOKConfermaRegistrazione);
+	}
+	
+	
+	//METODI
+	
+	
+	public boolean getRisposta() {
+		return risposta;
 	}
 }

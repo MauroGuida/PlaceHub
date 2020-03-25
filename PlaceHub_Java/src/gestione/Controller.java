@@ -13,7 +13,7 @@ import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
-import gui.DialogConfermaRegistrazioneBusiness;
+import gui.DialogConferma;
 import gui.LocaleGUI;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
@@ -175,6 +175,7 @@ public class Controller {
 	
 	//SCHERMATA PRINCIPALE
 	
+	
 		//LOCALE
 		public void generaRisultatiHomePage() {	
 			schermataPrincipaleFrame.svuotaRicerche();
@@ -234,9 +235,14 @@ public class Controller {
 
 				if(!flagErrore) {
 					localeBuffer.setDescrizione(testoDescriviBusiness);
-					DialogConfermaRegistrazioneBusiness dialogConferma = new DialogConfermaRegistrazioneBusiness(this);
+					DialogConferma dialogConferma = new DialogConferma();
 					dialogConferma.setLocationRelativeTo(schermataPrincipaleFrame);
 					dialogConferma.setVisible(true);
+					if(dialogConferma.getRisposta()) {
+						inserisciBusinessInDatabase();
+						schermataPrincipaleFrame.mostraPubblicaBusiness3();
+						pulisciPannelliPubblicaBusiness();
+					}
 				}
 		}
 		
