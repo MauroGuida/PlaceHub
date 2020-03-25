@@ -14,8 +14,7 @@ ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono ~ '^[0-9 ]*$');
 
 ALTER TABLE Business
-  ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(length(Telefono)>10 OR
-    length(Telefono)<10);
+  ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(LENGTH(Telefono) = 10);
 
 ALTER TABLE Utente
   ADD CONSTRAINT DataDiNascitaNonValida CHECK(NOT(DataDiNascita >= date('now')));
