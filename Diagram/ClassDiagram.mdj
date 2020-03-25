@@ -239,13 +239,30 @@
 											"height": 13,
 											"text": "+codUtente",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFxEkOuQWVDQFk=",
+											"_parent": {
+												"$ref": "AAAAAAFwtI8l6eNn2PU="
+											},
+											"model": {
+												"$ref": "AAAAAAFxEkOttGVA5rc="
+											},
+											"font": "Arial;13;0",
+											"left": 749,
+											"top": 543,
+											"width": 207,
+											"height": 13,
+											"text": "+stelle",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 744,
 									"top": 433,
 									"width": 217,
-									"height": 113
+									"height": 128
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -258,7 +275,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 744,
-									"top": 546,
+									"top": 561,
 									"width": 217,
 									"height": 10
 								},
@@ -300,7 +317,7 @@
 							"left": 744,
 							"top": 408,
 							"width": 217,
-							"height": 148,
+							"height": 163,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtI8l6eNiegs="
 							},
@@ -4280,6 +4297,14 @@
 							},
 							"name": "codUtente",
 							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFxEkOttGVA5rc=",
+							"_parent": {
+								"$ref": "AAAAAAFwtI8l6ONfqBw="
+							},
+							"name": "stelle"
 						}
 					]
 				},
@@ -4916,6 +4941,42 @@
 								"$ref": "AAAAAAFwtOQMH6XKvPI="
 							},
 							"name": "CodBusiness",
+							"type": ""
+						}
+					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAFxEkP3Z2k31u8=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "ImmaginiOwner",
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFxEkQj/Wq6QJw=",
+							"_parent": {
+								"$ref": "AAAAAAFxEkP3Z2k31u8="
+							},
+							"name": "Immagine"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFxEkQtTWtQVCo=",
+							"_parent": {
+								"$ref": "AAAAAAFxEkP3Z2k31u8="
+							},
+							"name": "Attribute2",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFxEkQ5omvm7n8=",
+							"_parent": {
+								"$ref": "AAAAAAFxEkP3Z2k31u8="
+							},
+							"name": "Attribute3",
 							"type": ""
 						}
 					]

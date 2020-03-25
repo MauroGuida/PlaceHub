@@ -23,6 +23,7 @@ CREATE TABLE Business(
   PartitaIVA VARCHAR(100) NOT NULL,
   tipo tipoBusiness NOT NULL,
   Descrizione VARCHAR(2000) NOT NULL,
+  Stelle NUMERIC DEFAULT NULL CHECK((Stelle BETWEEN 1 AND 5) OR Stelle IS NULL), 
   Telefono VARCHAR(10) NOT NULL,
   codUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
 );
@@ -33,7 +34,8 @@ CREATE TABLE ImmagineProprieta(
 );
 
 CREATE TYPE tipoRaffinazione AS ENUM ('Pizzeria', 'Braceria', 'FastFood',
-				      'Paninoteca', 'Osteria', 'Tavola Calda',               					  					      'Taverna', 'Trattoria', 'Pesce',
+				      'Paninoteca', 'Osteria', 'Tavola Calda',
+				      'Taverna', 'Trattoria', 'Pesce',
 				      'Cinema', 'Shopping','Monumento',
 				      'Museo', 'Parco Giochi', 'Piscina',
 				      'Bar/Lounge', 'Hotel', 'Bed&Breakfast',
@@ -49,7 +51,7 @@ CREATE TABLE AssociazioneRaffinazione(
 
 CREATE TABLE Recensione(
   Testo VARCHAR(2000) NOT NULL,
-  Stelle INTEGER NOT NULL,
+  Stelle NUMERIC NOT NULL CHECK(Stelle BETWEEN 1 AND 5),
   CodRecensione SERIAL PRIMARY KEY,
   CodBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE,
   CodUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
