@@ -40,13 +40,10 @@ CREATE TYPE tipoRaffinazione AS ENUM ('Pizzeria', 'Braceria', 'FastFood',
 				      'Museo', 'Parco Giochi', 'Piscina',
 				      'Bar/Lounge', 'Hotel', 'Bed&Breakfast',
 				      'Ostello', 'CasaVacanze' ,'Residence');
-CREATE TABLE Raffinazione(
-   nomeRaffinazione tipoRaffinazione PRIMARY KEY
-);
 
 CREATE TABLE AssociazioneRaffinazione(
   codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE,
-  raffinazione tipoRaffinazione REFERENCES Raffinazione(nomeRaffinazione)
+  raffinazione tipoRaffinazione
 );
 
 CREATE TABLE Recensione(

@@ -1,9 +1,11 @@
 package database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import errori.CodiceBusinessNonTrovatoException;
 import gestione.Controller;
 import oggetti.Locale;
 
@@ -39,5 +41,28 @@ public class BusinessDAO {
 		query.setInt(7, Integer.parseInt(codUtente));
 		
 		query.executeUpdate();
+	}
+	
+	public void inserisciRaffinazioni(String codBusiness, String raffinazioni) throws SQLException {
+		String sql = "CALL inserisciRaffinazioni(?,?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codBusiness));
+		query.setString(2, raffinazioni);
+		query.executeUpdate();
+	}
+	
+	public String recuperaCodiceBusinessDaPartitaIVA(String partitaIVA) throws SQLException, CodiceBusinessNonTrovatoException {
+		String sql = "SELECT recuperaCodBusiness(?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, partitaIVA);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		if(datiRecuperati.next())
+			return datiRecuperati.getString(1);
+		else
+			throw new CodiceBusinessNonTrovatoException();
+
 	}
 }

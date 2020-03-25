@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import database.BusinessDAO;
 import database.Connessione;
 import database.UtenteDAO;
+import errori.CodiceBusinessNonTrovatoException;
 import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
@@ -241,9 +242,15 @@ public class Controller {
 				if(!flagErrore) {
 					localeBuffer.setDescrizione(testoDescriviBusiness);
 					if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-						inserisciBusinessInDatabase();
-						schermataPrincipaleFrame.mostraPubblicaBusiness3();
-						pulisciPannelliPubblicaBusiness();
+						try {
+							inserisciBusinessInDatabase();
+							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA()), localeBuffer.getRaffinazioni());
+							schermataPrincipaleFrame.mostraPubblicaBusiness3();
+							pulisciPannelliPubblicaBusiness();
+						} catch (SQLException | CodiceBusinessNonTrovatoException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 		}
@@ -256,6 +263,16 @@ public class Controller {
 			return nuovaImmagine;
 		}
 		
+		public void inserisciRaffinazioniBusiness(String codBusiness, String raffinazioni) {
+			try {
+				business.inserisciRaffinazioni(codBusiness, raffinazioni);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		
 		//GESTISCI BUSINESS
 		public void controllaDocumentiUtente() {
