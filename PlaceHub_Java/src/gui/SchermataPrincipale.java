@@ -12,7 +12,6 @@ import gui.pannelliSchermataPrincipale.Ricerche;
 import gui.pannelliSchermataPrincipale.ScriviRecensione;
 import gui.pannelliSchermataPrincipale.SideBar;
 import gui.pannelliSchermataPrincipale.VerificaPubblicaBusiness;
-import oggetti.Locale;
 import res.ComponentResizer;
 
 import javax.swing.BorderFactory;
@@ -159,7 +158,7 @@ public class SchermataPrincipale extends JFrame {
 			pannelloRicerche.svuotaRicerche();
 		}
 		
-		public void addRisultatoRicerca(Locale risultatoRicerca) {
+		public void addRisultatoRicerca(LocaleGUI risultatoRicerca) {
 			pannelloRicerche.addRisultatoRicerca(risultatoRicerca);
 		}
 		

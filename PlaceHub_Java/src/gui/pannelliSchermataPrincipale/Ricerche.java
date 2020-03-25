@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
-import oggetti.Locale;
+import gui.LocaleGUI;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
 import javax.swing.GroupLayout;
@@ -56,7 +56,7 @@ public class Ricerche extends JPanel {
 	//METODI
 	
 	
-	public void addRisultatoRicerca(Locale risultatoRicerca) {
+	public void addRisultatoRicerca(LocaleGUI risultatoRicerca) {
 		pannelloRisultatoRicerca.add(risultatoRicerca);
 	}
 	

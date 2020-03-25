@@ -14,6 +14,7 @@ import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
 import gui.DialogConfermaRegistrazioneBusiness;
+import gui.LocaleGUI;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.DocumentiUtente;
@@ -173,19 +174,21 @@ public class Controller {
 	
 	
 	//SCHERMATA PRINCIPALE
-	public void generaRisultatiHomePage() {	
-		schermataPrincipaleFrame.svuotaRicerche();
-		
-		for (Locale locale : business.ricercaInVoga())
-			schermataPrincipaleFrame.addRisultatoRicerca(locale);
-	}
 	
-	public void generaRisultatiRistoranti() {
-		schermataPrincipaleFrame.svuotaRicerche();
+		//LOCALE
+		public void generaRisultatiHomePage() {	
+			schermataPrincipaleFrame.svuotaRicerche();
+			
+			for (Locale locale : business.ricercaInVoga())
+				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+		}
 		
-		for (Locale locale : business.ricercaRistoranti())
-			schermataPrincipaleFrame.addRisultatoRicerca(locale);
-	}
+		public void generaRisultatiRistoranti() {
+			schermataPrincipaleFrame.svuotaRicerche();
+			
+			for (Locale locale : business.ricercaRistoranti())
+				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+		}
 	
 	
 		//PUBBLICA BUSINESS 1
