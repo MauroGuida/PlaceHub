@@ -80,6 +80,7 @@ public class DialogConferma extends JDialog {
 		bottoneCancellaConfermaRegistrazione = new JButton("");
 		bottoneCancellaConfermaRegistrazione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				risposta = false;
 				dispose();
 			}
 		});

@@ -5,6 +5,7 @@ import java.io.File;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
+import javax.swing.JOptionPane;
 
 import database.BusinessDAO;
 import database.Connessione;
@@ -13,7 +14,6 @@ import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
-import gui.DialogConferma;
 import gui.LocaleGUI;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
@@ -235,10 +235,7 @@ public class Controller {
 
 				if(!flagErrore) {
 					localeBuffer.setDescrizione(testoDescriviBusiness);
-					DialogConferma dialogConferma = new DialogConferma();
-					dialogConferma.setLocationRelativeTo(schermataPrincipaleFrame);
-					dialogConferma.setVisible(true);
-					if(dialogConferma.getRisposta()) {
+					if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						inserisciBusinessInDatabase();
 						schermataPrincipaleFrame.mostraPubblicaBusiness3();
 						pulisciPannelliPubblicaBusiness();
