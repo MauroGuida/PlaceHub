@@ -1036,7 +1036,7 @@
 											"top": 463,
 											"width": 241.490234375,
 											"height": 13,
-											"text": "RaffinazioneTipo"
+											"text": "AssociazioneRaffinazione"
 										},
 										{
 											"_type": "LabelView",
@@ -1128,13 +1128,30 @@
 											"height": 13,
 											"text": "+CodBusiness",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFxEvnYhLivKL4=",
+											"_parent": {
+												"$ref": "AAAAAAFwtLZ4QeyCWec="
+											},
+											"model": {
+												"$ref": "AAAAAAFxEvnYQ7ip9Ss="
+											},
+											"font": "Arial;13;0",
+											"left": 373,
+											"top": 501,
+											"width": 241.490234375,
+											"height": 13,
+											"text": "+codBusiness",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 368,
 									"top": 481,
 									"width": 251.490234375,
-									"height": 23
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1147,7 +1164,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 368,
-									"top": 504,
+									"top": 519,
 									"width": 251.490234375,
 									"height": 10
 								},
@@ -1189,7 +1206,7 @@
 							"left": 368,
 							"top": 456,
 							"width": 251.490234375,
-							"height": 58,
+							"height": 73,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwtLZ4Qex9uVQ="
 							},
@@ -1342,7 +1359,7 @@
 										"$ref": "AAAAAAFwtLevz+3uyvg="
 									},
 									"edgePosition": 2,
-									"text": "*"
+									"text": "1"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3930,236 +3947,6 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAFwtNv9EpXmzHw="
 							}
-						},
-						{
-							"_type": "UMLClassView",
-							"_id": "AAAAAAFwtOQMIKXMkR8=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"model": {
-								"$ref": "AAAAAAFwtOQMH6XKvPI="
-							},
-							"subViews": [
-								{
-									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAFwtOQMIKXN9sc=",
-									"_parent": {
-										"$ref": "AAAAAAFwtOQMIKXMkR8="
-									},
-									"model": {
-										"$ref": "AAAAAAFwtOQMH6XKvPI="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFwtOQMIKXOh20=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXN9sc="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -208,
-											"top": 64,
-											"height": 13
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFwtOQMIKXPvNA=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXN9sc="
-											},
-											"font": "Arial;13;1",
-											"left": 405,
-											"top": 343,
-											"width": 208.97119140625,
-											"height": 13,
-											"text": "Associazione_Raffinazione"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFwtOQMIKXQFA0=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXN9sc="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -208,
-											"top": 64,
-											"width": 73.67724609375,
-											"height": 13,
-											"text": "(from Model)"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAFwtOQMIKXRb4s=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXN9sc="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": -208,
-											"top": 64,
-											"height": 13,
-											"horizontalAlignment": 1
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 400,
-									"top": 336,
-									"width": 218.97119140625,
-									"height": 25,
-									"stereotypeLabel": {
-										"$ref": "AAAAAAFwtOQMIKXOh20="
-									},
-									"nameLabel": {
-										"$ref": "AAAAAAFwtOQMIKXPvNA="
-									},
-									"namespaceLabel": {
-										"$ref": "AAAAAAFwtOQMIKXQFA0="
-									},
-									"propertyLabel": {
-										"$ref": "AAAAAAFwtOQMIKXRb4s="
-									}
-								},
-								{
-									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAFwtOQMIKXSgVA=",
-									"_parent": {
-										"$ref": "AAAAAAFwtOQMIKXMkR8="
-									},
-									"model": {
-										"$ref": "AAAAAAFwtOQMH6XKvPI="
-									},
-									"subViews": [
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFwtOYHlbH55FI=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXSgVA="
-											},
-											"model": {
-												"$ref": "AAAAAAFwtOYHVLHhbOk="
-											},
-											"font": "Arial;13;0",
-											"left": 405,
-											"top": 366,
-											"width": 208.97119140625,
-											"height": 13,
-											"text": "+Raffinazione: Enum TipiAffinazione",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFwtOYdfbLSNTw=",
-											"_parent": {
-												"$ref": "AAAAAAFwtOQMIKXSgVA="
-											},
-											"model": {
-												"$ref": "AAAAAAFwtOYdZrK6JUU="
-											},
-											"font": "Arial;13;0",
-											"left": 405,
-											"top": 381,
-											"width": 208.97119140625,
-											"height": 13,
-											"text": "+CodBusiness",
-											"horizontalAlignment": 0
-										}
-									],
-									"font": "Arial;13;0",
-									"left": 400,
-									"top": 361,
-									"width": 218.97119140625,
-									"height": 38
-								},
-								{
-									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAFwtOQMIKXTeR0=",
-									"_parent": {
-										"$ref": "AAAAAAFwtOQMIKXMkR8="
-									},
-									"model": {
-										"$ref": "AAAAAAFwtOQMH6XKvPI="
-									},
-									"font": "Arial;13;0",
-									"left": 400,
-									"top": 399,
-									"width": 218.97119140625,
-									"height": 10
-								},
-								{
-									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAFwtOQMIKXUvbE=",
-									"_parent": {
-										"$ref": "AAAAAAFwtOQMIKXMkR8="
-									},
-									"model": {
-										"$ref": "AAAAAAFwtOQMH6XKvPI="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"left": -104,
-									"top": 32,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAFwtOQMIKXV1Xc=",
-									"_parent": {
-										"$ref": "AAAAAAFwtOQMIKXMkR8="
-									},
-									"model": {
-										"$ref": "AAAAAAFwtOQMH6XKvPI="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"left": -104,
-									"top": 32,
-									"width": 10,
-									"height": 10
-								}
-							],
-							"font": "Arial;13;0",
-							"containerChangeable": true,
-							"left": 400,
-							"top": 336,
-							"width": 218.97119140625,
-							"height": 73,
-							"nameCompartment": {
-								"$ref": "AAAAAAFwtOQMIKXN9sc="
-							},
-							"attributeCompartment": {
-								"$ref": "AAAAAAFwtOQMIKXSgVA="
-							},
-							"operationCompartment": {
-								"$ref": "AAAAAAFwtOQMIKXTeR0="
-							},
-							"receptionCompartment": {
-								"$ref": "AAAAAAFwtOQMIKXUvbE="
-							},
-							"templateParameterCompartment": {
-								"$ref": "AAAAAAFwtOQMIKXV1Xc="
-							}
-						},
-						{
-							"_type": "UMLAssociationClassLinkView",
-							"_id": "AAAAAAFwtOZnebQ+evA=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"model": {
-								"$ref": "AAAAAAFwtOZnebQ9DcY="
-							},
-							"font": "Arial;13;0",
-							"head": {
-								"$ref": "AAAAAAFwtLevz+3uyvg="
-							},
-							"tail": {
-								"$ref": "AAAAAAFwtOQMIKXMkR8="
-							},
-							"points": "619:368;664:368;664:481;680:481"
 						}
 					]
 				},
@@ -4187,7 +3974,7 @@
 								"reference": {
 									"$ref": "AAAAAAFwtI8l6ONfqBw="
 								},
-								"multiplicity": "*"
+								"multiplicity": "1"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
@@ -4304,7 +4091,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
-							"name": "stelle"
+							"name": "stelle",
+							"type": ""
 						}
 					]
 				},
@@ -4496,7 +4284,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "RaffinazioneTipo",
+					"name": "AssociazioneRaffinazione",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -4515,6 +4303,14 @@
 							},
 							"name": "CodBusiness",
 							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFxEvnYQ7ip9Ss=",
+							"_parent": {
+								"$ref": "AAAAAAFwtLZ4Qex6pXA="
+							},
+							"name": "codBusiness"
 						}
 					]
 				},
@@ -4959,7 +4755,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFxEkP3Z2k31u8="
 							},
-							"name": "Immagine"
+							"name": "Immagine",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
