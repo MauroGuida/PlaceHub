@@ -95,7 +95,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 
 	private void generaTestoErroreCampiVuoti() {
-		testoErrori = new JLabel("Non possono esserci campi vuoti");
+		testoErrori = new JLabel("ERRORI");
 		testoErrori.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErrori.setForeground(Color.RED);
 		testoErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
@@ -439,6 +439,11 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	public void mostraErroreCampiVuoti() {
 		testoErrori.setText("Non possono esserci campi vuoti");
+		testoErrori.setVisible(true);
+	}
+	
+	public void mostraErroreNumeroDiTelefono() {
+		testoErrori.setText("Il numero di telefono non e' valido");
 		testoErrori.setVisible(true);
 	}
 	

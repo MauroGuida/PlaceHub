@@ -168,6 +168,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.mostraErroreCampiVuoti();
 		}
 		
+		public void mostraErroreNumeroDiTelefonoPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.mostraErroreNumeroDiTelefono();
+		}
+		
 		public void mostraErroreTipologiaVuotaPubblicaBusiness1() {
 			pannelloPubblicaBusiness1.mostraErroreTipologiaVuota();
 		}

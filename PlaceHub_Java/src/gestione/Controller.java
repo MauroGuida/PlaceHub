@@ -210,6 +210,11 @@ public class Controller {
 				flagErrore = true;
 			}
 			
+			if(telefono.length()!=10) {
+				schermataPrincipaleFrame.mostraErroreNumeroDiTelefonoPubblicaBusiness1();
+				flagErrore = true;
+			}
+			
 			if(!flagErrore) {
 				localeBuffer = new Locale(null, nomeBusiness, indirizzo, telefono, partitaIVA, null, tipoBusiness, raffinazioni);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
