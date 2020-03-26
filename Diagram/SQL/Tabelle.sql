@@ -38,7 +38,7 @@ CREATE TYPE tipoRaffinazione AS ENUM ('Pizzeria', 'Braceria', 'FastFood',
 				      'Taverna', 'Trattoria', 'Pesce',
 				      'Cinema', 'Shopping','Monumento',
 				      'Museo', 'Parco Giochi', 'Piscina',
-				      'Bar/Lounge', 'Hotel', 'Bed&Breakfast',
+				      'Lounge', 'Hotel', 'Bed&Breakfast',
 				      'Ostello', 'CasaVacanze' ,'Residence');
 
 CREATE TABLE AssociazioneRaffinazione(

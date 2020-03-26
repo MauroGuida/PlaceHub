@@ -16,7 +16,7 @@ ALTER TABLE Business
 ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoTroppoCorto CHECK(LENGTH(Telefono) = 10);
 
-ALTER TABLE PartitaIVA
+ALTER TABLE Business
   ADD CONSTRAINT lunghezzaPartitaIVA CHECK(LENGTH(PartitaIVA) = 11);
 
 ALTER TABLE Utente
@@ -32,7 +32,7 @@ BEGIN
 	FOR raff IN SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = NEW.codBusiness
 	LOOP
 		IF raff.raffinazione NOT IN ('Pizzeria', 'Braceria', 'FastFood',
-				      	     'Paninoteca', 'Osteria', 'Tavola Calda', 
+				      	     'Paninoteca', 'Osteria', 'Tavola Calda',
 						'Taverna','Trattoria', 'Pesce') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
@@ -104,4 +104,3 @@ EXECUTE PROCEDURE checkRaffinazioneAttrazioni();
 
 
 ------------
-

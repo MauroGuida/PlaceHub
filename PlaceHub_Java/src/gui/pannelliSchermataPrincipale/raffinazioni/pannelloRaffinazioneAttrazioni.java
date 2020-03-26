@@ -16,7 +16,7 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private JCheckBox checkBoxPiscina;
 	private JCheckBox checkBoxShopping;
 	private JCheckBox checkBoxParcoGiochi;
-	private JCheckBox checkBoxBar_Lounge;
+	private JCheckBox checkBoxLounge;
 	private JCheckBox checkBoxMonumento;
 	
 	@Override
@@ -33,8 +33,8 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 			raffinazioni = raffinazioni.concat("Shopping,");
 		if(checkBoxParcoGiochi.isSelected())
 			raffinazioni = raffinazioni.concat("ParcoGiochi,");
-		if(checkBoxBar_Lounge.isSelected())
-			raffinazioni = raffinazioni.concat("Bar/Lounge,");
+		if(checkBoxLounge.isSelected())
+			raffinazioni = raffinazioni.concat("Lounge,");
 		if(checkBoxMonumento.isSelected())
 			raffinazioni = raffinazioni.concat("Monumento,");
 		
@@ -72,12 +72,12 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	}
 
 	private void generaCheckBoxBar_Lounge() {
-		checkBoxBar_Lounge = new JCheckBox("Bar/Lounge");
-		checkBoxBar_Lounge.setBackground(Color.WHITE);
-		checkBoxBar_Lounge.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxBar_Lounge.setBounds(378, 35, 129, 23);
-		checkBoxBar_Lounge.setFocusPainted(false);
-		add(checkBoxBar_Lounge);
+		checkBoxLounge = new JCheckBox("Lounge");
+		checkBoxLounge.setBackground(Color.WHITE);
+		checkBoxLounge.setFont(new Font("Roboto", Font.PLAIN, 16));
+		checkBoxLounge.setBounds(378, 35, 129, 23);
+		checkBoxLounge.setFocusPainted(false);
+		add(checkBoxLounge);
 	}
 
 	private void generaCheckBoxParcoGiochi() {
@@ -128,7 +128,7 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 	//Metodi
 
 	public void rimuoviTutteLeSpunte() {
-		checkBoxBar_Lounge.setSelected(false);
+		checkBoxLounge.setSelected(false);
 		checkBoxCinema.setSelected(false);
 		checkBoxMonumento.setSelected(false);
 		checkBoxMuseo.setSelected(false);
