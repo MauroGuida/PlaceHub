@@ -275,10 +275,9 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldPartitaIVA.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || 
-					(e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z')) &&
-                    textFieldPartitaIVA.getText().length() <= 10)
-						|| e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_DELETE)
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
+						&& textFieldPartitaIVA.getText().length() <= 10) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textFieldPartitaIVA.setEditable(true);
 				else
 					textFieldPartitaIVA.setEditable(false);

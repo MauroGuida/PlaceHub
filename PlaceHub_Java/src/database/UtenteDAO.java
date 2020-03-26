@@ -26,10 +26,11 @@ public class UtenteDAO {
 		query.setString(1, Username);
 		query.setString(2, new String(Password));
 		ResultSet datiRecuperati = query.executeQuery();
-			
-		if(datiRecuperati.next())
-			codUtente = datiRecuperati.getString(1);
-		else
+		
+		datiRecuperati.next();
+		codUtente = datiRecuperati.getString(1);
+		
+		if(codUtente == null || codUtente.isBlank() || codUtente.isEmpty())
 			throw new UsernameOPasswordErratiException();
 	}
 	

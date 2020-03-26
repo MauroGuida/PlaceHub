@@ -102,11 +102,6 @@ BEGIN
 END;
 $$;
 
-
-
----------------------------------------------------
-
-
 --PROCEDURES ASSOCIAZIONE IMMAGINI A BUSINESS
 CREATE OR REPLACE PROCEDURE inserisciImmaginiABusiness(INTEGER, VARCHAR(1000))
 LANGUAGE plpgsql
@@ -116,7 +111,6 @@ BEGIN
   VALUES ( $1, $2);
 END;
 $$;
-
 
 
 --FUNZIONE RECUPERO CODICE BUSINESS
@@ -131,7 +125,6 @@ BEGIN
 	RETURN codiceBusiness;
 END;
 $$  LANGUAGE plpgsql;
-
 
 
 --INSERIMENTO RAFFINAZIONI
@@ -162,11 +155,11 @@ END;
 $$;
 
 
-
+--FUNZIONE INSTR PER POSTGRESQL
 create or replace function instr(str text, sub text, startpos int, occurrence int)
 returns int language plpgsql
 as $$
-declare 
+declare
     tail text;
     shift int;
     pos int;
@@ -197,5 +190,3 @@ begin
         return length(str)- length(sub)- pos- shift+ 3;
     end if;
 end $$;
-
-

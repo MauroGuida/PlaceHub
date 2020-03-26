@@ -201,7 +201,7 @@ public class Controller {
 			boolean flagErrore = false;
 			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
 			if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || indirizzo.isBlank() || indirizzo.isEmpty() ||
-			   telefono.isBlank() || telefono.isEmpty() || partitaIVA.isBlank() || partitaIVA.isEmpty()) {
+					telefono.isBlank() || telefono.isEmpty() || partitaIVA.isBlank() || partitaIVA.isEmpty()) {
 				schermataPrincipaleFrame.mostraErroreCampiVuotiPubblicaBusiness1();
 				flagErrore = true;
 			}
@@ -316,8 +316,8 @@ public class Controller {
 		
 		private void caricaDocumentiInDatabase() {
 			try {
-				utente.inserisciDocumentiUtente(utente.getcodUtente(), bufferDocumenti.getFronteDocumento(), 
-												bufferDocumenti.getRetroDocumento());
+				utente.inserisciDocumentiUtente(utente.getcodUtente(), bufferDocumenti.getFronteDocumento(),
+						bufferDocumenti.getRetroDocumento());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
