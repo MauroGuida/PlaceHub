@@ -52,6 +52,15 @@ public class BusinessDAO {
 		query.executeUpdate();
 	}
 	
+	public void inserisciImmagine(String codBusiness, String immagine) throws SQLException {
+		String sql = "CALL inserisciImmaginiABusiness(?,?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codBusiness));
+		query.setString(2, immagine);
+		query.executeUpdate();
+	}
+	
 	public String recuperaCodiceBusinessDaPartitaIVA(String partitaIVA) throws SQLException, CodiceBusinessNonTrovatoException {
 		String sql = "SELECT recuperaCodBusiness(?)";
 		PreparedStatement query;

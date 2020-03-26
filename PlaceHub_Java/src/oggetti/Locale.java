@@ -1,6 +1,5 @@
 package oggetti;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class Locale {
@@ -15,8 +14,8 @@ public class Locale {
 	private String tipoBusiness;
 	private String raffinazioni;
 	
-	private ArrayList<File> listaImmagini;
-	
+	private ArrayList<String> listaImmagini;
+
 	public Locale(String codBusiness, String nome, String indirizzo,
 				  String telefono, String partitaIVA, String descrizione, String tipoBusiness, String raffinazioni) {
 		this.codBusiness = codBusiness;
@@ -27,7 +26,7 @@ public class Locale {
 		this.descrizione = descrizione;
 		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
-		listaImmagini = new ArrayList<File>();
+		listaImmagini = new ArrayList<String>();
 	}
 
 	
@@ -97,6 +96,10 @@ public class Locale {
 	public String getRaffinazioni() {
 		return raffinazioni;
 	}
+	
+	public ArrayList<String> getListaImmagini() {
+		return listaImmagini;
+	}
 
 	
 	
@@ -104,7 +107,7 @@ public class Locale {
 	
 	
 	public void aggiungiImmagini(String filePath) {
-		listaImmagini.add(new File(filePath));
+		listaImmagini.add(new String(filePath));
 	}
 
 	public int getNumeroImmagini() {

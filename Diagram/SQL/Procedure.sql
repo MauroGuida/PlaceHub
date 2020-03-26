@@ -107,8 +107,8 @@ CREATE OR REPLACE PROCEDURE inserisciImmaginiABusiness(INTEGER, VARCHAR(1000))
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  INSERT INTO ImmagineProprieta
-  VALUES ( $1, $2);
+  INSERT INTO ImmagineProprieta(codBusiness, Url)
+  VALUES($1, $2);
 END;
 $$;
 

@@ -255,6 +255,7 @@ public class Controller {
 						try {
 							inserisciBusinessInDatabase();
 							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA()), localeBuffer.getRaffinazioni());
+							inserisciListaImmaginiInDatabase();
 							schermataPrincipaleFrame.mostraPubblicaBusiness3();
 							pulisciPannelliPubblicaBusiness();
 						} catch (SQLException | CodiceBusinessNonTrovatoException e) {
@@ -263,6 +264,18 @@ public class Controller {
 						}
 					}
 				}
+		}
+		
+		public void inserisciListaImmaginiInDatabase() {
+			try {
+				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA());
+				
+				for(String immagine: localeBuffer.getListaImmagini()) {
+					business.inserisciImmagine(codBusiness, immagine);
+				}
+			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		public File caricaImmagineLocale() {
