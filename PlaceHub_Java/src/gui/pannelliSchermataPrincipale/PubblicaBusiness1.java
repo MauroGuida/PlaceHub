@@ -19,6 +19,8 @@ import gui.SchermataPrincipale;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -52,6 +54,12 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoErroreTipologiaVuota;
 	
 	public PubblicaBusiness1(Controller ctrl) {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				pulisciPannello();
+			}
+		});
 		
 		this.ctrl = ctrl;
 		setLayout(null);
@@ -395,12 +403,22 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldIndirizzo.setText("");
 		textFieldTelefono.setText("");
 		textFieldPartitaIVA.setText("");
+		
 		bottoneRistorante.setSelected(false);
 		bottoneAttrazioni.setSelected(false);
 		bottoneAlloggio.setSelected(false);
+		
+		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
+		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
+		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
+		
 		pannelloRaffRistorante.rimuoviTutteLeSpunte();
 		pannelloRaffAttrazioni.rimuoviTutteLeSpunte();
 		pannelloRaffAlloggi.rimuoviTutteLeSpunte();
+		
+		pannelloRaffAlloggi.setVisible(false);
+		pannelloRaffAttrazioni.setVisible(false);
+		pannelloRaffRistorante.setVisible(false);
 	}
 	
 	private void cambiaIconeGestisciBusiness1(int flag) {

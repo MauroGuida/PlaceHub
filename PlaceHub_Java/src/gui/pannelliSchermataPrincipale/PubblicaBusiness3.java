@@ -27,7 +27,6 @@ public class PubblicaBusiness3 extends JPanel {
 	private JButton bottoneOK;
 
 	public PubblicaBusiness3() {
-		
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);

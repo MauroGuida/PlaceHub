@@ -257,9 +257,7 @@ public class Controller {
 							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA()), localeBuffer.getRaffinazioni());
 							inserisciListaImmaginiInDatabase();
 							schermataPrincipaleFrame.mostraPubblicaBusiness3();
-							pulisciPannelliPubblicaBusiness();
 						} catch (SQLException | CodiceBusinessNonTrovatoException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -369,11 +367,6 @@ public class Controller {
 		
 		
 		//CONFERMA REGISTRAZIONE BUSINESS
-		public void pulisciPannelliPubblicaBusiness() {
-			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness1();
-			schermataPrincipaleFrame.pulisciPannelloPubblicaBusiness2();
-		}
-		
 		public void inserisciBusinessInDatabase() {
 			try {
 				business.inserisciBusiness(localeBuffer, utente.getcodUtente());

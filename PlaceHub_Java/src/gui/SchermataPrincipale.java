@@ -28,7 +28,6 @@ public class SchermataPrincipale extends JFrame {
 	private Bottoni pannelloBottoni;
 	private SideBar pannelloSideBar;
 	
-	
 	private ScriviRecensione pannelloScriviRecensione;
 	
 	private Ricerche pannelloRicerche;

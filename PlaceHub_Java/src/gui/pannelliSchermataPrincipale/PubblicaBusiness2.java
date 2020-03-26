@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -27,6 +28,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -35,7 +38,7 @@ public class PubblicaBusiness2 extends JPanel {
 	private JTextArea textAreaDescriviBusiness;
 	private JLabel testoTrascinaImmagini;
 	private JLabel iconaImmagine;
-	private JButton bottoneIndietro;
+	private JButton bottoneCancella;
 	private JButton bottoneAvanti;
 	private JLabel testoErroreInserisciDescrizione;
 	private JLabel testoErroreInserisciImmagine;
@@ -45,6 +48,12 @@ public class PubblicaBusiness2 extends JPanel {
 	private Controller ctrl;
 	
 	 public PubblicaBusiness2(Controller ctrl) {
+	 	addComponentListener(new ComponentAdapter() {
+	 		@Override
+	 		public void componentHidden(ComponentEvent e) {
+	 			pulisciPannello();
+	 		}
+	 	});
 
 		this.ctrl = ctrl;
 		setLayout(null);
@@ -57,7 +66,7 @@ public class PubblicaBusiness2 extends JPanel {
 		
 		generaAggiungiImmagine();
 		
-		generaBottoneIndietro();
+		generaBottoneCancella();
 		generaBottoneAvanti();
 		
 		generaTestoErroreInserisciDescrizione();
@@ -127,30 +136,32 @@ public class PubblicaBusiness2 extends JPanel {
 		add(bottoneAvanti);
 	}
 	
-	private void generaBottoneIndietro() {
-		bottoneIndietro = new JButton("");
-		bottoneIndietro.addActionListener(new ActionListener() {
+	private void generaBottoneCancella() {
+		bottoneCancella = new JButton("");
+		bottoneCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Controller.getSchermataPrincipaleFrame().mostraPubblicaBusiness1();
+				if(JOptionPane.showConfirmDialog(null, "Annullando perderai tutte le modifiche fatte, vuoi procedere?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					Controller.getSchermataPrincipaleFrame().mostraHomepage();
+				}
 			}
 		});
-		bottoneIndietro.setBounds(27, 540, 140, 50);
-		bottoneIndietro.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
-		bottoneIndietro.setOpaque(false);
-		bottoneIndietro.setContentAreaFilled(false);
-		bottoneIndietro.setBorderPainted(false);
-		bottoneIndietro.setFocusPainted(false);
-		bottoneIndietro.addMouseListener(new MouseAdapter() {
+		bottoneCancella.setBounds(27, 540, 140, 50);
+		bottoneCancella.setIcon(new ImageIcon(PubblicaBusiness2.class.getResource("/Icone/bottoneCancella.png")));
+		bottoneCancella.setOpaque(false);
+		bottoneCancella.setContentAreaFilled(false);
+		bottoneCancella.setBorderPainted(false);
+		bottoneCancella.setFocusPainted(false);
+		bottoneCancella.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bottoneIndietro.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButtonFocus.png")));
+				bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancellaFocus.png")));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bottoneIndietro.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/IndietroButton.png")));
+				bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
 			}
 		});
-		add(bottoneIndietro);
+		add(bottoneCancella);
 	}
 
 	private void generaAggiungiImmagine() {
@@ -204,8 +215,11 @@ public class PubblicaBusiness2 extends JPanel {
 		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textAreaDescriviBusiness.setText("");
-				textAreaDescriviBusiness.setForeground(Color.BLACK);
+				if((textAreaDescriviBusiness.getText().isEmpty() || textAreaDescriviBusiness.getText().isBlank()) ||
+						textAreaDescriviBusiness.getText().equals("Scrivi qui! MAX(2000 caratteri)")) {
+					textAreaDescriviBusiness.setText("");
+					textAreaDescriviBusiness.setForeground(Color.BLACK);
+				}
 			}
 		});
 		add(textAreaDescriviBusiness);
