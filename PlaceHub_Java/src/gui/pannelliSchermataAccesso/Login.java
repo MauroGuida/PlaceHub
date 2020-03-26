@@ -81,6 +81,13 @@ public class Login extends JPanel {
 		passwordFieldPasswordLogin.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& passwordFieldPasswordLogin.getPassword().length <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					passwordFieldPasswordLogin.setEditable(true);
+				else
+					passwordFieldPasswordLogin.setEditable(false);
+				
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				      eseguiLogin();
 				   }
@@ -106,6 +113,17 @@ public class Login extends JPanel {
 		add(testoUsernamePannelloLogin);
 		
 		textFieldUsernameLogin = new JTextField();
+		textFieldUsernameLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldUsernameLogin.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldUsernameLogin.setEditable(true);
+				else
+					textFieldUsernameLogin.setEditable(false);
+			}
+		});
 		textFieldUsernameLogin.setBounds(80, 247, 383, 32);
 		textFieldUsernameLogin.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldUsernameLogin.setBackground(new Color(255,255,255));

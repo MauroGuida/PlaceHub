@@ -84,6 +84,13 @@ public class ReimpostaPassword2 extends JPanel {
 		passwordFieldConfermaNuovaPasswordReimpostaPassword2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& passwordFieldConfermaNuovaPasswordReimpostaPassword2.getPassword().length <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					passwordFieldConfermaNuovaPasswordReimpostaPassword2.setEditable(true);
+				else
+					passwordFieldConfermaNuovaPasswordReimpostaPassword2.setEditable(false);
+				
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					confermaNuovaPasswordReimpostaPassword();
 				}
@@ -108,6 +115,17 @@ public class ReimpostaPassword2 extends JPanel {
 		add(testoNuovaPasswordReimpostaPassword2);
 		
 		passwordFieldNuovaPasswordReimpostaPassword2 = new JPasswordField();
+		passwordFieldNuovaPasswordReimpostaPassword2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& passwordFieldNuovaPasswordReimpostaPassword2.getPassword().length <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					passwordFieldNuovaPasswordReimpostaPassword2.setEditable(true);
+				else
+					passwordFieldNuovaPasswordReimpostaPassword2.setEditable(false);
+			}
+		});
 		passwordFieldNuovaPasswordReimpostaPassword2.setBounds(80, 308, 383, 32);
 		passwordFieldNuovaPasswordReimpostaPassword2.setFont(new Font("Roboto", Font.PLAIN, 17));
 		passwordFieldNuovaPasswordReimpostaPassword2.setBackground(new Color(255,255,255));

@@ -124,6 +124,13 @@ public class ReimpostaPassword1 extends JPanel {
 		textFieldEmailReimpostaPassword1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldEmailReimpostaPassword1.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldEmailReimpostaPassword1.setEditable(true);
+				else
+					textFieldEmailReimpostaPassword1.setEditable(false);
+				
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) 
 					invioCodiceReimpostaPassword();
 			}

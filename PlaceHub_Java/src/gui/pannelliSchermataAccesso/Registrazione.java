@@ -104,6 +104,13 @@ public class Registrazione extends JPanel {
 		passwordFieldRegistrazione.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& passwordFieldRegistrazione.getPassword().length <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					passwordFieldRegistrazione.setEditable(true);
+				else
+					passwordFieldRegistrazione.setEditable(false);
+				
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 					eseguiRegistrazione();
 			}
@@ -161,6 +168,17 @@ public class Registrazione extends JPanel {
 		add(testoEmailRegistrazione);
 		
 		textFieldEmailRegistrazione = new JTextField();
+		textFieldEmailRegistrazione.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldEmailRegistrazione.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldEmailRegistrazione.setEditable(true);
+				else
+					textFieldEmailRegistrazione.setEditable(false);
+			}
+		});
 		textFieldEmailRegistrazione.setBounds(80, 351, 383, 32);
 		textFieldEmailRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldEmailRegistrazione.setBackground(new Color(255,255,255));
@@ -208,6 +226,17 @@ public class Registrazione extends JPanel {
 		add(testoCognomeRegistrazione);
 		
 		textFieldCognomeRegistrazione = new JTextField();
+		textFieldCognomeRegistrazione.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldCognomeRegistrazione.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldCognomeRegistrazione.setEditable(true);
+				else
+					textFieldCognomeRegistrazione.setEditable(false);
+			}
+		});
 		textFieldCognomeRegistrazione.setBounds(80, 205, 383, 32);
 		textFieldCognomeRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldCognomeRegistrazione.setBackground(new Color(255,255,255));
@@ -228,6 +257,17 @@ public class Registrazione extends JPanel {
 		add(testoNomeRegistrazione);
 		
 		textFieldNomeRegistrazione = new JTextField();
+		textFieldNomeRegistrazione.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldNomeRegistrazione.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldNomeRegistrazione.setEditable(true);
+				else
+					textFieldNomeRegistrazione.setEditable(false);
+			}
+		});
 		textFieldNomeRegistrazione.setBounds(80, 134, 383, 32);
 		textFieldNomeRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldNomeRegistrazione.setBackground(new Color(255,255,255));
@@ -248,6 +288,17 @@ public class Registrazione extends JPanel {
 		add(testoUsernamePannelloRegistrazione);
 		
 		textFieldUsernameRegistrazione = new JTextField();
+		textFieldUsernameRegistrazione.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textFieldUsernameRegistrazione.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldUsernameRegistrazione.setEditable(true);
+				else
+					textFieldUsernameRegistrazione.setEditable(false);
+			}
+		});
 		textFieldUsernameRegistrazione.setBounds(80, 63, 383, 32);
 		textFieldUsernameRegistrazione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldUsernameRegistrazione.setBackground(new Color(255,255,255));

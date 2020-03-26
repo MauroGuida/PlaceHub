@@ -275,7 +275,7 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldPartitaIVA.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
 						&& textFieldPartitaIVA.getText().length() <= 10) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
 						e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textFieldPartitaIVA.setEditable(true);
@@ -299,6 +299,17 @@ public class PubblicaBusiness1 extends JPanel {
 		add(testoIndirizzo);
 		
 		textFieldIndirizzo = new JTextField();
+		textFieldIndirizzo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
+						&& textFieldIndirizzo.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldIndirizzo.setEditable(true);
+				else
+					textFieldIndirizzo.setEditable(false);
+			}
+		});
 		textFieldIndirizzo.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldIndirizzo.setBackground(new Color(255,255,255));
 		textFieldIndirizzo.setBorder(new LineBorder(new Color(255,255,255),1));
@@ -351,6 +362,17 @@ public class PubblicaBusiness1 extends JPanel {
 		add(testoNomeBusiness);
 		
 		textFieldNomeBusiness = new JTextField();
+		textFieldNomeBusiness.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
+						&& textFieldNomeBusiness.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textFieldNomeBusiness.setEditable(true);
+				else
+					textFieldNomeBusiness.setEditable(false);
+			}
+		});
 		textFieldNomeBusiness.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldNomeBusiness.setBackground(new Color(255,255,255));
 		textFieldNomeBusiness.setBorder(new LineBorder(new Color(255,255,255),1));

@@ -25,6 +25,8 @@ import res.ScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -179,6 +181,17 @@ public class PubblicaBusiness2 extends JPanel {
 		add(testoDescriviBusiness);
 		
 		textAreaDescriviBusiness = new JTextArea();
+		textAreaDescriviBusiness.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textAreaDescriviBusiness.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textAreaDescriviBusiness.setEditable(true);
+				else
+					textAreaDescriviBusiness.setEditable(false);
+			}
+		});
 		textAreaDescriviBusiness.setForeground(new Color(192, 192, 192));
 		textAreaDescriviBusiness.setBackground(new Color(255, 255, 255));
 		textAreaDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 17));
