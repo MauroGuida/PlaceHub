@@ -102,7 +102,7 @@ BEGIN
 END;
 $$;
 
---PROCEDURES ASSOCIAZIONE IMMAGINI A BUSINESS
+--PROCEDURE ASSOCIAZIONE IMMAGINI A BUSINESS
 CREATE OR REPLACE PROCEDURE inserisciImmaginiABusiness(INTEGER, VARCHAR(1000))
 LANGUAGE plpgsql
 AS $$
@@ -190,3 +190,50 @@ begin
         return length(str)- length(sub)- pos- shift+ 3;
     end if;
 end $$;
+
+
+--FUNZIONE RECUPERO IMMAGINI LOCALE
+CREATE OR REPLACE FUNCTION recuperaImmaginiLocale(INTEGER)
+RETURNS TABLE ( Url VARCHAR(1000) )
+AS $$
+BEGIN
+   RETURN QUERY SELECT Url,
+   		FROM ImmagineProprieta
+   		WHERE codBusiness = $1;
+END; 
+$$ LANGUAGE plpgsql;
+
+
+--FUNZIONE RECUPERO INFORMAZIONI LOCALE 
+CREATE OR REPLACE FUNCTION recuperaLocaleDaCodBusiness(INTEGER)
+RETURNS TABLE ( Nome VARCHAR(50),
+  		Indirizzo VARCHAR(100),
+		Telefono VARCHAR(10),
+  		PartitaIVA VARCHAR(100),
+		Descrizione VARCHAR(2000),
+  		tipo tipoBusiness )
+AS $$
+BEGIN
+   RETURN QUERY SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, tipo
+   		FROM Business
+   		WHERE codBusiness = $1;
+END; 
+$$ LANGUAGE plpgsql;
+
+
+--FUNZIONE RECUPERO RAFFINAZIONI LOCALE
+CREATE OR REPLACE FUNCTION recuperaRaffinazioniLocale(INTEGER)
+RETURNS TABLE ( raffinazione tipoRaffinazione )
+AS $$
+BEGIN
+    RETURN QUERY SELECT raffinazione,
+   		 FROM AssociazioneRaffinazione
+   		 WHERE codBusiness = $1 ;
+END; 
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+

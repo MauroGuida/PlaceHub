@@ -69,7 +69,7 @@ public class Locale {
 		this.tipoBusiness = tipoBusiness;
 	}
 	
-	public void setRaffinazini(String raffinazini) {
+	public void setRaffinazioni(String raffinazini) {
 		this.raffinazioni = raffinazini;
 	}
 

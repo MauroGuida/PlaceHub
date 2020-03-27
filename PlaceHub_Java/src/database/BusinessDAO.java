@@ -88,6 +88,7 @@ public class BusinessDAO {
 		datiRecuperati.next();
 		Locale risultato = new Locale();
 		
+		//Recupero Informazioni
 		risultato.setCodBusiness(codBusiness);
 		risultato.setNome(datiRecuperati.getString(1));
 		risultato.setIndirizzo(datiRecuperati.getString(2));
@@ -95,10 +96,8 @@ public class BusinessDAO {
 		risultato.setPartitaIVA(datiRecuperati.getString(4));
 		risultato.setDescrizione(datiRecuperati.getString(5));
 		risultato.setTipoBusiness(datiRecuperati.getString(6));
-		risultato.setRaffinazini(datiRecuperati.getString(7));
 
-		//Seconda query recupero immagini
-		
+		//Recupero Immagini
 		sql = "SELECT recuperaImmaginiLocale(?)";
 		PreparedStatement query2;
 		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -107,6 +106,21 @@ public class BusinessDAO {
 		
 		while(datiRecuperati2.next())
 			risultato.aggiungiImmagini(datiRecuperati2.getString(1));
+		
+		
+		//Recupero Raffinazioni
+		sql = "SELECT recuperaRaffinazioniLocale(?)";
+		PreparedStatement query3;
+		query3 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query3.setString(1, codBusiness);
+		ResultSet datiRecuperati3 = query3.executeQuery();
+		String raffinazioni = "";
+		
+		while(datiRecuperati3.next())
+			raffinazioni = raffinazioni.concat(datiRecuperati3.getString(1).concat(","));
+		
+		risultato.setRaffinazioni(raffinazioni);
+		
 		
 		return risultato;
 	}
