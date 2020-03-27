@@ -18,7 +18,7 @@ public class Locale {
 
 	public Locale(String codBusiness, String nome, String indirizzo,
 				  String telefono, String partitaIVA, String descrizione, String tipoBusiness, String raffinazioni) {
-		this.codBusiness = codBusiness;
+		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.telefono = telefono;
@@ -28,10 +28,18 @@ public class Locale {
 		this.raffinazioni = raffinazioni;
 		listaImmagini = new ArrayList<String>();
 	}
+	
+	public Locale() {
+		listaImmagini = new ArrayList<String>();
+	}
 
 	
 	//CANI
 
+	
+	public void setCodBusiness(String codBusiness) {
+		this.codBusiness = codBusiness;
+	}
 	
 	public void setNome(String nome) {
 		this.nome = nome;

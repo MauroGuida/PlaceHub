@@ -173,7 +173,7 @@ public class Registrazione extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
 						&& textFieldEmailRegistrazione.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
-						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+						e.getKeyCode() ==  KeyEvent.VK_DELETE  || e.getKeyChar() <= '.' || e.getKeyChar() <= '@')
 					textFieldEmailRegistrazione.setEditable(true);
 				else
 					textFieldEmailRegistrazione.setEditable(false);

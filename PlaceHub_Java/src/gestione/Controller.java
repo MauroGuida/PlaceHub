@@ -371,8 +371,18 @@ public class Controller {
 			try {
 				business.inserisciBusiness(localeBuffer, utente.getcodUtente());
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		//VISITA BUSINESS
+		public Locale recuperaDatiLocale(String codBusiness) {
+			try {
+				return business.recuperaLocaleDaCodBusiness(codBusiness);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return null;
 		}
 }

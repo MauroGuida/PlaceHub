@@ -68,10 +68,46 @@ public class BusinessDAO {
 		query.setString(1, partitaIVA);
 		ResultSet datiRecuperati = query.executeQuery();
 		
-		if(datiRecuperati.next())
-			return datiRecuperati.getString(1);
+		datiRecuperati.next();
+		String risultato = datiRecuperati.getString(1);
+		
+		if(!(risultato.isBlank() || risultato.isEmpty() || risultato == null))
+			return risultato;
 		else
 			throw new CodiceBusinessNonTrovatoException();
 
+	}
+	
+	public Locale recuperaLocaleDaCodBusiness(String codBusiness) throws SQLException {
+		String sql = "SELECT recuperaLocaleDaCodBusiness(?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, codBusiness);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		Locale risultato = new Locale();
+		
+		risultato.setCodBusiness(codBusiness);
+		risultato.setNome(datiRecuperati.getString(1));
+		risultato.setIndirizzo(datiRecuperati.getString(2));
+		risultato.setTelefono(datiRecuperati.getString(3));
+		risultato.setPartitaIVA(datiRecuperati.getString(4));
+		risultato.setDescrizione(datiRecuperati.getString(5));
+		risultato.setTipoBusiness(datiRecuperati.getString(6));
+		risultato.setRaffinazini(datiRecuperati.getString(7));
+
+		//Seconda query recupero immagini
+		
+		sql = "SELECT recuperaImmaginiLocale(?)";
+		PreparedStatement query2;
+		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query2.setString(1, codBusiness);
+		ResultSet datiRecuperati2 = query2.executeQuery();
+		
+		while(datiRecuperati2.next())
+			risultato.aggiungiImmagini(datiRecuperati2.getString(1));
+		
+		return risultato;
 	}
 }
