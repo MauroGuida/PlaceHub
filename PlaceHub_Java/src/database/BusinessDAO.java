@@ -79,7 +79,7 @@ public class BusinessDAO {
 	}
 	
 	public Locale recuperaLocaleDaCodBusiness(String codBusiness) throws SQLException {
-		String sql = "SELECT recuperaLocaleDaCodBusiness(?)";
+		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo FROM Business WHERE codBusiness = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, codBusiness);
@@ -99,7 +99,7 @@ public class BusinessDAO {
 		risultato.setTipoBusiness(datiRecuperati.getString(7));
 
 		//Recupero Immagini
-		sql = "SELECT recuperaImmaginiLocale(?)";
+		sql = "SELECT Url FROM ImmagineProprieta WHERE codBusiness = ?";
 		PreparedStatement query2;
 		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query2.setString(1, codBusiness);
@@ -110,7 +110,7 @@ public class BusinessDAO {
 		
 		
 		//Recupero Raffinazioni
-		sql = "SELECT recuperaRaffinazioniLocale(?)";
+		sql = "SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = ?";
 		PreparedStatement query3;
 		query3 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query3.setString(1, codBusiness);
@@ -129,9 +129,7 @@ public class BusinessDAO {
 	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
 		ArrayList<Locale> recuperato = new ArrayList<Locale>();
 		
-		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
-				"   		 FROM Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness)\r\n" + 
-				"   		 WHERE codUtente = ?";
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url FROM Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness) WHERE codUtente = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codUtente));

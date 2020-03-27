@@ -31,7 +31,7 @@ public class Ricerche extends JPanel {
 	    scorrimentoRisultati.setBackground(Color.WHITE);
 	    scorrimentoRisultati.setBorder(new LineBorder(Color.WHITE,1));
 	    
-	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    scorrimentoRisultati.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 	    scorrimentoRisultati.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
 	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
