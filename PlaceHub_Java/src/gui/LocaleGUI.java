@@ -33,8 +33,12 @@ public class LocaleGUI extends JPanel {
 	public LocaleGUI(Locale locale) {
 		this.locale = locale;
 		
-		//fileImmaginePrincipale DA locale a GUI
-		//Stelle da locale a GUI
+		fileImmaginePrincipale = new File(locale.getImmaginePrincipale());
+		try {
+			aggiungiStelle(Math.round(locale.getStelle()), false);
+		} catch (NumeroStelleNonValidoException e) {
+			e.printStackTrace();
+		}
 		
 		generaEsteticaPannello();
 		

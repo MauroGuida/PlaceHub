@@ -3,7 +3,7 @@ package oggetti;
 import java.util.ArrayList;
 
 public class Locale {
-	
+
 	@SuppressWarnings("unused")
 	private String codBusiness;
 	private String nome;
@@ -11,26 +11,45 @@ public class Locale {
 	private String telefono;
 	private String partitaIVA;
 	private String descrizione;
+	private float stelle;
 	private String tipoBusiness;
 	private String raffinazioni;
 	
-	private ArrayList<String> listaImmagini;
+	private ArrayList<String> listaImmagini = new ArrayList<String>();
 
+	public Locale(String nome, String indirizzo,
+				  String telefono, String partitaIVA,String tipoBusiness, String raffinazioni) {
+		this.nome = nome;
+		this.indirizzo = indirizzo;
+		this.telefono = telefono;
+		this.partitaIVA = partitaIVA;
+		this.tipoBusiness = tipoBusiness;
+		this.raffinazioni = raffinazioni;
+	}
+	
 	public Locale(String codBusiness, String nome, String indirizzo,
-				  String telefono, String partitaIVA, String descrizione, String tipoBusiness, String raffinazioni) {
+			  String telefono, String partitaIVA, String descrizione, float stelle, String tipoBusiness, String raffinazioni) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.telefono = telefono;
 		this.partitaIVA = partitaIVA;
 		this.descrizione = descrizione;
+		this.stelle = stelle;
 		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
-		listaImmagini = new ArrayList<String>();
+	}
+	
+	public Locale(String codBusiness, String nome, String indirizzo,
+			  float stelle, String immagine) {
+		this.setCodBusiness(codBusiness);
+		this.nome = nome;
+		this.indirizzo = indirizzo;
+		this.stelle = stelle;
+		listaImmagini.add(immagine);
 	}
 	
 	public Locale() {
-		listaImmagini = new ArrayList<String>();
 	}
 
 	
@@ -65,6 +84,10 @@ public class Locale {
 		this.descrizione = descrizione;
 	}
 
+	public void setStelle(float stelle) {
+		this.stelle = stelle;
+	}
+
 	public void setTipoBusiness(String tipoBusiness) {
 		this.tipoBusiness = tipoBusiness;
 	}
@@ -97,6 +120,10 @@ public class Locale {
 		return descrizione;
 	}
 	
+	public float getStelle() {
+		return stelle;
+	}
+	
 	public String getTipoBusiness() {
 		return tipoBusiness;
 	}
@@ -107,6 +134,10 @@ public class Locale {
 	
 	public ArrayList<String> getListaImmagini() {
 		return listaImmagini;
+	}
+	
+	public String getImmaginePrincipale() {
+		return listaImmagini.get(1);
 	}
 
 	

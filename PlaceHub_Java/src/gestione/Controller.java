@@ -227,7 +227,7 @@ public class Controller {
 			}
 			
 			if(!flagErrore) {
-				localeBuffer = new Locale(null, nomeBusiness, indirizzo, telefono, partitaIVA, null, tipoBusiness, raffinazioni);
+				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
@@ -307,6 +307,15 @@ public class Controller {
 				e.printStackTrace();
 			}
 				
+		}
+		
+		public void recuperaBusinessUtente() {
+			try {
+				for (Locale recuperato : business.recuperaBusinessDaCodUtente(utente.getcodUtente()))
+					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		

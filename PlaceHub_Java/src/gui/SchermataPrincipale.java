@@ -161,6 +161,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloRicerche.addRisultatoRicerca(risultatoRicerca);
 		}
 		
+	//Gestisci Business
+		public void aggiungiBusinessGestisciBusiness(LocaleGUI nuovo) {
+			pannelloGestisciBusiness.aggiungiBusiness(nuovo);
+		}
 		
 	//Gestione pannello PubblicaBusiness1
 		public void mostraErroreCampiVuotiPubblicaBusiness1() {

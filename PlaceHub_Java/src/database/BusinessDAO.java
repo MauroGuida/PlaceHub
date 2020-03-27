@@ -95,7 +95,8 @@ public class BusinessDAO {
 		risultato.setTelefono(datiRecuperati.getString(3));
 		risultato.setPartitaIVA(datiRecuperati.getString(4));
 		risultato.setDescrizione(datiRecuperati.getString(5));
-		risultato.setTipoBusiness(datiRecuperati.getString(6));
+		risultato.setStelle(datiRecuperati.getFloat(6));
+		risultato.setTipoBusiness(datiRecuperati.getString(7));
 
 		//Recupero Immagini
 		sql = "SELECT recuperaImmaginiLocale(?)";
@@ -123,5 +124,25 @@ public class BusinessDAO {
 		
 		
 		return risultato;
+	}
+	
+	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
+		ArrayList<Locale> recuperato = new ArrayList<Locale>();
+		
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
+				"   		 FROM Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness)\r\n" + 
+				"   		 WHERE codUtente = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codUtente));
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		
+			recuperato.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+					datiRecuperati.getString(5)));
+		
+		
+		return recuperato;
 	}
 }

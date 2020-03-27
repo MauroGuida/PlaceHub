@@ -197,14 +197,14 @@ CREATE OR REPLACE FUNCTION recuperaImmaginiLocale(INTEGER)
 RETURNS TABLE ( Url VARCHAR(1000) )
 AS $$
 BEGIN
-   RETURN QUERY SELECT Url,
+   RETURN QUERY SELECT Url
    		FROM ImmagineProprieta
    		WHERE codBusiness = $1;
-END; 
+END;
 $$ LANGUAGE plpgsql;
 
 
---FUNZIONE RECUPERO INFORMAZIONI LOCALE 
+--FUNZIONE RECUPERO INFORMAZIONI LOCALE
 CREATE OR REPLACE FUNCTION recuperaLocaleDaCodBusiness(INTEGER)
 RETURNS TABLE ( Nome VARCHAR(50),
   		Indirizzo VARCHAR(100),
@@ -218,7 +218,7 @@ BEGIN
    RETURN QUERY SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo
    		FROM Business
    		WHERE codBusiness = $1;
-END; 
+END;
 $$ LANGUAGE plpgsql;
 
 
@@ -227,26 +227,25 @@ CREATE OR REPLACE FUNCTION recuperaRaffinazioniLocale(INTEGER)
 RETURNS TABLE ( raffinazione tipoRaffinazione )
 AS $$
 BEGIN
-    RETURN QUERY SELECT raffinazione,
+    RETURN QUERY SELECT raffinazione
    		 FROM AssociazioneRaffinazione
    		 WHERE codBusiness = $1 ;
-END; 
+END;
 $$ LANGUAGE plpgsql;
 
 
 --FUNZIONE RECUPERO BUSINESS DI UTENTE
 CREATE OR REPLACE FUNCTION recuperaBusinessDaCodUtente(INTEGER)
-RETURNS TABLE ( codBusiness INTEGER,
+RETURNS TABLE (
+    codBusiness INTEGER,
 		Nome VARCHAR(50),
-  		Indirizzo VARCHAR(100),
+  	Indirizzo VARCHAR(100),
 		Stelle NUMERIC,
 		Url VARCHAR(1000) )
 AS $$
 BEGIN
-    RETURN QUERY SELECT DISTINCT codBusiness, Nome, Indirizzo, Stelle, Url
-   		 FROM Business NATURAL JOIN ImmagineProprieta
+    RETURN QUERY SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url
+   		 FROM Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness)
    		 WHERE codUtente = $1;
-END; 
+END;
 $$ LANGUAGE plpgsql;
-
-

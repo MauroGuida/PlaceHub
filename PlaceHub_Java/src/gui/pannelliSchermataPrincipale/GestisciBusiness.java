@@ -10,11 +10,17 @@ import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
+import gui.LocaleGUI;
 import res.ScrollPaneVerde;
+import res.WrapLayout;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.ScrollPaneConstants;
 
 public class GestisciBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +33,12 @@ public class GestisciBusiness extends JPanel {
 	private Controller ctrl;
 	
 	public GestisciBusiness(Controller Ctrl) {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				ctrl.recuperaBusinessUtente();
+			}
+		});
 		this.ctrl = Ctrl;
 		setSize(850, 614);
 		setBackground(Color.WHITE);
@@ -41,11 +53,14 @@ public class GestisciBusiness extends JPanel {
 
 	private void generaPannelloVisualizzazioneAttivitaInTuoPossesso() {
 		scrollPaneBusiness = new ScrollPaneVerde();
+		scrollPaneBusiness.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneBusiness.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		scrollPaneBusiness.setBounds(85, 125, 680, 250);
 		add(scrollPaneBusiness);
 		
 		pannelloVediBusiness = new JPanel();
+		pannelloVediBusiness.setLayout(new WrapLayout(WrapLayout.CENTER));
 		pannelloVediBusiness.setBounds(85, 125, 680, 250);
 		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
 	}
@@ -89,5 +104,9 @@ public class GestisciBusiness extends JPanel {
 
 	public void mostraPannelloVerifica_PubblicaBusiness1() {
 		ctrl.controllaDocumentiUtente();
+	}
+	
+	public void aggiungiBusiness(LocaleGUI nuovo) {
+		pannelloVediBusiness.add(nuovo);
 	}
 }
