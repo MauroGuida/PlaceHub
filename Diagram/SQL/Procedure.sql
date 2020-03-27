@@ -239,15 +239,12 @@ CREATE OR REPLACE FUNCTION recuperaBusinessDaCodUtente(INTEGER)
 RETURNS TABLE ( codBusiness INTEGER,
 		Nome VARCHAR(50),
   		Indirizzo VARCHAR(100),
-		Telefono VARCHAR(10),
-  		PartitaIVA VARCHAR(100),
-		Descrizione VARCHAR(2000),
 		Stelle NUMERIC,
-  		tipo tipoBusiness )
+		Url VARCHAR(1000) )
 AS $$
 BEGIN
-    RETURN QUERY SELECT codBusiness, Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo
-   		 FROM Business
+    RETURN QUERY SELECT DISTINCT codBusiness, Nome, Indirizzo, Stelle, Url
+   		 FROM Business NATURAL JOIN ImmagineProprieta
    		 WHERE codUtente = $1;
 END; 
 $$ LANGUAGE plpgsql;
