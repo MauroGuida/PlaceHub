@@ -46,7 +46,7 @@ public class Locale {
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.stelle = stelle;
-		listaImmagini.add(immagine);
+		listaImmagini.add(new String(immagine));
 	}
 	
 	public Locale() {
@@ -137,7 +137,7 @@ public class Locale {
 	}
 	
 	public String getImmaginePrincipale() {
-		return listaImmagini.get(1);
+		return listaImmagini.get(0);
 	}
 
 	

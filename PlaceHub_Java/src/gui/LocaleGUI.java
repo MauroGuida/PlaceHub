@@ -3,10 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,14 +23,11 @@ public class LocaleGUI extends JPanel {
 	private JLabel testoIndirizzo;
 	private JLabel labelImmaginePrincipale;
 	
-	private File fileImmaginePrincipale;
-	
 	private Locale locale;
 
 	public LocaleGUI(Locale locale) {
 		this.locale = locale;
 		
-		fileImmaginePrincipale = new File(locale.getImmaginePrincipale());
 		try {
 			aggiungiStelle(Math.round(locale.getStelle()), false);
 		} catch (NumeroStelleNonValidoException e) {
@@ -75,14 +69,13 @@ public class LocaleGUI extends JPanel {
 	}
 
 	private void generaImmaginePrincipale() {
+		labelImmaginePrincipale = new JLabel();
 		try {
-			Image immagine = new ImageIcon(ImageIO.read(fileImmaginePrincipale)).getImage();
+			Image immagine = new ImageIcon(locale.getImmaginePrincipale()).getImage();
 			Image immagineScalata = immagine.getScaledInstance(374, 180, java.awt.Image.SCALE_SMOOTH);
 			labelImmaginePrincipale.setIcon(new ImageIcon(immagineScalata));
-		} catch(IOException e) {
-			e.printStackTrace();
 		} catch(IndexOutOfBoundsException e) {
-			
+			e.printStackTrace();
 		}
 	}
 

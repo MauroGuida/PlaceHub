@@ -138,9 +138,9 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		datiRecuperati.next();
-		
-			recuperato.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
-					datiRecuperati.getString(5)));
+
+		recuperato.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+				datiRecuperati.getString(5)));
 		
 		
 		return recuperato;

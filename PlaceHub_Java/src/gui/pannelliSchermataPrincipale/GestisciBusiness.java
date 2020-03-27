@@ -37,6 +37,7 @@ public class GestisciBusiness extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent e) {
 				ctrl.recuperaBusinessUtente();
+				revalidate();
 			}
 		});
 		this.ctrl = Ctrl;
@@ -60,6 +61,7 @@ public class GestisciBusiness extends JPanel {
 		add(scrollPaneBusiness);
 		
 		pannelloVediBusiness = new JPanel();
+		pannelloVediBusiness.setBackground(Color.WHITE);
 		pannelloVediBusiness.setLayout(new WrapLayout(WrapLayout.CENTER));
 		pannelloVediBusiness.setBounds(85, 125, 680, 250);
 		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
