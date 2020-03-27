@@ -36,6 +36,7 @@ public class GestisciBusiness extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
+				pulisciPannello();
 				ctrl.recuperaBusinessUtente();
 				revalidate();
 			}
@@ -54,8 +55,9 @@ public class GestisciBusiness extends JPanel {
 
 	private void generaPannelloVisualizzazioneAttivitaInTuoPossesso() {
 		scrollPaneBusiness = new ScrollPaneVerde();
-		scrollPaneBusiness.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneBusiness.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneBusiness.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneBusiness.getVerticalScrollBar().setUnitIncrement(15);
 		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		scrollPaneBusiness.setBounds(85, 125, 680, 250);
 		add(scrollPaneBusiness);
@@ -104,6 +106,10 @@ public class GestisciBusiness extends JPanel {
 
 	//METODI
 
+	public void pulisciPannello() {
+		pannelloVediBusiness.removeAll();
+	}
+	
 	public void mostraPannelloVerifica_PubblicaBusiness1() {
 		ctrl.controllaDocumentiUtente();
 	}
