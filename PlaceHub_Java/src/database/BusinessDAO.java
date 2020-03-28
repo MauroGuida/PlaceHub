@@ -71,12 +71,13 @@ public class BusinessDAO {
 		datiRecuperati.next();
 		String risultato = datiRecuperati.getString(1);
 		
-		if(!(risultato.isBlank() || risultato.isEmpty() || risultato == null))
+		if(!(risultato == null || risultato.isEmpty() || risultato.isBlank()))
 			return risultato;
 		else
 			throw new CodiceBusinessNonTrovatoException();
-
 	}
+	
+	
 	
 	public Locale recuperaLocaleDaCodBusiness(String codBusiness) throws SQLException {
 		//Recupero Informazioni
@@ -142,4 +143,5 @@ public class BusinessDAO {
 		
 		return recuperato;
 	}
+
 }

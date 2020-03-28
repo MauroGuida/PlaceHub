@@ -40,8 +40,7 @@ public class Locale {
 		this.raffinazioni = raffinazioni;
 	}
 	
-	public Locale(String codBusiness, String nome, String indirizzo,
-			  float stelle, String immagine) {
+	public Locale(String codBusiness, String nome, String indirizzo, float stelle, String immagine) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;

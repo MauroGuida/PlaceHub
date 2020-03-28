@@ -226,6 +226,16 @@ public class Controller {
 				flagErrore = true;
 			}
 			
+			
+			try {
+				business.recuperaCodiceBusinessDaPartitaIVA(partitaIVA);
+				schermataPrincipaleFrame.mostraErrorePartitaIVAInUsoPubblicaBusiness1();
+				flagErrore = true;
+			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
+				
+			}
+			
+			
 			if(!flagErrore) {
 				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();

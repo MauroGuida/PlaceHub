@@ -190,3 +190,6 @@ begin
         return length(str)- length(sub)- pos- shift+ 3;
     end if;
 end $$;
+
+
+

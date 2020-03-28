@@ -513,6 +513,11 @@ public class PubblicaBusiness1 extends JPanel {
 		testoErrori.setVisible(true);
 	}
 	
+	public void mostraErrorePartitaIVAInUso() {
+		testoErrori.setText("La partita IVA inserita è già in uso");
+		testoErrori.setVisible(true);
+	}
+	
 	public void resettaVisibilitaErrori() {
 		testoErrori.setVisible(false);
 		testoErroreTipologiaVuota.setVisible(false);

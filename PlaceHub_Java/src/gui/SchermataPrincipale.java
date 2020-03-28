@@ -195,6 +195,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.mostraErrorePartitaIVA();
 		}
 		
+		public void mostraErrorePartitaIVAInUsoPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.mostraErrorePartitaIVAInUso();
+		}
+		
 	//Gestione pannello PubblicaBusiness2
 		public void resettaVisibilitaErroriPubblicaBusiness2() {
 			pannelloPubblicaBusiness2.resettaVisibilitaErrori();

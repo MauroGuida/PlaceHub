@@ -7,9 +7,6 @@ ALTER TABLE Recensione
 ALTER TABLE AssociazioneRaffinazione
 	ADD CONSTRAINT RaffinazioneUnica UNIQUE(codBusiness,raffinazione);
 
-ALTER TABLE ImmagineProprieta
-	ADD CONSTRAINT ImmagineUnica UNIQUE(Url,codBusiness);
-
 ALTER TABLE Business
   ADD CONSTRAINT NumeroDiTelefonoNonValido CHECK(Telefono ~ '^[0-9 ]*$');
 
