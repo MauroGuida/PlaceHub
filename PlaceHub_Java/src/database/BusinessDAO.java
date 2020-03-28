@@ -15,8 +15,10 @@ public class BusinessDAO {
 	public ArrayList<Locale> ricercaInVoga() throws SQLException {
 		locali.clear();
 
-		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
-				"FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness)";
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
+				"FROM Business B, ImmagineProprieta I " + 
+				"WHERE B.codBusiness = I.codBusiness AND " + 
+				"	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		ResultSet datiRecuperati = query.executeQuery();
@@ -53,9 +55,11 @@ public class BusinessDAO {
 	}
 	
 	public void recuperaLocaliDaTipo(String tipo) throws SQLException {
-		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
-				"FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness)\r\n" + 
-				"WHERE Tipo = ?::tipoBusiness";
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
+				"FROM Business B, ImmagineProprieta I " + 
+				"WHERE B.codBusiness = I.codBusiness AND " + 
+				"	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) AND " + 
+				"	Tipo = ?::tipoBusiness";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, tipo);
@@ -168,7 +172,9 @@ public class BusinessDAO {
 	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
 		ArrayList<Locale> recuperato = new ArrayList<Locale>();
 		
-		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness) WHERE codUtente = ?";
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
+				"FROM Business B, ImmagineProprieta I " + 
+				"WHERE B.codBusiness = I.codBusiness AND I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) AND codUtente = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codUtente));
