@@ -79,6 +79,7 @@ public class BusinessDAO {
 	}
 	
 	public Locale recuperaLocaleDaCodBusiness(String codBusiness) throws SQLException {
+		//Recupero Informazioni
 		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo FROM Business WHERE codBusiness = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -88,7 +89,6 @@ public class BusinessDAO {
 		datiRecuperati.next();
 		Locale risultato = new Locale();
 		
-		//Recupero Informazioni
 		risultato.setCodBusiness(codBusiness);
 		risultato.setNome(datiRecuperati.getString(1));
 		risultato.setIndirizzo(datiRecuperati.getString(2));

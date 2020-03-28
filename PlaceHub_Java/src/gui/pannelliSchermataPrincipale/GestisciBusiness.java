@@ -1,6 +1,7 @@
 package gui.pannelliSchermataPrincipale;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -12,7 +13,6 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.LocaleGUI;
 import res.ScrollPaneVerde;
-import res.WrapLayout;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -55,16 +55,16 @@ public class GestisciBusiness extends JPanel {
 
 	private void generaPannelloVisualizzazioneAttivitaInTuoPossesso() {
 		scrollPaneBusiness = new ScrollPaneVerde();
-		scrollPaneBusiness.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPaneBusiness.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneBusiness.getVerticalScrollBar().setUnitIncrement(15);
+		scrollPaneBusiness.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPaneBusiness.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPaneBusiness.getHorizontalScrollBar().setUnitIncrement(15);
 		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
-		scrollPaneBusiness.setBounds(85, 125, 680, 250);
+		scrollPaneBusiness.setBounds(85, 113, 680, 280);
 		add(scrollPaneBusiness);
 		
 		pannelloVediBusiness = new JPanel();
 		pannelloVediBusiness.setBackground(Color.WHITE);
-		pannelloVediBusiness.setLayout(new WrapLayout(WrapLayout.CENTER));
+		pannelloVediBusiness.setLayout(new FlowLayout(FlowLayout.CENTER));
 		pannelloVediBusiness.setBounds(85, 125, 680, 250);
 		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
 	}
