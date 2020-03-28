@@ -129,7 +129,7 @@ public class BusinessDAO {
 	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
 		ArrayList<Locale> recuperato = new ArrayList<Locale>();
 		
-		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url FROM Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness) WHERE codUtente = ?";
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness) WHERE codUtente = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codUtente));
