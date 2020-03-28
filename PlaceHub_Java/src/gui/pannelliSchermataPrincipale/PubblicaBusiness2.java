@@ -83,7 +83,7 @@ public class PubblicaBusiness2 extends JPanel {
 		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
 		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		elencoImmagini.setBounds(27, 380, 650, 128);
+		elencoImmagini.setBounds(27, 366, 650, 166);
 		add(elencoImmagini);
 		
 		elencoImmagini.setViewportView(pannelloImmagini);
@@ -94,7 +94,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreInserisciImmagine.setForeground(Color.RED);
 		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciImmagine.setBounds(27, 510, 650, 22);
+		testoErroreInserisciImmagine.setBounds(177, 558, 495, 22);
 		testoErroreInserisciImmagine.setVisible(false);
 		add(testoErroreInserisciImmagine);
 	}
@@ -111,7 +111,7 @@ public class PubblicaBusiness2 extends JPanel {
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
-		bottoneAvanti.setBounds(682, 540, 140, 50);
+		bottoneAvanti.setBounds(682, 543, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
@@ -145,7 +145,7 @@ public class PubblicaBusiness2 extends JPanel {
 				}
 			}
 		});
-		bottoneCancella.setBounds(27, 540, 140, 50);
+		bottoneCancella.setBounds(27, 543, 140, 50);
 		bottoneCancella.setIcon(new ImageIcon(PubblicaBusiness2.class.getResource("/Icone/bottoneCancella.png")));
 		bottoneCancella.setOpaque(false);
 		bottoneCancella.setContentAreaFilled(false);
@@ -180,7 +180,7 @@ public class PubblicaBusiness2 extends JPanel {
 
 	private void generaTestoTrascinaImmagini() {
 		testoTrascinaImmagini = new JLabel("Trascina Immagini");
-		testoTrascinaImmagini.setBounds(27, 331, 417, 37);
+		testoTrascinaImmagini.setBounds(27, 318, 315, 37);
 		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
 		add(testoTrascinaImmagini);
 	}
@@ -252,10 +252,10 @@ public class PubblicaBusiness2 extends JPanel {
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
 		try {
-			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(150, 250, java.awt.Image.SCALE_SMOOTH);
+			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(210, 140, java.awt.Image.SCALE_SMOOTH);
 			
 			JLabel immagine = new JLabel();
-			immagine.setSize(150, 250);
+			immagine.setSize(210, 140);
 			immagine.setIcon(new ImageIcon(imgScalata));
 			
 			pannelloImmagini.add(immagine);
