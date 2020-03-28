@@ -29,7 +29,7 @@ CREATE TABLE Business(
 );
 
 CREATE TABLE ImmagineProprieta(
-  Url VARCHAR(1000),
+  Url VARCHAR(1000) UNIQUE,
   codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
 

@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.JComboBox;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -30,6 +31,8 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoTelefono;
 	private JLabel testoIndirizzo;
 	private JLabel testoPartitaIva;
+	private JLabel testoStato;
+	private JLabel testoCitta;
 	private JTextField textFieldNomeBusiness;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldIndirizzo;
@@ -39,6 +42,8 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel lineaTestoIndirizzo;
 	private JLabel lineaTestoPartitaIVA ;
 	private JLabel testoSelezionaOpzione;
+	private JComboBox comboBoxCitta;
+	private JComboBox comboBoxStato;
 	private JButton bottoneRistorante;
 	private JButton bottoneAttrazioni;
 	private JButton bottoneAlloggio;
@@ -52,6 +57,8 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	private Controller ctrl;
 	private JLabel testoErroreTipologiaVuota;
+	
+	
 	
 	public PubblicaBusiness1(Controller ctrl) {
 		addComponentListener(new ComponentAdapter() {
@@ -79,6 +86,9 @@ public class PubblicaBusiness1 extends JPanel {
 		generaBottoneIntrattenimento();
 		generaBottoneAlloggio();
 		
+		generaCampoStato();	
+		generaCampoCitta();
+		
 		generaBottoneAvanti();
 		
 		generaPannelloRaffRistorante();
@@ -91,12 +101,36 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 
 
+	private void generaCampoCitta() {
+		testoCitta = new JLabel("Citta'");
+		testoCitta.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoCitta.setBounds(446, 200, 257, 19);
+		add(testoCitta);
+		
+		comboBoxCitta = new JComboBox();
+		comboBoxCitta.setBounds(446, 228, 287, 32);
+		add(comboBoxCitta);
+	}
+
+
+	private void generaCampoStato() {
+		testoStato = new JLabel("Stato");
+		testoStato.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoStato.setBounds(53, 200, 257, 19);
+		add(testoStato);
+		
+		comboBoxStato = new JComboBox();
+		comboBoxStato.setBounds(53, 228, 287, 32);
+		add(comboBoxStato);
+	}
+
+
 	private void generaTestoErroreTipologiaVuota() {
 		testoErroreTipologiaVuota = new JLabel("Seleziona una tipologia");
 		testoErroreTipologiaVuota.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreTipologiaVuota.setForeground(Color.RED);
 		testoErroreTipologiaVuota.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreTipologiaVuota.setBounds(100, 555, 506, 19);
+		testoErroreTipologiaVuota.setBounds(100, 580, 506, 19);
 		testoErroreTipologiaVuota.setVisible(false);
 		add(testoErroreTipologiaVuota);
 	}
@@ -107,7 +141,7 @@ public class PubblicaBusiness1 extends JPanel {
 		testoErrori.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErrori.setForeground(Color.RED);
 		testoErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErrori.setBounds(53, 205, 675, 19);
+		testoErrori.setBounds(400, 290, 381, 19);
 		testoErrori.setVisible(false);
 		add(testoErrori);
 	}
@@ -115,7 +149,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaRaffinazioniAttrazione() {
 		pannelloRaffAttrazioni = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni();
-		pannelloRaffAttrazioni.setLocation(100, 440);
+		pannelloRaffAttrazioni.setLocation(100, 470);
 		pannelloRaffAttrazioni.setVisible(false);
 		add(pannelloRaffAttrazioni);
 	}
@@ -123,7 +157,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaRaffinazioniAlloggio() {
 		pannelloRaffAlloggi = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi();
-		pannelloRaffAlloggi.setLocation(100, 440);
+		pannelloRaffAlloggi.setLocation(100, 470);
 		pannelloRaffAlloggi.setVisible(false);
 		add(pannelloRaffAlloggi);
 	}
@@ -131,7 +165,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaPannelloRaffRistorante() {
 		pannelloRaffRistorante = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante();
-		pannelloRaffRistorante.setLocation(100, 440);
+		pannelloRaffRistorante.setLocation(100, 465);
 		pannelloRaffRistorante.setVisible(false);
 		add(pannelloRaffRistorante);
 	}
@@ -171,7 +205,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneAlloggio() {
 		bottoneAlloggio = new JButton("");
-		bottoneAlloggio.setBounds(572, 300, 209, 110);
+		bottoneAlloggio.setBounds(577, 340, 209, 110);
 		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
 		bottoneAlloggio.setOpaque(false);
 		bottoneAlloggio.setContentAreaFilled(false);
@@ -202,7 +236,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneIntrattenimento() {
 		bottoneAttrazioni = new JButton("");
-		bottoneAttrazioni.setBounds(320, 300, 208, 110);
+		bottoneAttrazioni.setBounds(315, 340, 208, 110);
 		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 		bottoneAttrazioni.setOpaque(false);
 		bottoneAttrazioni.setContentAreaFilled(false);
@@ -233,7 +267,7 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaBottoneRistorante() {
 		bottoneRistorante = new JButton("");
-		bottoneRistorante.setBounds(68, 300, 208, 110);
+		bottoneRistorante.setBounds(53, 340, 208, 110);
 		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
 		bottoneRistorante.setOpaque(false);
 		bottoneRistorante.setContentAreaFilled(false);
@@ -263,7 +297,7 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	private void generaTestoSelezionaOpzione() {
 		testoSelezionaOpzione = new JLabel("Seleziona una opzione");
-		testoSelezionaOpzione.setBounds(53, 240, 257, 23);
+		testoSelezionaOpzione.setBounds(53, 290, 257, 23);
 		testoSelezionaOpzione.setFont(new Font("Roboto", Font.PLAIN, 20));
 		add(testoSelezionaOpzione);
 	}
@@ -271,7 +305,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private void generaCampoPartitaIVA() {
 		testoPartitaIva = new JLabel("Partita IVA");
 		testoPartitaIva.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoPartitaIva.setBounds(446, 120, 282, 19);
+		testoPartitaIva.setBounds(446, 110, 282, 19);
 		add(testoPartitaIva);
 		
 		textFieldPartitaIVA = new JTextField();
@@ -279,7 +313,7 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldPartitaIVA.setBackground(new Color(255,255,255));
 		textFieldPartitaIVA.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldPartitaIVA.setColumns(10);
-		textFieldPartitaIVA.setBounds(446, 148, 287, 32);
+		textFieldPartitaIVA.setBounds(446, 138, 287, 32);
 		textFieldPartitaIVA.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -294,7 +328,7 @@ public class PubblicaBusiness1 extends JPanel {
 		add(textFieldPartitaIVA);
 		
 		lineaTestoPartitaIVA = new JLabel("");
-		lineaTestoPartitaIVA.setBounds(446, 181, 287, 1);
+		lineaTestoPartitaIVA.setBounds(446, 171, 287, 1);
 		lineaTestoPartitaIVA.setIcon(new ImageIcon(PubblicaBusiness1.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoPartitaIVA);
 	}
@@ -303,7 +337,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private void generaCampoIndirizzo() {
 		testoIndirizzo = new JLabel("Indirizzo");
 		testoIndirizzo.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoIndirizzo.setBounds(446, 30, 282, 19);
+		testoIndirizzo.setBounds(446, 20, 282, 19);
 		add(testoIndirizzo);
 		
 		textFieldIndirizzo = new JTextField();
@@ -322,11 +356,11 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldIndirizzo.setBackground(new Color(255,255,255));
 		textFieldIndirizzo.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldIndirizzo.setColumns(10);
-		textFieldIndirizzo.setBounds(446, 58, 287, 32);
+		textFieldIndirizzo.setBounds(446, 48, 287, 32);
 		add(textFieldIndirizzo);
 		
 		lineaTestoIndirizzo = new JLabel("");
-		lineaTestoIndirizzo.setBounds(446, 91, 287, 1);
+		lineaTestoIndirizzo.setBounds(446, 81, 287, 1);
 		lineaTestoIndirizzo.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoIndirizzo);
 	}
@@ -335,7 +369,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private void generaCampoTelefono() {
 		testoTelefono = new JLabel("Telefono");
 		testoTelefono.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoTelefono.setBounds(53, 120, 257, 19);
+		testoTelefono.setBounds(53, 110, 257, 19);
 		add(testoTelefono);
 		
 		textFieldTelefono = new JTextField();
@@ -353,11 +387,11 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldTelefono.setBackground(new Color(255,255,255));
 		textFieldTelefono.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldTelefono.setColumns(10);
-		textFieldTelefono.setBounds(53, 148, 262, 32);
+		textFieldTelefono.setBounds(53, 138, 287, 32);
 		add(textFieldTelefono);
 		
 		lineaTestoTelefono = new JLabel("");
-		lineaTestoTelefono.setBounds(53, 181, 262, 1);
+		lineaTestoTelefono.setBounds(53, 171, 287, 1);
 		lineaTestoTelefono.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoTelefono);
 	}
@@ -366,7 +400,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private void generaCampoNomeBusiness() {
 		testoNomeBusiness = new JLabel("Nome Business");
 		testoNomeBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoNomeBusiness.setBounds(53, 30, 257, 19);
+		testoNomeBusiness.setBounds(53, 20, 257, 19);
 		add(testoNomeBusiness);
 		
 		textFieldNomeBusiness = new JTextField();
@@ -385,11 +419,11 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldNomeBusiness.setBackground(new Color(255,255,255));
 		textFieldNomeBusiness.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldNomeBusiness.setColumns(10);
-		textFieldNomeBusiness.setBounds(53, 58, 262, 32);
+		textFieldNomeBusiness.setBounds(53, 48, 287, 32);
 		add(textFieldNomeBusiness);
 		
 		lineaTestoNomeBusiness = new JLabel("");
-		lineaTestoNomeBusiness.setBounds(53, 91, 262, 1);
+		lineaTestoNomeBusiness.setBounds(53, 81, 287, 1);
 		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
 		add(lineaTestoNomeBusiness);
 	}
