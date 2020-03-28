@@ -127,6 +127,16 @@ public class SchermataPrincipale extends JFrame {
 			ctrl.generaRisultatiRistoranti();
 		}
 		
+		public void mostraAttrazioni() {
+			mostraRicerche();
+			ctrl.generaRisultatiAttrazioni();
+		}
+		
+		public void mostraAlloggi() {
+			mostraRicerche();
+			ctrl.generaRisultatiAlloggi();
+		}
+		
 		public void mostraScriviRecensione() {
 			nascondiTuttiIPannelli();
 			pannelloScriviRecensione.setVisible(true);
@@ -265,7 +275,7 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 		
-		public boolean controlloPannelliBusinessVisibili() {
+		public boolean controllaVisibilitaPannelliBusiness() {
 			if(pannelloGestisciBusiness_IsVisible() || pannelloPubblicaBusiness1_IsVisible() || 
 			   pannelloPubblicaBusiness2_IsVisible() || pannelloPubblicaBusiness3_IsVisible() ||
 			   pannelloVerificaPubblicaBusiness_IsVisible())

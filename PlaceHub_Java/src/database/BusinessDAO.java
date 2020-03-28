@@ -28,6 +28,22 @@ public class BusinessDAO {
 		return locali;
 	}
 	
+	public ArrayList<Locale> ricercaAttrazioni() {
+		locali.clear();
+		
+		//DA GESTIRE
+		
+		return locali;
+	}
+	
+	public ArrayList<Locale> ricercaAlloggi() {
+		locali.clear();
+		
+		//DA GESTIRE
+		
+		return locali;
+	}
+	
 	public void inserisciBusiness(Locale bufferLocale, String codUtente) throws SQLException {
 		String sql = "CALL inserisciBusiness(?,?,?,?,?,?,?)";
 		PreparedStatement query;
@@ -143,5 +159,4 @@ public class BusinessDAO {
 		
 		return recuperato;
 	}
-
 }

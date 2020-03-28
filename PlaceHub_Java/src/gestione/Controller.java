@@ -191,6 +191,20 @@ public class Controller {
 			for (Locale locale : business.ricercaRistoranti())
 				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
 		}
+		
+		public void generaRisultatiAttrazioni() {
+			schermataPrincipaleFrame.svuotaRicerche();
+			
+			for (Locale locale : business.ricercaAttrazioni())
+				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+		}
+
+		public void generaRisultatiAlloggi() {
+			schermataPrincipaleFrame.svuotaRicerche();
+			
+			for (Locale locale : business.ricercaAlloggi())
+				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+		}
 	
 	
 		//PUBBLICA BUSINESS 1

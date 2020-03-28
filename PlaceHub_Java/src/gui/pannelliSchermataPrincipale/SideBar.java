@@ -49,9 +49,7 @@ public class SideBar extends JPanel {
 	    bottoneHomepage.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 1;
-	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    		
 	    		Controller.getSchermataPrincipaleFrame().mostraHomepage();
 	    	}
@@ -80,9 +78,7 @@ public class SideBar extends JPanel {
 	    bottoneRistoranti.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 2;
-	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    		
 	    		Controller.getSchermataPrincipaleFrame().mostraRistornati();
 	    	}
@@ -128,9 +124,9 @@ public class SideBar extends JPanel {
 	    bottoneIntrattenimento.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 3;
-	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraAttrazioni();
 	    	}
 	    });
 	    
@@ -138,9 +134,9 @@ public class SideBar extends JPanel {
 	    bottoneAlloggi.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 4;
-	    		resettaFocusIconeSideBar(flagFocusBottone);
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraAlloggi();
 	    	}
 	    });
 	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
@@ -165,6 +161,9 @@ public class SideBar extends JPanel {
 	    bottoneGestisciBusiness = new JButton("");
 	    bottoneGestisciBusiness.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		flagFocusBottone = 5;
+	    		cambiaFocusIconeSideBar(flagFocusBottone);
+	    		
 	    		Controller.getSchermataPrincipaleFrame().mostraGestisciBusiness();
 	    	}
 	    });
@@ -175,7 +174,7 @@ public class SideBar extends JPanel {
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
-	    		if(!Controller.getSchermataPrincipaleFrame().controlloPannelliBusinessVisibili())
+	    		if(!Controller.getSchermataPrincipaleFrame().controllaVisibilitaPannelliBusiness())
 	    			bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
@@ -326,6 +325,7 @@ public class SideBar extends JPanel {
 	
 
 	private void cambiaFocusIconeSideBar(int flag) {
+		resettaFocusIconeSideBar();
 		switch(flag) {
 			case 1:
 				bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepageFocus.png")));
@@ -339,14 +339,18 @@ public class SideBar extends JPanel {
 			case 4:
 				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
 				break;
+			case 5:
+				bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusinessFocus.png")));
+				break;
 		}
 	}
 	
 	
-	private void resettaFocusIconeSideBar(int flag) {
+	private void resettaFocusIconeSideBar() {
 		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
 		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
 		bottoneIntrattenimento.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
 		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
+		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	}
 }
