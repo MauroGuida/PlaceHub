@@ -92,6 +92,7 @@ public class Controller {
 			schermataPrincipaleFrame = new SchermataPrincipale(this);
 			schermataPrincipaleFrame.setVisible(true);
 			schermataAccessoFrame.dispose();
+			schermataPrincipaleFrame.mostraHomepage();
 		} catch (UsernameOPasswordErratiException e1) {
 			schermataAccessoFrame.mostraErroreUsernamePassword(true);
 		} catch(SQLException e2) {
@@ -177,33 +178,50 @@ public class Controller {
 	//SCHERMATA PRINCIPALE
 	
 	
-		//LOCALE
+		//RICERCHE
 		public void generaRisultatiHomePage() {	
 			schermataPrincipaleFrame.svuotaRicerche();
 			
-			for (Locale locale : business.ricercaInVoga())
-				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			try {
+				for (Locale locale : business.ricercaInVoga())
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		public void generaRisultatiRistoranti() {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
-			for (Locale locale : business.ricercaRistoranti())
-				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			try {
+				for (Locale locale : business.ricercaRistoranti())
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		public void generaRisultatiAttrazioni() {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
-			for (Locale locale : business.ricercaAttrazioni())
-				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			try {
+				for (Locale locale : business.ricercaAttrazioni())
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		public void generaRisultatiAlloggi() {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
-			for (Locale locale : business.ricercaAlloggi())
-				schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			try {
+				for (Locale locale : business.ricercaAlloggi())
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	
 	

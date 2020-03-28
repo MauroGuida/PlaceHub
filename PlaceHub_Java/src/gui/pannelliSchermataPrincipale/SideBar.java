@@ -237,7 +237,7 @@ public class SideBar extends JPanel {
 	    bottoneCercaSideBar = new JButton("");
 	    bottoneCercaSideBar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
-	    		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
+	    		
 	    	}
 	    });
 	    bottoneCercaSideBar.addMouseListener(new MouseAdapter() {

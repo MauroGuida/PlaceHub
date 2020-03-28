@@ -12,36 +12,58 @@ import oggetti.Locale;
 public class BusinessDAO {
 	private ArrayList<Locale> locali = new ArrayList<Locale>();
 
-	public ArrayList<Locale> ricercaInVoga() {
+	public ArrayList<Locale> ricercaInVoga() throws SQLException {
 		locali.clear();
 
-		//DA GESTIRE
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
+				"FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		while(datiRecuperati.next())
+			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+					datiRecuperati.getString(5)));
 
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaRistoranti() {
+	public ArrayList<Locale> ricercaRistoranti() throws SQLException {
 		locali.clear();
 		
-		//DA GESTIRE
+		recuperaLocaliDaTipo(new String("Ristorante"));
 		
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaAttrazioni() {
+	public ArrayList<Locale> ricercaAttrazioni() throws SQLException {
 		locali.clear();
 		
-		//DA GESTIRE
+		recuperaLocaliDaTipo(new String("Attrazione"));
 		
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaAlloggi() {
+	public ArrayList<Locale> ricercaAlloggi() throws SQLException {
 		locali.clear();
 		
-		//DA GESTIRE
+		recuperaLocaliDaTipo(new String("Alloggio"));
 		
 		return locali;
+	}
+	
+	public void recuperaLocaliDaTipo(String tipo) throws SQLException {
+		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url\r\n" + 
+				"FROM Business B JOIN (SELECT DISTINCT codBusiness, URL FROM ImmagineProprieta) I ON (B.codBusiness = I.codBusiness)\r\n" + 
+				"WHERE Tipo = ?::tipoBusiness";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, tipo);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		while(datiRecuperati.next())
+			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+					datiRecuperati.getString(5)));
 	}
 	
 	public void inserisciBusiness(Locale bufferLocale, String codUtente) throws SQLException {
