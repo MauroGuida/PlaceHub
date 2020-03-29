@@ -34,7 +34,7 @@ public class Controller {
 	
 	private static Connessione connessioneAlDatabase;
 	private UtenteDAO utente;
-	private BusinessDAO business;
+	private static BusinessDAO business;
 	private MappaDAO mappa;
 	
 	private InvioEmail mail;
@@ -227,7 +227,7 @@ public class Controller {
 				e.printStackTrace();
 			}
 		}
-	
+		
 	
 		//PUBBLICA BUSINESS 1
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
@@ -476,13 +476,11 @@ public class Controller {
 		}
 		
 		//VISITA BUSINESS
-		public Locale recuperaDatiLocale(String codBusiness) {
+		public static void recuperaBusinessCompletoDaCodBusiness(String codBusiness) {
 			try {
-				return business.recuperaLocaleDaCodBusiness(codBusiness);
+				schermataPrincipaleFrame.mostraVisitaBusiness(business.recuperaBusinessCompletoDaCodBusiness(codBusiness));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			return null;
 		}
 }

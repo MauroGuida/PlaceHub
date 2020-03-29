@@ -70,6 +70,54 @@ public class BusinessDAO {
 					datiRecuperati.getString(5)));
 	}
 	
+	public Locale recuperaBusinessCompletoDaCodBusiness(String codBusiness) throws SQLException {
+		//Recupero Informazioni
+		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo FROM Business WHERE codBusiness = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codBusiness));
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		Locale risultato = new Locale();
+		
+		risultato.setCodBusiness(codBusiness);
+		risultato.setNome(datiRecuperati.getString(1));
+		risultato.setIndirizzo(datiRecuperati.getString(2));
+		risultato.setTelefono(datiRecuperati.getString(3));
+		risultato.setPartitaIVA(datiRecuperati.getString(4));
+		risultato.setDescrizione(datiRecuperati.getString(5));
+		risultato.setStelle(datiRecuperati.getFloat(6));
+		risultato.setTipoBusiness(datiRecuperati.getString(7));
+
+		//Recupero Immagini
+		sql = "SELECT Url FROM ImmagineProprieta WHERE codBusiness = ?";
+		PreparedStatement query2;
+		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query2.setInt(1, Integer.parseInt(codBusiness));
+		ResultSet datiRecuperati2 = query2.executeQuery();
+		
+		while(datiRecuperati2.next())
+			risultato.aggiungiImmagini(datiRecuperati2.getString(1));
+		
+		
+		//Recupero Raffinazioni
+		sql = "SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = ?";
+		PreparedStatement query3;
+		query3 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query3.setInt(1, Integer.parseInt(codBusiness));
+		ResultSet datiRecuperati3 = query3.executeQuery();
+		String raffinazioni = "";
+		
+		while(datiRecuperati3.next())
+			raffinazioni = raffinazioni.concat(datiRecuperati3.getString(1).concat("   "));
+		
+		risultato.setRaffinazioni(raffinazioni);
+		
+		
+		return risultato;
+	}
+	
 	public void inserisciBusiness(Locale bufferLocale, String codUtente) throws SQLException {
 		String sql = "CALL inserisciBusiness(?,?,?,?,?,?,?,?)";
 		PreparedStatement query;
@@ -118,56 +166,6 @@ public class BusinessDAO {
 			return risultato;
 		else
 			throw new CodiceBusinessNonTrovatoException();
-	}
-	
-	
-	
-	public Locale recuperaLocaleDaCodBusiness(String codBusiness) throws SQLException {
-		//Recupero Informazioni
-		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo FROM Business WHERE codBusiness = ?";
-		PreparedStatement query;
-		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-		query.setString(1, codBusiness);
-		ResultSet datiRecuperati = query.executeQuery();
-		
-		datiRecuperati.next();
-		Locale risultato = new Locale();
-		
-		risultato.setCodBusiness(codBusiness);
-		risultato.setNome(datiRecuperati.getString(1));
-		risultato.setIndirizzo(datiRecuperati.getString(2));
-		risultato.setTelefono(datiRecuperati.getString(3));
-		risultato.setPartitaIVA(datiRecuperati.getString(4));
-		risultato.setDescrizione(datiRecuperati.getString(5));
-		risultato.setStelle(datiRecuperati.getFloat(6));
-		risultato.setTipoBusiness(datiRecuperati.getString(7));
-
-		//Recupero Immagini
-		sql = "SELECT Url FROM ImmagineProprieta WHERE codBusiness = ?";
-		PreparedStatement query2;
-		query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-		query2.setString(1, codBusiness);
-		ResultSet datiRecuperati2 = query2.executeQuery();
-		
-		while(datiRecuperati2.next())
-			risultato.aggiungiImmagini(datiRecuperati2.getString(1));
-		
-		
-		//Recupero Raffinazioni
-		sql = "SELECT raffinazione FROM AssociazioneRaffinazione WHERE codBusiness = ?";
-		PreparedStatement query3;
-		query3 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
-		query3.setString(1, codBusiness);
-		ResultSet datiRecuperati3 = query3.executeQuery();
-		String raffinazioni = "";
-		
-		while(datiRecuperati3.next())
-			raffinazioni = raffinazioni.concat(datiRecuperati3.getString(1).concat(","));
-		
-		risultato.setRaffinazioni(raffinazioni);
-		
-		
-		return risultato;
 	}
 	
 	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {

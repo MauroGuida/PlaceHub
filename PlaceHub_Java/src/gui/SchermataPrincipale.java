@@ -12,6 +12,8 @@ import gui.pannelliSchermataPrincipale.Ricerche;
 import gui.pannelliSchermataPrincipale.ScriviRecensione;
 import gui.pannelliSchermataPrincipale.SideBar;
 import gui.pannelliSchermataPrincipale.VerificaPubblicaBusiness;
+import gui.pannelliSchermataPrincipale.VisitaBusiness;
+import oggetti.Locale;
 import res.ComponentResizer;
 
 import javax.swing.BorderFactory;
@@ -37,6 +39,8 @@ public class SchermataPrincipale extends JFrame {
 	private PubblicaBusiness1 pannelloPubblicaBusiness1;
 	private PubblicaBusiness2 pannelloPubblicaBusiness2;
 	private PubblicaBusiness3 pannelloPubblicaBusiness3;
+	
+	private VisitaBusiness pannelloVisitaBusiness;
 	
 	public SchermataPrincipale(Controller Ctrl) {
 		this.ctrl = Ctrl;
@@ -80,6 +84,9 @@ public class SchermataPrincipale extends JFrame {
         
         pannelloGestisciBusiness = new GestisciBusiness(ctrl);
         pannelloGestisciBusiness.setBounds(250, 36, 850, 614);
+        
+        pannelloVisitaBusiness = new VisitaBusiness();
+		pannelloVisitaBusiness.setBounds(250, 36, 850, 614);
 		
 		getContentPane().setLayout(null);
 		getContentPane().add(pannelloSideBar);
@@ -91,6 +98,7 @@ public class SchermataPrincipale extends JFrame {
 		getContentPane().add(pannelloPubblicaBusiness3);
 		getContentPane().add(pannelloScriviRecensione);
 		getContentPane().add(pannelloRicerche);
+		getContentPane().add(pannelloVisitaBusiness);
 	}
 	
 	
@@ -105,6 +113,7 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness2.setVisible(false);
 	        pannelloPubblicaBusiness1.setVisible(false);
 	        pannelloGestisciBusiness.setVisible(false);
+	        pannelloVisitaBusiness.setVisible(false);
 		}
 		
 		public void mostraGestisciBusiness() {
@@ -160,6 +169,12 @@ public class SchermataPrincipale extends JFrame {
 		public void mostraPubblicaBusiness3() {
 			nascondiTuttiIPannelli();
 			pannelloPubblicaBusiness3.setVisible(true);
+		}
+		
+		public void mostraVisitaBusiness(Locale locale) {
+			nascondiTuttiIPannelli();
+			pannelloVisitaBusiness.configuraPannello(locale);
+			pannelloVisitaBusiness.setVisible(true);
 		}
 		
 	//Gestione pannello ricerche
@@ -275,6 +290,8 @@ public class SchermataPrincipale extends JFrame {
 		public void disabilitaCaricaDocumentoVerificaPubblicaBusiness() {
 			pannelloVerificaPubblicaBusiness.disabilitaCaricaDocumento();
 		}
+		
+	//Gestione pannello VisitaBusiness
 		
 		
 	//Controllo pannelli visibili

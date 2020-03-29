@@ -3,8 +3,6 @@ package oggetti;
 import java.util.ArrayList;
 
 public class Locale {
-
-	@SuppressWarnings("unused")
 	private String codBusiness;
 	private String nome;
 	private String indirizzo;
@@ -18,6 +16,7 @@ public class Locale {
 	
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 
+	//PER LA CREAZIONE
 	public Locale(String nome, String indirizzo,
 				  String telefono, String partitaIVA,String tipoBusiness, String raffinazioni, String codMappa) {
 		this.nome = nome;
@@ -29,6 +28,8 @@ public class Locale {
 		this.codMappa = codMappa;
 	}
 	
+	
+	//COMPLETO
 	public Locale(String codBusiness, String nome, String indirizzo,
 			  String telefono, String partitaIVA, String descrizione, float stelle, String tipoBusiness, String raffinazioni, String codMappa) {
 		this.setCodBusiness(codBusiness);
@@ -41,8 +42,12 @@ public class Locale {
 		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
 		this.codMappa = codMappa;
+		
+		//L'aggiunta immagini ha un metodo dedicato e va gestita separatamente
 	}
 	
+	
+	//ANTEPRIMA
 	public Locale(String codBusiness, String nome, String indirizzo, float stelle, String immagine) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
@@ -105,6 +110,9 @@ public class Locale {
 	
 	//Getters
 	
+	public String getCodBusiness() {
+		return codBusiness;
+	}
 	
 	public String getNome() {
 		return nome;

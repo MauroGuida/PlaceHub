@@ -12,8 +12,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 
 import errori.NumeroStelleNonValidoException;
+import gestione.Controller;
 import oggetti.Locale;
 import res.WrapLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class LocaleGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -70,6 +73,12 @@ public class LocaleGUI extends JPanel {
 
 	private void generaImmaginePrincipale() {
 		labelImmaginePrincipale = new JLabel();
+		labelImmaginePrincipale.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Controller.recuperaBusinessCompletoDaCodBusiness(locale.getCodBusiness());
+			}
+		});
 		try {
 			Image immagine = new ImageIcon(locale.getImmaginePrincipale()).getImage();
 			Image immagineScalata = immagine.getScaledInstance(374, 180, java.awt.Image.SCALE_SMOOTH);
