@@ -97,7 +97,7 @@ public class SchermataAccesso extends JFrame {
 			  @Override
 			  public void run() {
 					immaginiSinistra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
-					if(i<3)
+					if(i<2)
 						i++;
 					else
 						i=0;
