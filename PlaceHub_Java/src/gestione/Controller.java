@@ -11,6 +11,7 @@ import database.BusinessDAO;
 import database.MappaDAO;
 import database.Connessione;
 import database.UtenteDAO;
+import errori.CodMappaNonTrovatoException;
 import errori.CodiceBusinessNonTrovatoException;
 import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
@@ -231,8 +232,9 @@ public class Controller {
 		//PUBBLICA BUSINESS 1
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 
 											   String telefono, String partitaIVA, 
-											   String tipoBusiness, String raffinazioni) {
-			
+											   String tipoBusiness, String raffinazioni,
+											   String Regione, String Provincia, String Comune, String CAP) {
+			String codMappa = null;
 			boolean flagErrore = false;
 			schermataPrincipaleFrame.resettaVisibilitaErroriPubblicaBusiness1();
 			if(nomeBusiness.isBlank() || nomeBusiness.isEmpty() || indirizzo.isBlank() || indirizzo.isEmpty() ||
@@ -261,7 +263,6 @@ public class Controller {
 				flagErrore = true;
 			}
 			
-			
 			try {
 				business.recuperaCodiceBusinessDaPartitaIVA(partitaIVA);
 				schermataPrincipaleFrame.mostraErrorePartitaIVAInUsoPubblicaBusiness1();
@@ -270,9 +271,15 @@ public class Controller {
 				
 			}
 			
+			try {
+				codMappa = mappa.recuperaCodMappa(Regione, Provincia, Comune, CAP);
+			} catch (SQLException | CodMappaNonTrovatoException e) {
+				e.printStackTrace(); //DA SCRIVERE ERRORE
+				flagErrore = true;
+			}
 			
 			if(!flagErrore) {
-				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni);
+				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni, codMappa);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}

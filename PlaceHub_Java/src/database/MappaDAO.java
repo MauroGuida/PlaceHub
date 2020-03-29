@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import errori.CodMappaNonTrovatoException;
 import gestione.Controller;
 
 public class MappaDAO {
@@ -65,5 +66,21 @@ public class MappaDAO {
 			CAP.add(datiRecuperati.getString(1));
 		
 		return CAP;
+	}
+
+	public String recuperaCodMappa(String Regione, String Provincia, String Comune, String CAP) throws SQLException, CodMappaNonTrovatoException {
+		String sql = "SELECT codMappa FROM Mappa WHERE Regione = ? AND SiglaProvincia = ? AND Comune = ? AND CAP = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, Regione);
+		query.setString(2, Provincia);
+		query.setString(3, Comune);
+		query.setString(4, CAP);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		if(datiRecuperati.next())
+			return String.valueOf(datiRecuperati.getInt(1));
+		else
+			throw new CodMappaNonTrovatoException();
 	}
 }

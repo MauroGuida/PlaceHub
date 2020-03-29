@@ -14,21 +14,23 @@ public class Locale {
 	private float stelle;
 	private String tipoBusiness;
 	private String raffinazioni;
+	private String codMappa;
 	
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 
 	public Locale(String nome, String indirizzo,
-				  String telefono, String partitaIVA,String tipoBusiness, String raffinazioni) {
+				  String telefono, String partitaIVA,String tipoBusiness, String raffinazioni, String codMappa) {
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.telefono = telefono;
 		this.partitaIVA = partitaIVA;
 		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
+		this.codMappa = codMappa;
 	}
 	
 	public Locale(String codBusiness, String nome, String indirizzo,
-			  String telefono, String partitaIVA, String descrizione, float stelle, String tipoBusiness, String raffinazioni) {
+			  String telefono, String partitaIVA, String descrizione, float stelle, String tipoBusiness, String raffinazioni, String codMappa) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;
@@ -38,6 +40,7 @@ public class Locale {
 		this.stelle = stelle;
 		this.tipoBusiness = tipoBusiness;
 		this.raffinazioni = raffinazioni;
+		this.codMappa = codMappa;
 	}
 	
 	public Locale(String codBusiness, String nome, String indirizzo, float stelle, String immagine) {
@@ -95,6 +98,10 @@ public class Locale {
 		this.raffinazioni = raffinazini;
 	}
 
+	public void setCodMappa(String codMappa) {
+		this.codMappa = codMappa;
+	}
+
 	
 	//Getters
 	
@@ -139,6 +146,9 @@ public class Locale {
 		return listaImmagini.get(0);
 	}
 
+	public String getCodMappa() {
+		return codMappa;
+	}
 	
 	
 	//METODI

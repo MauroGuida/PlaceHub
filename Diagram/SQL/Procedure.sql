@@ -92,12 +92,12 @@ END;
 $$;
 
 
-CREATE OR REPLACE PROCEDURE inserisciBusiness( VARCHAR(50), VARCHAR(100), VARCHAR(10), VARCHAR(100), VARCHAR(100), VARCHAR(2000), INTEGER)
+CREATE OR REPLACE PROCEDURE inserisciBusiness( VARCHAR(50), VARCHAR(100), VARCHAR(10), VARCHAR(100), VARCHAR(100), VARCHAR(2000), INTEGER, INTEGER)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  INSERT INTO Business (Nome, Indirizzo, Telefono, PartitaIVA, tipo, Descrizione, codUtente)
-  VALUES ( $1, $2, $3, $4, ($5)::tipoBusiness , $6, $7);
+  INSERT INTO Business (Nome, Indirizzo, Telefono, PartitaIVA, tipo, Descrizione, codUtente, codMappa)
+  VALUES ( $1, $2, $3, $4, ($5)::tipoBusiness , $6, $7, $8);
   COMMIT;
 END;
 $$;
@@ -190,6 +190,3 @@ begin
         return length(str)- length(sub)- pos- shift+ 3;
     end if;
 end $$;
-
-
-

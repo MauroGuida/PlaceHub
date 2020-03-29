@@ -263,12 +263,10 @@ public class PubblicaBusiness1 extends JPanel {
 		});
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrl.procediInPubblicaBusiness2(textFieldNomeBusiness.getText(),
-												textFieldIndirizzo.getText(),
-												textFieldTelefono.getText(),
-												textFieldPartitaIVA.getText(),
-												checkTipoBusiness(),
-												prendiRaffinazioni());
+				ctrl.procediInPubblicaBusiness2(textFieldNomeBusiness.getText(), textFieldIndirizzo.getText(), textFieldTelefono.getText(),
+												textFieldPartitaIVA.getText(), checkTipoBusiness(), prendiRaffinazioni(),
+												modelloComboBoxRegione.getSelectedItem().toString(), modelloComboBoxProvincia.getSelectedItem().toString(),
+												modelloComboBoxComune.getSelectedItem().toString(), modelloComboBoxCAP.getSelectedItem().toString());
 			}
 		});
 		add(bottoneAvanti);

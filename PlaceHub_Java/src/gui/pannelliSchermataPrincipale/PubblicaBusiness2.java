@@ -196,7 +196,7 @@ public class PubblicaBusiness2 extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
-						&& textAreaDescriviBusiness.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						&& textAreaDescriviBusiness.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
 						e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textAreaDescriviBusiness.setEditable(true);
 				else

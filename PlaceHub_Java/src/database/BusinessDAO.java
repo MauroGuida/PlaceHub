@@ -71,7 +71,7 @@ public class BusinessDAO {
 	}
 	
 	public void inserisciBusiness(Locale bufferLocale, String codUtente) throws SQLException {
-		String sql = "CALL inserisciBusiness(?,?,?,?,?,?,?)";
+		String sql = "CALL inserisciBusiness(?,?,?,?,?,?,?,?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, bufferLocale.getNome());
@@ -81,6 +81,7 @@ public class BusinessDAO {
 		query.setString(5, bufferLocale.getTipoBusiness());
 		query.setString(6, bufferLocale.getDescrizione());
 		query.setInt(7, Integer.parseInt(codUtente));
+		query.setInt(8, Integer.parseInt(bufferLocale.getCodMappa()));
 		
 		query.executeUpdate();
 	}
