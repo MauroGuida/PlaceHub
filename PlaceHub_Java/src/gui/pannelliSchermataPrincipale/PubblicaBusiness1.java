@@ -25,7 +25,6 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import javax.swing.ComboBoxModel;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -138,6 +137,14 @@ public class PubblicaBusiness1 extends JPanel {
 		
 		modelloComboBoxComune = new DefaultComboBoxModel<String>(); 
 		comboBoxComune = new JComboBox<String>(modelloComboBoxComune);
+		comboBoxComune.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				int selezione = e.getStateChange();
+				if(selezione == ItemEvent.SELECTED) {
+					ctrl.aggiungiCAPAModelloComboBoxPubblicaBusiness1(modelloComboBoxComune.getSelectedItem().toString());
+				}
+			}
+		});
 		comboBoxComune.setBackground(Color.WHITE);
 		comboBoxComune.setFont(new Font("Roboto", Font.PLAIN, 17));
 		comboBoxComune.setBounds(395, 228, 170, 35);
@@ -153,6 +160,14 @@ public class PubblicaBusiness1 extends JPanel {
 		
 		modelloComboBoxProvincia = new DefaultComboBoxModel<String>();
 		comboBoxProvincia = new JComboBox<String>(modelloComboBoxProvincia);
+		comboBoxProvincia.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				int selezione = e.getStateChange();
+				if(selezione == ItemEvent.SELECTED) {
+					ctrl.aggiungiComuneAModelloComboBoxPubblicaBusiness1(modelloComboBoxProvincia.getSelectedItem().toString());
+				}
+			}
+		});
 		comboBoxProvincia.setBounds(270, 228, 81, 35);
 		comboBoxProvincia.setBackground(Color.WHITE);
 		comboBoxProvincia.setFont(new Font("Roboto", Font.PLAIN, 17));

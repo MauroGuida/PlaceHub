@@ -296,6 +296,26 @@ public class Controller {
 			}
 		}
 		
+		public void aggiungiComuneAModelloComboBoxPubblicaBusiness1(String provincia) {
+			schermataPrincipaleFrame.pulisciModelloComunePubblicaBusiness1();
+			try {
+				for (String comune: mappa.prelevaComuneDiProvincia(provincia))
+					schermataPrincipaleFrame.aggiungiComuneAModelloPubblicaBusiness1(comune);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void aggiungiCAPAModelloComboBoxPubblicaBusiness1(String comune) {
+			schermataPrincipaleFrame.pulisciModelloCAPPubblicaBusiness1();
+			try {
+				for (String CAP: mappa.prelevaCAPDiComune(comune))
+					schermataPrincipaleFrame.aggiungiCAPAModelloPubblicaBusiness1(CAP);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		// PUBBLICA BUSINESS 2
 		public void procediInPubblicaBusiness3(String testoDescriviBusiness) {
