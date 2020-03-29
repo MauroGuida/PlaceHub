@@ -417,7 +417,7 @@ public class PubblicaBusiness1 extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
-						&& textFieldIndirizzo.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						&& textFieldIndirizzo.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
 						e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textFieldIndirizzo.setEditable(true);
 				else
@@ -480,7 +480,7 @@ public class PubblicaBusiness1 extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z'))
-						&& textFieldNomeBusiness.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						&& textFieldNomeBusiness.getText().length() <= 49) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
 						e.getKeyCode() ==  KeyEvent.VK_DELETE)
 					textFieldNomeBusiness.setEditable(true);
 				else
