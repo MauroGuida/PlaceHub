@@ -27,7 +27,8 @@ CREATE TABLE Business(
   Descrizione VARCHAR(2000) NOT NULL,
   Stelle NUMERIC DEFAULT NULL CHECK((Stelle BETWEEN 1 AND 5) OR Stelle IS NULL),
   Telefono VARCHAR(10) NOT NULL,
-  codUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE
+  codUtente INTEGER REFERENCES Utente(codUtente) ON DELETE CASCADE,
+  codMappa INTEGER REFERENCES Mappa(codMappa)
 );
 
 CREATE TABLE ImmagineProprieta(
@@ -60,3 +61,13 @@ CREATE TABLE ImmagineRecensione(
   Url VARCHAR(1000) NOT NULL,
   codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
+
+CREATE TABLE Mappa(
+    Stato VARCHAR(5),
+    CAP VARCHAR(7),
+    Comune VARCHAR(100),
+    Regione VARCHAR(100),
+    Provincia VARCHAR(100),
+    SiglaProvincia VARCHAR(5),
+    codMappa SERIAL PRIMARY KEY
+)
