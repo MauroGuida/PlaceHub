@@ -8,6 +8,7 @@ import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 
 import database.BusinessDAO;
+import database.MappaDAO;
 import database.Connessione;
 import database.UtenteDAO;
 import errori.CodiceBusinessNonTrovatoException;
@@ -33,6 +34,7 @@ public class Controller {
 	private static Connessione connessioneAlDatabase;
 	private UtenteDAO utente;
 	private BusinessDAO business;
+	private MappaDAO mappa;
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
@@ -68,6 +70,7 @@ public class Controller {
 			connessioneAlDatabase = new Connessione();
 			utente = new UtenteDAO();
 			business = new BusinessDAO();
+			mappa = new MappaDAO();
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
@@ -271,6 +274,25 @@ public class Controller {
 			if(!flagErrore) {
 				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
+			}
+		}
+		
+		public void aggiungiRegioneAModelloComboBoxPubblicaBusiness1() {
+			try {
+				for (String regione: mappa.prelevaRegione())
+					schermataPrincipaleFrame.aggiungiRegioneAModelloPubblicaBusiness1(regione);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void aggiungiProvinciaAModelloComboBoxPubblicaBusiness1(String regione) {
+			schermataPrincipaleFrame.pulisciModelloCittaPubblicaBusiness1();
+			try {
+				for (String provincia: mappa.prelevaProvincieDiRegione(regione))
+					schermataPrincipaleFrame.aggiungiProvinciaAModelloPubblicaBusiness1(provincia);
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
 		

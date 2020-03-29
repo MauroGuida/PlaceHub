@@ -20,6 +20,8 @@ CREATE TABLE Business(
   codBusiness SERIAL PRIMARY KEY,
   Nome VARCHAR(50) NOT NULL,
   Indirizzo VARCHAR(100) NOT NULL,
+  Stato VARCHAR(100) NOT NULL,
+  Citta VARCHAR(100) NOT NULL,
   PartitaIVA VARCHAR(100) NOT NULL UNIQUE,
   tipo tipoBusiness NOT NULL,
   Descrizione VARCHAR(2000) NOT NULL,

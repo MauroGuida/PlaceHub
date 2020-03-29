@@ -209,6 +209,18 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.mostraErrorePartitaIVAInUso();
 		}
 		
+		public void aggiungiRegioneAModelloPubblicaBusiness1(String regione) {
+			pannelloPubblicaBusiness1.aggiungiRegioneAModello(regione);
+		}
+		
+		public void aggiungiProvinciaAModelloPubblicaBusiness1(String provincia) {
+			pannelloPubblicaBusiness1.aggiungiCittaAModello(provincia);
+		}
+		
+		public void pulisciModelloCittaPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.pulisciModelloCitta();
+		}
+		
 	//Gestione pannello PubblicaBusiness2
 		public void resettaVisibilitaErroriPubblicaBusiness2() {
 			pannelloPubblicaBusiness2.resettaVisibilitaErrori();

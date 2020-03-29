@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,6 +23,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -31,8 +34,8 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoTelefono;
 	private JLabel testoIndirizzo;
 	private JLabel testoPartitaIva;
-	private JLabel testoStato;
-	private JLabel testoCitta;
+	private JLabel testoRegione;
+	private JLabel testoProvincia;
 	private JTextField textFieldNomeBusiness;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldIndirizzo;
@@ -42,8 +45,10 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel lineaTestoIndirizzo;
 	private JLabel lineaTestoPartitaIVA ;
 	private JLabel testoSelezionaOpzione;
-	private JComboBox comboBoxCitta;
-	private JComboBox comboBoxStato;
+	private JComboBox<String> comboBoxProvincia;
+	private JComboBox<String> comboBoxRegione;
+	private DefaultComboBoxModel<String> modelloComboBoxProvincia;
+	private DefaultComboBoxModel<String> modelloComboBoxRegione;
 	private JButton bottoneRistorante;
 	private JButton bottoneAttrazioni;
 	private JButton bottoneAlloggio;
@@ -65,6 +70,7 @@ public class PubblicaBusiness1 extends JPanel {
 			@Override
 			public void componentHidden(ComponentEvent e) {
 				pulisciPannello();
+				ctrl.aggiungiRegioneAModelloComboBoxPubblicaBusiness1();
 			}
 		});
 		
@@ -86,8 +92,8 @@ public class PubblicaBusiness1 extends JPanel {
 		generaBottoneIntrattenimento();
 		generaBottoneAlloggio();
 		
-		generaCampoStato();	
-		generaCampoCitta();
+		generaCampoRegione();	
+		generaCampoProvincia();
 		
 		generaBottoneAvanti();
 		
@@ -101,27 +107,39 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 
 
-	private void generaCampoCitta() {
-		testoCitta = new JLabel("Citta'");
-		testoCitta.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoCitta.setBounds(446, 200, 257, 19);
-		add(testoCitta);
+	private void generaCampoProvincia() {
+		testoProvincia = new JLabel("Provincia");
+		testoProvincia.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoProvincia.setBounds(446, 200, 257, 19);
+		add(testoProvincia);
 		
-		comboBoxCitta = new JComboBox();
-		comboBoxCitta.setBounds(446, 228, 287, 32);
-		add(comboBoxCitta);
+		modelloComboBoxProvincia = new DefaultComboBoxModel<String>();
+		comboBoxProvincia = new JComboBox<String>(modelloComboBoxProvincia);
+		comboBoxProvincia.setBounds(446, 228, 287, 32);
+		comboBoxProvincia.setBackground(Color.WHITE);
+		add(comboBoxProvincia);
 	}
 
 
-	private void generaCampoStato() {
-		testoStato = new JLabel("Stato");
-		testoStato.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoStato.setBounds(53, 200, 257, 19);
-		add(testoStato);
+	private void generaCampoRegione() {
+		testoRegione = new JLabel("Regione");
+		testoRegione.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoRegione.setBounds(53, 200, 257, 19);
+		add(testoRegione);
 		
-		comboBoxStato = new JComboBox();
-		comboBoxStato.setBounds(53, 228, 287, 32);
-		add(comboBoxStato);
+		modelloComboBoxRegione = new DefaultComboBoxModel<String>();
+		comboBoxRegione = new JComboBox<String>(modelloComboBoxRegione);
+		comboBoxRegione.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				int selezione = e.getStateChange();
+				if(selezione == ItemEvent.SELECTED) {
+					ctrl.aggiungiProvinciaAModelloComboBoxPubblicaBusiness1(modelloComboBoxRegione.getSelectedItem().toString());
+				}
+			}
+		});
+		comboBoxRegione.setBackground(Color.WHITE);
+		comboBoxRegione.setBounds(53, 228, 287, 32);
+		add(comboBoxRegione);
 	}
 
 
@@ -548,12 +566,24 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 	
 	public void mostraErrorePartitaIVAInUso() {
-		testoErrori.setText("La partita IVA inserita è già in uso");
+		testoErrori.setText("La partita IVA inserita e' gia' in uso");
 		testoErrori.setVisible(true);
 	}
 	
 	public void resettaVisibilitaErrori() {
 		testoErrori.setVisible(false);
 		testoErroreTipologiaVuota.setVisible(false);
+	}
+	
+	public void aggiungiRegioneAModello(String regione) {
+		modelloComboBoxRegione.addElement(regione);
+	}
+	
+	public void aggiungiCittaAModello(String citta) {
+		modelloComboBoxProvincia.addElement(citta);
+	}
+	
+	public void pulisciModelloCitta() {
+		modelloComboBoxProvincia.removeAllElements();
 	}
 }
