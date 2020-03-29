@@ -15,6 +15,7 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -91,14 +92,15 @@ public class SchermataAccesso extends JFrame {
 	private void gestioneRotazioneImmagini() {
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
-			private int i=1;
+			Random rand = new Random();
+			private int i = rand.nextInt(3);
 			  @Override
 			  public void run() {
 					immaginiSinistra.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/immagini/"+ i +".png")));
 					if(i<3)
 						i++;
 					else
-						i=1;
+						i=0;
 			  }
 		}, 0, 5000);
 	}
