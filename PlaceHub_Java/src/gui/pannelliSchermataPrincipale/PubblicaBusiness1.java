@@ -25,6 +25,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.ComboBoxModel;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -36,6 +37,8 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoPartitaIva;
 	private JLabel testoRegione;
 	private JLabel testoProvincia;
+	private JLabel testoComune;
+	private JLabel testoCAP;
 	private JTextField textFieldNomeBusiness;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldIndirizzo;
@@ -47,8 +50,12 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoSelezionaOpzione;
 	private JComboBox<String> comboBoxProvincia;
 	private JComboBox<String> comboBoxRegione;
+	private JComboBox<String> comboBoxComune;
+	private JComboBox<String> comboBoxCAP;
 	private DefaultComboBoxModel<String> modelloComboBoxProvincia;
 	private DefaultComboBoxModel<String> modelloComboBoxRegione;
+	private DefaultComboBoxModel<String> modelloComboBoxComune;
+	private DefaultComboBoxModel<String> modelloComboBoxCAP;
 	private JButton bottoneRistorante;
 	private JButton bottoneAttrazioni;
 	private JButton bottoneAlloggio;
@@ -63,8 +70,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private Controller ctrl;
 	private JLabel testoErroreTipologiaVuota;
 	
-	
-	
+
 	public PubblicaBusiness1(Controller ctrl) {
 		addComponentListener(new ComponentAdapter() {
 			@Override
@@ -93,7 +99,9 @@ public class PubblicaBusiness1 extends JPanel {
 		generaBottoneAlloggio();
 		
 		generaCampoRegione();	
-		generaCampoProvincia();
+		generaCampoProvincia();	
+		generaCampoComune();
+		generaCampoCAP();
 		
 		generaBottoneAvanti();
 		
@@ -107,24 +115,54 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 
 
+	private void generaCampoCAP() {
+		testoCAP = new JLabel("CAP");
+		testoCAP.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoCAP.setBounds(610, 200, 170, 19);
+		add(testoCAP);
+		
+		modelloComboBoxCAP = new DefaultComboBoxModel<String>();
+	    comboBoxCAP = new JComboBox<String>(modelloComboBoxCAP);
+		comboBoxCAP.setBackground(Color.WHITE);
+		comboBoxCAP.setFont(new Font("Roboto", Font.PLAIN, 17));
+		comboBoxCAP.setBounds(610, 228, 170, 35);
+		add(comboBoxCAP);
+	}
+
+
+	private void generaCampoComune() {
+		testoComune = new JLabel("Comune");
+		testoComune.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoComune.setBounds(395, 200, 170, 19);
+		add(testoComune);
+		
+		modelloComboBoxComune = new DefaultComboBoxModel<String>(); 
+		comboBoxComune = new JComboBox<String>(modelloComboBoxComune);
+		comboBoxComune.setBackground(Color.WHITE);
+		comboBoxComune.setFont(new Font("Roboto", Font.PLAIN, 17));
+		comboBoxComune.setBounds(395, 228, 170, 35);
+		add(comboBoxComune);
+	}
+
+
 	private void generaCampoProvincia() {
 		testoProvincia = new JLabel("Provincia");
 		testoProvincia.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoProvincia.setBounds(446, 200, 257, 19);
+		testoProvincia.setBounds(270, 200, 90, 19);
 		add(testoProvincia);
 		
 		modelloComboBoxProvincia = new DefaultComboBoxModel<String>();
 		comboBoxProvincia = new JComboBox<String>(modelloComboBoxProvincia);
-		comboBoxProvincia.setBounds(446, 228, 287, 32);
+		comboBoxProvincia.setBounds(270, 228, 81, 35);
 		comboBoxProvincia.setBackground(Color.WHITE);
+		comboBoxProvincia.setFont(new Font("Roboto", Font.PLAIN, 17));
 		add(comboBoxProvincia);
 	}
-
 
 	private void generaCampoRegione() {
 		testoRegione = new JLabel("Regione");
 		testoRegione.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoRegione.setBounds(53, 200, 257, 19);
+		testoRegione.setBounds(53, 200, 170, 19);
 		add(testoRegione);
 		
 		modelloComboBoxRegione = new DefaultComboBoxModel<String>();
@@ -138,7 +176,8 @@ public class PubblicaBusiness1 extends JPanel {
 			}
 		});
 		comboBoxRegione.setBackground(Color.WHITE);
-		comboBoxRegione.setBounds(53, 228, 287, 32);
+		comboBoxRegione.setFont(new Font("Roboto", Font.PLAIN, 17));
+		comboBoxRegione.setBounds(52, 228, 170, 35);
 		add(comboBoxRegione);
 	}
 
@@ -579,11 +618,27 @@ public class PubblicaBusiness1 extends JPanel {
 		modelloComboBoxRegione.addElement(regione);
 	}
 	
-	public void aggiungiCittaAModello(String citta) {
+	public void aggiungiProvinciaAModello(String citta) {
 		modelloComboBoxProvincia.addElement(citta);
 	}
 	
-	public void pulisciModelloCitta() {
+	public void pulisciModelloProvincia() {
 		modelloComboBoxProvincia.removeAllElements();
+	}
+	
+	public void aggiungiComuneAModello(String comune) {
+		modelloComboBoxComune.addElement(comune);
+	}
+	
+	public void pulisciModelloComune() {
+		modelloComboBoxComune.removeAllElements();
+	}
+	
+	public void aggiungiCAPAModello(String CAP) {
+		modelloComboBoxCAP.addElement(CAP);
+	}
+	
+	public void pulisciModelloCAP() {
+		modelloComboBoxCAP.removeAllElements();
 	}
 }

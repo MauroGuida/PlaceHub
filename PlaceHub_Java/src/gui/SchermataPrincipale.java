@@ -214,11 +214,27 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 		public void aggiungiProvinciaAModelloPubblicaBusiness1(String provincia) {
-			pannelloPubblicaBusiness1.aggiungiCittaAModello(provincia);
+			pannelloPubblicaBusiness1.aggiungiProvinciaAModello(provincia);
 		}
 		
-		public void pulisciModelloCittaPubblicaBusiness1() {
-			pannelloPubblicaBusiness1.pulisciModelloCitta();
+		public void pulisciModelloProvinciaPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.pulisciModelloProvincia();
+		}
+		
+		public void aggiungiComuneAModelloPubblicaBusiness1(String comune) {
+			pannelloPubblicaBusiness1.aggiungiComuneAModello(comune);
+		}
+		
+		public void pulisciModelloComunePubblicaBusiness1() {
+			pannelloPubblicaBusiness1.pulisciModelloComune();
+		}
+		
+		public void aggiungiCAPAModelloPubblicaBusiness1(String CAP) {
+			pannelloPubblicaBusiness1.aggiungiCAPAModello(CAP);
+		}
+		
+		public void pulisciModelloCAPPubblicaBusiness1() {
+			pannelloPubblicaBusiness1.pulisciModelloCAP();
 		}
 		
 	//Gestione pannello PubblicaBusiness2

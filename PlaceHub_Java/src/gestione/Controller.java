@@ -287,7 +287,7 @@ public class Controller {
 		}
 		
 		public void aggiungiProvinciaAModelloComboBoxPubblicaBusiness1(String regione) {
-			schermataPrincipaleFrame.pulisciModelloCittaPubblicaBusiness1();
+			schermataPrincipaleFrame.pulisciModelloProvinciaPubblicaBusiness1();
 			try {
 				for (String provincia: mappa.prelevaProvincieDiRegione(regione))
 					schermataPrincipaleFrame.aggiungiProvinciaAModelloPubblicaBusiness1(provincia);
