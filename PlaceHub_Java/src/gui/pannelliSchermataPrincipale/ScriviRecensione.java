@@ -1,20 +1,28 @@
 package gui.pannelliSchermataPrincipale;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
+import gestione.Controller;
 import gui.SchermataPrincipale;
+import res.ScrollPaneVerde;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -22,14 +30,16 @@ public class ScriviRecensione extends JPanel {
 	private JButton bottonePubblica;
 	private JButton bottoneCancella;
 	private JLabel immagineFoto_1;
-	private JLabel immagineFoto_2;
-	private JLabel immagineFoto_3;
+	private JPanel pannelloImmagini;
 	private JTextArea textAreaScriviRecensione;
 	private JLabel testoInfo_1;
-	private JLabel testoInfo_2;
 	private JLabel testoTrascinaFoto;
 	
-	public ScriviRecensione() {
+	private Controller ctrl;
+	
+	public ScriviRecensione(Controller ctrl) {
+		this.ctrl = ctrl;
+		
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
@@ -39,8 +49,7 @@ public class ScriviRecensione extends JPanel {
 		generaBottoneCancella();
 		
 		generaImmagineFoto_1();
-		generaImmagineFoto_2();
-		generaImmagineFoto_3();
+		generaVisualizzatoreImmagini();
 		
 		generaTextAreaScriviRecensione();
 		generaTestoInfo_1();
@@ -52,21 +61,17 @@ public class ScriviRecensione extends JPanel {
 	private void generaTestoTrascinaFoto() {
 		testoTrascinaFoto = new JLabel("Trascina qui le tue immagini");
 		testoTrascinaFoto.setFont(new Font("Roboto", Font.PLAIN, 24));
-		testoTrascinaFoto.setBounds(42, 340, 766, 39);
+		testoTrascinaFoto.setBounds(27, 304, 650, 39);
 		add(testoTrascinaFoto);
 	}
 
 	private void generaTestoInfo_2() {
-		testoInfo_2 = new JLabel("Una volta pubblicata la recensione non sara' piu' possibile recensire di nuovo questa attivita' ");
-		testoInfo_2.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfo_2.setBounds(42, 303, 766, 26);
-		add(testoInfo_2);
 	}
 
 	private void generaTestoInfo_1() {
 		testoInfo_1 = new JLabel("La tua recensione verra'\u00A0 pubblicata e sara'\u00A0 visibile a tutti gli utenti registrati");
 		testoInfo_1.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfo_1.setBounds(42, 11, 447, 30);
+		testoInfo_1.setBounds(27, 11, 801, 30);
 		add(testoInfo_1);
 	}
 
@@ -84,28 +89,21 @@ public class ScriviRecensione extends JPanel {
 		textAreaScriviRecensione.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaScriviRecensione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textAreaScriviRecensione.setText("Scrivi qui la tua recensione (MAX 2000 caratteri)");
-		textAreaScriviRecensione.setBounds(42, 53, 766, 240);
+		textAreaScriviRecensione.setBounds(27, 53, 801, 240);
 		add(textAreaScriviRecensione);
-	}
-
-	private void generaImmagineFoto_3() {
-		immagineFoto_3 = new JLabel("");
-		immagineFoto_3.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_3.setBounds(617, 390, 128, 128);
-		add(immagineFoto_3);
-	}
-
-	private void generaImmagineFoto_2() {
-		immagineFoto_2 = new JLabel("");
-		immagineFoto_2.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_2.setBounds(361, 390, 128, 128);
-		add(immagineFoto_2);
 	}
 
 	private void generaImmagineFoto_1() {
 		immagineFoto_1 = new JLabel("");
+		immagineFoto_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagineRecensione());
+				pannelloImmagini.revalidate();
+			}
+		});
 		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_1.setBounds(104, 390, 128, 128);
+		immagineFoto_1.setBounds(700, 381, 128, 128);
 		add(immagineFoto_1);
 	}
 
@@ -122,7 +120,7 @@ public class ScriviRecensione extends JPanel {
 			}
 		});
 		bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancella.setBounds(42, 537, 140, 50);
+		bottoneCancella.setBounds(27, 553, 140, 50);
 		bottoneCancella.setOpaque(false);
 		bottoneCancella.setBorderPainted(false);
 		bottoneCancella.setContentAreaFilled(false);
@@ -143,10 +141,38 @@ public class ScriviRecensione extends JPanel {
 		});
 		
 		bottonePubblica.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblica.png")));
-		bottonePubblica.setBounds(668, 537, 140, 50);
+		bottonePubblica.setBounds(688, 553, 140, 50);
 		bottonePubblica.setOpaque(false);
 		bottonePubblica.setBorderPainted(false);
 		bottonePubblica.setContentAreaFilled(false);
 		add(bottonePubblica);
+	}
+	
+	public void generaVisualizzatoreImmagini() {
+		pannelloImmagini = new JPanel();
+		pannelloImmagini.setBackground(Color.WHITE);
+		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		elencoImmagini.setBounds(27, 366, 650, 166);
+		add(elencoImmagini);
+		
+		elencoImmagini.setViewportView(pannelloImmagini);
+	}
+	
+	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
+		try {
+			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(210, 140, java.awt.Image.SCALE_SMOOTH);
+			
+			JLabel immagine = new JLabel();
+			immagine.setSize(210, 140);
+			immagine.setIcon(new ImageIcon(imgScalata));
+			
+			pannelloImmagini.add(immagine);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

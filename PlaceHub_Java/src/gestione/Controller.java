@@ -22,12 +22,14 @@ import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import oggetti.DocumentiUtente;
 import oggetti.Locale;
+import oggetti.Recensione;
 import res.FileChooser;
 import res.InvioEmail;
 
 public class Controller {
 	private DocumentiUtente bufferDocumenti;
-	private Locale localeBuffer;
+	private Locale bufferLocale;
+	private Recensione bufferRecensione;
 	
 	private static SchermataAccesso schermataAccessoFrame;
 	private static SchermataPrincipale schermataPrincipaleFrame;
@@ -279,7 +281,7 @@ public class Controller {
 			}
 			
 			if(!flagErrore) {
-				localeBuffer = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni, codMappa);
+				bufferLocale = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni, codMappa);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
@@ -335,17 +337,17 @@ public class Controller {
 					flagErrore = true;
 				}
 				
-				if(localeBuffer.getNumeroImmagini() < 1) {
+				if(bufferLocale.getNumeroImmagini() < 1) {
 					schermataPrincipaleFrame.mostraErroreInserisciImmaginePubblicaBusiness2();
 					flagErrore = true;
 				}
 
 				if(!flagErrore) {
-					localeBuffer.setDescrizione(testoDescriviBusiness);
+					bufferLocale.setDescrizione(testoDescriviBusiness);
 					if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						try {
 							inserisciBusinessInDatabase();
-							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA()), localeBuffer.getRaffinazioni());
+							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA()), bufferLocale.getRaffinazioni());
 							inserisciListaImmaginiInDatabase();
 							schermataPrincipaleFrame.mostraPubblicaBusiness3();
 						} catch (SQLException | CodiceBusinessNonTrovatoException e) {
@@ -357,9 +359,9 @@ public class Controller {
 		
 		public void inserisciListaImmaginiInDatabase() {
 			try {
-				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(localeBuffer.getPartitaIVA());
+				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA());
 				
-				for(String immagine: localeBuffer.getListaImmagini()) {
+				for(String immagine: bufferLocale.getListaImmagini()) {
 					business.inserisciImmagine(codBusiness, immagine);
 				}
 			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
@@ -370,7 +372,7 @@ public class Controller {
 		public File caricaImmagineLocale() {
 			File nuovaImmagine = selettoreFile.selezionaFile();
 			
-			localeBuffer.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+			bufferLocale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
 			
 			return nuovaImmagine;
 		}
@@ -469,7 +471,7 @@ public class Controller {
 		//CONFERMA REGISTRAZIONE BUSINESS
 		public void inserisciBusinessInDatabase() {
 			try {
-				business.inserisciBusiness(localeBuffer, utente.getcodUtente());
+				business.inserisciBusiness(bufferLocale, utente.getcodUtente());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -483,4 +485,21 @@ public class Controller {
 				e.printStackTrace();
 			}
 		}
+		
+		public void scriviUnaRecensione() {
+			bufferRecensione = new Recensione(utente.getcodUtente());
+			schermataPrincipaleFrame.mostraScriviRecensione();
+		}
+
+		
+		//RECENSISCI
+		public File caricaImmagineRecensione() {
+			File nuovaImmagine = selettoreFile.selezionaFile();
+			
+			bufferRecensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+			
+			return nuovaImmagine;
+		}
+		
+		
 }

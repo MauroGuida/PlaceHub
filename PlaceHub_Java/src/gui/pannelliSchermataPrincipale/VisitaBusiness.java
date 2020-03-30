@@ -203,6 +203,7 @@ public class VisitaBusiness extends JPanel {
 		bottoneRecensisci = new JButton("");
 		bottoneRecensisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensione.png")));

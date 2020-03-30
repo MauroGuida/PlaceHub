@@ -64,7 +64,7 @@ public class SchermataPrincipale extends JFrame {
 		pannelloBottoni = new Bottoni();
 		pannelloBottoni.setBounds(250, 0, 850, 36);
 		
-		pannelloScriviRecensione = new ScriviRecensione();
+		pannelloScriviRecensione = new ScriviRecensione(ctrl);
 		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
 		
 		pannelloRicerche = new Ricerche();
