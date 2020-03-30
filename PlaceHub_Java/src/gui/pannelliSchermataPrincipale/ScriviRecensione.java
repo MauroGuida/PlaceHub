@@ -103,7 +103,7 @@ public class ScriviRecensione extends JPanel {
 			}
 		});
 		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_1.setBounds(700, 381, 128, 128);
+		immagineFoto_1.setBounds(700, 369, 128, 128);
 		add(immagineFoto_1);
 	}
 
@@ -120,7 +120,7 @@ public class ScriviRecensione extends JPanel {
 			}
 		});
 		bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancella.setBounds(27, 553, 140, 50);
+		bottoneCancella.setBounds(27, 541, 140, 50);
 		bottoneCancella.setOpaque(false);
 		bottoneCancella.setBorderPainted(false);
 		bottoneCancella.setContentAreaFilled(false);
@@ -141,7 +141,7 @@ public class ScriviRecensione extends JPanel {
 		});
 		
 		bottonePubblica.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblica.png")));
-		bottonePubblica.setBounds(688, 553, 140, 50);
+		bottonePubblica.setBounds(688, 541, 140, 50);
 		bottonePubblica.setOpaque(false);
 		bottonePubblica.setBorderPainted(false);
 		bottonePubblica.setContentAreaFilled(false);
@@ -156,7 +156,7 @@ public class ScriviRecensione extends JPanel {
 		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
 		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		elencoImmagini.setBounds(27, 366, 650, 166);
+		elencoImmagini.setBounds(27, 354, 650, 166);
 		add(elencoImmagini);
 		
 		elencoImmagini.setViewportView(pannelloImmagini);

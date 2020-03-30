@@ -500,6 +500,4 @@ public class Controller {
 			
 			return nuovaImmagine;
 		}
-		
-		
 }

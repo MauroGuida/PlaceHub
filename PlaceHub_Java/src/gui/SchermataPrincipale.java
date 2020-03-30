@@ -85,7 +85,7 @@ public class SchermataPrincipale extends JFrame {
         pannelloGestisciBusiness = new GestisciBusiness(ctrl);
         pannelloGestisciBusiness.setBounds(250, 36, 850, 614);
         
-        pannelloVisitaBusiness = new VisitaBusiness();
+        pannelloVisitaBusiness = new VisitaBusiness(ctrl);
 		pannelloVisitaBusiness.setBounds(250, 36, 850, 614);
 		
 		getContentPane().setLayout(null);

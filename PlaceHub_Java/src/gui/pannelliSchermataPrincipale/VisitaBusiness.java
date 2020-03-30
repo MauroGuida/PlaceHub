@@ -3,6 +3,7 @@ package gui.pannelliSchermataPrincipale;
 import javax.swing.JPanel;
 
 import errori.NumeroStelleNonValidoException;
+import gestione.Controller;
 import oggetti.Locale;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
@@ -49,7 +50,11 @@ public class VisitaBusiness extends JPanel {
 	private ScrollPaneVerde scrollPaneRecensioni;
 	private JTextArea testoDescrizioneBusiness;
 	
-	public VisitaBusiness() {
+	private Controller ctrl;
+	
+	public VisitaBusiness(Controller ctrl) {
+		this.ctrl = ctrl;
+		
 		setBackground(Color.WHITE);
 		setSize(850, 614);
 		setVisible(false);
@@ -203,7 +208,7 @@ public class VisitaBusiness extends JPanel {
 		bottoneRecensisci = new JButton("");
 		bottoneRecensisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				ctrl.scriviUnaRecensione();
 			}
 		});
 		bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensione.png")));
