@@ -18,6 +18,9 @@ ALTER TABLE Business
 
 ALTER TABLE Utente
   ADD CONSTRAINT DataDiNascitaNonValida CHECK(NOT(DataDiNascita >= date('now')));
+
+ALTER TABLE ImmagineProprieta
+  ADD CONSTRAINT noImmagineProprieta UNIQUE(Url,CodBusiness);
 --------------
 
 
@@ -30,7 +33,7 @@ BEGIN
 	LOOP
 		IF raff.raffinazione NOT IN ('Pizzeria', 'Braceria', 'FastFood',
 				      	     'Paninoteca', 'Osteria', 'Tavola Calda',
-						'Taverna','Trattoria', 'Pesce') THEN
+					     'Taverna','Trattoria', 'Pesce') THEN
 			RAISE EXCEPTION 'Errore: Raffinazione non consentita';
 		END IF;
 	END LOOP;

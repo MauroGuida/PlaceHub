@@ -15,6 +15,16 @@ CREATE TABLE Utente(
   RetroDocumento VARCHAR(1000) DEFAULT NULL
 );
 
+CREATE TABLE Mappa(
+    Stato VARCHAR(5),
+    CAP VARCHAR(7),
+    Comune VARCHAR(100),
+    Regione VARCHAR(100),
+    Provincia VARCHAR(100),
+    SiglaProvincia VARCHAR(5),
+    codMappa SERIAL PRIMARY KEY
+);
+
 CREATE TYPE tipoBusiness AS ENUM ('Attrazione', 'Alloggio', 'Ristorante');
 CREATE TABLE Business(
   codBusiness SERIAL PRIMARY KEY,
@@ -32,15 +42,15 @@ CREATE TABLE Business(
 );
 
 CREATE TABLE ImmagineProprieta(
-  Url VARCHAR(1000) UNIQUE,
+  Url VARCHAR(1000),
   codBusiness INTEGER REFERENCES Business(codBusiness) ON DELETE CASCADE
 );
 
 CREATE TYPE tipoRaffinazione AS ENUM ('Pizzeria', 'Braceria', 'FastFood',
-				      'Paninoteca', 'Osteria', 'Tavola Calda',
+				      'Paninoteca', 'Osteria', 'TavolaCalda',
 				      'Taverna', 'Trattoria', 'Pesce',
 				      'Cinema', 'Shopping','Monumento',
-				      'Museo', 'Parco Giochi', 'Piscina',
+				      'Museo', 'ParcoGiochi', 'Piscina',
 				      'Lounge', 'Hotel', 'Bed&Breakfast',
 				      'Ostello', 'CasaVacanze' ,'Residence');
 
@@ -61,13 +71,3 @@ CREATE TABLE ImmagineRecensione(
   Url VARCHAR(1000) NOT NULL,
   codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
-
-CREATE TABLE Mappa(
-    Stato VARCHAR(5),
-    CAP VARCHAR(7),
-    Comune VARCHAR(100),
-    Regione VARCHAR(100),
-    Provincia VARCHAR(100),
-    SiglaProvincia VARCHAR(5),
-    codMappa SERIAL PRIMARY KEY
-)
