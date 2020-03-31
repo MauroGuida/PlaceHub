@@ -207,15 +207,16 @@ $$;
 
 
 --FUNZIONE INSERIMENTO RECENSIONE
-CREATE OR REPLACE PROCEDURE inserisciRecensione(VARCHAR(2000), NUMERIC, INTEGER, INTEGER)
-LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION inserisciRecensione(VARCHAR(2000), NUMERIC, INTEGER, INTEGER)
+RETURNS INTEGER
 AS $$
+DECLARE codRecen INTEGER;
 BEGIN
-  INSERT INTO Recensione (Testo, Stelle, CodBusiness, CodUtente)
-  VALUES ( $1, $2, $3, $4);
-  COMMIT;
+  INSERT INTO Recensione (Testo, Stelle, CodBusiness, CodUtente) 
+  VALUES ( $1, $2, $3, $4) RETURNING codRecensione INTO codRecen;
+  RETURN codRecen;
 END;
-$$;
+$$  LANGUAGE plpgsql;
 
 
 
