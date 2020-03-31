@@ -186,4 +186,16 @@ public class BusinessDAO {
 		
 		return recuperato;
 	}
+	
+	public String recuperaProprietarioLocale(String codBusiness) throws SQLException {
+		String sql = "SELECT codUtente FROM Business WHERE codBusiness = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codBusiness));
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		
+		return datiRecuperati.getString(1);
+	}
 }

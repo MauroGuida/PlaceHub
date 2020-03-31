@@ -35,9 +35,9 @@ public class Controller {
 	private static SchermataPrincipale schermataPrincipaleFrame;
 	
 	private static Connessione connessioneAlDatabase;
-	private UtenteDAO utente;
+	private static UtenteDAO utente;
 	private static BusinessDAO business;
-	private MappaDAO mappa;
+	private static MappaDAO mappa;
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
@@ -480,7 +480,11 @@ public class Controller {
 		//VISITA BUSINESS
 		public static void recuperaBusinessCompletoDaCodBusiness(String codBusiness) {
 			try {
-				schermataPrincipaleFrame.mostraVisitaBusiness(business.recuperaBusinessCompletoDaCodBusiness(codBusiness));
+				schermataPrincipaleFrame.mostraVisitaBusiness();
+				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(business.recuperaBusinessCompletoDaCodBusiness(codBusiness));
+				
+				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
+					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

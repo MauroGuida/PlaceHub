@@ -171,9 +171,8 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness3.setVisible(true);
 		}
 		
-		public void mostraVisitaBusiness(Locale locale) {
+		public void mostraVisitaBusiness() {
 			nascondiTuttiIPannelli();
-			pannelloVisitaBusiness.configuraPannello(locale);
 			pannelloVisitaBusiness.setVisible(true);
 		}
 		
@@ -292,6 +291,13 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 	//Gestione pannello VisitaBusiness
+		public void disattivaBottoneRecensioneVisitaBusiness() {
+			pannelloVisitaBusiness.disattivaBottoneRecensione();
+		}
+		
+		public void configuraPannelloVisitaBusiness(Locale locale) {
+			pannelloVisitaBusiness.configuraPannello(locale);
+		}
 		
 		
 	//Controllo pannelli visibili

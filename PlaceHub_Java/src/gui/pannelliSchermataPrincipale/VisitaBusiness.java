@@ -222,6 +222,10 @@ public class VisitaBusiness extends JPanel {
 			aggiungiImmagineAVisualizzatore(new File(immagine));
 	}
 	
+	public void disattivaBottoneRecensione() {
+		bottoneRecensisci.setEnabled(false);
+	}
+	
 	private void pulisciPannello() {
 		testoNomeBusiness.setText("");
 		testoIndirizzo.setText("");
