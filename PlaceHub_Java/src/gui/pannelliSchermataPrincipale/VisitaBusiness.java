@@ -26,11 +26,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.ScrollPaneConstants;
 import javax.imageio.ImageIO;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 public class VisitaBusiness extends JPanel {
@@ -43,7 +40,7 @@ public class VisitaBusiness extends JPanel {
 	private JLabel testoIndirizzo;
 	private JLabel immagineTelefono;
 	private JLabel testoNumeroTelefono;
-	private JLabel testoTipoBusiness;
+	private JLabel testoRaffinazioni;
 	private ScrollPaneVerde scrollPaneImmagini;
 	private JPanel pannelloImmagini;
 	private JPanel pannelloRecensioni;
@@ -65,8 +62,9 @@ public class VisitaBusiness extends JPanel {
 		generaImmagineIndirizzo();
 		generaTestoIndirizzo();
 		generaImmagineTelefono();
+		generaTestoRaffinazioni();
+		generaImmagineRaffinazioni();
 		generaTestoNumeroTelefono();
-		generaTestoTipoBusiness();
 		generaTestoDescrizioneBusiness();
 		
 		generaContenitoreFoto();
@@ -81,18 +79,13 @@ public class VisitaBusiness extends JPanel {
 		add(scrollPaneImmagini);
 		add(stelle);
 		add(bottoneRecensisci);
-		add(testoTipoBusiness);
+		add(testoRaffinazioni);
 		add(testoNomeBusiness);
 		add(immagineTelefono);
 		add(testoNumeroTelefono);
 		add(immagineIndirizzo);
 		add(testoIndirizzo);
 		add(testoDescrizioneBusiness);
-		
-		JLabel immagineRaffinazioni = new JLabel("");
-		immagineRaffinazioni.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/immagineRaffinazioni.png")));
-		immagineRaffinazioni.setBounds(28, 184, 31, 31);
-		add(immagineRaffinazioni);
 	}
 	
 
@@ -105,13 +98,19 @@ public class VisitaBusiness extends JPanel {
 	}
 
 
-	private void generaTestoTipoBusiness() {
-		testoTipoBusiness = new JLabel("DINAMICO");
-		testoTipoBusiness.setBounds(71, 184, 767, 31);
-		testoTipoBusiness.setHorizontalAlignment(SwingConstants.LEFT);
-		testoTipoBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
+	private void generaTestoRaffinazioni() {
+		testoRaffinazioni = new JLabel("DINAMICO");
+		testoRaffinazioni.setBounds(71, 184, 767, 31);
+		testoRaffinazioni.setHorizontalAlignment(SwingConstants.LEFT);
+		testoRaffinazioni.setFont(new Font("Roboto", Font.PLAIN, 20));
 	}
-
+	
+	private void generaImmagineRaffinazioni() {
+		JLabel immagineRaffinazioni = new JLabel("");
+		immagineRaffinazioni.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/immagineRaffinazioni.png")));
+		immagineRaffinazioni.setBounds(28, 184, 31, 31);
+		add(immagineRaffinazioni);
+	}
 
 	private void generaTestoNumeroTelefono() {
 		testoNumeroTelefono = new JLabel("DINAMICO");
@@ -217,7 +216,7 @@ public class VisitaBusiness extends JPanel {
 		testoIndirizzo.setText(locale.getIndirizzo());
 		testoNumeroTelefono.setText(locale.getTelefono());
 		testoDescrizioneBusiness.setText(locale.getDescrizione());
-		testoTipoBusiness.setText(locale.getRaffinazioni());
+		testoRaffinazioni.setText(locale.getRaffinazioni());
 		
 		for (String immagine: locale.getListaImmagini())
 			aggiungiImmagineAVisualizzatore(new File(immagine));
@@ -228,7 +227,7 @@ public class VisitaBusiness extends JPanel {
 		testoIndirizzo.setText("");
 		testoNumeroTelefono.setText("");
 		testoDescrizioneBusiness.setText("");
-		testoTipoBusiness.setText("");
+		testoRaffinazioni.setText("");
 		
 		pannelloImmagini.removeAll();
 		pannelloRecensioni.removeAll();

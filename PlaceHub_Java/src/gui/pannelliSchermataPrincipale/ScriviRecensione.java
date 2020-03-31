@@ -69,7 +69,7 @@ public class ScriviRecensione extends JPanel {
 	}
 
 	private void generaTestoInfo_1() {
-		testoInfo_1 = new JLabel("La tua recensione verra'\u00A0 pubblicata e sara'\u00A0 visibile a tutti gli utenti registrati");
+		testoInfo_1 = new JLabel("<html>La tua recensione verr&#224 pubblicata e sar&#224 visibile a tutti gli utenti registrati</html>");
 		testoInfo_1.setFont(new Font("Roboto", Font.PLAIN, 13));
 		testoInfo_1.setBounds(27, 11, 801, 30);
 		add(testoInfo_1);
