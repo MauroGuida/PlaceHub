@@ -23,6 +23,8 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.SchermataPrincipale;
 import res.ScrollPaneVerde;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -129,6 +131,11 @@ public class ScriviRecensione extends JPanel {
 
 	private void generaBottonePubblica() {
 		bottonePubblica = new JButton("");
+		bottonePubblica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.pubblicaRecensione(textAreaScriviRecensione.getText(), 5);
+			}
+		});
 		bottonePubblica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

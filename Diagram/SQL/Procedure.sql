@@ -198,7 +198,7 @@ CREATE OR REPLACE PROCEDURE inserisciImmagineRecensione(VARCHAR(1000),INTEGER)
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  INSERT INTO inserisciImmagineRecensione
+  INSERT INTO ImmagineRecensione
   VALUES ( $1, $2);
   COMMIT;
 END;
@@ -212,11 +212,8 @@ RETURNS INTEGER
 AS $$
 DECLARE codRecen INTEGER;
 BEGIN
-  INSERT INTO Recensione (Testo, Stelle, CodBusiness, CodUtente) 
+  INSERT INTO Recensione (Testo, Stelle, CodBusiness, CodUtente)
   VALUES ( $1, $2, $3, $4) RETURNING codRecensione INTO codRecen;
   RETURN codRecen;
 END;
 $$  LANGUAGE plpgsql;
-
-
-

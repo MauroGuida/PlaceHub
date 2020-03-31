@@ -28,8 +28,11 @@ public class LocaleGUI extends JPanel {
 	
 	private Locale locale;
 
-	public LocaleGUI(Locale locale) {
+	private Controller ctrl;
+	
+	public LocaleGUI(Locale locale, Controller ctrl) {
 		this.locale = locale;
+		this.ctrl = ctrl;
 		
 		try {
 			aggiungiStelle(Math.round(locale.getStelle()), false);
@@ -76,7 +79,7 @@ public class LocaleGUI extends JPanel {
 		labelImmaginePrincipale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Controller.recuperaBusinessCompletoDaCodBusiness(locale.getCodBusiness());
+				ctrl.recuperaBusinessCompletoDaCodBusiness(locale.getCodBusiness());
 			}
 		});
 		try {

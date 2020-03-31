@@ -3,13 +3,16 @@ package oggetti;
 import java.util.ArrayList;
 
 public class Recensione {
+	private String codUtente;
+	private String codBusiness;
+	
+	private String testoRecensione;
+	private int stelle;
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 	
-	private String codUtente;
-	private String Recensione;
-	
-	public Recensione(String codUtente) {
+	public Recensione(String codUtente, String codBusiness) {
 		this.codUtente = codUtente;
+		this.codBusiness = codBusiness;
 	}
 
 	//Getters and Setters
@@ -22,12 +25,32 @@ public class Recensione {
 		this.codUtente = codUtente;
 	}
 
-	public String getRecensione() {
-		return Recensione;
+	public String getTestoRecensione() {
+		return testoRecensione;
 	}
 
-	public void setRecensione(String recensione) {
-		Recensione = recensione;
+	public void setTestoRecensione(String recensione) {
+		this.testoRecensione = recensione;
+	}
+	
+	public String getCodBusiness() {
+		return codBusiness;
+	}
+
+	public void setCodBusiness(String codBusiness) {
+		this.codBusiness = codBusiness;
+	}
+	
+	public int getStelle() {
+		return stelle;
+	}
+
+	public void setStelle(int stelle) {
+		this.stelle = stelle;
+	}
+	
+	public ArrayList<String> getListaImmagini() {
+		return listaImmagini;
 	}
 	
 	//METODI

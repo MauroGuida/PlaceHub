@@ -163,7 +163,7 @@ public class VisitaBusiness extends JPanel {
 		bottoneRecensisci.setBounds(545, 90, 269, 50);
 		bottoneRecensisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ctrl.scriviUnaRecensione();
+				ctrl.vaiAScriviRecensione();
 			}
 		});
 		bottoneRecensisci.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/bottoneRecensione.png")));

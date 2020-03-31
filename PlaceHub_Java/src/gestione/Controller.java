@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import database.BusinessDAO;
 import database.MappaDAO;
+import database.RecensioneDAO;
 import database.Connessione;
 import database.UtenteDAO;
 import errori.CodMappaNonTrovatoException;
@@ -38,6 +39,7 @@ public class Controller {
 	private static UtenteDAO utente;
 	private static BusinessDAO business;
 	private static MappaDAO mappa;
+	private static RecensioneDAO recensione;
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
@@ -74,6 +76,7 @@ public class Controller {
 			utente = new UtenteDAO();
 			business = new BusinessDAO();
 			mappa = new MappaDAO();
+			recensione = new RecensioneDAO();
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
@@ -190,7 +193,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaInVoga())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -202,7 +205,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaRistoranti())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -213,7 +216,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaAttrazioni())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -224,7 +227,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaAlloggi())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale));
+					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -357,6 +360,14 @@ public class Controller {
 				}
 		}
 		
+		public void inserisciBusinessInDatabase() {
+			try {
+				business.inserisciBusiness(bufferLocale, utente.getcodUtente());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		public void inserisciListaImmaginiInDatabase() {
 			try {
 				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA());
@@ -405,7 +416,7 @@ public class Controller {
 		public void recuperaBusinessUtente() {
 			try {
 				for (Locale recuperato : business.recuperaBusinessDaCodUtente(utente.getcodUtente()))
-					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato));
+					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -467,21 +478,14 @@ public class Controller {
 			}
 		}
 		
-		
-		//CONFERMA REGISTRAZIONE BUSINESS
-		public void inserisciBusinessInDatabase() {
-			try {
-				business.inserisciBusiness(bufferLocale, utente.getcodUtente());
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
 		//VISITA BUSINESS
-		public static void recuperaBusinessCompletoDaCodBusiness(String codBusiness) {
+		public void recuperaBusinessCompletoDaCodBusiness(String codBusiness) {
 			try {
 				schermataPrincipaleFrame.mostraVisitaBusiness();
-				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(business.recuperaBusinessCompletoDaCodBusiness(codBusiness));
+				
+				bufferLocale = new Locale();
+				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
+				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
 				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
@@ -490,12 +494,11 @@ public class Controller {
 			}
 		}
 		
-		public void scriviUnaRecensione() {
-			bufferRecensione = new Recensione(utente.getcodUtente());
+		public void vaiAScriviRecensione() {
+			bufferRecensione = new Recensione(utente.getcodUtente(), bufferLocale.getCodBusiness());
 			schermataPrincipaleFrame.mostraScriviRecensione();
 		}
 
-		
 		//RECENSISCI
 		public File caricaImmagineRecensione() {
 			File nuovaImmagine = selettoreFile.selezionaFile();
@@ -503,5 +506,17 @@ public class Controller {
 			bufferRecensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
 			
 			return nuovaImmagine;
+		}
+		
+		public void pubblicaRecensione(String testo, int stelle) {
+			try {
+				bufferRecensione.setTestoRecensione(testo);
+				bufferRecensione.setStelle(stelle);
+				
+				recensione.inserisciRecensione(bufferRecensione);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 }
