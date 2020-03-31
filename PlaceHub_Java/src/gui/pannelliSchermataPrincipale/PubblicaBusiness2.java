@@ -212,6 +212,8 @@ public class PubblicaBusiness2 extends JPanel {
 		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
 		textAreaDescriviBusiness.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaDescriviBusiness.setBounds(27, 43, 795, 247);
+		textAreaDescriviBusiness.setLineWrap(true);
+		textAreaDescriviBusiness.setWrapStyleWord(true);
 		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

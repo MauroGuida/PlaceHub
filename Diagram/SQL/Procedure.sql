@@ -190,3 +190,32 @@ begin
         return length(str)- length(sub)- pos- shift+ 3;
     end if;
 end $$;
+
+
+
+--FUNZIONE INSERIMENTO IMMAGINE RECENSIONE
+CREATE OR REPLACE PROCEDURE inserisciImmagineRecensione(VARCHAR(1000),INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO inserisciImmagineRecensione
+  VALUES ( $1, $2);
+  COMMIT;
+END;
+$$;
+
+
+
+--FUNZIONE INSERIMENTO RECENSIONE
+CREATE OR REPLACE PROCEDURE inserisciRecensione(VARCHAR(2000), NUMERIC, INTEGER, INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO Recensione (Testo, Stelle, CodBusiness, CodUtente)
+  VALUES ( $1, $2, $3, $4);
+  COMMIT;
+END;
+$$;
+
+
+

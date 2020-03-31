@@ -45,7 +45,7 @@ public class VisitaBusiness extends JPanel {
 	private JPanel pannelloImmagini;
 	private JPanel pannelloRecensioni;
 	private ScrollPaneVerde scrollPaneRecensioni;
-	private JTextArea testoDescrizioneBusiness;
+	private JTextArea textAreaDescrizioneBusiness;
 	
 	private Controller ctrl;
 	
@@ -65,7 +65,7 @@ public class VisitaBusiness extends JPanel {
 		generaTestoRaffinazioni();
 		generaImmagineRaffinazioni();
 		generaTestoNumeroTelefono();
-		generaTestoDescrizioneBusiness();
+		generaTextAreaDescrizioneBusiness();
 		
 		generaContenitoreFoto();
 		generaContenitoreRecensioni();
@@ -85,16 +85,18 @@ public class VisitaBusiness extends JPanel {
 		add(testoNumeroTelefono);
 		add(immagineIndirizzo);
 		add(testoIndirizzo);
-		add(testoDescrizioneBusiness);
+		add(textAreaDescrizioneBusiness);
 	}
 	
 
-	private void generaTestoDescrizioneBusiness() {
-		testoDescrizioneBusiness = new JTextArea("DINAMICO");
-		testoDescrizioneBusiness.setBounds(429, 240, 380, 199);
-		testoDescrizioneBusiness.setFont(new Font("Roboto", Font.PLAIN, 15));
-		testoDescrizioneBusiness.setBorder(new LineBorder(Color.BLACK,1));
-		testoDescrizioneBusiness.setEditable(false);
+	private void generaTextAreaDescrizioneBusiness() {
+		textAreaDescrizioneBusiness = new JTextArea("DINAMICO");
+		textAreaDescrizioneBusiness.setWrapStyleWord(true);
+		textAreaDescrizioneBusiness.setLineWrap(true);
+		textAreaDescrizioneBusiness.setBounds(429, 240, 380, 199);
+		textAreaDescrizioneBusiness.setFont(new Font("Roboto", Font.PLAIN, 15));
+		textAreaDescrizioneBusiness.setBorder(new LineBorder(Color.BLACK,1));
+		textAreaDescrizioneBusiness.setEditable(false);
 	}
 
 
@@ -215,7 +217,7 @@ public class VisitaBusiness extends JPanel {
 		testoNomeBusiness.setText(locale.getNome());
 		testoIndirizzo.setText(locale.getIndirizzo());
 		testoNumeroTelefono.setText(locale.getTelefono());
-		testoDescrizioneBusiness.setText(locale.getDescrizione());
+		textAreaDescrizioneBusiness.setText(locale.getDescrizione());
 		testoRaffinazioni.setText(locale.getRaffinazioni());
 		
 		for (String immagine: locale.getListaImmagini())
@@ -230,7 +232,7 @@ public class VisitaBusiness extends JPanel {
 		testoNomeBusiness.setText("");
 		testoIndirizzo.setText("");
 		testoNumeroTelefono.setText("");
-		testoDescrizioneBusiness.setText("");
+		textAreaDescrizioneBusiness.setText("");
 		testoRaffinazioni.setText("");
 		
 		pannelloImmagini.removeAll();
