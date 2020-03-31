@@ -235,10 +235,10 @@ public class VisitaBusiness extends JPanel {
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
 		try {
-			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(280, 160, java.awt.Image.SCALE_SMOOTH);
+			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(290, 170, java.awt.Image.SCALE_SMOOTH);
 			
 			JLabel immagine = new JLabel();
-			immagine.setSize(280, 160);
+			immagine.setSize(290, 170);
 			immagine.setIcon(new ImageIcon(imgScalata));
 			
 			pannelloImmagini.add(immagine);
