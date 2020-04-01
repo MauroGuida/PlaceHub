@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
-import gui.LocaleGUI;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
 import javax.swing.GroupLayout;

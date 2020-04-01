@@ -9,9 +9,10 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class RicercaLocaleVuota extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel immagineFaccia;
 	private JLabel testoRicercaLocaleVuota;
 	
