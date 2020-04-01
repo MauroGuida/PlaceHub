@@ -3,6 +3,7 @@ package gestione;
 import java.awt.EventQueue;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ import errori.UsernameOPasswordErratiException;
 import gui.LocaleGUI;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
+import gui.pannelliSchermataPrincipale.RicercaLocaleVuota;
 import oggetti.DocumentiUtente;
 import oggetti.Locale;
 import oggetti.Recensione;
@@ -194,6 +196,7 @@ public class Controller {
 			try {
 				for (Locale locale : business.ricercaInVoga())
 					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
+		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -233,6 +236,26 @@ public class Controller {
 			}
 		}
 		
+		public void generaRisultatiRicercaLocale(String campoCosa,String campoDove) {
+			schermataPrincipaleFrame.svuotaRicerche();
+			
+			try {
+				if(campoCosa.isEmpty() || campoCosa.isBlank() || campoCosa.equals("Cosa?"))
+					campoCosa = "";
+				
+				if(campoDove.isEmpty() || campoDove.isBlank() || campoDove.equals("Dove?"))
+					campoDove = "";
+				
+				ArrayList<Locale> locali = business.ricercaLocali(campoCosa, campoDove);
+				if(locali.isEmpty())
+					schermataPrincipaleFrame.addRisultatoRicerca(new RicercaLocaleVuota());
+				else
+					for(Locale locale : locali)
+						schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale,this));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
 		//PUBBLICA BUSINESS 1
 		public void procediInPubblicaBusiness2(String nomeBusiness, String indirizzo, 

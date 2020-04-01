@@ -80,7 +80,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 2;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraRistornati();
+	    		Controller.getSchermataPrincipaleFrame().mostraRistoranti();
 	    	}
 	    });
 	    bottoneRistoranti.addMouseListener(new MouseAdapter() {
@@ -237,7 +237,7 @@ public class SideBar extends JPanel {
 	    bottoneCercaSideBar = new JButton("");
 	    bottoneCercaSideBar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
-	    		
+	    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    bottoneCercaSideBar.addMouseListener(new MouseAdapter() {

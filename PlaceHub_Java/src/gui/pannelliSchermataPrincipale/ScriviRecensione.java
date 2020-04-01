@@ -80,6 +80,8 @@ public class ScriviRecensione extends JPanel {
 	private void generaTextAreaScriviRecensione() {
 		textAreaScriviRecensione = new JTextArea();
 		textAreaScriviRecensione.setRows(30);
+		textAreaScriviRecensione.setWrapStyleWord(true);
+		textAreaScriviRecensione.setLineWrap(true);
 		textAreaScriviRecensione.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

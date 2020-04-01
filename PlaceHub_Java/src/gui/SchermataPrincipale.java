@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import gestione.Controller;
 import gui.pannelliSchermataPrincipale.Bottoni;
@@ -8,6 +9,7 @@ import gui.pannelliSchermataPrincipale.GestisciBusiness;
 import gui.pannelliSchermataPrincipale.PubblicaBusiness1;
 import gui.pannelliSchermataPrincipale.PubblicaBusiness2;
 import gui.pannelliSchermataPrincipale.PubblicaBusiness3;
+import gui.pannelliSchermataPrincipale.RicercaLocaleVuota;
 import gui.pannelliSchermataPrincipale.Ricerche;
 import gui.pannelliSchermataPrincipale.ScriviRecensione;
 import gui.pannelliSchermataPrincipale.SideBar;
@@ -39,7 +41,6 @@ public class SchermataPrincipale extends JFrame {
 	private PubblicaBusiness1 pannelloPubblicaBusiness1;
 	private PubblicaBusiness2 pannelloPubblicaBusiness2;
 	private PubblicaBusiness3 pannelloPubblicaBusiness3;
-	
 	private VisitaBusiness pannelloVisitaBusiness;
 	
 	public SchermataPrincipale(Controller Ctrl) {
@@ -88,6 +89,7 @@ public class SchermataPrincipale extends JFrame {
         pannelloVisitaBusiness = new VisitaBusiness(ctrl);
 		pannelloVisitaBusiness.setBounds(250, 36, 850, 614);
 		
+		
 		getContentPane().setLayout(null);
 		getContentPane().add(pannelloSideBar);
 		getContentPane().add(pannelloBottoni);
@@ -131,7 +133,7 @@ public class SchermataPrincipale extends JFrame {
 			ctrl.generaRisultatiHomePage();
 		}
 		
-		public void mostraRistornati() {
+		public void mostraRistoranti() {
 			mostraRicerche();
 			ctrl.generaRisultatiRistoranti();
 		}
@@ -144,6 +146,11 @@ public class SchermataPrincipale extends JFrame {
 		public void mostraAlloggi() {
 			mostraRicerche();
 			ctrl.generaRisultatiAlloggi();
+		}
+		
+		public void mostraRicercaLocali(String campoCosa, String campoDove) {
+			mostraRicerche();
+			ctrl.generaRisultatiRicercaLocale(campoCosa, campoDove);
 		}
 		
 		public void mostraScriviRecensione() {
@@ -181,7 +188,7 @@ public class SchermataPrincipale extends JFrame {
 			pannelloRicerche.svuotaRicerche();
 		}
 		
-		public void addRisultatoRicerca(LocaleGUI risultatoRicerca) {
+		public void addRisultatoRicerca(JPanel risultatoRicerca) {
 			pannelloRicerche.addRisultatoRicerca(risultatoRicerca);
 		}
 		

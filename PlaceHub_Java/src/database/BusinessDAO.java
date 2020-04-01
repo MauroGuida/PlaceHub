@@ -54,6 +54,15 @@ public class BusinessDAO {
 		return locali;
 	}
 	
+	// DA GESTIRE
+	public ArrayList<Locale> ricercaLocali(String campoCosa, String campoDove) throws SQLException{
+		locali.clear();
+		
+		recuperaLocaliDaRicerca(campoCosa, campoDove);
+		
+		return locali;
+	}
+	
 	public void recuperaLocaliDaTipo(String tipo) throws SQLException {
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
 				"FROM Business B, ImmagineProprieta I " + 
@@ -63,6 +72,22 @@ public class BusinessDAO {
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, tipo);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		while(datiRecuperati.next())
+			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+					datiRecuperati.getString(5)));
+	}
+	
+	// DA GESTIRE
+	public void recuperaLocaliDaRicerca(String campoCosa, String campoDove) throws SQLException {
+		String sql = "SELECT codBusiness, Nome, Indirizzo, Stelle, URL " +
+					 "FROM ricercaLocale( ? , ? ) " +
+					 "AS Locali(codBusiness INTEGER ,Nome VARCHAR(50),Indirizzo VARCHAR(100),Stelle NUMERIC,URL VARCHAR(1000))";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, campoCosa);
+		query.setString(2, campoDove);
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next())

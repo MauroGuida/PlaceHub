@@ -56,7 +56,7 @@ public class Ricerche extends JPanel {
 	//METODI
 	
 	
-	public void addRisultatoRicerca(LocaleGUI risultatoRicerca) {
+	public void addRisultatoRicerca(JPanel risultatoRicerca) {
 		pannelloRisultatoRicerca.add(risultatoRicerca);
 	}
 	

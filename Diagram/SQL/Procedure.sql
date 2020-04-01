@@ -217,3 +217,33 @@ BEGIN
   RETURN codRecen;
 END;
 $$  LANGUAGE plpgsql;
+
+
+
+--FUNZIONE RICERCA LOCALE
+CREATE OR REPLACE FUNCTION ricercaLocale(VARCHAR(20),VARCHAR(20))
+RETURNS SETOF record
+AS $$
+BEGIN 
+	IF ( $1 = '' AND $2 = '' ) THEN
+		RETURN QUERY 
+		SELECT  B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url 
+		FROM Business B, ImmagineProprieta I 
+		WHERE B.codBusiness = I.codBusiness AND I.URL = (SELECT IP.URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1);
+	
+	ELSE 
+		RETURN QUERY 
+		SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url 
+		FROM ((Business B JOIN ImmagineProprieta I ON (B.codBusiness = I.codBusiness)) JOIN Mappa M ON (B.codMappa = M.codMappa)) 
+		WHERE I.URL = (SELECT IP.URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) AND 
+		     ((B.Nome ILIKE '%' || $1 || '%') OR (SELECT 1 
+					       	          FROM AssociazioneRaffinazione A 
+					                  WHERE A.codBusiness = B.codBusiness AND CAST(A.raffinazione AS VARCHAR(100)) ILIKE '%' || $1 || '%') IS NOT NULL)
+		     AND 
+		    ((M.Provincia ILIKE '%' || $2 || '%') OR (M.Comune ILIKE '%' || $2 || '%'));
+	END IF;	
+END; 
+$$  LANGUAGE plpgsql;
+
+
+
