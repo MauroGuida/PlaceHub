@@ -51,7 +51,7 @@ public class LocaleGUI extends JPanel {
 
 	private void generaStelle() {
 		stelle = new StelleGUI();
-		stelle.aggiungiStelle(Math.round(locale.getStelle()));
+		stelle.aggiungiStelle(locale.getStelle());
 	}
 
 	

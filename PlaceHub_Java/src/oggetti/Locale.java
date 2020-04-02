@@ -9,7 +9,7 @@ public class Locale {
 	private String telefono;
 	private String partitaIVA;
 	private String descrizione;
-	private float stelle;
+	private double stelle;
 	private String tipoBusiness;
 	private String raffinazioni;
 	private String codMappa;
@@ -31,7 +31,7 @@ public class Locale {
 	
 	//COMPLETO
 	public Locale(String codBusiness, String nome, String indirizzo,
-			  String telefono, String partitaIVA, String descrizione, float stelle, String tipoBusiness, String raffinazioni, String codMappa) {
+			  String telefono, String partitaIVA, String descrizione, double stelle, String tipoBusiness, String raffinazioni, String codMappa) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;
@@ -48,7 +48,7 @@ public class Locale {
 	
 	
 	//ANTEPRIMA
-	public Locale(String codBusiness, String nome, String indirizzo, float stelle, String immagine) {
+	public Locale(String codBusiness, String nome, String indirizzo, double stelle, String immagine) {
 		this.setCodBusiness(codBusiness);
 		this.nome = nome;
 		this.indirizzo = indirizzo;
@@ -91,7 +91,7 @@ public class Locale {
 		this.descrizione = descrizione;
 	}
 
-	public void setStelle(float stelle) {
+	public void setStelle(double stelle) {
 		this.stelle = stelle;
 	}
 
@@ -134,7 +134,7 @@ public class Locale {
 		return descrizione;
 	}
 	
-	public float getStelle() {
+	public double getStelle() {
 		return stelle;
 	}
 	

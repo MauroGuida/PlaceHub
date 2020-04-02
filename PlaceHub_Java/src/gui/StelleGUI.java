@@ -18,13 +18,14 @@ public class StelleGUI extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 	}
 	
-	public void aggiungiStelle(float numStelle){
+	public void aggiungiStelle(double numStelle){
+		removeAll();
 		if(numStelle>5)
 			System.err.print("Numero stelle non Valido!");
 		else {
 			double parteDecimale = numStelle - (int) numStelle;
 			
-			for(int i=0; i<numStelle; i++) {
+			for(int i=0; i< (int)numStelle; i++) {
 				JLabel stellaPiena = new JLabel();
 				stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
 				add(stellaPiena);
