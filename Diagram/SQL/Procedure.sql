@@ -244,3 +244,30 @@ BEGIN
 	END IF;
 END;
 $$  LANGUAGE plpgsql;
+
+
+
+--TRIGGER AGGIORNA STELLE
+CREATE OR REPLACE FUNCTION aggiornaMediaStelle()
+RETURNS TRIGGER 
+AS $$
+DECLARE nuovaMedia NUMERIC;
+BEGIN
+    SELECT AVG(Stelle) INTO nuovaMedia
+    FROM Recensione 
+    WHERE codBusiness = NEW.codBusiness; 
+
+    UPDATE Business
+    SET Stelle = nuovaMedia
+    WHERE codBusiness = NEW.codBusiness;
+	
+    RETURN NEW;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER calcolaNuovaMediaDopoInserimentoRecensione
+AFTER INSERT ON Recensione
+FOR EACH ROW
+EXECUTE PROCEDURE aggiornaMediaStelle();
+

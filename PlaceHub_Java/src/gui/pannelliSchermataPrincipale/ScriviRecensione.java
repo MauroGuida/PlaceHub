@@ -37,8 +37,16 @@ public class ScriviRecensione extends JPanel {
 	private JLabel testoInfo_1;
 	private JLabel testoTrascinaFoto;
 	
-	private Controller ctrl;
+	private JPanel pannelloVotazioniStelle;
+	private JLabel immagineStella1;
+	private JLabel immagineStella2;
+	private JLabel immagineStella3;
+	private JLabel immagineStella4;
+	private JLabel immagineStella5;
+	private int numStelleSelezionate = 0;
 	
+	private Controller ctrl;
+
 	public ScriviRecensione(Controller ctrl) {
 		this.ctrl = ctrl;
 		
@@ -53,11 +61,91 @@ public class ScriviRecensione extends JPanel {
 		generaImmagineFoto_1();
 		generaVisualizzatoreImmagini();
 		
+		generaPannelloVotazioniStelle();
+		
 		generaTextAreaScriviRecensione();
 		generaTestoInfo_1();
-		generaTestoInfo_2();
 		generaTestoTrascinaFoto();
 		
+	}
+
+	private void generaPannelloVotazioniStelle() {
+		pannelloVotazioniStelle = new JPanel();
+		pannelloVotazioniStelle.setBackground(Color.WHITE);
+		pannelloVotazioniStelle.setBounds(588, 20, 240, 41);
+		pannelloVotazioniStelle.setLayout(null);
+		add(pannelloVotazioniStelle);
+		
+		generaImmagineStella1();
+		generaImmagineStella2();		
+		generaImmagineStella3();		
+		generaImmagineStella4();	
+		generaImmagineStella5();
+	}
+
+	private void generaImmagineStella5() {
+		immagineStella5 = new JLabel("");
+		immagineStella5.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella5.setBounds(200, 0, 40, 40);
+		immagineStella5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selezionaStelle(1);
+			}
+		});
+		pannelloVotazioniStelle.add(immagineStella5);
+	}
+
+	private void generaImmagineStella4() {
+		immagineStella4 = new JLabel("");
+		immagineStella4.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella4.setBounds(150, 0, 40, 40);
+		immagineStella4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selezionaStelle(4);
+			}
+		});
+		pannelloVotazioniStelle.add(immagineStella4);
+	}
+
+	private void generaImmagineStella3() {
+		immagineStella3 = new JLabel("");
+		immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella3.setBounds(100, 0, 40, 40);
+		immagineStella3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selezionaStelle(3);
+			}
+		});
+		pannelloVotazioniStelle.add(immagineStella3);
+	}
+
+	private void generaImmagineStella2() {
+		immagineStella2 = new JLabel("");
+		immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella2.setBounds(50, 0, 40, 40);
+		immagineStella2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selezionaStelle(2);
+			}
+		});
+		pannelloVotazioniStelle.add(immagineStella2);
+	}
+
+	private void generaImmagineStella1() {
+		immagineStella1 = new JLabel("");
+		immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella1.setBounds(0, 0, 40, 40);
+		immagineStella1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selezionaStelle(1);
+			}
+		});
+		pannelloVotazioniStelle.add(immagineStella1);
 	}
 
 	private void generaTestoTrascinaFoto() {
@@ -67,13 +155,10 @@ public class ScriviRecensione extends JPanel {
 		add(testoTrascinaFoto);
 	}
 
-	private void generaTestoInfo_2() {
-	}
-
 	private void generaTestoInfo_1() {
 		testoInfo_1 = new JLabel("<html>La tua recensione verr&#224 pubblicata e sar&#224 visibile a tutti gli utenti registrati</html>");
 		testoInfo_1.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfo_1.setBounds(27, 11, 801, 30);
+		testoInfo_1.setBounds(27, 37, 470, 30);
 		add(testoInfo_1);
 	}
 
@@ -93,7 +178,7 @@ public class ScriviRecensione extends JPanel {
 		textAreaScriviRecensione.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaScriviRecensione.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textAreaScriviRecensione.setText("Scrivi qui la tua recensione (MAX 2000 caratteri)");
-		textAreaScriviRecensione.setBounds(27, 53, 801, 240);
+		textAreaScriviRecensione.setBounds(27, 72, 801, 221);
 		add(textAreaScriviRecensione);
 	}
 
@@ -135,7 +220,7 @@ public class ScriviRecensione extends JPanel {
 		bottonePubblica = new JButton("");
 		bottonePubblica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.pubblicaRecensione(textAreaScriviRecensione.getText(), 5);
+				ctrl.pubblicaRecensione(textAreaScriviRecensione.getText(), numStelleSelezionate);
 			}
 		});
 		bottonePubblica.addMouseListener(new MouseAdapter() {
@@ -182,6 +267,50 @@ public class ScriviRecensione extends JPanel {
 			pannelloImmagini.add(immagine);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void svuotaStelle() {
+		immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella4.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+		immagineStella5.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
+	}
+	
+	private void selezionaStelle(int flag) {
+		svuotaStelle();
+		numStelleSelezionate = flag;
+		switch(flag) {
+			case 1 :
+				immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				break;
+				
+			case 2:
+				immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				break;
+				
+			case 3:
+				immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				break;
+				
+			case 4:
+				immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella4.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				break;
+				
+			case 5:
+				immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella4.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				immagineStella5.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
+				break;
 		}
 	}
 }
