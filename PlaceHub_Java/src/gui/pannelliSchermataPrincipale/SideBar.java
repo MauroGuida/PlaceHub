@@ -169,6 +169,9 @@ public class SideBar extends JPanel {
 	    			textFieldDove.setEditable(true);
 				else
 					textFieldDove.setEditable(false);
+	    		
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    textFieldDove.addFocusListener(new FocusAdapter() {

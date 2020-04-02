@@ -56,7 +56,7 @@ public class ReimpostaPassword1 extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				textFieldEmail.setText("");
+				pulisciPannello();
 			}
 		});
 	}
@@ -174,5 +174,9 @@ public class ReimpostaPassword1 extends JPanel {
 	private void invioCodiceReimpostaPassword() {
 		ctrl.richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmail.getText());
 		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmail.getText());
+	}
+
+	private void pulisciPannello() {
+		textFieldEmail.setText("");
 	}
 }

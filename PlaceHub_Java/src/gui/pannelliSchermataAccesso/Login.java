@@ -65,8 +65,7 @@ public class Login extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				textFieldUsername.setText("");
-				passwordFieldPassword.setText("");
+				pulisciPannello();
 			}
 		});
 	}
@@ -244,5 +243,10 @@ public class Login extends JPanel {
 	
 	private void eseguiLogin() {
 		ctrl.loginSchermataAccesso(textFieldUsername.getText(), passwordFieldPassword.getPassword());
+	}
+
+	private void pulisciPannello() {
+		textFieldUsername.setText("");
+		passwordFieldPassword.setText("");
 	}
 }

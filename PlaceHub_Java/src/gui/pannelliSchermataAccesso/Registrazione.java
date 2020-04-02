@@ -80,12 +80,7 @@ public class Registrazione extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				textFieldUsernameRegistrazione.setText("");
-				textFieldNomeRegistrazione.setText("");
-				textFieldCognomeRegistrazione.setText("");
-				textFieldDataNascitaRegistrazione.setText("");
-				textFieldEmailRegistrazione.setText("");
-				passwordFieldRegistrazione.setText("");
+				pulisciPannello();
 			}
 		});
 	}
@@ -423,5 +418,14 @@ public class Registrazione extends JPanel {
 		notificaErrori.setVisible(false);
 		erroreEmailNonValidaOInUsoRegistrazione.setVisible(false);
 		errorePasswordNonValidaRegistrazione.setVisible(false);
+	}
+
+	private void pulisciPannello() {
+		textFieldUsernameRegistrazione.setText("");
+		textFieldNomeRegistrazione.setText("");
+		textFieldCognomeRegistrazione.setText("");
+		textFieldDataNascitaRegistrazione.setText("");
+		textFieldEmailRegistrazione.setText("");
+		passwordFieldRegistrazione.setText("");
 	}
 }

@@ -65,9 +65,7 @@ public class ReimpostaPassword2 extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				textFieldCodiceVerifica.setText("");
-				passwordFieldNuovaPassword.setText("");
-				passwordFieldConfermaNuovaPassword.setText("");
+				pulisciPannello();
 			}
 		});
 	}
@@ -264,6 +262,12 @@ public class ReimpostaPassword2 extends JPanel {
 			ctrl.impostaPassword(codiceVerifica, passwordFieldNuovaPassword.getPassword());
 		else
 			mostraErroreLePasswordNonCorrispondonoReimpostaPassword2();
+	}
+
+	private void pulisciPannello() {
+		textFieldCodiceVerifica.setText("");
+		passwordFieldNuovaPassword.setText("");
+		passwordFieldConfermaNuovaPassword.setText("");
 	}
 
 }
