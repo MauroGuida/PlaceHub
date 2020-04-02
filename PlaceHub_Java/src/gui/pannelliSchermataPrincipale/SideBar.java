@@ -212,6 +212,9 @@ public class SideBar extends JPanel {
 					textFieldCosa.setEditable(true);
 				else
 					textFieldCosa.setEditable(false);
+	    		
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    textFieldCosa.addFocusListener(new FocusAdapter() {

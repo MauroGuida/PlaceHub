@@ -2,11 +2,10 @@ package gui.pannelliSchermataPrincipale;
 
 import javax.swing.JPanel;
 
-import errori.NumeroStelleNonValidoException;
 import gestione.Controller;
+import gui.StelleGUI;
 import oggetti.Locale;
 import res.ScrollPaneVerde;
-import res.WrapLayout;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -35,7 +34,7 @@ public class VisitaBusiness extends JPanel {
 	
 	private JButton bottoneRecensisci;
 	private JLabel testoNomeBusiness;
-	private JPanel stelle;
+	private StelleGUI stelle;
 	private JLabel immagineIndirizzo;
 	private JLabel testoIndirizzo;
 	private JLabel immagineTelefono;
@@ -143,10 +142,9 @@ public class VisitaBusiness extends JPanel {
 
 
 	private void generaStelle() {
-		stelle = new JPanel();
-		stelle.setBounds(559, 12, 249, 50);
-		stelle.setBackground(Color.WHITE);
-		stelle.setLayout(new WrapLayout(WrapLayout.LEFT, 1 ,1));
+		stelle = new StelleGUI();
+		stelle.setSize(199, 43);
+		stelle.setLocation(610, 11);
 	}
 
 
@@ -160,7 +158,7 @@ public class VisitaBusiness extends JPanel {
 	
 	private void generaBottoneRecensisci() {
 		bottoneRecensisci = new JButton("");
-		bottoneRecensisci.setBounds(545, 90, 269, 50);
+		bottoneRecensisci.setBounds(610, 81, 199, 50);
 		bottoneRecensisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ctrl.vaiAScriviRecensione();
@@ -250,23 +248,6 @@ public class VisitaBusiness extends JPanel {
 			pannelloImmagini.add(immagine);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public void gestioneStelle(int numStelle, boolean mezzaStella) throws NumeroStelleNonValidoException{
-		if((numStelle==5 && mezzaStella) || numStelle>5)
-			throw new NumeroStelleNonValidoException();
-		
-		for(int i=0; i<numStelle; i++) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
-			stelle.add(stellaPiena);
-		}
-		
-		if(mezzaStella) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
-			stelle.add(stellaPiena);
 		}
 	}
 }

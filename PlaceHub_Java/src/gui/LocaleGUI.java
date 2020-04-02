@@ -14,14 +14,13 @@ import javax.swing.border.LineBorder;
 import errori.NumeroStelleNonValidoException;
 import gestione.Controller;
 import oggetti.Locale;
-import res.WrapLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LocaleGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel stelle;
+	private StelleGUI stelle;
 	private JLabel testoNome;
 	private JLabel testoIndirizzo;
 	private JLabel labelImmaginePrincipale;
@@ -35,7 +34,7 @@ public class LocaleGUI extends JPanel {
 		this.ctrl = ctrl;
 		
 		try {
-			aggiungiStelle(Math.round(locale.getStelle()), false);
+			stelle.aggiungiStelle(Math.round(locale.getStelle()));
 		} catch (NumeroStelleNonValidoException e) {
 			e.printStackTrace();
 		}
@@ -52,15 +51,13 @@ public class LocaleGUI extends JPanel {
 	
 	private void generaEsteticaPannello() {
 		setBackground(Color.WHITE);
-		setSize(400,250);
+		setSize(400,260);
 		setVisible(true);
 		setBorder(new LineBorder(Color.DARK_GRAY,1));
 	}
 
 	private void generaStelle() {
-		stelle = new JPanel();
-		stelle.setBackground(Color.WHITE);
-		stelle.setLayout(new WrapLayout(WrapLayout.LEFT, 1 ,1));
+		stelle = new StelleGUI();
 	}
 
 	
@@ -99,53 +96,30 @@ public class LocaleGUI extends JPanel {
 					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(testoNome, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-							.addGap(189))
-						.addComponent(labelImmaginePrincipale, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(195)
-							.addComponent(testoIndirizzo, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
-						.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(testoNome, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(testoIndirizzo, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+									.addGap(6)))
+							.addGap(4)
+							.addComponent(stelle, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+						.addComponent(labelImmaginePrincipale, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
 					.addGap(12))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(195)
+					.addComponent(testoNome, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+					.addGap(5)
+					.addComponent(testoIndirizzo, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(205)
+					.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(16)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(179)
-							.addComponent(testoNome, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(labelImmaginePrincipale, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-							.addGap(23))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(179)
-							.addComponent(testoIndirizzo, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
-					.addGap(6)
-					.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addComponent(labelImmaginePrincipale, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
 		);
 		setLayout(groupLayout);
-	}
-
-	
-	//METODI
-	
-	
-	public void aggiungiStelle(int numStelle, boolean mezzaStella) throws NumeroStelleNonValidoException{
-		if((numStelle==5 && mezzaStella) || numStelle>5)
-			throw new NumeroStelleNonValidoException();
-		
-		for(int i=0; i<numStelle; i++) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
-			stelle.add(stellaPiena);
-		}
-		
-		if(mezzaStella) {
-			JLabel stellaPiena = new JLabel();
-			stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
-			stelle.add(stellaPiena);
-		}
 	}
 }
