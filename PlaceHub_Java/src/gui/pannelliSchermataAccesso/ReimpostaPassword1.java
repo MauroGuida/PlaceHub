@@ -20,17 +20,19 @@ import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import gui.SchermataAccesso;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class ReimpostaPassword1 extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	private JLabel testoEmailReimpostaPassword1;
-	private JTextField textFieldEmailReimpostaPassword1;
-	private JLabel lineaEmailReimpostaPassword1;
-	private JButton bottoneInviaCodiceReimpostaPassword1;
-	private JButton bottoneTornaIndietroReimpostaPassword1;
-	private JLabel labelComunicazioneUtenteReimpostaPassword1;
-	private JLabel labelErroreReimpostaPassword1;
+	private JLabel testoEmail;
+	private JTextField textFieldEmail;
+	private JLabel lineaEmail;
+	private JButton bottoneInviaCodice;
+	private JButton bottoneTornaIndietro;
+	private JLabel testoComunicazioneUtente;
+	private JLabel testoErrore;
 	
 	private Controller ctrl;
 	
@@ -41,36 +43,52 @@ public class ReimpostaPassword1 extends JPanel {
 		setLayout(null);
 		setVisible(false);
 		
-		generaFieldEmailReimpostaPassword1();
-		generaBottoneInviaCodiceReimpostaPassword1();
-		generaBottoneIndietroReimpostaPassword1();
-		generaLabelComunicazioneUtenteReimpostaPassword1();
-		generaLabelErroreReimpostaPassword1();
-	}
-	
-	public void generaLabelErroreReimpostaPassword1() {
-		labelErroreReimpostaPassword1 = new JLabel("Non siamo riusciti a mandarti alcuna Email, riprova!");
-		labelErroreReimpostaPassword1.setVisible(false);
-		labelErroreReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 16));
-		labelErroreReimpostaPassword1.setForeground(Color.RED);
-		labelErroreReimpostaPassword1.setHorizontalAlignment(SwingConstants.CENTER);
-		labelErroreReimpostaPassword1.setBounds(80, 360, 383, 32);
-		add(labelErroreReimpostaPassword1);
+		svuotaCampi();
+		
+		generaCampoEmail();
+		generaBottoneInviaCodice();
+		generaBottoneIndietro();
+		generaTestoComunicazioneUtente();
+		generaTestoErrore();
 	}
 
-	public void generaLabelComunicazioneUtenteReimpostaPassword1() {
-		labelComunicazioneUtenteReimpostaPassword1 = new JLabel("<html><p>Si prega di inserire l'indirizzo Email di registrazione per consentirci di verificare l'account.</p>"
-				+ "\n"
-				+ "<p><center><b>Riceverai via email un codice di verifica entro 10 minuti.</b></center></p></html>");
-		labelComunicazioneUtenteReimpostaPassword1.setVerticalAlignment(SwingConstants.TOP);
-		labelComunicazioneUtenteReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 16));
-		labelComunicazioneUtenteReimpostaPassword1.setBounds(80, 100, 383, 114);
-		add(labelComunicazioneUtenteReimpostaPassword1);
+	private void svuotaCampi() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				textFieldEmail.setText("");
+			}
+		});
 	}
 	
-	private void generaBottoneIndietroReimpostaPassword1() {
-		bottoneTornaIndietroReimpostaPassword1 = new JButton("");
-		bottoneTornaIndietroReimpostaPassword1.addActionListener(new ActionListener() {
+	public void generaTestoErrore() {
+		testoErrore = new JLabel("Non siamo riusciti a mandarti alcuna Email, riprova!");
+		testoErrore.setVisible(false);
+		testoErrore.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErrore.setForeground(Color.RED);
+		testoErrore.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErrore.setBounds(80, 360, 383, 32);
+		add(testoErrore);
+	}
+
+	public void generaTestoComunicazioneUtente() {
+		testoComunicazioneUtente = new JLabel("<html><p>Si prega di inserire l'indirizzo Email di registrazione per consentirci di verificare l'account.</p>"
+				+ "\n"
+				+ "<p><center><b>Riceverai via email un codice di verifica entro 10 minuti.</b></center></p></html>");
+		testoComunicazioneUtente.setVerticalAlignment(SwingConstants.TOP);
+		testoComunicazioneUtente.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoComunicazioneUtente.setBounds(80, 100, 383, 114);
+		add(testoComunicazioneUtente);
+	}
+	
+	private void generaBottoneIndietro() {
+		bottoneTornaIndietro = new JButton("");
+		bottoneTornaIndietro.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
+		bottoneTornaIndietro.setBounds(12, 595, 43, 43);
+		bottoneTornaIndietro.setOpaque(false);
+		bottoneTornaIndietro.setContentAreaFilled(false);
+		bottoneTornaIndietro.setBorderPainted(false);
+		bottoneTornaIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Controller.getSchermataAccessoFrame().mostraPannelloLogin();
 				setVisible(false);
@@ -78,88 +96,83 @@ public class ReimpostaPassword1 extends JPanel {
 				resettaErroriReimpostaPassword1();
 			}
 		});
-		bottoneTornaIndietroReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/arrow.png")));
-		bottoneTornaIndietroReimpostaPassword1.setBounds(12, 595, 43, 43);
-		bottoneTornaIndietroReimpostaPassword1.setOpaque(false);
-		bottoneTornaIndietroReimpostaPassword1.setContentAreaFilled(false);
-		bottoneTornaIndietroReimpostaPassword1.setBorderPainted(false);
-		add(bottoneTornaIndietroReimpostaPassword1);
+		add(bottoneTornaIndietro);
 	}
 
-	public void generaBottoneInviaCodiceReimpostaPassword1() {
-		bottoneInviaCodiceReimpostaPassword1 = new JButton("");
-		bottoneInviaCodiceReimpostaPassword1.addActionListener(new ActionListener() {
+	public void generaBottoneInviaCodice() {
+		bottoneInviaCodice = new JButton("");
+		bottoneInviaCodice.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
+		bottoneInviaCodice.setBounds(132, 420, 280, 48);
+		bottoneInviaCodice.setOpaque(false);
+		bottoneInviaCodice.setBorderPainted(false);
+		bottoneInviaCodice.setContentAreaFilled(false);
+		bottoneInviaCodice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				invioCodiceReimpostaPassword();
 			}
 		});
-		bottoneInviaCodiceReimpostaPassword1.addMouseListener(new MouseAdapter() {
+		bottoneInviaCodice.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				bottoneInviaCodiceReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodiceFocus.png")));
+				bottoneInviaCodice.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodiceFocus.png")));
 				setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				bottoneInviaCodiceReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
+				bottoneInviaCodice.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
 				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		
-		bottoneInviaCodiceReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneInviaCodice.png")));
-		bottoneInviaCodiceReimpostaPassword1.setBounds(132, 420, 280, 48);
-		bottoneInviaCodiceReimpostaPassword1.setOpaque(false);
-		bottoneInviaCodiceReimpostaPassword1.setBorderPainted(false);
-		bottoneInviaCodiceReimpostaPassword1.setContentAreaFilled(false);
-		add(bottoneInviaCodiceReimpostaPassword1);
+		add(bottoneInviaCodice);
 	}
 
-	private void generaFieldEmailReimpostaPassword1() {
-		testoEmailReimpostaPassword1 = new JLabel("");
-		testoEmailReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/testoEmail.png")));
-		testoEmailReimpostaPassword1.setBounds(80, 262, 140, 20);
-		add(testoEmailReimpostaPassword1);
+	private void generaCampoEmail() {
+		testoEmail = new JLabel("");
+		testoEmail.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/testoEmail.png")));
+		testoEmail.setBounds(80, 262, 140, 20);
+		add(testoEmail);
 		
-		textFieldEmailReimpostaPassword1 = new JTextField();
-		textFieldEmailReimpostaPassword1.addKeyListener(new KeyAdapter() {
+		textFieldEmail = new JTextField();
+		textFieldEmail.setBounds(80, 290, 383, 32);
+		textFieldEmail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		textFieldEmail.setBackground(new Color(255,255,255));
+		textFieldEmail.setBorder(new LineBorder(new Color(255,255,255),1));
+		textFieldEmail.setColumns(10);
+		textFieldEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
-						&& textFieldEmailReimpostaPassword1.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
+						&& textFieldEmail.getText().length() <= 99) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE ||
 						e.getKeyCode() ==  KeyEvent.VK_DELETE || e.getKeyChar() <= '.' || e.getKeyChar() <= '@')
-					textFieldEmailReimpostaPassword1.setEditable(true);
+					textFieldEmail.setEditable(true);
 				else
-					textFieldEmailReimpostaPassword1.setEditable(false);
+					textFieldEmail.setEditable(false);
 				
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) 
 					invioCodiceReimpostaPassword();
 			}
 		});
-		textFieldEmailReimpostaPassword1.setBounds(80, 290, 383, 32);
-		textFieldEmailReimpostaPassword1.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textFieldEmailReimpostaPassword1.setBackground(new Color(255,255,255));
-		textFieldEmailReimpostaPassword1.setBorder(new LineBorder(new Color(255,255,255),1));
-		add(textFieldEmailReimpostaPassword1);
-		textFieldEmailReimpostaPassword1.setColumns(10);
+		add(textFieldEmail);
 		
-		lineaEmailReimpostaPassword1 = new JLabel("");
-		lineaEmailReimpostaPassword1.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
-		lineaEmailReimpostaPassword1.setBounds(80, 322, 383, 1);
-		add(lineaEmailReimpostaPassword1);
+		
+		lineaEmail = new JLabel("");
+		lineaEmail.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/lineaTesto.png")));
+		lineaEmail.setBounds(80, 322, 383, 1);
+		add(lineaEmail);
 	}
 	
-	//Metodo
+	//Metodi
 	
 	public void mostraErroreReimpostaPassword1() {
-		labelErroreReimpostaPassword1.setVisible(true);
+		testoErrore.setVisible(true);
 	}
 	
 	public void resettaErroriReimpostaPassword1() {
-		labelErroreReimpostaPassword1.setVisible(false);
+		testoErrore.setVisible(false);
 	}
 	
 	private void invioCodiceReimpostaPassword() {
-		ctrl.richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
-		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmailReimpostaPassword1.getText());
+		ctrl.richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmail.getText());
+		ctrl.invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(textFieldEmail.getText());
 	}
 }

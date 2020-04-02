@@ -20,6 +20,8 @@ import javax.swing.border.LineBorder;
 import gestione.Controller;
 import gui.SchermataAccesso;
 import res.DatePicker;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Registrazione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -54,13 +56,47 @@ public class Registrazione extends JPanel {
 	private Controller ctrl;
 	
 	public Registrazione(Controller Ctrl) {
+		
 		this.ctrl = Ctrl;
 		setBackground(Color.WHITE);
 		setBounds(550, 0, 550, 650);
 		setLayout(null);
 		setVisible(false);
 		
+		svuotaCampi();
+		
+		generaBottoneRegistrazione();
+		generaTestoHaiGiaUnAccountRegistrazione();
+		generaFieldUsernameRegistrazione();
+		generaFieldNomeRegistrazione();
+		generaFieldCognomeRegistrazione();
+		generaFiledDataNascitaRegistrazione();
+		generaFieldEmailRegistrazione();
+		generaFieldPasswordRegistrazione();
+		generaTestoErroriRegistrazione();
+	}
+
+	private void svuotaCampi() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				textFieldUsernameRegistrazione.setText("");
+				textFieldNomeRegistrazione.setText("");
+				textFieldCognomeRegistrazione.setText("");
+				textFieldDataNascitaRegistrazione.setText("");
+				textFieldEmailRegistrazione.setText("");
+				passwordFieldRegistrazione.setText("");
+			}
+		});
+	}
+
+	private void generaBottoneRegistrazione() {
 		bottoneRegistrazione = new JButton("");
+		bottoneRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneRegistrati.png")));
+		bottoneRegistrazione.setBounds(132, 500, 280, 48);
+		bottoneRegistrazione.setOpaque(false);
+		bottoneRegistrazione.setContentAreaFilled(false);
+		bottoneRegistrazione.setBorderPainted(false);
 		bottoneRegistrazione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -77,21 +113,7 @@ public class Registrazione extends JPanel {
 				eseguiRegistrazione();
 			}
 		});
-		bottoneRegistrazione.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/bottoneRegistrati.png")));
-		bottoneRegistrazione.setBounds(132, 500, 280, 48);
-		bottoneRegistrazione.setOpaque(false);
-		bottoneRegistrazione.setContentAreaFilled(false);
-		bottoneRegistrazione.setBorderPainted(false);
 		add(bottoneRegistrazione);
-		
-		generaTestoHaiGiaUnAccountRegistrazione();
-		generaFieldUsernameRegistrazione();
-		generaFieldNomeRegistrazione();
-		generaFieldCognomeRegistrazione();
-		generaFiledDataNascitaRegistrazione();
-		generaFieldEmailRegistrazione();
-		generaFieldPasswordRegistrazione();
-		generaTestoErroriRegistrazione();
 	}
 	
 	private void generaFieldPasswordRegistrazione() {

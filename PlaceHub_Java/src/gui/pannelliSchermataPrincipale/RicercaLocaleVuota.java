@@ -23,6 +23,10 @@ public class RicercaLocaleVuota extends JPanel {
 		
 		generaImmagineFaccia();
 		generaTestoRicercaLocaleVuota();
+		generaLayout();
+	}
+
+	private void generaLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

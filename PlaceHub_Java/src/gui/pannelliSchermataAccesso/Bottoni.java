@@ -30,33 +30,39 @@ public class Bottoni extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		bottoneEsci = new JButton("");
-		bottoneEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
-		bottoneEsci.setBounds(520, 8, 22, 22);
-		bottoneEsci.setBorderPainted(false);
-		bottoneEsci.setContentAreaFilled(false);
-		bottoneEsci.setOpaque(false);
-		add(bottoneEsci);
-		
+		generaBottoneEsci();		
+		generaBottoneMinimizza();
+		gestioneRiposizionamentoFinestra();
+	}
+
+	private void generaBottoneMinimizza() {
 		bottoneMinimizza = new JButton("");
-		bottoneMinimizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Controller.getSchermataAccessoFrame().setState(Frame.ICONIFIED);
-			}
-		});
 		bottoneMinimizza.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/minimizza.png")));
 		bottoneMinimizza.setBounds(475, 5, 24, 25);
 		bottoneMinimizza.setOpaque(false);
 		bottoneMinimizza.setContentAreaFilled(false);
 		bottoneMinimizza.setBorderPainted(false);
+		bottoneMinimizza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controller.getSchermataAccessoFrame().setState(Frame.ICONIFIED);
+			}
+		});
 		add(bottoneMinimizza);
-	
-		gestioneRiposizionamentoFinestra();
+	}
+
+	private void generaBottoneEsci() {
+		bottoneEsci = new JButton("");
+		bottoneEsci.setIcon(new ImageIcon(SchermataAccesso.class.getResource("/Icone/X.png")));
+		bottoneEsci.setBounds(520, 8, 22, 22);
+		bottoneEsci.setBorderPainted(false);
+		bottoneEsci.setContentAreaFilled(false);
+		bottoneEsci.setOpaque(false);
+		bottoneEsci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		add(bottoneEsci);
 	}
 
 	public void gestioneRiposizionamentoFinestra() {

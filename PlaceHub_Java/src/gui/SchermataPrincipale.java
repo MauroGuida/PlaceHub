@@ -42,16 +42,10 @@ public class SchermataPrincipale extends JFrame {
 	private PubblicaBusiness3 pannelloPubblicaBusiness3;
 	private VisitaBusiness pannelloVisitaBusiness;
 	
-	public SchermataPrincipale(Controller Ctrl) {
-		this.ctrl = Ctrl;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1100,650);
-		setMinimumSize(new Dimension(1100,650));
-		setLocationRelativeTo(null);
-		setUndecorated(true);
-		setResizable(true);
-		getContentPane().setBackground(Color.WHITE);
-		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
+	public SchermataPrincipale(Controller ctrl) {
+		this.ctrl = ctrl;
+		
+		generaLayout();
 		
 		ComponentResizer componentResizer = new ComponentResizer();
 		componentResizer.registerComponent(this);
@@ -100,6 +94,18 @@ public class SchermataPrincipale extends JFrame {
 		getContentPane().add(pannelloScriviRecensione);
 		getContentPane().add(pannelloRicerche);
 		getContentPane().add(pannelloVisitaBusiness);
+	}
+
+
+	private void generaLayout() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(1100,650);
+		setMinimumSize(new Dimension(1100,650));
+		setLocationRelativeTo(null);
+		setUndecorated(true);
+		setResizable(true);
+		getContentPane().setBackground(Color.WHITE);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
 	}
 	
 	

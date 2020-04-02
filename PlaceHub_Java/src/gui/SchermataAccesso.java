@@ -36,35 +36,49 @@ public class SchermataAccesso extends JFrame {
 	private ReimpostaPassword1 pannelloReimpostaPassword1;
 	private ReimpostaPassword2 pannelloReimpostaPassword2;
 	
-	public SchermataAccesso(Controller Ctrl) {
-		this.ctrl=Ctrl;
+	public SchermataAccesso(Controller ctrl) {
+		this.ctrl=ctrl;
 		
-		layoutGeneraleFinestra();
-		
+		generaLayout();
 		generaPannelloBackground();
-		
-		pannelloBottoni = new Bottoni();
-		pannelloBottoni.setBounds(550, 0, 550, 36);
-		add(pannelloBottoni);
-		
-		pannelloLogin = new Login(ctrl);
-		pannelloLogin.setBounds(550, 0, 550, 650);
-		add(pannelloLogin);
-		
-		pannelloRegistrazione = new Registrazione(ctrl);
-		pannelloRegistrazione.setBounds(550, 0, 550, 650);
-		add(pannelloRegistrazione);
-		
-		pannelloReimpostaPassword1 = new ReimpostaPassword1(ctrl);
-		pannelloReimpostaPassword1.setBounds(550, 0, 550, 650);
-		add(pannelloReimpostaPassword1);
-		
+		generaPannelloBottoni();
+		generaPannelloLogin();
+		generaPannelloRegistrazione();
+		generaPannelloReimpostaPassword1(ctrl);
+		generaPannelloReimpostaPassword2(ctrl);
+	}
+
+	private void generaPannelloReimpostaPassword2(Controller ctrl) {
 		pannelloReimpostaPassword2 = new ReimpostaPassword2(ctrl);
 		pannelloReimpostaPassword2.setBounds(550, 0, 550, 650);
 		add(pannelloReimpostaPassword2);
 	}
+
+	private void generaPannelloReimpostaPassword1(Controller ctrl) {
+		pannelloReimpostaPassword1 = new ReimpostaPassword1(ctrl);
+		pannelloReimpostaPassword1.setBounds(550, 0, 550, 650);
+		add(pannelloReimpostaPassword1);
+	}
+
+	private void generaPannelloRegistrazione() {
+		pannelloRegistrazione = new Registrazione(ctrl);
+		pannelloRegistrazione.setBounds(550, 0, 550, 650);
+		add(pannelloRegistrazione);
+	}
+
+	private void generaPannelloLogin() {
+		pannelloLogin = new Login(ctrl);
+		pannelloLogin.setBounds(550, 0, 550, 650);
+		add(pannelloLogin);
+	}
+
+	private void generaPannelloBottoni() {
+		pannelloBottoni = new Bottoni();
+		pannelloBottoni.setBounds(550, 0, 550, 36);
+		add(pannelloBottoni);
+	}
 	
-	private void layoutGeneraleFinestra() {
+	private void generaLayout() {
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setShape(new RoundRectangle2D.Double(15, 0, 1100, 650, 30, 30));
@@ -78,8 +92,8 @@ public class SchermataAccesso extends JFrame {
 		pannelloInferiore = new JPanel();
 		pannelloInferiore.setBackground(Color.GRAY);
 		pannelloInferiore.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(pannelloInferiore);
 		pannelloInferiore.setLayout(null);
+		setContentPane(pannelloInferiore);
 		
 		immaginiSinistra = new JLabel("");
 		immaginiSinistra.setHorizontalAlignment(SwingConstants.CENTER);
@@ -189,10 +203,10 @@ public class SchermataAccesso extends JFrame {
 	}
 	
 	public void mostraPannelloReimpostaPassword2() {
-		pannelloReimpostaPassword2.setVisible(true);;
+		pannelloReimpostaPassword2.setVisible(true);
 	}
 	
 	public void nascondiPannelloReimpostaPassword2() {
-		pannelloReimpostaPassword2.setVisible(false);;
+		pannelloReimpostaPassword2.setVisible(false);
 	}
 }
