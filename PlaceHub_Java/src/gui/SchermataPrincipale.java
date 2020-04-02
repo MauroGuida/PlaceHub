@@ -193,7 +193,7 @@ public class SchermataPrincipale extends JFrame {
 			pannelloRicerche.svuotaRicerche();
 		}
 		
-		public void addRisultatoRicerca(JPanel risultatoRicerca) {
+		public void aggiungiRisultatoRicerca(JPanel risultatoRicerca) {
 			pannelloRicerche.addRisultatoRicerca(risultatoRicerca);
 		}
 		

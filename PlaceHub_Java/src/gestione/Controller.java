@@ -195,7 +195,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaInVoga())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
+					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 		
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -208,7 +208,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaRistoranti())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
+					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -219,7 +219,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaAttrazioni())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
+					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -230,7 +230,7 @@ public class Controller {
 			
 			try {
 				for (Locale locale : business.ricercaAlloggi())
-					schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale, this));
+					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -248,10 +248,10 @@ public class Controller {
 				
 				ArrayList<Locale> locali = business.ricercaLocali(campoCosa, campoDove);
 				if(locali.isEmpty())
-					schermataPrincipaleFrame.addRisultatoRicerca(new RicercaLocaleVuota());
+					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new RicercaLocaleVuota());
 				else
 					for(Locale locale : locali)
-						schermataPrincipaleFrame.addRisultatoRicerca(new LocaleGUI(locale,this));
+						schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale,this));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
