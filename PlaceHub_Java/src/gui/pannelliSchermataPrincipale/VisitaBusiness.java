@@ -217,6 +217,7 @@ public class VisitaBusiness extends JPanel {
 		testoNumeroTelefono.setText(locale.getTelefono());
 		textAreaDescrizioneBusiness.setText(locale.getDescrizione());
 		testoRaffinazioni.setText(locale.getRaffinazioni());
+		stelle.aggiungiStelle(locale.getStelle());
 		
 		for (String immagine: locale.getListaImmagini())
 			aggiungiImmagineAVisualizzatore(new File(immagine));

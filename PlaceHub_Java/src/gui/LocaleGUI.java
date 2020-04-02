@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.LineBorder;
 
-import errori.NumeroStelleNonValidoException;
 import gestione.Controller;
 import oggetti.Locale;
 import java.awt.event.MouseAdapter;
@@ -33,12 +32,6 @@ public class LocaleGUI extends JPanel {
 		this.locale = locale;
 		this.ctrl = ctrl;
 		
-		try {
-			stelle.aggiungiStelle(Math.round(locale.getStelle()));
-		} catch (NumeroStelleNonValidoException e) {
-			e.printStackTrace();
-		}
-		
 		generaEsteticaPannello();
 		
 		generaStelle();
@@ -58,6 +51,7 @@ public class LocaleGUI extends JPanel {
 
 	private void generaStelle() {
 		stelle = new StelleGUI();
+		stelle.aggiungiStelle(Math.round(locale.getStelle()));
 	}
 
 	
