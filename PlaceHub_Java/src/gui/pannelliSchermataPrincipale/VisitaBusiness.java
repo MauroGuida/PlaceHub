@@ -241,16 +241,21 @@ public class VisitaBusiness extends JPanel {
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
+		Image imgScalata = null;
+		
+		final int W = 290;
+		final int H = 170;
+		
 		try {
-			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(290, 170, java.awt.Image.SCALE_SMOOTH);
-			
+			imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		} catch (IOException e) {
+			imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		} finally{
 			JLabel immagine = new JLabel();
-			immagine.setSize(290, 170);
+			immagine.setSize(W, H);
 			immagine.setIcon(new ImageIcon(imgScalata));
 			
 			pannelloImmagini.add(immagine);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }

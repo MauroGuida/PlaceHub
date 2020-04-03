@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,6 +16,9 @@ import gestione.Controller;
 import oggetti.Locale;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class LocaleGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -73,12 +77,20 @@ public class LocaleGUI extends JPanel {
 				ctrl.vaiAVisitaBusiness(locale.getCodBusiness());
 			}
 		});
+		
+		final int W = 374;
+		final int H = 180;
+		
+		Image imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		
 		try {
-			Image immagine = new ImageIcon(locale.getImmaginePrincipale()).getImage();
-			Image immagineScalata = immagine.getScaledInstance(374, 180, java.awt.Image.SCALE_SMOOTH);
-			labelImmaginePrincipale.setIcon(new ImageIcon(immagineScalata));
-		} catch(IndexOutOfBoundsException e) {
+			File fileImmagine = new File(locale.getImmaginePrincipale());
+			if(fileImmagine.exists())
+				imgScalata = new ImageIcon(fileImmagine.getAbsolutePath()).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
+		} finally{
+			labelImmaginePrincipale.setIcon(new ImageIcon(imgScalata));
 		}
 	}
 
