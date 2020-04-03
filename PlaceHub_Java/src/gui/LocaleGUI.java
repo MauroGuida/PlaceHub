@@ -70,7 +70,7 @@ public class LocaleGUI extends JPanel {
 		labelImmaginePrincipale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ctrl.recuperaBusinessCompletoDaCodBusiness(locale.getCodBusiness());
+				ctrl.vaiAVisitaBusiness(locale.getCodBusiness());
 			}
 		});
 		try {
@@ -96,7 +96,7 @@ public class LocaleGUI extends JPanel {
 									.addComponent(testoIndirizzo, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
 									.addGap(6)))
 							.addGap(4)
-							.addComponent(stelle, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+							.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
 						.addComponent(labelImmaginePrincipale, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
 					.addGap(12))
 		);

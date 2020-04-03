@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -11,6 +12,9 @@ import oggetti.Locale;
 
 public class StelleGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private final int stellaW = 30;
+	private final int stellaH = 30;
 	
 	public StelleGUI() {
 		setSize(185, 45);
@@ -27,14 +31,16 @@ public class StelleGUI extends JPanel {
 			
 			for(int i=0; i< (int)numStelle; i++) {
 				JLabel stellaPiena = new JLabel();
-				stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/stella.png")));
+				Image immagineScalata = new ImageIcon(Locale.class.getResource("/Icone/stella.png")).getImage().getScaledInstance(stellaW, stellaH, java.awt.Image.SCALE_SMOOTH);
+				stellaPiena.setIcon(new ImageIcon(immagineScalata));
 				add(stellaPiena);
 			}
 			
 			if(parteDecimale >= 0.5) {
-				JLabel stellaPiena = new JLabel();
-				stellaPiena.setIcon(new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")));
-				add(stellaPiena);
+				JLabel mezzaStella = new JLabel();
+				Image immagineScalata = new ImageIcon(Locale.class.getResource("/Icone/mezzaStella.png")).getImage().getScaledInstance(stellaW, stellaH, java.awt.Image.SCALE_SMOOTH);
+				mezzaStella.setIcon(new ImageIcon(immagineScalata));
+				add(mezzaStella);
 			}
 		}
 	}

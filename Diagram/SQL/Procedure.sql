@@ -249,18 +249,18 @@ $$  LANGUAGE plpgsql;
 
 --TRIGGER AGGIORNA STELLE
 CREATE OR REPLACE FUNCTION aggiornaMediaStelle()
-RETURNS TRIGGER 
+RETURNS TRIGGER
 AS $$
 DECLARE nuovaMedia NUMERIC;
 BEGIN
     SELECT AVG(Stelle) INTO nuovaMedia
-    FROM Recensione 
-    WHERE codBusiness = NEW.codBusiness; 
+    FROM Recensione
+    WHERE codBusiness = NEW.codBusiness;
 
     UPDATE Business
     SET Stelle = nuovaMedia
     WHERE codBusiness = NEW.codBusiness;
-	
+
     RETURN NEW;
 END;
 $$
@@ -271,3 +271,15 @@ AFTER INSERT ON Recensione
 FOR EACH ROW
 EXECUTE PROCEDURE aggiornaMediaStelle();
 
+
+--Controllo se l'utente ha una RECENSIONE
+CREATE OR REPLACE FUNCTION utenteConRecensione(INT, INT)
+RETURNS BOOLEAN AS $$
+DECLARE flag BOOLEAN = '0';
+BEGIN
+	IF EXISTS (SELECT 1 FROM Recensione WHERE codUtente = $1 AND codBusiness = $2) THEN
+		flag = '1';
+	END IF;
+	RETURN flag;
+END;
+$$  LANGUAGE plpgsql;

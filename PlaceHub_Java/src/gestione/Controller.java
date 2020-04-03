@@ -502,16 +502,21 @@ public class Controller {
 		}
 		
 		//VISITA BUSINESS
-		public void recuperaBusinessCompletoDaCodBusiness(String codBusiness) {
+		public void vaiAVisitaBusiness(String codBusiness) {
 			try {
-				schermataPrincipaleFrame.mostraVisitaBusiness();
-				
-				bufferLocale = new Locale();
+				//Recupero Business completo
 				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
 				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
+				//Il proprietario non può auto-recensirsi
 				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
+				
+				//Non posso avere recensioni duplicate
+				if(recensione.utenteConRecensione(utente.getcodUtente(), codBusiness))
+					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
+				
+				schermataPrincipaleFrame.mostraVisitaBusiness();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

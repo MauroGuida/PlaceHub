@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -167,17 +167,31 @@ public class ScriviRecensione extends JPanel {
 		textAreaScriviRecensione.setRows(30);
 		textAreaScriviRecensione.setWrapStyleWord(true);
 		textAreaScriviRecensione.setLineWrap(true);
-		textAreaScriviRecensione.addFocusListener(new FocusAdapter() {
+		textAreaScriviRecensione.addKeyListener(new KeyAdapter() {
 			@Override
-			public void focusGained(FocusEvent e) {
-				textAreaScriviRecensione.setText("");
-				textAreaScriviRecensione.setForeground(Color.BLACK);
+			public void keyPressed(KeyEvent e) {
+				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
+						&& textAreaScriviRecensione.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
+						e.getKeyCode() ==  KeyEvent.VK_DELETE)
+					textAreaScriviRecensione.setEditable(true);
+				else
+					textAreaScriviRecensione.setEditable(false);
 			}
 		});
 		textAreaScriviRecensione.setForeground(Color.DARK_GRAY);
 		textAreaScriviRecensione.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaScriviRecensione.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textAreaScriviRecensione.setText("Scrivi qui la tua recensione (MAX 2000 caratteri)");
+		textAreaScriviRecensione.setText("Scrivi qui! MAX(2000 caratteri)");
+		textAreaScriviRecensione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if((textAreaScriviRecensione.getText().isEmpty() || textAreaScriviRecensione.getText().isBlank()) ||
+						textAreaScriviRecensione.getText().equals("Scrivi qui! MAX(2000 caratteri)")) {
+					textAreaScriviRecensione.setText("");
+					textAreaScriviRecensione.setForeground(Color.BLACK);
+				}
+			}
+		});
 		textAreaScriviRecensione.setBounds(27, 72, 801, 221);
 		add(textAreaScriviRecensione);
 	}
@@ -258,10 +272,8 @@ public class ScriviRecensione extends JPanel {
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
 		try {
-			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(210, 140, java.awt.Image.SCALE_SMOOTH);
-			
 			JLabel immagine = new JLabel();
-			immagine.setSize(210, 140);
+			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(210, 140, java.awt.Image.SCALE_SMOOTH);
 			immagine.setIcon(new ImageIcon(imgScalata));
 			
 			pannelloImmagini.add(immagine);

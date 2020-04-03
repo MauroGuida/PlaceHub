@@ -40,4 +40,18 @@ public class RecensioneDAO {
 		}
 		
 	}
+	
+	public boolean utenteConRecensione(String codUtente, String codBusiness) throws SQLException {
+		String sql = "SELECT utenteConRecensione(?, ?)";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codUtente));
+		query.setInt(2, Integer.parseInt(codBusiness));
+		
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		
+		return datiRecuperati.getBoolean(1);
+	}
 }

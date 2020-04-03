@@ -236,6 +236,8 @@ public class VisitaBusiness extends JPanel {
 		
 		pannelloImmagini.removeAll();
 		pannelloRecensioni.removeAll();
+		
+		bottoneRecensisci.setEnabled(true);
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
