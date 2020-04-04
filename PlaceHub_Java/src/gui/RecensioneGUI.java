@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JTextArea;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class RecensioneGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +34,7 @@ public class RecensioneGUI extends JPanel {
 	public RecensioneGUI() {
 		setBackground(Color.WHITE);
 		setSize(750,250);
-		setLayout(null);
+		setBorder(new LineBorder(Color.BLACK,1));
 		
 	    generaTestoUsername();	
 		generaContenitoreFoto();
@@ -42,8 +44,36 @@ public class RecensioneGUI extends JPanel {
 	
 	private void generaPannelloStelle() {
 		stelle = new StelleGUI();
-		stelle.setLocation(540, 1);
-		add(stelle);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(testoUsername, GroupLayout.PREFERRED_SIZE, 466, GroupLayout.PREFERRED_SIZE)
+							.addGap(49)
+							.addComponent(stelle, GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+						.addComponent(scrollPaneImmagini, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+						.addComponent(textAreaRecensione, GroupLayout.PREFERRED_SIZE, 700, GroupLayout.PREFERRED_SIZE))
+					.addGap(23))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(1)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(11)
+							.addComponent(testoUsername, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addComponent(scrollPaneImmagini, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(textAreaRecensione, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+					.addGap(12))
+		);
+		setLayout(groupLayout);
 	}
 
 	private void generaTextAreaRecensione() {
@@ -51,8 +81,6 @@ public class RecensioneGUI extends JPanel {
 		textAreaRecensione.setEditable(false);
 		textAreaRecensione.setFont(new Font("Roboto", Font.PLAIN, 15));
 		textAreaRecensione.setText("DINAMICO");
-		textAreaRecensione.setBounds(25, 177, 700, 61);
-		add(textAreaRecensione);
 	}
 
 	private void generaContenitoreFoto() {
@@ -62,19 +90,15 @@ public class RecensioneGUI extends JPanel {
 		pannelloImmagini.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		
 		scrollPaneImmagini = new ScrollPaneVerde();
-		scrollPaneImmagini.setBounds(25, 50, 700, 115);
 		scrollPaneImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPaneImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneImmagini.setBackground(Color.WHITE);
 		scrollPaneImmagini.setViewportView(pannelloImmagini);
-		add(scrollPaneImmagini);
 	}
 
 	private void generaTestoUsername() {
 		testoUsername = new JLabel("DINAMICO");
 		testoUsername.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoUsername.setBounds(25, 12, 466, 31);
-		add(testoUsername);
 	}
 	
 	
@@ -82,7 +106,7 @@ public class RecensioneGUI extends JPanel {
 	
 	
 	public void configuraPannello(Recensione recensioneLocale) {
-		testoUsername.setText(recensioneLocale.getCodUtente());
+		testoUsername.setText(recensioneLocale.getUsernameUtente());
 		textAreaRecensione.setText(recensioneLocale.getTestoRecensione());
 		
 		try {

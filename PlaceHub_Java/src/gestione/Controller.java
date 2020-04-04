@@ -506,6 +506,8 @@ public class Controller {
 			try {
 				//Recupero Business completo
 				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
+				bufferLocale.setListaRecensioni(recensione.recuperaRecensioniBusiness(codBusiness));
+				
 				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
 				//Il proprietario non può auto-recensirsi

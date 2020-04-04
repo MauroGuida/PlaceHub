@@ -3,15 +3,21 @@ package oggetti;
 import java.util.ArrayList;
 
 public class Recensione {
+	private String codRecensione;
 	private String codUtente;
 	private String codBusiness;
 	
+	private String UsernameUtente;
 	private String testoRecensione;
 	private double stelle;
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 	
 	public Recensione(String codUtente, String codBusiness) {
 		this.codUtente = codUtente;
+		this.codBusiness = codBusiness;
+	}
+	
+	public Recensione(String codBusiness) {
 		this.codBusiness = codBusiness;
 	}
 
@@ -51,6 +57,26 @@ public class Recensione {
 	
 	public ArrayList<String> getListaImmagini() {
 		return listaImmagini;
+	}
+
+	public void setListaImmagini(ArrayList<String> listaImmagini) {
+		this.listaImmagini = listaImmagini;
+	}
+	
+	public String getCodRecensione() {
+		return codRecensione;
+	}
+
+	public void setCodRecensione(String codRecensione) {
+		this.codRecensione = codRecensione;
+	}
+	
+	public String getUsernameUtente() {
+		return UsernameUtente;
+	}
+
+	public void setUsernameUtente(String usernameUtente) {
+		UsernameUtente = usernameUtente;
 	}
 	
 	//METODI

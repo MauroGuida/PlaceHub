@@ -3,6 +3,7 @@ package database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import gestione.Controller;
 import oggetti.Recensione;
@@ -23,14 +24,12 @@ public class RecensioneDAO {
 		if(!datiRecuperati.next())
 			throw new SQLException();
 		
-		System.out.print("CIAO");
 		
 		int codRecensione = datiRecuperati.getInt(1);
 		
 		//INSERISCI IMMAGINI
 		sql = "CALL InserisciImmagineRecensione(?, ?)";
 		for (String url : recensione.getListaImmagini()) {
-			System.out.print("CIAO");
 			PreparedStatement query2;
 			query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 			query2.setString(1, url);
@@ -53,5 +52,37 @@ public class RecensioneDAO {
 		datiRecuperati.next();
 		
 		return datiRecuperati.getBoolean(1);
+	}
+	
+	public ArrayList<Recensione> recuperaRecensioniBusiness(String codBusiness) throws SQLException {
+		 ArrayList<Recensione> recensioni = new  ArrayList<Recensione>();
+		 
+		String sql = "SELECT r.testo,r.stelle,r.codrecensione,u.username FROM recensione r, Utente u WHERE r.codUtente = u.codUtente AND r.codBusiness = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codBusiness));
+		
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		while(datiRecuperati.next()) {
+			Recensione recensione = new Recensione(codBusiness);
+			recensione.setCodRecensione(datiRecuperati.getString("codrecensione"));
+			recensione.setTestoRecensione(datiRecuperati.getString("testo"));
+			recensione.setStelle(datiRecuperati.getInt("stelle"));
+			recensione.setUsernameUtente(datiRecuperati.getString("Username"));
+			recensioni.add(recensione);
+			
+			sql = "SELECT URL FROM immaginerecensione WHERE codrecensione = ?";
+			PreparedStatement query2;
+			query2 = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+			query2.setInt(1, Integer.parseInt(recensione.getCodRecensione()));
+			
+			ResultSet datiRecuperati2 = query2.executeQuery();
+			
+			while(datiRecuperati2.next())
+				recensione.getListaImmagini().add(datiRecuperati2.getString("URL"));
+		}
+		
+		return recensioni;
 	}
 }

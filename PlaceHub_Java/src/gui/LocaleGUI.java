@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -17,8 +16,6 @@ import oggetti.Locale;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class LocaleGUI extends JPanel {
 	private static final long serialVersionUID = 1L;

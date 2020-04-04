@@ -15,6 +15,8 @@ public class Locale {
 	private String codMappa;
 	
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
+	private ArrayList<Recensione> listaRecensioni = new ArrayList<Recensione>();
+
 
 	//PER LA CREAZIONE
 	public Locale(String nome, String indirizzo,
@@ -107,6 +109,10 @@ public class Locale {
 		this.codMappa = codMappa;
 	}
 
+	public void setListaRecensioni(ArrayList<Recensione> listaRecensioni) {
+		this.listaRecensioni = listaRecensioni;
+	}
+
 	
 	//Getters
 	
@@ -156,6 +162,10 @@ public class Locale {
 
 	public String getCodMappa() {
 		return codMappa;
+	}
+	
+	public ArrayList<Recensione> getListaRecensioni() {
+		return listaRecensioni;
 	}
 	
 	

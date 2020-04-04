@@ -8,6 +8,7 @@ import gui.StelleGUI;
 import oggetti.Locale;
 import oggetti.Recensione;
 import res.ScrollPaneVerde;
+import res.WrapLayout;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -198,6 +199,7 @@ public class VisitaBusiness extends JPanel {
 	
 	private void generaContenitoreRecensioni() {
 		pannelloRecensioni = new JPanel();
+		pannelloRecensioni.setLayout(new WrapLayout(WrapLayout.CENTER));
 		pannelloRecensioni.setBackground(Color.WHITE);
 		pannelloRecensioni.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		scrollPaneRecensioni = new ScrollPaneVerde();
@@ -224,9 +226,8 @@ public class VisitaBusiness extends JPanel {
 		for (String immagine: locale.getListaImmagini())
 			aggiungiImmagineAVisualizzatore(new File(immagine));
 		
-//		for (Recensione recensione : locale.getRecensioni()) 
-//			aggiungiRecensioniAPannello(recensione);
-//		
+		for (Recensione recensione: locale.getListaRecensioni()) 
+			aggiungiRecensioniAPannello(recensione);
 	}
 	
 	public void disattivaBottoneRecensione() {
