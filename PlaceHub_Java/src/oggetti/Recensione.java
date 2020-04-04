@@ -7,7 +7,7 @@ public class Recensione {
 	private String codBusiness;
 	
 	private String testoRecensione;
-	private int stelle;
+	private double stelle;
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 	
 	public Recensione(String codUtente, String codBusiness) {
@@ -41,11 +41,11 @@ public class Recensione {
 		this.codBusiness = codBusiness;
 	}
 	
-	public int getStelle() {
+	public double getStelle() {
 		return stelle;
 	}
 
-	public void setStelle(int stelle) {
+	public void setStelle(double stelle) {
 		this.stelle = stelle;
 	}
 	

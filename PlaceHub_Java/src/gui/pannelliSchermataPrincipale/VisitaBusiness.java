@@ -3,8 +3,10 @@ package gui.pannelliSchermataPrincipale;
 import javax.swing.JPanel;
 
 import gestione.Controller;
+import gui.RecensioneGUI;
 import gui.StelleGUI;
 import oggetti.Locale;
+import oggetti.Recensione;
 import res.ScrollPaneVerde;
 
 import java.awt.Color;
@@ -221,6 +223,10 @@ public class VisitaBusiness extends JPanel {
 		
 		for (String immagine: locale.getListaImmagini())
 			aggiungiImmagineAVisualizzatore(new File(immagine));
+		
+//		for (Recensione recensione : locale.getRecensioni()) 
+//			aggiungiRecensioniAPannello(recensione);
+//		
 	}
 	
 	public void disattivaBottoneRecensione() {
@@ -257,5 +263,11 @@ public class VisitaBusiness extends JPanel {
 			
 			pannelloImmagini.add(immagine);
 		}
+	}
+	
+	private void aggiungiRecensioniAPannello(Recensione recensione) {
+		RecensioneGUI pannelloNuovaRecensione = new RecensioneGUI();
+		pannelloNuovaRecensione.configuraPannello(recensione);
+		pannelloRecensioni.add(pannelloNuovaRecensione);
 	}
 }

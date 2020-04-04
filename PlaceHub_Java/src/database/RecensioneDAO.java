@@ -14,7 +14,7 @@ public class RecensioneDAO {
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, recensione.getTestoRecensione());
-		query.setInt(2, recensione.getStelle());
+		query.setInt(2, (int)recensione.getStelle());
 		query.setInt(3, Integer.parseInt(recensione.getCodBusiness()));
 		query.setInt(4, Integer.parseInt(recensione.getCodUtente()));
 		

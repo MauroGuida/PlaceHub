@@ -25,6 +25,8 @@ import gui.SchermataPrincipale;
 import res.ScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,13 @@ public class ScriviRecensione extends JPanel {
 	private Controller ctrl;
 
 	public ScriviRecensione(Controller ctrl) {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				pulisciPannello();
+			}
+		});
+		
 		this.ctrl = ctrl;
 		
 		setSize(850, 614);
@@ -90,7 +99,7 @@ public class ScriviRecensione extends JPanel {
 		immagineStella5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				selezionaStelle(1);
+				selezionaStelle(5);
 			}
 		});
 		pannelloVotazioniStelle.add(immagineStella5);
@@ -324,5 +333,12 @@ public class ScriviRecensione extends JPanel {
 				immagineStella5.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stella.png")));
 				break;
 		}
+	}
+
+	public void pulisciPannello() {
+		textAreaScriviRecensione.setText("Scrivi qui! MAX(2000 caratteri)");
+		pannelloImmagini.removeAll();
+		numStelleSelezionate = 0;
+		svuotaStelle();
 	}
 }
