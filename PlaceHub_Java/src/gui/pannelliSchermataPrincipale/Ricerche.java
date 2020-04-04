@@ -35,10 +35,6 @@ public class Ricerche extends JPanel {
 	    scorrimentoRisultati.getVerticalScrollBar().setUnitIncrement(15);
 	    scorrimentoRisultati.getVerticalScrollBar().setBackground(Color.WHITE);
 		
-	    generaLayout();
-	}
-
-	private void generaLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 	    groupLayout.setHorizontalGroup(
 	    	groupLayout.createParallelGroup(Alignment.LEADING)

@@ -27,6 +27,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,7 @@ public class ScriviRecensione extends JPanel {
 	private int numStelleSelezionate = 0;
 	
 	private Controller ctrl;
+	private ScrollPaneVerde elencoImmagini;
 
 	public ScriviRecensione(Controller ctrl) {
 		addComponentListener(new ComponentAdapter() {
@@ -62,7 +65,6 @@ public class ScriviRecensione extends JPanel {
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
-		setLayout(null);
 		
 		generaBottonePubblica();
 		generaBottoneCancella();
@@ -76,14 +78,61 @@ public class ScriviRecensione extends JPanel {
 		generaTestoInfo_1();
 		generaTestoTrascinaFoto();
 		
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(testoInfo_1, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+							.addGap(91)
+							.addComponent(pannelloVotazioniStelle, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+						.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(testoTrascinaFoto, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+							.addGap(151))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+							.addGap(23)
+							.addComponent(immagineFoto_1))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addGap(521)
+							.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
+					.addGap(22))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(testoInfo_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+					.addGap(5)
+					.addComponent(textAreaScriviRecensione, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(testoTrascinaFoto, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(15)
+							.addComponent(immagineFoto_1)))
+					.addGap(21)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(23))
+		);
+		setLayout(groupLayout);
 	}
 
 	private void generaPannelloVotazioniStelle() {
 		pannelloVotazioniStelle = new JPanel();
 		pannelloVotazioniStelle.setBackground(Color.WHITE);
-		pannelloVotazioniStelle.setBounds(588, 20, 240, 41);
-		pannelloVotazioniStelle.setLayout(null);
-		add(pannelloVotazioniStelle);
+		pannelloVotazioniStelle.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		
 		generaImmagineStella1();
 		generaImmagineStella2();		
@@ -95,7 +144,6 @@ public class ScriviRecensione extends JPanel {
 	private void generaImmagineStella5() {
 		immagineStella5 = new JLabel("");
 		immagineStella5.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
-		immagineStella5.setBounds(200, 0, 40, 40);
 		immagineStella5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -108,7 +156,6 @@ public class ScriviRecensione extends JPanel {
 	private void generaImmagineStella4() {
 		immagineStella4 = new JLabel("");
 		immagineStella4.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
-		immagineStella4.setBounds(150, 0, 40, 40);
 		immagineStella4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,7 +168,6 @@ public class ScriviRecensione extends JPanel {
 	private void generaImmagineStella3() {
 		immagineStella3 = new JLabel("");
 		immagineStella3.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
-		immagineStella3.setBounds(100, 0, 40, 40);
 		immagineStella3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -134,7 +180,6 @@ public class ScriviRecensione extends JPanel {
 	private void generaImmagineStella2() {
 		immagineStella2 = new JLabel("");
 		immagineStella2.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
-		immagineStella2.setBounds(50, 0, 40, 40);
 		immagineStella2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -147,7 +192,6 @@ public class ScriviRecensione extends JPanel {
 	private void generaImmagineStella1() {
 		immagineStella1 = new JLabel("");
 		immagineStella1.setIcon(new ImageIcon(ScriviRecensione.class.getResource("/Icone/stellaVuota.png")));
-		immagineStella1.setBounds(0, 0, 40, 40);
 		immagineStella1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -160,20 +204,18 @@ public class ScriviRecensione extends JPanel {
 	private void generaTestoTrascinaFoto() {
 		testoTrascinaFoto = new JLabel("Trascina qui le tue immagini");
 		testoTrascinaFoto.setFont(new Font("Roboto", Font.PLAIN, 24));
-		testoTrascinaFoto.setBounds(27, 304, 650, 39);
-		add(testoTrascinaFoto);
 	}
 
 	private void generaTestoInfo_1() {
 		testoInfo_1 = new JLabel("<html>La tua recensione verr&#224 pubblicata e sar&#224 visibile a tutti gli utenti registrati</html>");
 		testoInfo_1.setFont(new Font("Roboto", Font.PLAIN, 13));
-		testoInfo_1.setBounds(27, 37, 470, 30);
-		add(testoInfo_1);
 	}
 
 	private void generaTextAreaScriviRecensione() {
 		textAreaScriviRecensione = new JTextArea();
-		textAreaScriviRecensione.setRows(30);
+		textAreaScriviRecensione.setTabSize(0);
+		textAreaScriviRecensione.setColumns(55);
+		textAreaScriviRecensione.setRows(10);
 		textAreaScriviRecensione.setWrapStyleWord(true);
 		textAreaScriviRecensione.setLineWrap(true);
 		textAreaScriviRecensione.addKeyListener(new KeyAdapter() {
@@ -201,8 +243,6 @@ public class ScriviRecensione extends JPanel {
 				}
 			}
 		});
-		textAreaScriviRecensione.setBounds(27, 72, 801, 221);
-		add(textAreaScriviRecensione);
 	}
 
 	private void generaImmagineFoto_1() {
@@ -215,8 +255,6 @@ public class ScriviRecensione extends JPanel {
 			}
 		});
 		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
-		immagineFoto_1.setBounds(700, 369, 128, 128);
-		add(immagineFoto_1);
 	}
 
 	private void generaBottoneCancella() {
@@ -232,11 +270,9 @@ public class ScriviRecensione extends JPanel {
 			}
 		});
 		bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancella.setBounds(27, 541, 140, 50);
 		bottoneCancella.setOpaque(false);
 		bottoneCancella.setBorderPainted(false);
 		bottoneCancella.setContentAreaFilled(false);
-		add(bottoneCancella);
 	}
 
 	private void generaBottonePubblica() {
@@ -258,11 +294,9 @@ public class ScriviRecensione extends JPanel {
 		});
 		
 		bottonePubblica.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottonePubblica.png")));
-		bottonePubblica.setBounds(688, 541, 140, 50);
 		bottonePubblica.setOpaque(false);
 		bottonePubblica.setBorderPainted(false);
 		bottonePubblica.setContentAreaFilled(false);
-		add(bottonePubblica);
 	}
 	
 	public void generaVisualizzatoreImmagini() {
@@ -270,11 +304,9 @@ public class ScriviRecensione extends JPanel {
 		pannelloImmagini.setBackground(Color.WHITE);
 		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini = new ScrollPaneVerde();
 		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		elencoImmagini.setBounds(27, 354, 650, 166);
-		add(elencoImmagini);
 		
 		elencoImmagini.setViewportView(pannelloImmagini);
 	}

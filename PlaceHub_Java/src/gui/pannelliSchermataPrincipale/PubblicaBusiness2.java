@@ -30,6 +30,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -56,7 +59,6 @@ public class PubblicaBusiness2 extends JPanel {
 	 	});
 
 		this.ctrl = ctrl;
-		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
@@ -83,10 +85,64 @@ public class PubblicaBusiness2 extends JPanel {
 		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
 		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		elencoImmagini.setBounds(27, 366, 650, 166);
-		add(elencoImmagini);
 		
 		elencoImmagini.setViewportView(pannelloImmagini);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(testoDescriviBusiness, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+							.addGap(378))
+						.addComponent(textAreaDescriviBusiness, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(testoTrascinaImmagini, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+							.addGap(480))
+						.addComponent(testoErroreInserisciDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+							.addGap(17)
+							.addComponent(iconaImmagine))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(testoErroreInserisciImmagine, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+							.addGap(10)
+							.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
+					.addGap(28))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(8)
+					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(textAreaDescriviBusiness, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addComponent(testoErroreInserisciDescrizione, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(14)
+							.addComponent(iconaImmagine)))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(15)
+							.addComponent(testoErroreInserisciImmagine, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+						.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+					.addGap(21))
+		);
+		setLayout(groupLayout);
 	}
 
 	private void generaTestoErroreInserisciImmagine() {
@@ -94,9 +150,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreInserisciImmagine.setForeground(Color.RED);
 		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciImmagine.setBounds(177, 558, 495, 22);
 		testoErroreInserisciImmagine.setVisible(false);
-		add(testoErroreInserisciImmagine);
 	}
 
 	private void generaTestoErroreInserisciDescrizione() {
@@ -104,14 +158,11 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErroreInserisciDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreInserisciDescrizione.setFont(new Font("Roboto", Font.PLAIN, 16));
 		testoErroreInserisciDescrizione.setForeground(Color.RED);
-		testoErroreInserisciDescrizione.setBounds(27, 300, 795, 23);
 		testoErroreInserisciDescrizione.setVisible(false);
-		add(testoErroreInserisciDescrizione);
 	}
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
-		bottoneAvanti.setBounds(682, 543, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
@@ -133,7 +184,6 @@ public class PubblicaBusiness2 extends JPanel {
 				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
 			}
 		});
-		add(bottoneAvanti);
 	}
 	
 	private void generaBottoneCancella() {
@@ -145,7 +195,6 @@ public class PubblicaBusiness2 extends JPanel {
 				}
 			}
 		});
-		bottoneCancella.setBounds(27, 543, 140, 50);
 		bottoneCancella.setIcon(new ImageIcon(PubblicaBusiness2.class.getResource("/Icone/bottoneCancella.png")));
 		bottoneCancella.setOpaque(false);
 		bottoneCancella.setContentAreaFilled(false);
@@ -161,12 +210,10 @@ public class PubblicaBusiness2 extends JPanel {
 				bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
 			}
 		});
-		add(bottoneCancella);
 	}
 
 	private void generaAggiungiImmagine() {
 		iconaImmagine = new JLabel("");
-		iconaImmagine.setBounds(694, 380, 128, 128);
 		iconaImmagine.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
 		iconaImmagine.addMouseListener(new MouseAdapter() {
 			@Override
@@ -175,21 +222,16 @@ public class PubblicaBusiness2 extends JPanel {
 				pannelloImmagini.revalidate();
 			}
 		});
-		add(iconaImmagine);
 	}
 
 	private void generaTestoTrascinaImmagini() {
 		testoTrascinaImmagini = new JLabel("Trascina Immagini");
-		testoTrascinaImmagini.setBounds(27, 318, 315, 37);
 		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 20));
-		add(testoTrascinaImmagini);
 	}
 
 	private void generaCampoDescriviBusiness() {
 		testoDescriviBusiness = new JLabel("Descrivi la tua attivita'");
 		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoDescriviBusiness.setBounds(27, 8, 417, 23);
-		add(testoDescriviBusiness);
 		
 		textAreaDescriviBusiness = new JTextArea();
 		textAreaDescriviBusiness.addKeyListener(new KeyAdapter() {
@@ -211,7 +253,6 @@ public class PubblicaBusiness2 extends JPanel {
 		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
 		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
 		textAreaDescriviBusiness.setBorder(new LineBorder(Color.BLACK,1));
-		textAreaDescriviBusiness.setBounds(27, 43, 795, 247);
 		textAreaDescriviBusiness.setLineWrap(true);
 		textAreaDescriviBusiness.setWrapStyleWord(true);
 		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
@@ -224,7 +265,6 @@ public class PubblicaBusiness2 extends JPanel {
 				}
 			}
 		});
-		add(textAreaDescriviBusiness);
 	}
 	
 	

@@ -58,10 +58,6 @@ public class PubblicaBusiness3 extends JPanel {
 		});
 		bottoneOK.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
 		
-		generaLayout();
-	}
-
-	private void generaLayout() {
 		GroupLayout gl_pannelloGestisciBusiness3 = new GroupLayout(this);
 		gl_pannelloGestisciBusiness3.setHorizontalGroup(
 			gl_pannelloGestisciBusiness3.createParallelGroup(Alignment.TRAILING)
@@ -91,5 +87,4 @@ public class PubblicaBusiness3 extends JPanel {
 		);
 		setLayout(gl_pannelloGestisciBusiness3);
 	}
-
 }

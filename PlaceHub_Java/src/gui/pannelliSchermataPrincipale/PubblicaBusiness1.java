@@ -25,6 +25,8 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -80,7 +82,6 @@ public class PubblicaBusiness1 extends JPanel {
 		});
 		
 		this.ctrl = ctrl;
-		setLayout(null);
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
@@ -111,29 +112,172 @@ public class PubblicaBusiness1 extends JPanel {
 		generaTestoErroreCampiVuoti();
 		
 		generaTestoErroreTipologiaVuota();
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(testoNomeBusiness, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+					.addGap(183)
+					.addComponent(testoIndirizzo, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+					.addGap(75))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(textFieldNomeBusiness, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addGap(153)
+					.addComponent(textFieldIndirizzo, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addGap(70))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(lineaTestoNomeBusiness, GroupLayout.PREFERRED_SIZE, 287, Short.MAX_VALUE)
+					.addGap(153)
+					.addComponent(lineaTestoIndirizzo, GroupLayout.PREFERRED_SIZE, 287, Short.MAX_VALUE)
+					.addGap(70))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(testoTelefono, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+					.addGap(183)
+					.addComponent(testoPartitaIva, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+					.addGap(75))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(textFieldTelefono, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addGap(153)
+					.addComponent(textFieldPartitaIVA, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+					.addGap(70))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(lineaTestoTelefono, GroupLayout.PREFERRED_SIZE, 287, Short.MAX_VALUE)
+					.addGap(153)
+					.addComponent(lineaTestoPartitaIVA, GroupLayout.PREFERRED_SIZE, 287, Short.MAX_VALUE)
+					.addGap(70))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(testoRegione, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addGap(47)
+					.addComponent(testoProvincia, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+					.addGap(35)
+					.addComponent(testoComune, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(testoCAP, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(52)
+					.addComponent(comboBoxRegione, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addGap(48)
+					.addComponent(comboBoxProvincia, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addGap(44)
+					.addComponent(comboBoxComune, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(comboBoxCAP, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(testoSelezionaOpzione, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+					.addGap(90)
+					.addComponent(testoErrori, GroupLayout.PREFERRED_SIZE, 381, GroupLayout.PREFERRED_SIZE)
+					.addGap(69))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(100)
+					.addComponent(pannelloRaffRistorante, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(100)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloRaffAttrazioni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pannelloRaffAlloggi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(668)
+					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addGap(42))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(testoErroreTipologiaVuota, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(bottoneRistorante, GroupLayout.PREFERRED_SIZE, 208, Short.MAX_VALUE)
+							.addGap(54)
+							.addComponent(bottoneAttrazioni, GroupLayout.PREFERRED_SIZE, 208, Short.MAX_VALUE)
+							.addGap(54)
+							.addComponent(bottoneAlloggio, GroupLayout.PREFERRED_SIZE, 209, Short.MAX_VALUE)))
+					.addGap(64))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoNomeBusiness, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoIndirizzo, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textFieldNomeBusiness, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldIndirizzo, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lineaTestoNomeBusiness)
+						.addComponent(lineaTestoIndirizzo))
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoTelefono, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoPartitaIva, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textFieldTelefono, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldPartitaIVA, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lineaTestoTelefono)
+						.addComponent(lineaTestoPartitaIVA))
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoRegione, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoProvincia, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoComune, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoCAP, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(comboBoxRegione, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxProvincia, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxComune, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxCAP, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoSelezionaOpzione, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoErrori))
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(bottoneRistorante, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bottoneAttrazioni, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bottoneAlloggio, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(15)
+					.addComponent(pannelloRaffRistorante, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloRaffAttrazioni, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pannelloRaffAlloggi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addComponent(testoErroreTipologiaVuota)
+					.addGap(43)
+					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addGap(27))
+		);
+		setLayout(groupLayout);
 	}
 
 
 	private void generaCampoCAP() {
 		testoCAP = new JLabel("CAP");
 		testoCAP.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoCAP.setBounds(610, 200, 170, 19);
-		add(testoCAP);
 		
 		modelloComboBoxCAP = new DefaultComboBoxModel<String>();
 	    comboBoxCAP = new JComboBox<String>(modelloComboBoxCAP);
 		comboBoxCAP.setBackground(Color.WHITE);
 		comboBoxCAP.setFont(new Font("Roboto", Font.PLAIN, 17));
-		comboBoxCAP.setBounds(610, 228, 170, 35);
-		add(comboBoxCAP);
 	}
 
 
 	private void generaCampoComune() {
 		testoComune = new JLabel("Comune");
 		testoComune.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoComune.setBounds(395, 200, 170, 19);
-		add(testoComune);
 		
 		modelloComboBoxComune = new DefaultComboBoxModel<String>(); 
 		comboBoxComune = new JComboBox<String>(modelloComboBoxComune);
@@ -147,16 +291,12 @@ public class PubblicaBusiness1 extends JPanel {
 		});
 		comboBoxComune.setBackground(Color.WHITE);
 		comboBoxComune.setFont(new Font("Roboto", Font.PLAIN, 17));
-		comboBoxComune.setBounds(395, 228, 170, 35);
-		add(comboBoxComune);
 	}
 
 
 	private void generaCampoProvincia() {
 		testoProvincia = new JLabel("Provincia");
 		testoProvincia.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoProvincia.setBounds(270, 200, 90, 19);
-		add(testoProvincia);
 		
 		modelloComboBoxProvincia = new DefaultComboBoxModel<String>();
 		comboBoxProvincia = new JComboBox<String>(modelloComboBoxProvincia);
@@ -168,17 +308,13 @@ public class PubblicaBusiness1 extends JPanel {
 				}
 			}
 		});
-		comboBoxProvincia.setBounds(270, 228, 81, 35);
 		comboBoxProvincia.setBackground(Color.WHITE);
 		comboBoxProvincia.setFont(new Font("Roboto", Font.PLAIN, 17));
-		add(comboBoxProvincia);
 	}
 
 	private void generaCampoRegione() {
 		testoRegione = new JLabel("Regione");
 		testoRegione.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoRegione.setBounds(53, 200, 170, 19);
-		add(testoRegione);
 		
 		modelloComboBoxRegione = new DefaultComboBoxModel<String>();
 		comboBoxRegione = new JComboBox<String>(modelloComboBoxRegione);
@@ -192,8 +328,6 @@ public class PubblicaBusiness1 extends JPanel {
 		});
 		comboBoxRegione.setBackground(Color.WHITE);
 		comboBoxRegione.setFont(new Font("Roboto", Font.PLAIN, 17));
-		comboBoxRegione.setBounds(52, 228, 170, 35);
-		add(comboBoxRegione);
 	}
 
 
@@ -202,9 +336,7 @@ public class PubblicaBusiness1 extends JPanel {
 		testoErroreTipologiaVuota.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreTipologiaVuota.setForeground(Color.RED);
 		testoErroreTipologiaVuota.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreTipologiaVuota.setBounds(100, 580, 506, 19);
 		testoErroreTipologiaVuota.setVisible(false);
-		add(testoErroreTipologiaVuota);
 	}
 
 
@@ -213,40 +345,30 @@ public class PubblicaBusiness1 extends JPanel {
 		testoErrori.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErrori.setForeground(Color.RED);
 		testoErrori.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErrori.setBounds(400, 290, 381, 19);
 		testoErrori.setVisible(false);
-		add(testoErrori);
 	}
 
 
 	private void generaRaffinazioniAttrazione() {
 		pannelloRaffAttrazioni = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni();
-		pannelloRaffAttrazioni.setLocation(100, 470);
 		pannelloRaffAttrazioni.setVisible(false);
-		add(pannelloRaffAttrazioni);
 	}
 
 
 	private void generaRaffinazioniAlloggio() {
 		pannelloRaffAlloggi = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi();
-		pannelloRaffAlloggi.setLocation(100, 470);
 		pannelloRaffAlloggi.setVisible(false);
-		add(pannelloRaffAlloggi);
 	}
 
 
 	private void generaPannelloRaffRistorante() {
 		pannelloRaffRistorante = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante();
-		pannelloRaffRistorante.setLocation(100, 465);
 		pannelloRaffRistorante.setVisible(false);
-		add(pannelloRaffRistorante);
 	}
 
 
 	private void generaBottoneAvanti() {
 		bottoneAvanti = new JButton("");
-
-		bottoneAvanti.setBounds(668, 537, 140, 50);
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
@@ -269,13 +391,11 @@ public class PubblicaBusiness1 extends JPanel {
 												modelloComboBoxComune.getSelectedItem().toString(), modelloComboBoxCAP.getSelectedItem().toString());
 			}
 		});
-		add(bottoneAvanti);
 	}
 
 
 	private void generaBottoneAlloggio() {
 		bottoneAlloggio = new JButton("");
-		bottoneAlloggio.setBounds(577, 340, 209, 110);
 		bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
 		bottoneAlloggio.setOpaque(false);
 		bottoneAlloggio.setContentAreaFilled(false);
@@ -300,13 +420,11 @@ public class PubblicaBusiness1 extends JPanel {
 					bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggio.png")));
 			}
 		});
-		add(bottoneAlloggio);
 	}
 
 
 	private void generaBottoneIntrattenimento() {
 		bottoneAttrazioni = new JButton("");
-		bottoneAttrazioni.setBounds(315, 340, 208, 110);
 		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 		bottoneAttrazioni.setOpaque(false);
 		bottoneAttrazioni.setContentAreaFilled(false);
@@ -331,13 +449,11 @@ public class PubblicaBusiness1 extends JPanel {
 					bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimento.png")));
 			}
 		});
-		add(bottoneAttrazioni);
 	}
 
 
 	private void generaBottoneRistorante() {
 		bottoneRistorante = new JButton("");
-		bottoneRistorante.setBounds(53, 340, 208, 110);
 		bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistorante.png")));
 		bottoneRistorante.setOpaque(false);
 		bottoneRistorante.setContentAreaFilled(false);
@@ -361,29 +477,23 @@ public class PubblicaBusiness1 extends JPanel {
 			}
 		});
 		bottoneRistorante.setBorderPainted(false);
-		add(bottoneRistorante);
 	}
 	
 	
 	private void generaTestoSelezionaOpzione() {
 		testoSelezionaOpzione = new JLabel("Seleziona una opzione");
-		testoSelezionaOpzione.setBounds(53, 290, 257, 23);
 		testoSelezionaOpzione.setFont(new Font("Roboto", Font.PLAIN, 20));
-		add(testoSelezionaOpzione);
 	}
 
 	private void generaCampoPartitaIVA() {
 		testoPartitaIva = new JLabel("Partita IVA");
 		testoPartitaIva.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoPartitaIva.setBounds(446, 110, 282, 19);
-		add(testoPartitaIva);
 		
 		textFieldPartitaIVA = new JTextField();
 		textFieldPartitaIVA.setFont(new Font("Roboto", Font.PLAIN, 17));
 		textFieldPartitaIVA.setBackground(new Color(255,255,255));
 		textFieldPartitaIVA.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldPartitaIVA.setColumns(10);
-		textFieldPartitaIVA.setBounds(446, 138, 287, 32);
 		textFieldPartitaIVA.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -395,20 +505,15 @@ public class PubblicaBusiness1 extends JPanel {
 					textFieldPartitaIVA.setEditable(false);
 			}
 		});
-		add(textFieldPartitaIVA);
 		
 		lineaTestoPartitaIVA = new JLabel("");
-		lineaTestoPartitaIVA.setBounds(446, 171, 287, 1);
 		lineaTestoPartitaIVA.setIcon(new ImageIcon(PubblicaBusiness1.class.getResource("/Icone/lineaGestisciAttivita.png")));
-		add(lineaTestoPartitaIVA);
 	}
 
 
 	private void generaCampoIndirizzo() {
 		testoIndirizzo = new JLabel("Indirizzo");
 		testoIndirizzo.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoIndirizzo.setBounds(446, 20, 282, 19);
-		add(testoIndirizzo);
 		
 		textFieldIndirizzo = new JTextField();
 		textFieldIndirizzo.addKeyListener(new KeyAdapter() {
@@ -426,21 +531,15 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldIndirizzo.setBackground(new Color(255,255,255));
 		textFieldIndirizzo.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldIndirizzo.setColumns(10);
-		textFieldIndirizzo.setBounds(446, 48, 287, 32);
-		add(textFieldIndirizzo);
 		
 		lineaTestoIndirizzo = new JLabel("");
-		lineaTestoIndirizzo.setBounds(446, 81, 287, 1);
 		lineaTestoIndirizzo.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
-		add(lineaTestoIndirizzo);
 	}
 
 
 	private void generaCampoTelefono() {
 		testoTelefono = new JLabel("Telefono");
 		testoTelefono.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoTelefono.setBounds(53, 110, 257, 19);
-		add(testoTelefono);
 		
 		textFieldTelefono = new JTextField();
 		textFieldTelefono.addKeyListener(new KeyAdapter() {
@@ -457,21 +556,15 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldTelefono.setBackground(new Color(255,255,255));
 		textFieldTelefono.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldTelefono.setColumns(10);
-		textFieldTelefono.setBounds(53, 138, 287, 32);
-		add(textFieldTelefono);
 		
 		lineaTestoTelefono = new JLabel("");
-		lineaTestoTelefono.setBounds(53, 171, 287, 1);
 		lineaTestoTelefono.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
-		add(lineaTestoTelefono);
 	}
 
 
 	private void generaCampoNomeBusiness() {
 		testoNomeBusiness = new JLabel("Nome Business");
 		testoNomeBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoNomeBusiness.setBounds(53, 20, 257, 19);
-		add(testoNomeBusiness);
 		
 		textFieldNomeBusiness = new JTextField();
 		textFieldNomeBusiness.addKeyListener(new KeyAdapter() {
@@ -489,13 +582,9 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldNomeBusiness.setBackground(new Color(255,255,255));
 		textFieldNomeBusiness.setBorder(new LineBorder(new Color(255,255,255),1));
 		textFieldNomeBusiness.setColumns(10);
-		textFieldNomeBusiness.setBounds(53, 48, 287, 32);
-		add(textFieldNomeBusiness);
 		
 		lineaTestoNomeBusiness = new JLabel("");
-		lineaTestoNomeBusiness.setBounds(53, 81, 287, 1);
 		lineaTestoNomeBusiness.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/lineaGestisciAttivita.png")));
-		add(lineaTestoNomeBusiness);
 	}
 	
 	

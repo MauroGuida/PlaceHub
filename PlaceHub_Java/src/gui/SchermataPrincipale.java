@@ -22,6 +22,8 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class SchermataPrincipale extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -46,54 +48,111 @@ public class SchermataPrincipale extends JFrame {
 		this.ctrl = ctrl;
 		
 		generaLayout();
-		
-		ComponentResizer componentResizer = new ComponentResizer();
-		componentResizer.registerComponent(this);
-		componentResizer.setSnapSize(new Dimension(5,5));
-		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
-		
-		pannelloSideBar = new SideBar();
-		pannelloSideBar.setBounds(0, 0, 250, 650);
 
-		pannelloBottoni = new Bottoni();
-		pannelloBottoni.setBounds(250, 0, 850, 36);
+		generaSideBar();
+		generaBottoni();
 		
-		pannelloScriviRecensione = new ScriviRecensione(ctrl);
-		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
-		
-		pannelloRicerche = new Ricerche();
-		pannelloRicerche.setBounds(250, 36, 850, 614);
-		
-		pannelloVerificaPubblicaBusiness = new VerificaPubblicaBusiness(ctrl);
-		pannelloVerificaPubblicaBusiness.setBounds(250, 36, 850, 614);
+		generaPannelloScriviRecensione(ctrl);
+		generapannelloRicerche();
+		generaPannelloVerificaPubblicaBusiness(ctrl);
+		generaPannelloPubblicaBusiness3();
+		generaPannelloPubblicaBusiness2(ctrl);
+        generaPannelloPubblicaBusiness1(ctrl);
+        generaPannelloGestisciBusiness(ctrl);
+        generaPannelloVisitaBusiness(ctrl);
+        
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(pannelloSideBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloBottoni, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+						.addComponent(pannelloRicerche, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness3, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloVisitaBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloGestisciBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloVerificaPubblicaBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloScriviRecensione, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(pannelloSideBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(pannelloBottoni, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloRicerche, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness1, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness3, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloVisitaBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloGestisciBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloVerificaPubblicaBusiness, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloScriviRecensione, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		);
+		getContentPane().setLayout(groupLayout);
+	}
 
-		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
-		pannelloPubblicaBusiness3.setBounds(250, 36, 850, 614);
-		
+
+	private void generaPannelloVisitaBusiness(Controller ctrl) {
+		pannelloVisitaBusiness = new VisitaBusiness(ctrl);
+        pannelloVisitaBusiness.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaPannelloGestisciBusiness(Controller ctrl) {
+		pannelloGestisciBusiness = new GestisciBusiness(ctrl);
+        pannelloGestisciBusiness.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaPannelloPubblicaBusiness1(Controller ctrl) {
+		pannelloPubblicaBusiness1 = new PubblicaBusiness1(ctrl);
+        pannelloPubblicaBusiness1.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaPannelloPubblicaBusiness2(Controller ctrl) {
 		pannelloPubblicaBusiness2 = new PubblicaBusiness2(ctrl);
 		pannelloPubblicaBusiness2.setBounds(250, 36, 850, 614);
-        
-        pannelloPubblicaBusiness1 = new PubblicaBusiness1(ctrl);
-        pannelloPubblicaBusiness1.setBounds(250, 36, 850, 614);
-        
-        pannelloGestisciBusiness = new GestisciBusiness(ctrl);
-        pannelloGestisciBusiness.setBounds(250, 36, 850, 614);
-        
-        pannelloVisitaBusiness = new VisitaBusiness(ctrl);
-		pannelloVisitaBusiness.setBounds(250, 36, 850, 614);
-		
-		
-		getContentPane().setLayout(null);
-		getContentPane().add(pannelloSideBar);
-		getContentPane().add(pannelloBottoni);
-		getContentPane().add(pannelloGestisciBusiness);
-		getContentPane().add(pannelloVerificaPubblicaBusiness);
-		getContentPane().add(pannelloPubblicaBusiness1);
-		getContentPane().add(pannelloPubblicaBusiness2);
-		getContentPane().add(pannelloPubblicaBusiness3);
-		getContentPane().add(pannelloScriviRecensione);
-		getContentPane().add(pannelloRicerche);
-		getContentPane().add(pannelloVisitaBusiness);
+	}
+
+
+	private void generaPannelloPubblicaBusiness3() {
+		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
+		pannelloPubblicaBusiness3.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaPannelloVerificaPubblicaBusiness(Controller ctrl) {
+		pannelloVerificaPubblicaBusiness = new VerificaPubblicaBusiness(ctrl);
+		pannelloVerificaPubblicaBusiness.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generapannelloRicerche() {
+		pannelloRicerche = new Ricerche();
+		pannelloRicerche.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaPannelloScriviRecensione(Controller ctrl) {
+		pannelloScriviRecensione = new ScriviRecensione(ctrl);
+		pannelloScriviRecensione.setBounds(250, 36, 850, 614);
+	}
+
+
+	private void generaBottoni() {
+		pannelloBottoni = new Bottoni();
+		pannelloBottoni.setBounds(250, 0, 850, 36);
+	}
+
+
+	private void generaSideBar() {
+		pannelloSideBar = new SideBar();
+		pannelloSideBar.setBounds(0, 0, 250, 650);
 	}
 
 
@@ -106,6 +165,12 @@ public class SchermataPrincipale extends JFrame {
 		setResizable(true);
 		getContentPane().setBackground(Color.WHITE);
 		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
+		
+		
+		ComponentResizer componentResizer = new ComponentResizer();
+		componentResizer.registerComponent(this);
+		componentResizer.setSnapSize(new Dimension(5,5));
+		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 	}
 	
 	

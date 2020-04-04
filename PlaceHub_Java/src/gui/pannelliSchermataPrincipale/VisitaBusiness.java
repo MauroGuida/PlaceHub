@@ -31,6 +31,8 @@ import javax.imageio.ImageIO;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class VisitaBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -50,6 +52,7 @@ public class VisitaBusiness extends JPanel {
 	private JTextArea textAreaDescrizioneBusiness;
 	
 	private Controller ctrl;
+	private JLabel immagineRaffinazioni;
 	
 	public VisitaBusiness(Controller ctrl) {
 		this.ctrl = ctrl;
@@ -72,30 +75,84 @@ public class VisitaBusiness extends JPanel {
 		generaContenitoreFoto();
 		generaContenitoreRecensioni();
 
-		generaLayout();
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addComponent(testoNomeBusiness, GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+					.addGap(69)
+					.addComponent(stelle, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+					.addGap(41))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addComponent(immagineRaffinazioni, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(testoRaffinazioni, GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+					.addGap(12))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(immagineTelefono, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+							.addGap(12)
+							.addComponent(testoNumeroTelefono, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(immagineIndirizzo, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+							.addGap(12)
+							.addComponent(testoIndirizzo, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
+					.addGap(83)
+					.addComponent(bottoneRecensisci, GroupLayout.PREFERRED_SIZE, 199, Short.MAX_VALUE)
+					.addGap(41))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(scrollPaneImmagini, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+							.addGap(21)
+							.addComponent(textAreaDescrizioneBusiness, GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+						.addComponent(scrollPaneRecensioni, GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
+					.addGap(36))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(1)
+							.addComponent(testoNomeBusiness, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
+						.addComponent(stelle, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+					.addGap(12)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(immagineIndirizzo, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoIndirizzo, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(bottoneRecensisci, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(immagineTelefono, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoNumeroTelefono, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addGap(22)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(immagineRaffinazioni, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoRaffinazioni, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textAreaDescrizioneBusiness, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+						.addComponent(scrollPaneImmagini, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+					.addGap(21)
+					.addComponent(scrollPaneRecensioni, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+					.addGap(10))
+		);
+		setLayout(groupLayout);
 	}
-
-	private void generaLayout() {
-		setLayout(null);
-		add(scrollPaneRecensioni);
-		add(scrollPaneImmagini);
-		add(stelle);
-		add(bottoneRecensisci);
-		add(testoRaffinazioni);
-		add(testoNomeBusiness);
-		add(immagineTelefono);
-		add(testoNumeroTelefono);
-		add(immagineIndirizzo);
-		add(testoIndirizzo);
-		add(textAreaDescrizioneBusiness);
-	}
-	
 
 	private void generaTextAreaDescrizioneBusiness() {
 		textAreaDescrizioneBusiness = new JTextArea("DINAMICO");
+		textAreaDescrizioneBusiness.setColumns(25);
 		textAreaDescrizioneBusiness.setWrapStyleWord(true);
 		textAreaDescrizioneBusiness.setLineWrap(true);
-		textAreaDescrizioneBusiness.setBounds(429, 240, 380, 199);
 		textAreaDescrizioneBusiness.setFont(new Font("Roboto", Font.PLAIN, 15));
 		textAreaDescrizioneBusiness.setBorder(new LineBorder(Color.BLACK,1));
 		textAreaDescrizioneBusiness.setEditable(false);
@@ -104,56 +161,46 @@ public class VisitaBusiness extends JPanel {
 
 	private void generaTestoRaffinazioni() {
 		testoRaffinazioni = new JLabel("DINAMICO");
-		testoRaffinazioni.setBounds(71, 184, 767, 31);
 		testoRaffinazioni.setHorizontalAlignment(SwingConstants.LEFT);
 		testoRaffinazioni.setFont(new Font("Roboto", Font.PLAIN, 20));
 	}
 	
 	private void generaImmagineRaffinazioni() {
-		JLabel immagineRaffinazioni = new JLabel("");
+		immagineRaffinazioni = new JLabel("");
 		immagineRaffinazioni.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/immagineRaffinazioni.png")));
-		immagineRaffinazioni.setBounds(28, 184, 31, 31);
-		add(immagineRaffinazioni);
 	}
 
 	private void generaTestoNumeroTelefono() {
 		testoNumeroTelefono = new JLabel("DINAMICO");
-		testoNumeroTelefono.setBounds(71, 131, 210, 31);
 		testoNumeroTelefono.setFont(new Font("Roboto", Font.PLAIN, 20));
 	}
 
 	
 	private void generaImmagineTelefono() {
 		immagineTelefono = new JLabel();
-		immagineTelefono.setBounds(28, 131, 31, 31);
 		immagineTelefono.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/iconaTelefono.png")));
 	}
 
 	
 	private void generaTestoIndirizzo() {
 		testoIndirizzo = new JLabel("DINAMICO");
-		testoIndirizzo.setBounds(71, 78, 456, 31);
 		testoIndirizzo.setFont(new Font("Roboto", Font.PLAIN, 20));
 	}
 	
 
 	private void generaImmagineIndirizzo() {
 		immagineIndirizzo = new JLabel("");
-		immagineIndirizzo.setBounds(28, 78, 31, 31);
 		immagineIndirizzo.setIcon(new ImageIcon(VisitaBusiness.class.getResource("/Icone/iconaIndirizzo.png")));
 	}
 
 
 	private void generaStelle() {
 		stelle = new StelleGUI();
-		stelle.setSize(199, 43);
-		stelle.setLocation(610, 11);
 	}
 
 
 	private void generaTestoNomeBusiness() {
 		testoNomeBusiness = new JLabel("DINAMICO");
-		testoNomeBusiness.setBounds(18, 12, 523, 54);
 		testoNomeBusiness.setHorizontalAlignment(SwingConstants.CENTER);
 		testoNomeBusiness.setFont(new Font("Roboto", Font.BOLD, 25));
 	}
@@ -161,7 +208,6 @@ public class VisitaBusiness extends JPanel {
 	
 	private void generaBottoneRecensisci() {
 		bottoneRecensisci = new JButton("");
-		bottoneRecensisci.setBounds(610, 81, 199, 50);
 		bottoneRecensisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ctrl.vaiAScriviRecensione();
@@ -190,7 +236,6 @@ public class VisitaBusiness extends JPanel {
 		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pannelloImmagini.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		scrollPaneImmagini = new ScrollPaneVerde();
-		scrollPaneImmagini.setBounds(28, 240, 380, 198);
 		scrollPaneImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPaneImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneImmagini.setBackground(Color.WHITE);
@@ -203,7 +248,6 @@ public class VisitaBusiness extends JPanel {
 		pannelloRecensioni.setBackground(Color.WHITE);
 		pannelloRecensioni.setBorder(new LineBorder(Color.DARK_GRAY,1));
 		scrollPaneRecensioni = new ScrollPaneVerde();
-		scrollPaneRecensioni.setBounds(28, 459, 786, 145);
 		scrollPaneRecensioni.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneRecensioni.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneRecensioni.setViewportView(pannelloRecensioni);

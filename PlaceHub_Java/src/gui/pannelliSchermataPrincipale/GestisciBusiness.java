@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class GestisciBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -45,11 +47,39 @@ public class GestisciBusiness extends JPanel {
 		setSize(850, 614);
 		setBackground(Color.WHITE);
 		setVisible(false);
-		setLayout(null);
 		
 		generaBottonePubblica();
 		generaPannelloVisualizzazioneAttivitaInTuoPossesso();
 		generaTestoSelezionaBusiness();
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(85)
+					.addComponent(testoSelezionaBusiness, GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+					.addGap(85))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(85)
+					.addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+					.addGap(85))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(229)
+					.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 365, Short.MAX_VALUE)
+					.addGap(256))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(64)
+					.addComponent(testoSelezionaBusiness, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+					.addGap(21)
+					.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addGap(150))
+		);
+		setLayout(groupLayout);
 	}
 
 
@@ -59,8 +89,6 @@ public class GestisciBusiness extends JPanel {
 		scrollPaneBusiness.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneBusiness.getHorizontalScrollBar().setUnitIncrement(15);
 		scrollPaneBusiness.setBorder(new LineBorder(Color.DARK_GRAY,1));
-		scrollPaneBusiness.setBounds(85, 113, 680, 280);
-		add(scrollPaneBusiness);
 		
 		pannelloVediBusiness = new JPanel();
 		pannelloVediBusiness.setBackground(Color.WHITE);
@@ -73,14 +101,11 @@ public class GestisciBusiness extends JPanel {
 	private void generaTestoSelezionaBusiness() {
 		testoSelezionaBusiness = new JLabel("Seleziona quale business modificare");
 		testoSelezionaBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoSelezionaBusiness.setBounds(85, 64, 680, 38);
-		add(testoSelezionaBusiness);
 	}
 
 
 	private void generaBottonePubblica() {
 		bottonePubblica = new JButton("");
-		bottonePubblica.setBounds(229, 414, 365, 50);
 		bottonePubblica.setOpaque(false);
 		bottonePubblica.setBorderPainted(false);
 		bottonePubblica.setContentAreaFilled(false);
@@ -101,7 +126,6 @@ public class GestisciBusiness extends JPanel {
 				mostraPannelloVerifica_PubblicaBusiness1();
 			}
 		});
-		add(bottonePubblica);
 	}
 
 	//METODI
