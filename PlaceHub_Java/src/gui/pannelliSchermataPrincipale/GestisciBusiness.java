@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import oggetti.GUI.LocaleGUI;
-import res.ScrollPaneVerde;
+import oggetti.GUI.ScrollPaneVerde;
 import res.WrapLayout;
 
 import javax.swing.JLabel;

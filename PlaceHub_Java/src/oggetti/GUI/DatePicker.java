@@ -1,4 +1,4 @@
-package res;
+package oggetti.GUI;
 
 import java.awt.*;
 import java.awt.event.*;

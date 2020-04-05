@@ -19,7 +19,8 @@ import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import gui.SchermataAccesso;
-import res.DatePicker;
+import oggetti.GUI.DatePicker;
+
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 

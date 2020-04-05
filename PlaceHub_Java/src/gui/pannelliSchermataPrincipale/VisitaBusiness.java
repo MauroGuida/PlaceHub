@@ -6,9 +6,9 @@ import gestione.Controller;
 import oggetti.Locale;
 import oggetti.Recensione;
 import oggetti.GUI.RecensioneGUI;
+import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.StelleGUI;
-import res.ScrollPaneVerde;
-import res.TextAreaConScrollPaneVerde;
+import oggetti.GUI.TextAreaConScrollPaneVerde;
 import res.WrapLayout;
 
 import java.awt.Color;

@@ -5,7 +5,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
 import oggetti.Recensione;
-import res.ScrollPaneVerde;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
