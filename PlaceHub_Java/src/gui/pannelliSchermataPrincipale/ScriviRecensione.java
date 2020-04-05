@@ -86,7 +86,7 @@ public class ScriviRecensione extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoInfo_1, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 							.addGap(91)
-							.addComponent(pannelloVotazioniStelle, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+							.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
 						.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoTrascinaFoto, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
