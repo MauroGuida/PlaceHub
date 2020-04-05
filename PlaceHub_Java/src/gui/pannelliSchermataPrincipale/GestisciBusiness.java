@@ -91,7 +91,7 @@ public class GestisciBusiness extends JPanel {
 		
 		pannelloVediBusiness = new JPanel();
 		pannelloVediBusiness.setBackground(Color.WHITE);
-		pannelloVediBusiness.setLayout(new WrapLayout(WrapLayout.LEADING));
+		pannelloVediBusiness.setLayout(new WrapLayout(WrapLayout.CENTER));
 		pannelloVediBusiness.setBounds(85, 125, 680, 250);
 		scrollPaneBusiness.setViewportView(pannelloVediBusiness);
 	}
