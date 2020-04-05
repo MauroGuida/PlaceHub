@@ -539,14 +539,18 @@ public class Controller {
 		}
 		
 		public void pubblicaRecensione(String testo, int stelle) {
-			try {
-				bufferRecensione.setTestoRecensione(testo);
-				bufferRecensione.setStelle(stelle);
-				
-				recensione.inserisciRecensione(bufferRecensione);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				try {
+					bufferRecensione.setTestoRecensione(testo);
+					bufferRecensione.setStelle(stelle);
+					
+					recensione.inserisciRecensione(bufferRecensione);
+					
+					schermataPrincipaleFrame.mostraHomepage();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 }
