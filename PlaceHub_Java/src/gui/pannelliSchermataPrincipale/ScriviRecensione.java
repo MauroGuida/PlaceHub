@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -16,12 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
+import oggetti.TextAreaConScrollPaneVerde;
 import res.ScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,7 +34,7 @@ public class ScriviRecensione extends JPanel {
 	private JButton bottoneCancella;
 	private JLabel immagineFoto_1;
 	private JPanel pannelloImmagini;
-	private JTextArea textAreaScriviRecensione;
+	private TextAreaConScrollPaneVerde textAreaScriviRecensione;
 	private JLabel testoInfo_1;
 	private JLabel testoTrascinaFoto;
 	
@@ -84,7 +81,7 @@ public class ScriviRecensione extends JPanel {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoInfo_1, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 							.addGap(91)
@@ -97,7 +94,7 @@ public class ScriviRecensione extends JPanel {
 							.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
 							.addGap(23)
 							.addComponent(immagineFoto_1))
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
 							.addGap(521)
 							.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
@@ -111,7 +108,7 @@ public class ScriviRecensione extends JPanel {
 						.addComponent(testoInfo_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
 					.addGap(5)
-					.addComponent(textAreaScriviRecensione, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
 					.addGap(11)
 					.addComponent(testoTrascinaFoto, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
@@ -212,37 +209,7 @@ public class ScriviRecensione extends JPanel {
 	}
 
 	private void generaTextAreaScriviRecensione() {
-		textAreaScriviRecensione = new JTextArea();
-		textAreaScriviRecensione.setTabSize(0);
-		textAreaScriviRecensione.setColumns(55);
-		textAreaScriviRecensione.setRows(10);
-		textAreaScriviRecensione.setWrapStyleWord(true);
-		textAreaScriviRecensione.setLineWrap(true);
-		textAreaScriviRecensione.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
-						&& textAreaScriviRecensione.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
-						e.getKeyCode() ==  KeyEvent.VK_DELETE)
-					textAreaScriviRecensione.setEditable(true);
-				else
-					textAreaScriviRecensione.setEditable(false);
-			}
-		});
-		textAreaScriviRecensione.setForeground(Color.DARK_GRAY);
-		textAreaScriviRecensione.setBorder(new LineBorder(Color.BLACK,1));
-		textAreaScriviRecensione.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textAreaScriviRecensione.setText("Scrivi qui! MAX(2000 caratteri)");
-		textAreaScriviRecensione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if((textAreaScriviRecensione.getText().isEmpty() || textAreaScriviRecensione.getText().isBlank()) ||
-						textAreaScriviRecensione.getText().equals("Scrivi qui! MAX(2000 caratteri)")) {
-					textAreaScriviRecensione.setText("");
-					textAreaScriviRecensione.setForeground(Color.BLACK);
-				}
-			}
-		});
+		textAreaScriviRecensione = new TextAreaConScrollPaneVerde();
 	}
 
 	private void generaImmagineFoto_1() {
@@ -369,6 +336,7 @@ public class ScriviRecensione extends JPanel {
 
 	public void pulisciPannello() {
 		textAreaScriviRecensione.setText("Scrivi qui! MAX(2000 caratteri)");
+		textAreaScriviRecensione.setForeground(Color.DARK_GRAY);
 		pannelloImmagini.removeAll();
 		numStelleSelezionate = 0;
 		svuotaStelle();

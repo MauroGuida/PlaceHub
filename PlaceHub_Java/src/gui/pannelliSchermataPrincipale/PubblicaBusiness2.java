@@ -15,37 +15,36 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
+import oggetti.TextAreaConScrollPaneVerde;
 import res.ScrollPaneVerde;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PubblicaBusiness2 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel testoDescriviBusiness;
-	private JTextArea textAreaDescriviBusiness;
-	private JLabel testoTrascinaImmagini;
-	private JLabel iconaImmagine;
+	private TextAreaConScrollPaneVerde areaDescrizione;
+	
 	private JButton bottoneCancella;
 	private JButton bottoneAvanti;
+	
 	private JLabel testoErroreInserisciDescrizione;
 	private JLabel testoErroreInserisciImmagine;
 	
+	private JLabel testoTrascinaImmagini;
+	private JLabel iconaImmagine;
+	private ScrollPaneVerde elencoImmagini;
 	private JPanel pannelloImmagini;
 	
 	private Controller ctrl;
@@ -53,12 +52,13 @@ public class PubblicaBusiness2 extends JPanel {
 	 public PubblicaBusiness2(Controller ctrl) {
 	 	addComponentListener(new ComponentAdapter() {
 	 		@Override
-	 		public void componentHidden(ComponentEvent e) {
+	 		public void componentShown(ComponentEvent e) {
 	 			pulisciPannello();
 	 		}
 	 	});
 
 		this.ctrl = ctrl;
+		
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
@@ -75,18 +75,7 @@ public class PubblicaBusiness2 extends JPanel {
 		generaTestoErroreInserisciImmagine();
 		
 		generaVisualizzatoreImmagini();
-	}
-
-	public void generaVisualizzatoreImmagini() {
-		pannelloImmagini = new JPanel();
-		pannelloImmagini.setBackground(Color.WHITE);
-		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		ScrollPaneVerde elencoImmagini = new ScrollPaneVerde();
-		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		elencoImmagini.setViewportView(pannelloImmagini);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -96,7 +85,7 @@ public class PubblicaBusiness2 extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoDescriviBusiness, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
 							.addGap(378))
-						.addComponent(textAreaDescriviBusiness, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoTrascinaImmagini, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
 							.addGap(480))
@@ -119,7 +108,7 @@ public class PubblicaBusiness2 extends JPanel {
 					.addGap(8)
 					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
-					.addComponent(textAreaDescriviBusiness, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+					.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
 					.addGap(10)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -137,12 +126,23 @@ public class PubblicaBusiness2 extends JPanel {
 						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(15)
-							.addComponent(testoErroreInserisciImmagine, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+							.addComponent(testoErroreInserisciImmagine, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 						.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 					.addGap(21))
 		);
 		setLayout(groupLayout);
+	}
+
+	public void generaVisualizzatoreImmagini() {
+		pannelloImmagini = new JPanel();
+		pannelloImmagini.setBackground(Color.WHITE);
+		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		elencoImmagini.setViewportView(pannelloImmagini);
 	}
 
 	private void generaTestoErroreInserisciImmagine() {
@@ -181,7 +181,7 @@ public class PubblicaBusiness2 extends JPanel {
 		});
 		bottoneAvanti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.procediInPubblicaBusiness3(textAreaDescriviBusiness.getText());
+				ctrl.procediInPubblicaBusiness3(areaDescrizione.getText());
 			}
 		});
 	}
@@ -233,38 +233,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoDescriviBusiness = new JLabel("Descrivi la tua attivita'");
 		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
 		
-		textAreaDescriviBusiness = new JTextArea();
-		textAreaDescriviBusiness.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
-						&& textAreaDescriviBusiness.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
-						e.getKeyCode() ==  KeyEvent.VK_DELETE)
-					textAreaDescriviBusiness.setEditable(true);
-				else
-					textAreaDescriviBusiness.setEditable(false);
-			}
-		});
-		textAreaDescriviBusiness.setForeground(new Color(192, 192, 192));
-		textAreaDescriviBusiness.setBackground(new Color(255, 255, 255));
-		textAreaDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textAreaDescriviBusiness.setRows(20);
-		textAreaDescriviBusiness.setColumns(55);
-		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
-		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
-		textAreaDescriviBusiness.setBorder(new LineBorder(Color.BLACK,1));
-		textAreaDescriviBusiness.setLineWrap(true);
-		textAreaDescriviBusiness.setWrapStyleWord(true);
-		textAreaDescriviBusiness.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if((textAreaDescriviBusiness.getText().isEmpty() || textAreaDescriviBusiness.getText().isBlank()) ||
-						textAreaDescriviBusiness.getText().equals("Scrivi qui! MAX(2000 caratteri)")) {
-					textAreaDescriviBusiness.setText("");
-					textAreaDescriviBusiness.setForeground(Color.BLACK);
-				}
-			}
-		});
+		areaDescrizione = new TextAreaConScrollPaneVerde();
 	}
 	
 	
@@ -272,8 +241,8 @@ public class PubblicaBusiness2 extends JPanel {
 	
 	
 	public void pulisciPannello() {
-		textAreaDescriviBusiness.setText("Scrivi qui! MAX(2000 caratteri)");
-		textAreaDescriviBusiness.setForeground(Color.DARK_GRAY);
+		areaDescrizione.setText("Scrivi qui! MAX(2000 caratteri)");
+		areaDescrizione.setForeground(Color.DARK_GRAY);
 		pannelloImmagini.removeAll();
 	}
 

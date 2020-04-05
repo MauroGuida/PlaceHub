@@ -58,5 +58,11 @@ public class ScrollPaneVerde extends JScrollPane {
                 return jbutton;
             }
         });
+		
+		getVerticalScrollBar().setPreferredSize(new Dimension(10,0));
+		getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		
+		getHorizontalScrollBar().setUnitIncrement(15);
+		getVerticalScrollBar().setUnitIncrement(15);
 	}
 }

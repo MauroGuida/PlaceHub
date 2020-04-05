@@ -7,6 +7,7 @@ import gui.RecensioneGUI;
 import gui.StelleGUI;
 import oggetti.Locale;
 import oggetti.Recensione;
+import oggetti.TextAreaConScrollPaneVerde;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
 
@@ -24,7 +25,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
-import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 import javax.swing.ScrollPaneConstants;
 import javax.imageio.ImageIO;
@@ -49,7 +49,7 @@ public class VisitaBusiness extends JPanel {
 	private JPanel pannelloImmagini;
 	private JPanel pannelloRecensioni;
 	private ScrollPaneVerde scrollPaneRecensioni;
-	private JTextArea textAreaDescrizioneBusiness;
+	private TextAreaConScrollPaneVerde textAreaDescrizioneBusiness;
 	
 	private Controller ctrl;
 	private JLabel immagineRaffinazioni;
@@ -149,12 +149,7 @@ public class VisitaBusiness extends JPanel {
 	}
 
 	private void generaTextAreaDescrizioneBusiness() {
-		textAreaDescrizioneBusiness = new JTextArea("DINAMICO");
-		textAreaDescrizioneBusiness.setColumns(25);
-		textAreaDescrizioneBusiness.setWrapStyleWord(true);
-		textAreaDescrizioneBusiness.setLineWrap(true);
-		textAreaDescrizioneBusiness.setFont(new Font("Roboto", Font.PLAIN, 15));
-		textAreaDescrizioneBusiness.setBorder(new LineBorder(Color.BLACK,1));
+		textAreaDescrizioneBusiness = new TextAreaConScrollPaneVerde();
 		textAreaDescrizioneBusiness.setEditable(false);
 	}
 
