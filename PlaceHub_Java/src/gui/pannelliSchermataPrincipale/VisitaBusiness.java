@@ -9,7 +9,6 @@ import oggetti.GUI.RecensioneGUI;
 import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.StelleGUI;
 import oggetti.GUI.TextAreaConScrollPaneVerde;
-import res.WrapLayout;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -33,6 +32,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import net.miginfocom.swing.MigLayout;
 
 public class VisitaBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -239,9 +239,10 @@ public class VisitaBusiness extends JPanel {
 	
 	private void generaContenitoreRecensioni() {
 		pannelloRecensioni = new JPanel();
-		pannelloRecensioni.setLayout(new WrapLayout(WrapLayout.CENTER));
+		pannelloRecensioni.setLayout(new MigLayout());
 		pannelloRecensioni.setBackground(Color.WHITE);
 		pannelloRecensioni.setBorder(new LineBorder(Color.DARK_GRAY,1));
+		
 		scrollPaneRecensioni = new ScrollPaneVerde();
 		scrollPaneRecensioni.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneRecensioni.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -308,6 +309,6 @@ public class VisitaBusiness extends JPanel {
 	private void aggiungiRecensioniAPannello(Recensione recensione) {
 		RecensioneGUI pannelloNuovaRecensione = new RecensioneGUI();
 		pannelloNuovaRecensione.configuraPannello(recensione);
-		pannelloRecensioni.add(pannelloNuovaRecensione);
+		pannelloRecensioni.add(pannelloNuovaRecensione, "wrap, pushx, grow");
 	}
 }
