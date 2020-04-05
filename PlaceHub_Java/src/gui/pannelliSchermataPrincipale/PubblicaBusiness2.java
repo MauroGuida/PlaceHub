@@ -19,8 +19,8 @@ import javax.swing.ScrollPaneConstants;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
-import oggetti.TextAreaConScrollPaneVerde;
 import res.ScrollPaneVerde;
+import res.TextAreaConScrollPaneVerde;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

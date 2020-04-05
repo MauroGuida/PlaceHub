@@ -7,8 +7,8 @@ import gui.RecensioneGUI;
 import gui.StelleGUI;
 import oggetti.Locale;
 import oggetti.Recensione;
-import oggetti.TextAreaConScrollPaneVerde;
 import res.ScrollPaneVerde;
+import res.TextAreaConScrollPaneVerde;
 import res.WrapLayout;
 
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package oggetti;
+package res;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-import res.ScrollPaneVerde;
 import java.awt.BorderLayout;
 
 public class TextAreaConScrollPaneVerde extends JPanel {
@@ -31,9 +30,9 @@ public class TextAreaConScrollPaneVerde extends JPanel {
 		textArea.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if((((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || (e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z') || (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'))
-						&& textArea.getText().length() <= 1999) || e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE ||
-						e.getKeyCode() ==  KeyEvent.VK_DELETE || e.getModifiersEx() ==  KeyEvent.CTRL_DOWN_MASK)
+				if(((e.getKeyChar() >= '0' && e.getKeyChar() <= '9' || e.getKeyChar() >= 'A' && e.getKeyChar() <= 'Z' || e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'
+						|| e.getKeyCode() ==  KeyEvent.VK_BACK_SPACE || e.getKeyCode() ==  KeyEvent.VK_SPACE || e.getKeyCode() ==  KeyEvent.VK_DELETE ||
+						e.getModifiersEx() ==  KeyEvent.CTRL_DOWN_MASK) && textArea.getText().length() <= 1999))
 					textArea.setEditable(true);
 				else
 					textArea.setEditable(false);
