@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
 import gestione.Controller;
-import gui.LocaleGUI;
+import oggetti.GUI.LocaleGUI;
 import res.ScrollPaneVerde;
 import res.WrapLayout;
 

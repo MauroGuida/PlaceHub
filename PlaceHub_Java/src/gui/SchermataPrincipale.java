@@ -15,6 +15,7 @@ import gui.pannelliSchermataPrincipale.SideBar;
 import gui.pannelliSchermataPrincipale.VerificaPubblicaBusiness;
 import gui.pannelliSchermataPrincipale.VisitaBusiness;
 import oggetti.Locale;
+import oggetti.GUI.LocaleGUI;
 import res.ComponentResizer;
 
 import javax.swing.BorderFactory;

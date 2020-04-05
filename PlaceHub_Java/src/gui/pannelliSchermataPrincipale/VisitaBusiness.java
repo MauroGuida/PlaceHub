@@ -3,10 +3,10 @@ package gui.pannelliSchermataPrincipale;
 import javax.swing.JPanel;
 
 import gestione.Controller;
-import gui.RecensioneGUI;
-import gui.StelleGUI;
 import oggetti.Locale;
 import oggetti.Recensione;
+import oggetti.GUI.RecensioneGUI;
+import oggetti.GUI.StelleGUI;
 import res.ScrollPaneVerde;
 import res.TextAreaConScrollPaneVerde;
 import res.WrapLayout;

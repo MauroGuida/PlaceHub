@@ -1,4 +1,4 @@
-package gui;
+package oggetti.GUI;
 
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;

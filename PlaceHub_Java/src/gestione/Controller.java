@@ -19,13 +19,13 @@ import errori.CodiceVerificaNonTrovatoException;
 import errori.CodiceVerificaNonValidoException;
 import errori.EmailSconosciutaException;
 import errori.UsernameOPasswordErratiException;
-import gui.LocaleGUI;
 import gui.SchermataAccesso;
 import gui.SchermataPrincipale;
 import gui.pannelliSchermataPrincipale.RicercaLocaleVuota;
 import oggetti.DocumentiUtente;
 import oggetti.Locale;
 import oggetti.Recensione;
+import oggetti.GUI.LocaleGUI;
 import res.FileChooser;
 import res.InvioEmail;
 
