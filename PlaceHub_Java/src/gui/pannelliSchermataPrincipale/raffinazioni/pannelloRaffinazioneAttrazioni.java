@@ -7,6 +7,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class pannelloRaffinazioneAttrazioni extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +51,6 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 				rimuoviTutteLeSpunte();
 			}
 		});
-		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(506,106);
 		
@@ -60,69 +61,93 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 		generaCheckBoxParcoGiochi();
 		generaCheckBoxBar_Lounge();
 		generaCheckBoxMonumento();
+		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(30)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(checkBoxCinema, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)
+							.addComponent(checkBoxMuseo, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)
+							.addComponent(checkBoxPiscina, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(checkBoxShopping, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addGap(34)
+							.addComponent(checkBoxParcoGiochi, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addGap(34)
+							.addComponent(checkBoxLounge, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+						.addComponent(checkBoxMonumento, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxCinema, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxMuseo, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxPiscina, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxShopping, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxParcoGiochi, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxLounge, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addComponent(checkBoxMonumento, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+		);
+		setLayout(groupLayout);
 	}
 
 	private void generaCheckBoxMonumento() {
 		checkBoxMonumento = new JCheckBox("Monumento");
 		checkBoxMonumento.setBackground(Color.WHITE);
 		checkBoxMonumento.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxMonumento.setBounds(30, 62, 129, 23);
 		checkBoxMonumento.setFocusPainted(false);;
-		add(checkBoxMonumento);
 	}
 
 	private void generaCheckBoxBar_Lounge() {
 		checkBoxLounge = new JCheckBox("Lounge");
 		checkBoxLounge.setBackground(Color.WHITE);
 		checkBoxLounge.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxLounge.setBounds(378, 35, 129, 23);
 		checkBoxLounge.setFocusPainted(false);
-		add(checkBoxLounge);
 	}
 
 	private void generaCheckBoxParcoGiochi() {
 		checkBoxParcoGiochi = new JCheckBox("Parco Giochi");
 		checkBoxParcoGiochi.setFont(new Font("Roboto", Font.PLAIN, 16));
 		checkBoxParcoGiochi.setBackground(Color.WHITE);
-		checkBoxParcoGiochi.setBounds(204, 35, 140, 23);
 		checkBoxParcoGiochi.setFocusPainted(false);
-		add(checkBoxParcoGiochi);
 	}
 
 	private void generaCheckBoxShopping() {
 		checkBoxShopping = new JCheckBox("Shopping");
 		checkBoxShopping.setBackground(Color.WHITE);
 		checkBoxShopping.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxShopping.setBounds(30, 35, 140, 23);
 		checkBoxShopping.setFocusPainted(false);
-		add(checkBoxShopping);
 	}
 
 	private void generaCheckBoxPiscina() {
 		checkBoxPiscina = new JCheckBox("Piscina");
 		checkBoxPiscina.setFont(new Font("Roboto", Font.PLAIN, 16));
 		checkBoxPiscina.setBackground(Color.WHITE);
-		checkBoxPiscina.setBounds(378, 8, 108, 23);
 		checkBoxPiscina.setFocusPainted(false);
-		add(checkBoxPiscina);
 	}
 
 	private void generaCheckBoxMuseo() {
 		checkBoxMuseo = new JCheckBox("Museo");
 		checkBoxMuseo.setBackground(Color.WHITE);
 		checkBoxMuseo.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxMuseo.setBounds(204, 8, 129, 23);
 		checkBoxMuseo.setFocusPainted(false);
-		add(checkBoxMuseo);
 	}
 
 	private void generaCheckBoxCinema() {
 		checkBoxCinema = new JCheckBox("Cinema");
 		checkBoxCinema.setBackground(Color.WHITE);
 		checkBoxCinema.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxCinema.setBounds(30, 8, 129, 23);
 		checkBoxCinema.setFocusPainted(false);
-		add(checkBoxCinema);
 	}
 	
 	//Metodi

@@ -303,7 +303,7 @@ public class SideBar extends JPanel {
 	    bottoneAttrazioni.setFocusPainted(false);
 	    bottoneAttrazioni.setContentAreaFilled(false);
 	    bottoneAttrazioni.setBorderPainted(false);
-	    bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+	    bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioni.png")));
 	    bottoneAttrazioni.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
 	    		flagFocusBottone = 3;
@@ -315,14 +315,14 @@ public class SideBar extends JPanel {
 	    bottoneAttrazioni.addMouseListener(new MouseAdapter() {
 	    	@Override
 	    	public void mouseEntered(MouseEvent e) {
-	    		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+	    		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioniFocus.png")));
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
 	    		if(flagFocusBottone != 3)
-	    			bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+	    			bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioni.png")));
 	    		else
-	    			bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+	    			bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioniFocus.png")));
 	    	}
 	    });
 	}
@@ -404,7 +404,7 @@ public class SideBar extends JPanel {
 				bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristorantiFocus.png")));
 				break;
 			case 3:
-				bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimentoFocus.png")));
+				bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioniFocus.png")));
 				break;
 			case 4:
 				bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggiFocus.png")));
@@ -419,7 +419,7 @@ public class SideBar extends JPanel {
 	private void resettaFocusIconeSideBar() {
 		bottoneHomepage.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/homepage.png")));
 		bottoneRistoranti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/ristoranti.png")));
-		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/intrattenimento.png")));
+		bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/attrazioni.png")));
 		bottoneAlloggi.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/alloggi.png")));
 		bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	}

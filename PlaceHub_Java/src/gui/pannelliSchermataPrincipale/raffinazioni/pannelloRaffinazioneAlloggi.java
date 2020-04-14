@@ -7,6 +7,8 @@ import javax.swing.JCheckBox;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class pannelloRaffinazioneAlloggi extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +44,6 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 				rimuoviTutteLeSpunte();
 			}
 		});
-		setLayout(null);
 		setBackground(Color.WHITE);
 		setSize(506,106);
 		
@@ -52,51 +53,73 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 		generaBoxResidence();
 		generaCheckBoxCasVacanze();
 		
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(30)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(checkBoxHotel, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)
+							.addComponent(checkBoxOstello, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(45)
+							.addComponent(checkBoxResidence, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(checkBoxBedBreakfast, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(checkBoxCasaVacanze, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxHotel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxOstello, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxResidence, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGap(4)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBoxBedBreakfast, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(checkBoxCasaVacanze, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
+		);
+		setLayout(groupLayout);
+		
 	}
 
 	private void generaCheckBoxCasVacanze() {
 		checkBoxCasaVacanze = new JCheckBox("Casa Vacanze");
 		checkBoxCasaVacanze.setFont(new Font("Roboto", Font.PLAIN, 16));
 		checkBoxCasaVacanze.setBackground(Color.WHITE);
-		checkBoxCasaVacanze.setBounds(204, 35, 129, 23);
 		checkBoxCasaVacanze.setFocusPainted(false);
-		add(checkBoxCasaVacanze);
 	}
 
 	private void generaBoxResidence() {
 		checkBoxResidence = new JCheckBox("Residence");
 		checkBoxResidence.setFont(new Font("Roboto", Font.PLAIN, 16));
 		checkBoxResidence.setBackground(Color.WHITE);
-		checkBoxResidence.setBounds(378, 8, 108, 23);
 		checkBoxResidence.setFocusPainted(false);
-		add(checkBoxResidence);
 	}
 
 	private void generaCheckBoxBedBreakfast() {
 		checkBoxBedBreakfast = new JCheckBox("Bed & Breakfast");
 		checkBoxBedBreakfast.setBackground(Color.WHITE);
 		checkBoxBedBreakfast.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxBedBreakfast.setBounds(30, 35, 141, 23);
 		checkBoxBedBreakfast.setFocusPainted(false);
-		add(checkBoxBedBreakfast);
 	}
 
 	private void generaCheckBoxOstello() {
 		checkBoxOstello = new JCheckBox("Ostello");
 		checkBoxOstello.setBackground(Color.WHITE);
 		checkBoxOstello.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxOstello.setBounds(204, 8, 129, 23);
 		checkBoxOstello.setFocusPainted(false);
-		add(checkBoxOstello);
 	}
 
 	private void generaCheckBoxHotel() {
 		checkBoxHotel = new JCheckBox("Hotel");
 		checkBoxHotel.setBackground(Color.WHITE);
 		checkBoxHotel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		checkBoxHotel.setBounds(30, 8, 129, 23);
 		checkBoxHotel.setFocusPainted(false);
-		add(checkBoxHotel);
 	}
 	
 	
