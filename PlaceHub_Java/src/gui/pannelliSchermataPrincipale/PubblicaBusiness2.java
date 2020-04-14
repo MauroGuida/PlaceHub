@@ -25,10 +25,18 @@ import oggetti.GUI.TextAreaConScrollPaneVerde;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.CardLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -48,6 +56,7 @@ public class PubblicaBusiness2 extends JPanel {
 	private JPanel pannelloImmagini;
 	
 	private Controller ctrl;
+	private JPanel pannelloBottom;
 	
 	 public PubblicaBusiness2(Controller ctrl) {
 	 	addComponentListener(new ComponentAdapter() {
@@ -68,39 +77,60 @@ public class PubblicaBusiness2 extends JPanel {
 		
 		generaAggiungiImmagine();
 		
-		generaBottoneCancella();
-		generaBottoneAvanti();
-		
 		generaTestoErroreInserisciDescrizione();
-		generaTestoErroreInserisciImmagine();
-		
 		generaVisualizzatoreImmagini();
 		
+		generaPannelloBottom();
+		
+		generaBottoneCancella();
+		generaTestoErroreInserisciImmagine();
+
+		generaBottoneAvanti(ctrl);
+		
+		GroupLayout groupLayout = generaLayout();
+		setLayout(groupLayout);
+		
+	}
+
+	private void generaPannelloBottom() {
+		pannelloBottom = new JPanel();
+		pannelloBottom.setBackground(Color.WHITE);
+		pannelloBottom.setBorder(new LineBorder(Color.WHITE, 1));
+		GridBagLayout gbl_pannelloBottom = new GridBagLayout();
+		gbl_pannelloBottom.columnWidths = new int[]{174, 452, 174, 0};
+		gbl_pannelloBottom.rowHeights = new int[]{60, 0};
+		gbl_pannelloBottom.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_pannelloBottom.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pannelloBottom.setLayout(gbl_pannelloBottom);
+	}
+
+	private GroupLayout generaLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(27)
+					.addComponent(testoDescriviBusiness, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+					.addGap(406))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+					.addGap(17)
+					.addComponent(iconaImmagine)
+					.addGap(28))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(testoDescriviBusiness, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-							.addGap(378))
-						.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoTrascinaImmagini, GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
 							.addGap(480))
-						.addComponent(testoErroreInserisciDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-							.addGap(17)
-							.addComponent(iconaImmagine))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(testoErroreInserisciImmagine, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-							.addGap(10)
-							.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(testoErroreInserisciDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))
 					.addGap(28))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(pannelloBottom, GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -108,66 +138,39 @@ public class PubblicaBusiness2 extends JPanel {
 					.addGap(8)
 					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
-					.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+					.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
-						.addComponent(testoErroreInserisciDescrizione, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(11)
+						.addComponent(testoErroreInserisciDescrizione, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addGap(13)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+						.addComponent(elencoImmagini, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(14)
-							.addComponent(iconaImmagine)))
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(15)
-							.addComponent(testoErroreInserisciImmagine, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-						.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-					.addGap(21))
+							.addComponent(iconaImmagine, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(24)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pannelloBottom, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addGap(6))
 		);
-		setLayout(groupLayout);
+		return groupLayout;
 	}
 
-	public void generaVisualizzatoreImmagini() {
-		pannelloImmagini = new JPanel();
-		pannelloImmagini.setBackground(Color.WHITE);
-		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
-		elencoImmagini = new ScrollPaneVerde();
-		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		elencoImmagini.setViewportView(pannelloImmagini);
-	}
-
-	private void generaTestoErroreInserisciImmagine() {
-		testoErroreInserisciImmagine = new JLabel("Inserisci almeno una immagine");
-		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreInserisciImmagine.setForeground(Color.RED);
-		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciImmagine.setVisible(false);
-	}
-
-	private void generaTestoErroreInserisciDescrizione() {
-		testoErroreInserisciDescrizione = new JLabel("Inserisci la descrizione");
-		testoErroreInserisciDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreInserisciDescrizione.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciDescrizione.setForeground(Color.RED);
-		testoErroreInserisciDescrizione.setVisible(false);
-	}
-
-	private void generaBottoneAvanti() {
+	private void generaBottoneAvanti(Controller ctrl) {
 		bottoneAvanti = new JButton("");
 		bottoneAvanti.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
 		bottoneAvanti.setBorderPainted(false);
 		bottoneAvanti.setFocusPainted(false);
+		GridBagConstraints gbc_bottoneAvanti = new GridBagConstraints();
+		gbc_bottoneAvanti.fill = GridBagConstraints.VERTICAL;
+		gbc_bottoneAvanti.gridx = 2;
+		gbc_bottoneAvanti.gridy = 0;
+		pannelloBottom.add(bottoneAvanti, gbc_bottoneAvanti);
 		bottoneAvanti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -185,9 +188,34 @@ public class PubblicaBusiness2 extends JPanel {
 			}
 		});
 	}
-	
+
+	private void generaTestoErroreInserisciImmagine() {
+		testoErroreInserisciImmagine = new JLabel("Inserisci almeno una immagine");
+		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreInserisciImmagine.setForeground(Color.RED);
+		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErroreInserisciImmagine.setVisible(false);
+		GridBagConstraints gbc_testoErroreInserisciImmagine = new GridBagConstraints();
+		gbc_testoErroreInserisciImmagine.fill = GridBagConstraints.BOTH;
+		gbc_testoErroreInserisciImmagine.insets = new Insets(0, 0, 0, 5);
+		gbc_testoErroreInserisciImmagine.gridx = 1;
+		gbc_testoErroreInserisciImmagine.gridy = 0;
+		pannelloBottom.add(testoErroreInserisciImmagine, gbc_testoErroreInserisciImmagine);
+	}
+
 	private void generaBottoneCancella() {
 		bottoneCancella = new JButton("");
+		bottoneCancella.setIcon(new ImageIcon(PubblicaBusiness2.class.getResource("/Icone/bottoneCancella.png")));
+		bottoneCancella.setOpaque(false);
+		bottoneCancella.setContentAreaFilled(false);
+		bottoneCancella.setBorderPainted(false);
+		bottoneCancella.setFocusPainted(false);
+		GridBagConstraints gbc_bottoneCancella = new GridBagConstraints();
+		gbc_bottoneCancella.fill = GridBagConstraints.VERTICAL;
+		gbc_bottoneCancella.insets = new Insets(0, 0, 0, 5);
+		gbc_bottoneCancella.gridx = 0;
+		gbc_bottoneCancella.gridy = 0;
+		pannelloBottom.add(bottoneCancella, gbc_bottoneCancella);
 		bottoneCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(null, "Annullando perderai tutte le modifiche fatte, vuoi procedere?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -195,11 +223,6 @@ public class PubblicaBusiness2 extends JPanel {
 				}
 			}
 		});
-		bottoneCancella.setIcon(new ImageIcon(PubblicaBusiness2.class.getResource("/Icone/bottoneCancella.png")));
-		bottoneCancella.setOpaque(false);
-		bottoneCancella.setContentAreaFilled(false);
-		bottoneCancella.setBorderPainted(false);
-		bottoneCancella.setFocusPainted(false);
 		bottoneCancella.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -210,6 +233,26 @@ public class PubblicaBusiness2 extends JPanel {
 				bottoneCancella.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneCancella.png")));
 			}
 		});
+	}
+
+	public void generaVisualizzatoreImmagini() {
+		pannelloImmagini = new JPanel();
+		pannelloImmagini.setBackground(Color.WHITE);
+		pannelloImmagini.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		elencoImmagini = new ScrollPaneVerde();
+		elencoImmagini.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		elencoImmagini.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		elencoImmagini.setViewportView(pannelloImmagini);
+	}
+
+	private void generaTestoErroreInserisciDescrizione() {
+		testoErroreInserisciDescrizione = new JLabel("Inserisci la descrizione");
+		testoErroreInserisciDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreInserisciDescrizione.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErroreInserisciDescrizione.setForeground(Color.RED);
+		testoErroreInserisciDescrizione.setVisible(false);
 	}
 
 	private void generaAggiungiImmagine() {
@@ -234,6 +277,7 @@ public class PubblicaBusiness2 extends JPanel {
 		testoDescriviBusiness.setFont(new Font("Roboto", Font.PLAIN, 20));
 		
 		areaDescrizione = new TextAreaConScrollPaneVerde();
+		areaDescrizione.setLayout(new CardLayout(0, 0));
 	}
 	
 	
@@ -243,6 +287,8 @@ public class PubblicaBusiness2 extends JPanel {
 	public void pulisciPannello() {
 		areaDescrizione.setText("Scrivi qui! MAX(2000 caratteri)");
 		areaDescrizione.setForeground(Color.DARK_GRAY);
+		testoErroreInserisciDescrizione.setVisible(false);
+		testoErroreInserisciImmagine.setVisible(false);
 		pannelloImmagini.removeAll();
 	}
 
