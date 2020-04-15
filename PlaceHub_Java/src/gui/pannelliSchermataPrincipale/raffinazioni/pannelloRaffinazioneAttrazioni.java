@@ -105,6 +105,7 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 		checkBoxMonumento = new JCheckBox("Monumento");
 		checkBoxMonumento.setBackground(Color.WHITE);
 		checkBoxMonumento.setFont(new Font("Roboto", Font.PLAIN, 16));
+		checkBoxMonumento.setBounds(30, 62, 129, 23);
 		checkBoxMonumento.setFocusPainted(false);;
 	}
 

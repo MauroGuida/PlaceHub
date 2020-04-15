@@ -32,7 +32,6 @@ import java.awt.event.ComponentEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

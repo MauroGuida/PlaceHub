@@ -67,7 +67,7 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 		generaCheckBoxTavolaCalda();
 		generaCheckBoxTaverna();
 		generaCheckBoxTrattoria();
-		generaCheckBoxPesce();	
+		generaCheckBoxPesce();
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

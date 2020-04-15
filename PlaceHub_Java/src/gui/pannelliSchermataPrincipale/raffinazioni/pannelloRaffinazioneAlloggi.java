@@ -84,7 +84,6 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 						.addComponent(checkBoxCasaVacanze, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)))
 		);
 		setLayout(groupLayout);
-		
 	}
 
 	private void generaCheckBoxCasVacanze() {
