@@ -18,6 +18,17 @@ import javax.swing.GroupLayout.Alignment;
 import gui.SchermataPrincipale;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import javax.swing.SpringLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.SwingConstants;
 
 public class PubblicaBusiness3 extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -25,27 +36,66 @@ public class PubblicaBusiness3 extends JPanel {
 	private JLabel testoRegistrazioneAvvenutaConSuccesso;
 	private JLabel immagineVerificato;
 	private JButton bottoneOK;
+	private JPanel pannelloMessaggio;
 
 	public PubblicaBusiness3() {
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
 		
+		generaBottoneOK();	
+		generaPannelloMessaggio();
+		generaLayout();
+	}
+
+	private void generaPannelloMessaggio() {
+		pannelloMessaggio = new JPanel();
+		pannelloMessaggio.setBackground(Color.WHITE);
+		pannelloMessaggio.setBorder(new LineBorder(Color.WHITE, 1));
+		
 		testoRegistrazioneAvvenutaConSuccesso = new JLabel("Registrazione avvenuta con successo!");
-		testoRegistrazioneAvvenutaConSuccesso.setFont(new Font("Roboto", Font.PLAIN, 25));
+		testoRegistrazioneAvvenutaConSuccesso.setHorizontalAlignment(SwingConstants.CENTER);
+		testoRegistrazioneAvvenutaConSuccesso.setFont(new Font("Roboto", Font.PLAIN, 23));
 		
 		immagineVerificato = new JLabel("");
+		immagineVerificato.setHorizontalAlignment(SwingConstants.CENTER);
 		immagineVerificato.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/verified.png")));
 		
+		generaLayoutPannelloMessaggio();
+	}
+
+	private void generaLayoutPannelloMessaggio() {
+		GroupLayout gl_pannelloMessaggio = new GroupLayout(pannelloMessaggio);
+		gl_pannelloMessaggio.setHorizontalGroup(
+			gl_pannelloMessaggio.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloMessaggio.createSequentialGroup()
+					.addGap(218)
+					.addComponent(immagineVerificato, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(218))
+				.addGroup(gl_pannelloMessaggio.createSequentialGroup()
+					.addGap(80)
+					.addComponent(testoRegistrazioneAvvenutaConSuccesso, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(81))
+		);
+		gl_pannelloMessaggio.setVerticalGroup(
+			gl_pannelloMessaggio.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloMessaggio.createSequentialGroup()
+					.addGap(40)
+					.addComponent(immagineVerificato, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+					.addGap(20)
+					.addComponent(testoRegistrazioneAvvenutaConSuccesso)
+					.addContainerGap(90, Short.MAX_VALUE))
+		);
+		pannelloMessaggio.setLayout(gl_pannelloMessaggio);
+	}
+
+	private void generaBottoneOK() {
 		bottoneOK = new JButton("");
-		bottoneOK.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Controller.getSchermataPrincipaleFrame().mostraHomepage();
-			}
-		});
 		bottoneOK.setOpaque(false);
 		bottoneOK.setBorderPainted(false);
 		bottoneOK.setContentAreaFilled(false);
+		bottoneOK.setFocusPainted(false);
+		bottoneOK.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
 		bottoneOK.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -56,35 +106,35 @@ public class PubblicaBusiness3 extends JPanel {
 				bottoneOK.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
 			}
 		});
-		bottoneOK.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneOK.png")));
-		
-		GroupLayout gl_pannelloGestisciBusiness3 = new GroupLayout(this);
-		gl_pannelloGestisciBusiness3.setHorizontalGroup(
-			gl_pannelloGestisciBusiness3.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_pannelloGestisciBusiness3.createSequentialGroup()
-					.addGap(352)
-					.addComponent(immagineVerificato, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(353))
-				.addGroup(gl_pannelloGestisciBusiness3.createSequentialGroup()
-					.addGap(197)
-					.addComponent(testoRegistrazioneAvvenutaConSuccesso, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-					.addGap(198))
-				.addGroup(gl_pannelloGestisciBusiness3.createSequentialGroup()
-					.addGap(643)
-					.addComponent(bottoneOK, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-					.addGap(42))
+		bottoneOK.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller.getSchermataPrincipaleFrame().mostraHomepage();
+			}
+		});
+	}
+
+	private void generaLayout() {
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(147)
+					.addComponent(pannelloMessaggio, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(147))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(677, Short.MAX_VALUE)
+					.addComponent(bottoneOK, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
-		gl_pannelloGestisciBusiness3.setVerticalGroup(
-			gl_pannelloGestisciBusiness3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloGestisciBusiness3.createSequentialGroup()
-					.addGap(180)
-					.addComponent(immagineVerificato, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-					.addGap(13)
-					.addComponent(testoRegistrazioneAvvenutaConSuccesso, GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
-					.addGap(194)
-					.addComponent(bottoneOK, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addGap(27))
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(157)
+					.addComponent(pannelloMessaggio, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+					.addGap(76)
+					.addComponent(bottoneOK)
+					.addGap(21))
 		);
-		setLayout(gl_pannelloGestisciBusiness3);
+		setLayout(groupLayout);
 	}
 }
