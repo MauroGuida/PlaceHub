@@ -378,8 +378,8 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 	//Gestione pannello ScriviRecensione
-		public void mostraErroreRecensioneMancataScriviRecensione() {
-			pannelloScriviRecensione.mostraErroreRecensioneMancata();
+		public void mostraErroreRecensioneVuotaScriviRecensione() {
+			pannelloScriviRecensione.mostraErroreRecensioneVuota();
 		}
 		
 		public void mostraErroreStelleMancateScriviRecensione() {

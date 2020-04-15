@@ -97,7 +97,7 @@ public class BusinessDAO {
 	
 	public Locale recuperaBusinessCompletoDaCodBusiness(String codBusiness) throws SQLException {
 		//Recupero Informazioni
-		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo FROM Business WHERE codBusiness = ?";
+		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo, codMappa FROM Business WHERE codBusiness = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codBusiness));
@@ -114,6 +114,7 @@ public class BusinessDAO {
 		risultato.setDescrizione(datiRecuperati.getString(5));
 		risultato.setStelle(datiRecuperati.getFloat(6));
 		risultato.setTipoBusiness(datiRecuperati.getString(7));
+		risultato.setCodMappa(datiRecuperati.getString(8));
 
 		//Recupero Immagini
 		sql = "SELECT Url FROM ImmagineProprieta WHERE codBusiness = ?";

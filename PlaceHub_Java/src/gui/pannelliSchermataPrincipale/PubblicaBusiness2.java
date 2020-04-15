@@ -33,9 +33,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class PubblicaBusiness2 extends JPanel {
 
@@ -47,7 +47,7 @@ public class PubblicaBusiness2 extends JPanel {
 	private JButton bottoneAvanti;
 	
 	private JLabel testoErroreInserisciDescrizione;
-	private JLabel testoErroreInserisciImmagine;
+	private JLabel testoErrore;
 	
 	private JLabel testoTrascinaImmagini;
 	private JLabel iconaImmagine;
@@ -55,7 +55,9 @@ public class PubblicaBusiness2 extends JPanel {
 	private JPanel pannelloImmagini;
 	
 	private Controller ctrl;
-	private JPanel pannelloBottom;
+	private JPanel pannelloBot;
+	private Component horizontalGlue;
+	private Component horizontalGlue_1;
 	
 	 public PubblicaBusiness2(Controller ctrl) {
 	 	addComponentListener(new ComponentAdapter() {
@@ -64,7 +66,6 @@ public class PubblicaBusiness2 extends JPanel {
 	 			pulisciPannello();
 	 		}
 	 	});
-
 		this.ctrl = ctrl;
 		
 		setSize(850, 614);
@@ -79,34 +80,16 @@ public class PubblicaBusiness2 extends JPanel {
 		generaTestoErroreInserisciDescrizione();
 		generaVisualizzatoreImmagini();
 		
-		generaPannelloBottom();
-		
 		generaBottoneCancella();
 		generaTestoErroreInserisciImmagine();
 
 		generaBottoneAvanti(ctrl);
 		
-		GroupLayout groupLayout = generaLayout();
-		setLayout(groupLayout);
+		generaPannelloBot();
 		
-	}
-
-	private void generaPannelloBottom() {
-		pannelloBottom = new JPanel();
-		pannelloBottom.setBackground(Color.WHITE);
-		pannelloBottom.setBorder(new LineBorder(Color.WHITE, 1));
-		GridBagLayout gbl_pannelloBottom = new GridBagLayout();
-		gbl_pannelloBottom.columnWidths = new int[]{174, 452, 174, 0};
-		gbl_pannelloBottom.rowHeights = new int[]{60, 0};
-		gbl_pannelloBottom.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_pannelloBottom.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		pannelloBottom.setLayout(gbl_pannelloBottom);
-	}
-
-	private GroupLayout generaLayout() {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(27)
 					.addComponent(testoDescriviBusiness, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
@@ -126,10 +109,7 @@ public class PubblicaBusiness2 extends JPanel {
 							.addGap(480))
 						.addComponent(testoErroreInserisciDescrizione, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))
 					.addGap(28))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(pannelloBottom, GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
-					.addContainerGap())
+				.addComponent(pannelloBot, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -137,7 +117,7 @@ public class PubblicaBusiness2 extends JPanel {
 					.addGap(8)
 					.addComponent(testoDescriviBusiness, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
-					.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+					.addComponent(areaDescrizione, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
 					.addGap(10)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -145,17 +125,34 @@ public class PubblicaBusiness2 extends JPanel {
 							.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 						.addComponent(testoErroreInserisciDescrizione, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(elencoImmagini, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(elencoImmagini, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(14)
-							.addComponent(iconaImmagine, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(24)))
+							.addComponent(iconaImmagine)
+							.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(pannelloBottom, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addComponent(pannelloBot, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 					.addGap(6))
 		);
-		return groupLayout;
+		setLayout(groupLayout);
+	}
+
+	private void generaPannelloBot() {
+		pannelloBot = new JPanel();
+		pannelloBot.setBackground(Color.WHITE);
+		pannelloBot.setBorder(new LineBorder(Color.WHITE, 1));
+		pannelloBot.setLayout(new MigLayout("", "[][grow,center][][grow,center][]", "[]"));
+
+		horizontalGlue = Box.createHorizontalGlue();
+		pannelloBot.add(horizontalGlue, "cell 1 0");
+
+		horizontalGlue_1 = Box.createHorizontalGlue();
+		pannelloBot.add(horizontalGlue_1, "cell 3 0");
+
+		pannelloBot.add(bottoneAvanti, "cell 4 0,alignx right,growy");
+		pannelloBot.add(testoErrore, "cell 2 0,grow");
+		pannelloBot.add(bottoneCancella, "cell 0 0,alignx left,growy");
 	}
 
 	private void generaBottoneAvanti(Controller ctrl) {
@@ -165,11 +162,7 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneAvanti.setContentAreaFilled(false);
 		bottoneAvanti.setBorderPainted(false);
 		bottoneAvanti.setFocusPainted(false);
-		GridBagConstraints gbc_bottoneAvanti = new GridBagConstraints();
-		gbc_bottoneAvanti.fill = GridBagConstraints.VERTICAL;
-		gbc_bottoneAvanti.gridx = 2;
-		gbc_bottoneAvanti.gridy = 0;
-		pannelloBottom.add(bottoneAvanti, gbc_bottoneAvanti);
+		
 		bottoneAvanti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -189,17 +182,11 @@ public class PubblicaBusiness2 extends JPanel {
 	}
 
 	private void generaTestoErroreInserisciImmagine() {
-		testoErroreInserisciImmagine = new JLabel("Inserisci almeno una immagine");
-		testoErroreInserisciImmagine.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreInserisciImmagine.setForeground(Color.RED);
-		testoErroreInserisciImmagine.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreInserisciImmagine.setVisible(false);
-		GridBagConstraints gbc_testoErroreInserisciImmagine = new GridBagConstraints();
-		gbc_testoErroreInserisciImmagine.fill = GridBagConstraints.BOTH;
-		gbc_testoErroreInserisciImmagine.insets = new Insets(0, 0, 0, 5);
-		gbc_testoErroreInserisciImmagine.gridx = 1;
-		gbc_testoErroreInserisciImmagine.gridy = 0;
-		pannelloBottom.add(testoErroreInserisciImmagine, gbc_testoErroreInserisciImmagine);
+		testoErrore = new JLabel("Inserisci almeno una immagine");
+		testoErrore.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErrore.setForeground(Color.RED);
+		testoErrore.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErrore.setVisible(false);
 	}
 
 	private void generaBottoneCancella() {
@@ -209,12 +196,7 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneCancella.setContentAreaFilled(false);
 		bottoneCancella.setBorderPainted(false);
 		bottoneCancella.setFocusPainted(false);
-		GridBagConstraints gbc_bottoneCancella = new GridBagConstraints();
-		gbc_bottoneCancella.fill = GridBagConstraints.VERTICAL;
-		gbc_bottoneCancella.insets = new Insets(0, 0, 0, 5);
-		gbc_bottoneCancella.gridx = 0;
-		gbc_bottoneCancella.gridy = 0;
-		pannelloBottom.add(bottoneCancella, gbc_bottoneCancella);
+		
 		bottoneCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(null, "Annullando perderai tutte le modifiche fatte, vuoi procedere?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -287,13 +269,13 @@ public class PubblicaBusiness2 extends JPanel {
 		areaDescrizione.setText("Scrivi qui! MAX(2000 caratteri)");
 		areaDescrizione.setForeground(Color.DARK_GRAY);
 		testoErroreInserisciDescrizione.setVisible(false);
-		testoErroreInserisciImmagine.setVisible(false);
+		testoErrore.setVisible(false);
 		pannelloImmagini.removeAll();
 	}
 
 	public void resettaVisibilitaErrori() {
 		testoErroreInserisciDescrizione.setVisible(false);
-		testoErroreInserisciImmagine.setVisible(false);
+		testoErrore.setVisible(false);
 	}
 	
 	public void mostraErroreInserisciDescrizione() {
@@ -302,8 +284,8 @@ public class PubblicaBusiness2 extends JPanel {
 	}
 	
 	public void mostraErroreInserisciImmagine() {
-		testoErroreInserisciImmagine.setText("Inserisci almeno una immagine");
-		testoErroreInserisciImmagine.setVisible(true);
+		testoErrore.setText("Inserisci almeno una immagine");
+		testoErrore.setVisible(true);
 	}
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {

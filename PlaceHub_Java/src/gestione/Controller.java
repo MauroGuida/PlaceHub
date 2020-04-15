@@ -507,6 +507,7 @@ public class Controller {
 				//Recupero Business completo
 				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
 				bufferLocale.setListaRecensioni(recensione.recuperaRecensioniBusiness(codBusiness));
+				bufferLocale.setLuogo(mappa.recuperaCittaDaCodMappa(bufferLocale.getCodMappa()));
 				
 				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
@@ -540,7 +541,7 @@ public class Controller {
 		
 		public void pubblicaRecensione(String testo, int stelle) {
 			if(testo.equals("Scrivi qui! MAX(2000 caratteri)") || testo.isBlank() || testo.isEmpty()) {
-				schermataPrincipaleFrame.mostraErroreRecensioneMancataScriviRecensione();
+				schermataPrincipaleFrame.mostraErroreRecensioneVuotaScriviRecensione();
 			}else if(stelle == 0) {
 				schermataPrincipaleFrame.mostraErroreStelleMancateScriviRecensione();
 			}else if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -552,9 +553,13 @@ public class Controller {
 					
 					schermataPrincipaleFrame.mostraHomepage();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}	
+		}
+		
+		public void tornaAVisitaBusiness() {
+			if(JOptionPane.showConfirmDialog(null, "I dati inseriti andranno persi, Confermi?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+				schermataPrincipaleFrame.mostraVisitaBusiness();
 		}
 }

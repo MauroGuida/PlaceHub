@@ -13,6 +13,7 @@ public class Locale {
 	private String tipoBusiness;
 	private String raffinazioni;
 	private String codMappa;
+	private String luogo;
 	
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 	private ArrayList<Recensione> listaRecensioni = new ArrayList<Recensione>();
@@ -29,8 +30,8 @@ public class Locale {
 		this.raffinazioni = raffinazioni;
 		this.codMappa = codMappa;
 	}
-	
-	
+
+
 	//COMPLETO
 	public Locale(String codBusiness, String nome, String indirizzo,
 			  String telefono, String partitaIVA, String descrizione, double stelle, String tipoBusiness, String raffinazioni, String codMappa) {
@@ -113,6 +114,9 @@ public class Locale {
 		this.listaRecensioni = listaRecensioni;
 	}
 
+	public void setLuogo(String luogo) {
+		this.luogo = luogo;
+	}
 	
 	//Getters
 	
@@ -166,6 +170,10 @@ public class Locale {
 	
 	public ArrayList<Recensione> getListaRecensioni() {
 		return listaRecensioni;
+	}
+	
+	public String getLuogo() {
+		return luogo;
 	}
 	
 	

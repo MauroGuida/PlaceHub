@@ -1,6 +1,7 @@
 package gui.pannelliSchermataPrincipale;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
+import net.miginfocom.swing.MigLayout;
 import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.TextAreaConScrollPaneVerde;
 
@@ -25,9 +27,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+
+import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +54,8 @@ public class ScriviRecensione extends JPanel {
 	private JLabel immagineStella5;
 	private int numStelleSelezionate = 0;
 	private JLabel testoErrore;
+	
+	private JPanel pannelloBot;
 	
 	private Controller ctrl;
 	private ScrollPaneVerde elencoImmagini;
@@ -78,66 +86,84 @@ public class ScriviRecensione extends JPanel {
 		generaTestoInfo_1();
 		generaTestoTrascinaFoto();
 		
-		testoErrore = new JLabel("ERRORE");
-		testoErrore.setForeground(Color.RED);
-		testoErrore.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErrore.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErrore.setVisible(false);
+		generaTestoErrore();
 		
+		generaPannelloBot();
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+					.addGap(23)
+					.addComponent(immagineFoto_1)
+					.addGap(22))
+				.addComponent(pannelloBot, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoTrascinaFoto, GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+						.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(testoInfo_1, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 							.addGap(91)
-							.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
-						.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(testoTrascinaFoto, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-							.addGap(151))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-							.addGap(23)
-							.addComponent(immagineFoto_1))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-							.addGap(45)
-							.addComponent(testoErrore, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-							.addGap(47)
-							.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)))
 					.addGap(22))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(testoInfo_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(11)
+							.addComponent(testoInfo_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 						.addComponent(pannelloVotazioniStelle, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
 					.addGap(5)
 					.addComponent(textAreaScriviRecensione, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
 					.addGap(11)
 					.addComponent(testoTrascinaFoto, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(elencoImmagini, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(15)
-							.addComponent(immagineFoto_1)))
-					.addGap(21)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(testoErrore, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-					.addGap(23))
+							.addComponent(immagineFoto_1)
+							.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)))
+					.addGap(11)
+					.addComponent(pannelloBot, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+					.addGap(13))
 		);
 		setLayout(groupLayout);
 	}
+	
+	private void generaPannelloBot() {
+		pannelloBot = new JPanel();
+		pannelloBot.setBackground(Color.WHITE);
+		pannelloBot.setBorder(new LineBorder(Color.WHITE, 1));
+		pannelloBot.setLayout(new MigLayout("", "[][grow,center][][grow,center][]", "[]"));
 
+		Component horizontalGlue = Box.createHorizontalGlue();
+		pannelloBot.add(horizontalGlue, "cell 1 0");
+
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		pannelloBot.add(horizontalGlue_1, "cell 3 0");
+
+		pannelloBot.add(bottonePubblica, "cell 4 0,alignx right,growy");
+		pannelloBot.add(testoErrore, "cell 2 0,grow");
+		pannelloBot.add(bottoneCancella, "cell 0 0,alignx left,growy");
+	}
+
+	private void generaTestoErrore() {
+		testoErrore = new JLabel("ERRORE");
+		testoErrore.setBounds(212, 541, 429, 36);
+		testoErrore.setForeground(Color.RED);
+		testoErrore.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErrore.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErrore.setVisible(false);
+	}
+	
 	private void generaPannelloVotazioniStelle() {
 		pannelloVotazioniStelle = new JPanel();
 		pannelloVotazioniStelle.setBackground(Color.WHITE);
@@ -238,9 +264,10 @@ public class ScriviRecensione extends JPanel {
 
 	private void generaBottoneCancella() {
 		bottoneCancella = new JButton("");
+		bottoneCancella.setBounds(27, 541, 140, 50);
 		bottoneCancella.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
+			public void actionPerformed(ActionEvent e) {
+				ctrl.tornaAVisitaBusiness();
 			}
 		});
 		bottoneCancella.addMouseListener(new MouseAdapter() {
@@ -261,6 +288,7 @@ public class ScriviRecensione extends JPanel {
 
 	private void generaBottonePubblica() {
 		bottonePubblica = new JButton("");
+		bottonePubblica.setBounds(688, 541, 140, 50);
 		bottonePubblica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.pubblicaRecensione(textAreaScriviRecensione.getText(), numStelleSelezionate);
@@ -294,6 +322,10 @@ public class ScriviRecensione extends JPanel {
 		
 		elencoImmagini.setViewportView(pannelloImmagini);
 	}
+	
+	
+	//METODI
+	
 	
 	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
 		try {
@@ -360,7 +392,7 @@ public class ScriviRecensione extends JPanel {
 		svuotaStelle();
 	}
 	
-	public void mostraErroreRecensioneMancata() {
+	public void mostraErroreRecensioneVuota() {
 		testoErrore.setText("E' necessario inserire la recensione");
 		testoErrore.setVisible(true);
 	}

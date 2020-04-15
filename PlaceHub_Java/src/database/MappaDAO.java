@@ -83,4 +83,19 @@ public class MappaDAO {
 		else
 			throw new CodMappaNonTrovatoException();
 	}
+	
+	public String recuperaCittaDaCodMappa(String codMappa) throws SQLException {
+		String sql = "SELECT Comune, SiglaProvincia, CAP FROM Mappa WHERE codMappa = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setInt(1, Integer.parseInt(codMappa));
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		if(datiRecuperati.next()) {
+			String luogo = datiRecuperati.getString("Comune") + "(" + datiRecuperati.getString("SiglaProvincia") + ")" + " " + datiRecuperati.getString("CAP");
+			return luogo;
+		}
+		
+		return null;
+	}
 }

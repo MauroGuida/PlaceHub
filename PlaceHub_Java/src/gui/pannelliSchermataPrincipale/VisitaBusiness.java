@@ -257,7 +257,7 @@ public class VisitaBusiness extends JPanel {
 		pulisciPannello();
 		
 		testoNomeBusiness.setText(locale.getNome());
-		testoIndirizzo.setText(locale.getIndirizzo());
+		testoIndirizzo.setText(locale.getIndirizzo() + " " + locale.getLuogo());
 		testoNumeroTelefono.setText(locale.getTelefono());
 		textAreaDescrizioneBusiness.setText(locale.getDescrizione());
 		testoRaffinazioni.setText(locale.getRaffinazioni());
