@@ -27,6 +27,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
 
 public class ScriviRecensione extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,7 @@ public class ScriviRecensione extends JPanel {
 	private JLabel immagineStella4;
 	private JLabel immagineStella5;
 	private int numStelleSelezionate = 0;
+	private JLabel testoErrore;
 	
 	private Controller ctrl;
 	private ScrollPaneVerde elencoImmagini;
@@ -76,6 +78,12 @@ public class ScriviRecensione extends JPanel {
 		generaTestoInfo_1();
 		generaTestoTrascinaFoto();
 		
+		testoErrore = new JLabel("ERRORE");
+		testoErrore.setForeground(Color.RED);
+		testoErrore.setFont(new Font("Roboto", Font.PLAIN, 16));
+		testoErrore.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErrore.setVisible(false);
+		
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -97,7 +105,9 @@ public class ScriviRecensione extends JPanel {
 							.addComponent(immagineFoto_1))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-							.addGap(521)
+							.addGap(45)
+							.addComponent(testoErrore, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+							.addGap(47)
 							.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
 					.addGap(22))
 		);
@@ -121,7 +131,8 @@ public class ScriviRecensione extends JPanel {
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(bottoneCancella, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+						.addComponent(bottonePubblica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoErrore, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 					.addGap(23))
 		);
 		setLayout(groupLayout);
@@ -227,6 +238,11 @@ public class ScriviRecensione extends JPanel {
 
 	private void generaBottoneCancella() {
 		bottoneCancella = new JButton("");
+		bottoneCancella.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}
+		});
 		bottoneCancella.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -338,8 +354,20 @@ public class ScriviRecensione extends JPanel {
 	public void pulisciPannello() {
 		textAreaScriviRecensione.setText("Scrivi qui! MAX(2000 caratteri)");
 		textAreaScriviRecensione.setForeground(Color.DARK_GRAY);
+		testoErrore.setVisible(false);
 		pannelloImmagini.removeAll();
 		numStelleSelezionate = 0;
 		svuotaStelle();
 	}
+	
+	public void mostraErroreRecensioneMancata() {
+		testoErrore.setText("E' necessario inserire la recensione");
+		testoErrore.setVisible(true);
+	}
+	
+	public void mostraErroreStelleMancate() {
+		testoErrore.setText("E' necessario valutare il locale");
+		testoErrore.setVisible(true);
+	}
+	
 }

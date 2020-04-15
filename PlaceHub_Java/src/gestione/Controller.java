@@ -510,7 +510,7 @@ public class Controller {
 				
 				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
-				//Il proprietario non può auto-recensirsi
+				//Il proprietario non puï¿½ auto-recensirsi
 				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
 				
@@ -539,7 +539,11 @@ public class Controller {
 		}
 		
 		public void pubblicaRecensione(String testo, int stelle) {
-			if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if(testo.equals("Scrivi qui! MAX(2000 caratteri)") || testo.isBlank() || testo.isEmpty()) {
+				schermataPrincipaleFrame.mostraErroreRecensioneMancataScriviRecensione();
+			}else if(stelle == 0) {
+				schermataPrincipaleFrame.mostraErroreStelleMancateScriviRecensione();
+			}else if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				try {
 					bufferRecensione.setTestoRecensione(testo);
 					bufferRecensione.setStelle(stelle);
@@ -551,6 +555,6 @@ public class Controller {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
+			}	
 		}
 }

@@ -377,6 +377,14 @@ public class SchermataPrincipale extends JFrame {
 			pannelloVisitaBusiness.configuraPannello(locale);
 		}
 		
+	//Gestione pannello ScriviRecensione
+		public void mostraErroreRecensioneMancataScriviRecensione() {
+			pannelloScriviRecensione.mostraErroreRecensioneMancata();
+		}
+		
+		public void mostraErroreStelleMancateScriviRecensione() {
+			pannelloScriviRecensione.mostraErroreStelleMancate();
+		}
 		
 	//Controllo pannelli visibili
 		private boolean pannelloGestisciBusiness_IsVisible() {
