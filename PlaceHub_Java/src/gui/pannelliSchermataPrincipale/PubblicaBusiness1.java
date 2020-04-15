@@ -28,9 +28,6 @@ import java.awt.event.ItemEvent;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
 import javax.swing.Box;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class PubblicaBusiness1 extends JPanel {
 
@@ -73,7 +70,6 @@ public class PubblicaBusiness1 extends JPanel {
 	private JLabel testoErrori;
 	
 	private Controller ctrl;
-	private JLabel testoErroreTipologiaVuota;
 	private Component horizontalStrut0;
 	private Component horizontalStrut2;
 	private Component horizontalGlue;
@@ -83,6 +79,7 @@ public class PubblicaBusiness1 extends JPanel {
 	private Component horizontalGlue_1;
 	private Component horizontalGlue_2;
 	private JPanel pannelloBOT2;
+	private JPanel boxPannelliRaff;
 
 	public PubblicaBusiness1(Controller ctrl) {
 		addComponentListener(new ComponentAdapter() {
@@ -130,11 +127,12 @@ public class PubblicaBusiness1 extends JPanel {
 		layoutBotPanel();
 		layoutBot2Panel();
 		
-		setLayout(new MigLayout("", "[grow,fill]", "[grow,center][grow,center][grow,center][grow,center]"));
+		setLayout(new MigLayout("", "[grow,fill]", "[grow,center][grow,center][grow,center][][grow,center]"));
 		add(pannelloTOP, "cell 0 0,growx,growy,aligny top");
 		add(pannelloMID, "cell 0 1,growx,growy,aligny top");
 		add(pannelloBOT, "cell 0 2,grow,growy");
-		add(pannelloBOT2, "cell 0 3,alignx left,growy,growx");
+		add(testoErrori, "cell 0 3");
+		add(pannelloBOT2, "cell 0 4,alignx left,grow");
 	}
 
 
@@ -142,46 +140,32 @@ public class PubblicaBusiness1 extends JPanel {
 		pannelloBOT2 = new JPanel();
 		pannelloBOT2.setBackground(Color.WHITE);
 		
-		GroupLayout gl_pannelloBOT2 = new GroupLayout(pannelloBOT2);
-		gl_pannelloBOT2.setHorizontalGroup(
-			gl_pannelloBOT2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloBOT2.createSequentialGroup()
-					.addGap(12)
-					.addGroup(gl_pannelloBOT2.createParallelGroup(Alignment.LEADING)
-						.addComponent(pannelloRaffAttrazioni, GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE)
-						.addComponent(pannelloRaffAlloggi, GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-						.addComponent(pannelloRaffRistorante, GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE))
-					.addGroup(gl_pannelloBOT2.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_pannelloBOT2.createSequentialGroup()
-							.addGap(10)
-							.addComponent(testoErrori, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-							.addGap(10))
-						.addGroup(gl_pannelloBOT2.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
-		);
-		gl_pannelloBOT2.setVerticalGroup(
-			gl_pannelloBOT2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pannelloBOT2.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_pannelloBOT2.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(pannelloRaffAttrazioni, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pannelloRaffAlloggi, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-						.addComponent(pannelloRaffRistorante, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_pannelloBOT2.createSequentialGroup()
-							.addComponent(testoErrori)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
-		);
-		pannelloBOT2.setLayout(gl_pannelloBOT2);
+		boxPannelliRaff = new JPanel();
+		boxPannelliRaff.setSize(506, 106);
+		boxPannelliRaff.setLayout(null);
+		boxPannelliRaff.setBackground(Color.WHITE);
+		
+		boxPannelliRaff.add(pannelloRaffAttrazioni);
+		boxPannelliRaff.add(pannelloRaffAlloggi);
+		boxPannelliRaff.add(pannelloRaffRistorante);
+		
+		pannelloRaffAttrazioni.setLocation(0, 0);
+		pannelloRaffAlloggi.setLocation(0, 0);
+		pannelloRaffRistorante.setLocation(0, 0);
+		
+		pannelloBOT2.setLayout(new MigLayout("", "[506px][grow,center][]", "[106px]"));
+		pannelloBOT2.add(boxPannelliRaff, "cell 0 0,grow");
+		
+		Component horizontalGlue_3 = Box.createHorizontalGlue();
+		pannelloBOT2.add(horizontalGlue_3, "cell 1 0");
+		pannelloBOT2.add(bottoneAvanti, "cell 2 0,growx,aligny center");
 	}
 
 
 	private void layoutBotPanel() {
 		pannelloBOT = new JPanel();
 		pannelloBOT.setBackground(Color.WHITE);
-		pannelloBOT.setLayout(new MigLayout("", "[grow,fill][][][][grow,fill]", "[][][][]"));
+		pannelloBOT.setLayout(new MigLayout("", "[grow,fill][][][][grow,fill]", "[][][]"));
 		
 		pannelloBOT.add(testoSelezionaOpzione, "cell 1 0,alignx left,aligny center");
 		
@@ -194,7 +178,6 @@ public class PubblicaBusiness1 extends JPanel {
 		pannelloBOT.add(bottoneRistorante, "cell 1 2,alignx left,aligny top");
 		pannelloBOT.add(bottoneAttrazioni, "cell 2 2,alignx left,aligny top");
 		pannelloBOT.add(bottoneAlloggio, "cell 3 2,alignx left,aligny top");
-		pannelloBOT.add(testoErroreTipologiaVuota, "cell 2 3,alignx center,aligny center");
 	}
 
 
@@ -324,12 +307,6 @@ public class PubblicaBusiness1 extends JPanel {
 
 
 	private void generaTestoErroreTipologiaVuota() {
-		testoErroreTipologiaVuota = new JLabel("Seleziona una tipologia");
-		testoErroreTipologiaVuota.setBounds(53, 475, 733, 19);
-		testoErroreTipologiaVuota.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreTipologiaVuota.setForeground(Color.RED);
-		testoErroreTipologiaVuota.setFont(new Font("Roboto", Font.PLAIN, 16));
-		testoErroreTipologiaVuota.setVisible(false);
 	}
 
 
@@ -344,18 +321,21 @@ public class PubblicaBusiness1 extends JPanel {
 
 	private void generaRaffinazioniAttrazione() {
 		pannelloRaffAttrazioni = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAttrazioni();
+		pannelloRaffAttrazioni.setBounds(0, 5, 507, 85);
 		pannelloRaffAttrazioni.setVisible(false);
 	}
 
 
 	private void generaRaffinazioniAlloggio() {
 		pannelloRaffAlloggi = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioneAlloggi();
+		pannelloRaffAlloggi.setBounds(10, 95, 486, 58);
 		pannelloRaffAlloggi.setVisible(false);
 	}
 
 
 	private void generaPannelloRaffRistorante() {
 		pannelloRaffRistorante = new gui.pannelliSchermataPrincipale.raffinazioni.pannelloRaffinazioniRistorante();
+		pannelloRaffRistorante.setBounds(0, 158, 507, 85);
 		pannelloRaffRistorante.setVisible(false);
 	}
 
@@ -706,8 +686,8 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 	
 	public void mostraErroreTipologiaVuota() {
-		testoErroreTipologiaVuota.setText("Seleziona una tipologia");
-		testoErroreTipologiaVuota.setVisible(true);
+		testoErrori.setText("Seleziona una tipologia");
+		testoErrori.setVisible(true);
 	}
 	
 	public void mostraErrorePartitaIVA() {
@@ -722,7 +702,6 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	public void resettaVisibilitaErrori() {
 		testoErrori.setVisible(false);
-		testoErroreTipologiaVuota.setVisible(false);
 	}
 	
 	public void aggiungiRegioneAModello(String regione) {
