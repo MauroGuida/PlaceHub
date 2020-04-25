@@ -329,6 +329,10 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness1.pulisciModelloCAP();
 		}
 		
+		public void impostaBusinessPreesistentePubblicaBusiness1(Locale locale) {
+			pannelloPubblicaBusiness1.impostaBusinessPreesistente(locale);
+		}
+		
 	//Gestione pannello PubblicaBusiness2
 		public void resettaVisibilitaErroriPubblicaBusiness2() {
 			pannelloPubblicaBusiness2.resettaVisibilitaErrori();

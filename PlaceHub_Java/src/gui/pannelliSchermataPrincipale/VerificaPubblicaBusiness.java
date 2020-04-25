@@ -45,153 +45,60 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel testoDocumentoCaricatoRetro;
 	
 	private Controller ctrl;
-	private JPanel pannelloErroreCodiceNonValido;
 	private Component verticalGlue;
 	private Component verticalGlue_1;
+	
+	private JPanel pannelloInfo;
+	private JPanel pannelloDocumentoFronteCaricato;
+	private JPanel pannelloDocumentoRetroCaricato;
+	private JPanel pannelloFeedback;
+	private JPanel pannelloErroreCodiceNonValido;
 	
 	public VerificaPubblicaBusiness(Controller Ctrl) {
 		this.ctrl = Ctrl;
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
+		setLayout(new MigLayout("", "[grow,fill]", "[grow][center][grow,center][grow]"));
 		
-		JPanel pannelloInfo = new JPanel();
+		generaTestoTrascinaImmagini();
+		
+		pannelloInfo = new JPanel();
 		pannelloInfo.setBackground(Color.WHITE);
 		
+		generaCampoDocumentoFronte();
 		
-		testoDocumentoFronte = new JLabel("Documento Fronte");
-		testoDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 23));
-		immagineDocumentoFronte = new JLabel("");
-		immagineDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
-		immagineDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
-		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
-		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			   if(immagineDocumentoFronte.isEnabled()) {
-				   resettaVisibilitaErrori();
-				   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
-					  testoDocumentoCaricatoFronte.setVisible(false);
-					  bottoneInviaCodiceVerifica.setEnabled(false);
-				   }else {
-					   testoDocumentoCaricatoFronte.setVisible(true);
-					   abilitaBottoneInviaCodiceVerifica();
-				   }
-			   }
-			}
-		});
+		generaCampoDocumentoRetro();
 		
+		generaBottoneInviaCodiceVerifica();
+					
+		generaCampoCodiceVerifica();
+				
+		generaBottoneAvanti();
 		
+		generaPannelloDocumentoFronteCaricato();
 		
-		testoDocumentoRetro = new JLabel("Documento Retro");
-		testoDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoRetro.setFont(new Font("Roboto", Font.PLAIN, 23));
-		immagineDocumentoRetro = new JLabel("");
-		immagineDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
-		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
-		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(immagineDocumentoRetro.isEnabled()) {
-					resettaVisibilitaErrori();
-					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
-						testoDocumentoCaricatoRetro.setVisible(false);
-						bottoneInviaCodiceVerifica.setEnabled(false);
-					}else {
-						testoDocumentoCaricatoRetro.setVisible(true);
-						abilitaBottoneInviaCodiceVerifica();
-					}
-				}
-			}
-		});
+		generaPannelloDocumentoRetroCaricato();
 		
+		generaPannelloFeedback();
 		
+		generaPannelloErroreCodiceNonValido();
 		
+		generaLayoutPannelloInfo();
 		
-		bottoneInviaCodiceVerifica = new JButton("");
-		bottoneInviaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/bottoneInviaCodiceVerifica.png")));
-		bottoneInviaCodiceVerifica.setOpaque(false);
-		bottoneInviaCodiceVerifica.setBorderPainted(false);
-		bottoneInviaCodiceVerifica.setContentAreaFilled(false);
-		bottoneInviaCodiceVerifica.setEnabled(false);
+		verticalGlue = Box.createVerticalGlue();
+		add(verticalGlue, "cell 0 0, growy");
 		
+		add(testoTrascinaImmagini, "cell 0 1,alignx center,aligny bottom");
+		add(pannelloInfo, "cell 0 2, align center");
 		
-		
-		testoCodiceVerifica = new JLabel("Codice Verifica");
-		testoCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
-		testoCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 24));
-		
-		textFieldCodiceVerifica = new JTextField();
-		textFieldCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
-		textFieldCodiceVerifica.setBackground(new Color(255,255,255));
-		textFieldCodiceVerifica.setBorder(new LineBorder(new Color(255,255,255),1));
-		textFieldCodiceVerifica.setColumns(10);
-		
-		lineaCodiceVerifica = new JLabel("");
-		lineaCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
-		lineaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/lineaCodiceVerifica.png")));
-		
-		
-		
-		
-		bottoneAvanti = new JButton("");
-		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
-		bottoneAvanti.setOpaque(false);
-		bottoneAvanti.setContentAreaFilled(false);
-		bottoneAvanti.setBorderPainted(false);
-		bottoneAvanti.setEnabled(false);
-		bottoneAvanti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ctrl.controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
-			}
-		});
-		
-		
-		JPanel pannelloDocumentoFronteCaricato = new JPanel();
-		pannelloDocumentoFronteCaricato.setBackground(Color.WHITE);
-		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
-		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
-		testoDocumentoCaricatoFronte.setVisible(false);
-		pannelloDocumentoFronteCaricato.setLayout(new BorderLayout(0, 0));
-		pannelloDocumentoFronteCaricato.add(testoDocumentoCaricatoFronte);
-		
-		
-		JPanel pannelloDocumentoRetroCaricato = new JPanel();
-		pannelloDocumentoRetroCaricato.setBackground(Color.WHITE);
-		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
-		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 20));
-		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
-		testoDocumentoCaricatoRetro.setVisible(false);
-		pannelloDocumentoRetroCaricato.setLayout(new BorderLayout(0, 0));
-		pannelloDocumentoRetroCaricato.add(testoDocumentoCaricatoRetro);
-		
-		
-		
-		
-		testoTrascinaImmagini = new JLabel("Trascina sulle icone i documenti richiesti");
-		testoTrascinaImmagini.setHorizontalAlignment(SwingConstants.CENTER);
-		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 24));
-		
-		
-		JPanel pannelloFeedback = new JPanel();
-		pannelloFeedback.setBackground(Color.WHITE);
-		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
-		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
-		testoMessaggioMail.setForeground(Color.RED);
-		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 20));
-		
-		pannelloErroreCodiceNonValido = new JPanel();
-		pannelloErroreCodiceNonValido.setBackground(Color.WHITE);
-		testoErroreCodiceVerifica = new JLabel("Codice non valido");
-		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreCodiceVerifica.setForeground(Color.RED);
-		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 20));
-		
+		verticalGlue_1 = Box.createVerticalGlue();
+		add(verticalGlue_1, "cell 0 3, growy");
+	}
+
+
+
+	private void generaLayoutPannelloInfo() {
 		GroupLayout gl_pannelloInfo = new GroupLayout(pannelloInfo);
 		gl_pannelloInfo.setHorizontalGroup(
 			gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
@@ -263,29 +170,73 @@ public class VerificaPubblicaBusiness extends JPanel {
 					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 		);
 		pannelloInfo.setLayout(gl_pannelloInfo);
-		
-		
-		
-		pannelloFeedback.setLayout(new BorderLayout(0, 0));
-		pannelloFeedback.add(testoMessaggioMail);
+	}
+
+
+	private void generaPannelloErroreCodiceNonValido() {
+		pannelloErroreCodiceNonValido = new JPanel();
+		pannelloErroreCodiceNonValido.setBackground(Color.WHITE);
 		pannelloErroreCodiceNonValido.setLayout(new BorderLayout(0, 0));
-		pannelloErroreCodiceNonValido.add(testoErroreCodiceVerifica);
-		
-		
-		setLayout(new MigLayout("", "[grow,fill]", "[grow][center][grow,center][grow]"));
-		
-		verticalGlue = Box.createVerticalGlue();
-		add(verticalGlue, "cell 0 0, growy");
-		
-		add(testoTrascinaImmagini, "cell 0 1,alignx center,aligny bottom");
-		add(pannelloInfo, "cell 0 2, align center");
-		
-		verticalGlue_1 = Box.createVerticalGlue();
-		add(verticalGlue_1, "cell 0 3, growy");
-		
-		
+		testoErroreCodiceVerifica = new JLabel("Codice non valido");
+		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreCodiceVerifica.setForeground(Color.RED);
+		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoErroreCodiceVerifica.setVisible(false);
+		pannelloErroreCodiceNonValido.add(testoErroreCodiceVerifica);
+	}
+
+
+	private void generaPannelloFeedback() {
+		pannelloFeedback = new JPanel();
+		pannelloFeedback.setBackground(Color.WHITE);
+		pannelloFeedback.setLayout(new BorderLayout(0, 0));
+		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
+		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
+		testoMessaggioMail.setForeground(Color.RED);
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoMessaggioMail.setVisible(false);
+		pannelloFeedback.add(testoMessaggioMail);
+	}
+
+
+	private void generaPannelloDocumentoRetroCaricato() {
+		pannelloDocumentoRetroCaricato = new JPanel();
+		pannelloDocumentoRetroCaricato.setBackground(Color.WHITE);
+		pannelloDocumentoRetroCaricato.setLayout(new BorderLayout(0, 0));
+		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
+		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoRetro.setVisible(false);
+		pannelloDocumentoRetroCaricato.add(testoDocumentoCaricatoRetro);
+	}
+
+
+	private void generaPannelloDocumentoFronteCaricato() {
+		pannelloDocumentoFronteCaricato = new JPanel();
+		pannelloDocumentoFronteCaricato.setBackground(Color.WHITE);
+		pannelloDocumentoFronteCaricato.setLayout(new BorderLayout(0, 0));
+		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
+		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 20));
+		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoFronte.setVisible(false);
+		pannelloDocumentoFronteCaricato.add(testoDocumentoCaricatoFronte);
+	}
+
+
+	private void generaBottoneAvanti() {
+		bottoneAvanti = new JButton("");
+		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
+		bottoneAvanti.setOpaque(false);
+		bottoneAvanti.setContentAreaFilled(false);
+		bottoneAvanti.setBorderPainted(false);
+		bottoneAvanti.setEnabled(false);
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
+			}
+		});
 		bottoneAvanti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -296,6 +247,34 @@ public class VerificaPubblicaBusiness extends JPanel {
 				bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
 			}
 		});
+	}
+
+
+	private void generaCampoCodiceVerifica() {
+		testoCodiceVerifica = new JLabel("Codice Verifica");
+		testoCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		testoCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 24));
+		
+		textFieldCodiceVerifica = new JTextField();
+		textFieldCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
+		textFieldCodiceVerifica.setBackground(new Color(255,255,255));
+		textFieldCodiceVerifica.setBorder(new LineBorder(new Color(255,255,255),1));
+		textFieldCodiceVerifica.setColumns(10);
+		
+		lineaCodiceVerifica = new JLabel("");
+		lineaCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		lineaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/lineaCodiceVerifica.png")));
+	}
+
+
+	private void generaBottoneInviaCodiceVerifica() {
+		bottoneInviaCodiceVerifica = new JButton("");
+		bottoneInviaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/bottoneInviaCodiceVerifica.png")));
+		bottoneInviaCodiceVerifica.setOpaque(false);
+		bottoneInviaCodiceVerifica.setBorderPainted(false);
+		bottoneInviaCodiceVerifica.setContentAreaFilled(false);
+		bottoneInviaCodiceVerifica.setEnabled(false);
 		bottoneInviaCodiceVerifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -312,6 +291,66 @@ public class VerificaPubblicaBusiness extends JPanel {
 				bottoneAvanti.setEnabled(true);
 			}
 		});
+	}
+
+
+	private void generaCampoDocumentoRetro() {
+		testoDocumentoRetro = new JLabel("Documento Retro");
+		testoDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoRetro.setFont(new Font("Roboto", Font.PLAIN, 23));
+		
+		immagineDocumentoRetro = new JLabel("");
+		immagineDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
+		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(immagineDocumentoRetro.isEnabled()) {
+					resettaVisibilitaErrori();
+					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
+						testoDocumentoCaricatoRetro.setVisible(false);
+						bottoneInviaCodiceVerifica.setEnabled(false);
+					}else {
+						testoDocumentoCaricatoRetro.setVisible(true);
+						abilitaBottoneInviaCodiceVerifica();
+					}
+				}
+			}
+		});
+	}
+
+
+	private void generaCampoDocumentoFronte() {
+		testoDocumentoFronte = new JLabel("Documento Fronte");
+		testoDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 23));
+		
+		immagineDocumentoFronte = new JLabel("");
+		immagineDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		immagineDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
+		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
+		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   if(immagineDocumentoFronte.isEnabled()) {
+				   resettaVisibilitaErrori();
+				   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
+					  testoDocumentoCaricatoFronte.setVisible(false);
+					  bottoneInviaCodiceVerifica.setEnabled(false);
+				   }else {
+					   testoDocumentoCaricatoFronte.setVisible(true);
+					   abilitaBottoneInviaCodiceVerifica();
+				   }
+			   }
+			}
+		});
+	}
+
+
+	private void generaTestoTrascinaImmagini() {
+		testoTrascinaImmagini = new JLabel("Trascina sulle icone i documenti richiesti");
+		testoTrascinaImmagini.setHorizontalAlignment(SwingConstants.CENTER);
+		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 24));
 	}
 
 

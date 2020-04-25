@@ -42,7 +42,7 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 		if(checkboxTaverna.isSelected())
 			raffinazioni = raffinazioni.concat("Taverna,");
 		if(checkboxTrattoria.isSelected())
-			raffinazioni = raffinazioni.concat("Taverna,");
+			raffinazioni = raffinazioni.concat("Trattoria,");
 		if(checkboxPesce.isSelected())
 			raffinazioni = raffinazioni.concat("Pesce,");
 		
@@ -191,5 +191,26 @@ public class pannelloRaffinazioniRistorante extends JPanel {
 		checkboxTaverna.setSelected(false);
 		checkboxTavolaCalda.setSelected(false);
 		checkboxTrattoria.setSelected(false);
+	}
+	
+	public void impostaRaffinazioni(String raffinazioni) {
+		if(raffinazioni.contains("Pizzeria"))
+			checkboxPizzeria.setSelected(true);
+		if(raffinazioni.contains("Braceria"))
+			checkboxBraceria.setSelected(true);
+		if(raffinazioni.contains("Paninoteca"))
+			checkboxPaninoteca.setSelected(true);
+		if(raffinazioni.contains("FastFood"))
+			checkboxFastFood.setSelected(true);
+		if(raffinazioni.contains("Osteria"))
+			checkboxOsteria.setSelected(true);
+		if(raffinazioni.contains("TavolaCalda"))
+			checkboxTavolaCalda.setSelected(true);
+		if(raffinazioni.contains("Taverna"))
+			checkboxTaverna.setSelected(true);
+		if(raffinazioni.contains("Trattoria"))
+			checkboxTrattoria.setSelected(true);
+		if(raffinazioni.contains("Pesce"))
+			checkboxPesce.setSelected(true);
 	}
 }

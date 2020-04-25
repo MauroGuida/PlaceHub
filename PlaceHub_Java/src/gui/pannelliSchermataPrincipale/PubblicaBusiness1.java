@@ -26,6 +26,8 @@ import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import net.miginfocom.swing.MigLayout;
+import oggetti.Locale;
+
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -87,6 +89,7 @@ public class PubblicaBusiness1 extends JPanel {
 			public void componentHidden(ComponentEvent e) {
 				pulisciPannello();
 				ctrl.aggiungiRegioneAModelloComboBoxPubblicaBusiness1();
+	
 			}
 		});
 		
@@ -120,7 +123,6 @@ public class PubblicaBusiness1 extends JPanel {
 		
 		generaTestoErroreCampiVuoti();
 		
-		generaTestoErroreTipologiaVuota();
 		
 		layoutTopPanel();
 		layoutMidPanel();
@@ -133,6 +135,7 @@ public class PubblicaBusiness1 extends JPanel {
 		add(pannelloBOT, "cell 0 2,grow,growy");
 		add(testoErrori, "cell 0 3");
 		add(pannelloBOT2, "cell 0 4,alignx left,grow");
+		
 	}
 
 
@@ -303,10 +306,6 @@ public class PubblicaBusiness1 extends JPanel {
 		});
 		comboBoxRegione.setBackground(Color.WHITE);
 		comboBoxRegione.setFont(new Font("Roboto", Font.PLAIN, 17));
-	}
-
-
-	private void generaTestoErroreTipologiaVuota() {
 	}
 
 
@@ -601,6 +600,14 @@ public class PubblicaBusiness1 extends JPanel {
 		pannelloRaffAlloggi.setVisible(false);
 		pannelloRaffAttrazioni.setVisible(false);
 		pannelloRaffRistorante.setVisible(false);
+		
+		resettaVisibilitaErrori();
+		
+		comboBoxRegione.setEnabled(true);
+		comboBoxProvincia.setEnabled(true);
+		comboBoxComune.setEnabled(true);
+		comboBoxCAP.setEnabled(true);
+		
 	}
 	
 	private void cambiaIconeGestisciBusiness1(int flag) {
@@ -730,5 +737,33 @@ public class PubblicaBusiness1 extends JPanel {
 	
 	public void pulisciModelloCAP() {
 		modelloComboBoxCAP.removeAllElements();
+	}
+	
+	public void impostaBusinessPreesistente(Locale locale) {
+		testoNomeBusiness.setText(locale.getNome());
+		testoIndirizzo.setText(locale.getIndirizzo());
+		testoPartitaIva.setText(locale.getPartitaIVA());
+		testoPartitaIva.setEnabled(false);
+		testoTelefono.setText(locale.getTelefono());
+		
+		comboBoxRegione.setEnabled(false);
+		comboBoxProvincia.setEnabled(false);
+		comboBoxComune.setEnabled(false);
+		comboBoxCAP.setEnabled(false);
+		
+		if(locale.getTipoBusiness().equals("Ristorante")) {
+			bottoneRistorante.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneRistoranteFocus.png")));
+			pannelloRaffRistorante.setVisible(true);
+			pannelloRaffRistorante.impostaRaffinazioni(locale.getRaffinazioni());
+		}else if(locale.getTipoBusiness().equals("Attrazione")) {
+			bottoneAttrazioni.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneIntrattenimentoFocus.png")));
+			pannelloRaffAttrazioni.setVisible(true);
+			pannelloRaffAttrazioni.impostaRaffinazioni(locale.getRaffinazioni());
+		}else {
+			bottoneAlloggio.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/bottoneAlloggioFocus.png")));
+			pannelloRaffAlloggi.setVisible(true);
+			pannelloRaffAlloggi.impostaRaffinazioni(locale.getRaffinazioni());
+		}
+		
 	}
 }

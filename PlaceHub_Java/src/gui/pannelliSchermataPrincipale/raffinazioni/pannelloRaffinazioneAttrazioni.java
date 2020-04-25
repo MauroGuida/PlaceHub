@@ -162,4 +162,21 @@ public class pannelloRaffinazioneAttrazioni extends JPanel {
 		checkBoxPiscina.setSelected(false);
 		checkBoxShopping.setSelected(false);
 	}
+	
+	public void impostaRaffinazioni(String raffinazioni) {
+		if(raffinazioni.contains("Cinema"))
+			checkBoxCinema.setSelected(true);
+		if(raffinazioni.contains("Museo"))
+			checkBoxMuseo.setSelected(true);
+		if(raffinazioni.contains("Piscina"))
+			checkBoxPiscina.setSelected(true);
+		if(raffinazioni.contains("Shopping"))
+			checkBoxShopping.setSelected(true);
+		if(raffinazioni.contains("ParcoGiochi"))
+			checkBoxParcoGiochi.setSelected(true);
+		if(raffinazioni.contains("Lounge"))
+			checkBoxLounge.setSelected(true);
+		if(raffinazioni.contains("Monumento"))
+			checkBoxMonumento.setSelected(true);
+	}
 }

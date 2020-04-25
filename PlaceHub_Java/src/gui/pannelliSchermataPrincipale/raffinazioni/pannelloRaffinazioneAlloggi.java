@@ -132,4 +132,17 @@ public class pannelloRaffinazioneAlloggi extends JPanel {
 		checkBoxOstello.setSelected(false);
 		checkBoxResidence.setSelected(false);
 	}
+	
+	public void impostaRaffinazioni(String raffinazioni) {
+		if(raffinazioni.contains("Hotel"))
+			checkBoxHotel.setSelected(true);
+		if(raffinazioni.contains("Ostello"))
+			checkBoxOstello.setSelected(true);
+		if(raffinazioni.contains("Bed&Breakfast"))
+			checkBoxBedBreakfast.setSelected(true);
+		if(raffinazioni.contains("Residence"))
+			checkBoxResidence.setSelected(true);
+		if(raffinazioni.contains("CasaVacanze"))
+			checkBoxCasaVacanze.setSelected(true);
+	}
 }
