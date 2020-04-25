@@ -740,11 +740,11 @@ public class PubblicaBusiness1 extends JPanel {
 	}
 	
 	public void impostaBusinessPreesistente(Locale locale) {
-		testoNomeBusiness.setText(locale.getNome());
-		testoIndirizzo.setText(locale.getIndirizzo());
-		testoPartitaIva.setText(locale.getPartitaIVA());
-		testoPartitaIva.setEnabled(false);
-		testoTelefono.setText(locale.getTelefono());
+		textFieldNomeBusiness.setText(locale.getNome());
+		textFieldIndirizzo.setText(locale.getIndirizzo());
+		textFieldPartitaIVA.setText(locale.getPartitaIVA());
+		textFieldPartitaIVA.setEnabled(false);
+		textFieldTelefono.setText(locale.getTelefono());
 		
 		comboBoxRegione.setEnabled(false);
 		comboBoxProvincia.setEnabled(false);
