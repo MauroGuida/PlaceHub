@@ -96,8 +96,14 @@ CREATE OR REPLACE PROCEDURE inserisciBusiness( VARCHAR(50), VARCHAR(100), VARCHA
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  INSERT INTO Business (Nome, Indirizzo, Telefono, PartitaIVA, tipo, Descrizione, codUtente, codMappa)
-  VALUES ( $1, $2, $3, $4, ($5)::tipoBusiness , $6, $7, $8);
+  IF EXISTS ( SELECT 1 FROM Business WHERE PartitaIVA = $4 ) THEN
+	UPDATE BUSINESS
+	SET Nome = $1, Indirizzo = $2, Telefono = $3, tipo = ($5)::tipoBusiness, Descrizione = $6 
+	WHERE PartitaIVA = $4;
+  ELSE
+	INSERT INTO Business (Nome, Indirizzo, Telefono, PartitaIVA, tipo, Descrizione, codUtente, codMappa)
+	VALUES ( $1, $2, $3, $4, ($5)::tipoBusiness , $6, $7, $8);
+  END IF;
   COMMIT;
 END;
 $$;
@@ -138,6 +144,9 @@ DECLARE pos2 INTEGER;
 DECLARE raffinazione VARCHAR(200);
 DECLARE occorrenza INTEGER = 1;
 BEGIN
+  DELETE 
+  FROM AssociazioneRaffinazione
+  WHERE codBusiness = $1;
   lunghezza = LENGTH($2);
   stringa = $2;
   pos1 = 1;
