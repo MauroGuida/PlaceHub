@@ -94,7 +94,6 @@ public class Controller {
 		return connessioneAlDatabase;
 	}
 	
-	
 	//SCHERMATA ACCESSO 
 	public void loginSchermataAccesso(String Username, char[] Password) {
 		try {
@@ -292,10 +291,21 @@ public class Controller {
 			}
 			
 			try {
-				business.recuperaCodiceBusinessDaPartitaIVA(partitaIVA);
-				schermataPrincipaleFrame.mostraErrorePartitaIVAInUsoPubblicaBusiness1();
-				flagErrore = true;
-			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
+				if(utente.getcodUtente().equals(business.recuperaProprietarioLocaleDaPartitaIVA(partitaIVA)) && (bufferLocale != null && bufferLocale.isModifica())) {
+					bufferLocale.setNome(nomeBusiness);
+					bufferLocale.setIndirizzo(indirizzo);
+					bufferLocale.setTelefono(telefono);
+					bufferLocale.setTipoBusiness(tipoBusiness);
+					bufferLocale.setRaffinazioni(raffinazioni);
+					
+					schermataPrincipaleFrame.mostraPubblicaBusiness2();
+					schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness2(bufferLocale);
+					return;
+				}else {
+					schermataPrincipaleFrame.mostraErrorePartitaIVAInUsoPubblicaBusiness1();
+					flagErrore = true;
+				}
+			} catch (SQLException e) {
 				
 			}
 			
@@ -346,6 +356,17 @@ public class Controller {
 			try {
 				for (String CAP: mappa.prelevaCAPDiComune(comune))
 					schermataPrincipaleFrame.aggiungiCAPAModelloPubblicaBusiness1(CAP);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void modificaBusinessPubblicaBusiness1(String codBusiness) {
+			try {
+				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
+				bufferLocale.setModifica(true);
+				schermataPrincipaleFrame.mostraPubblicaBusiness1();
+				schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness1(bufferLocale);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -424,9 +445,10 @@ public class Controller {
 		//GESTISCI BUSINESS
 		public void controllaDocumentiUtente() {
 			try {
-				if(utente.controllaDocumentiUtente())
+				if(utente.controllaDocumentiUtente()) {
+					bufferLocale = new Locale();
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
-				else
+				}else
 					schermataPrincipaleFrame.mostraVerificaPubblicaBusiness();
 				
 			} catch (SQLException e) {
@@ -510,7 +532,7 @@ public class Controller {
 				
 				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
 				
-				//Il proprietario non pu� auto-recensirsi
+				//Il proprietario non puo' auto-recensirsi
 				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
 				

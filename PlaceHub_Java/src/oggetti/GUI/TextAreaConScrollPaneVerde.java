@@ -65,7 +65,7 @@ public class TextAreaConScrollPaneVerde extends JPanel {
 	}
 	
 	public void setText(String text) {
-		textArea.setText(new String(text));
+		textArea.setText(text);
 		textArea.setForeground(Color.BLACK);
 	}
 	

@@ -224,4 +224,16 @@ public class BusinessDAO {
 		
 		return datiRecuperati.getString(1);
 	}
+	
+	public String recuperaProprietarioLocaleDaPartitaIVA(String partitaIVA) throws SQLException {
+		String sql = "SELECT codUtente FROM Business WHERE partitaIVA = ?";
+		PreparedStatement query;
+		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
+		query.setString(1, partitaIVA);
+		ResultSet datiRecuperati = query.executeQuery();
+		
+		datiRecuperati.next();
+		
+		return datiRecuperati.getString(1);
+	}
 }

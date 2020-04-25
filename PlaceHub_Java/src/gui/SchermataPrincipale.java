@@ -350,6 +350,9 @@ public class SchermataPrincipale extends JFrame {
 			pannelloPubblicaBusiness2.pulisciPannello();
 		}
 		
+		public void impostaBusinessPreesistentePubblicaBusiness2(Locale locale) {
+			pannelloPubblicaBusiness2.impostaBusinessPreesistente(locale);
+		}
 		
 	//Gestione Pannello VerificaPubblicaBusiness
 		public void resettaVisibilitaErroriVerificaPubblicaBusiness() {

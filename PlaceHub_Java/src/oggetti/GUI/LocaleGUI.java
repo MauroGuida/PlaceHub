@@ -13,6 +13,9 @@ import javax.swing.border.LineBorder;
 
 import gestione.Controller;
 import oggetti.Locale;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -33,7 +36,7 @@ public class LocaleGUI extends JPanel {
 	private Controller ctrl;
 	private JPopupMenu popupMenu;
 	private JMenuItem menuItemModifica;
-	
+
 	public LocaleGUI(Locale locale, Controller ctrl) {
 		this.locale = locale;
 		this.ctrl = ctrl;
@@ -81,6 +84,9 @@ public class LocaleGUI extends JPanel {
 		setLayout(groupLayout);
 	}
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public LocaleGUI(Locale locale, Controller ctrl, boolean consentiModifica) {
 		this(locale, ctrl);
 		
@@ -90,8 +96,14 @@ public class LocaleGUI extends JPanel {
 	
 	private void popupMenuProprietari() {
 		popupMenu = new JPopupMenu();
-			menuItemModifica = new JMenuItem("Modifica");
-			popupMenu.add(menuItemModifica);
+		
+		menuItemModifica = new JMenuItem("Modifica");
+		menuItemModifica.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	ctrl.modificaBusinessPubblicaBusiness1(locale.getCodBusiness());
+            }
+        });
+		popupMenu.add(menuItemModifica);
 	}
 	
 	private void generaEsteticaPannello() {

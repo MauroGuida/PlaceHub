@@ -15,6 +15,8 @@ public class Locale {
 	private String codMappa;
 	private String luogo;
 	
+	boolean modifica = false;
+	
 	private ArrayList<String> listaImmagini = new ArrayList<String>();
 	private ArrayList<Recensione> listaRecensioni = new ArrayList<Recensione>();
 
@@ -59,8 +61,8 @@ public class Locale {
 		listaImmagini.add(new String(immagine));
 	}
 	
-	public Locale() {
-	}
+	
+	public Locale() {}
 
 	
 	//CANI
@@ -116,6 +118,10 @@ public class Locale {
 
 	public void setLuogo(String luogo) {
 		this.luogo = luogo;
+	}
+	
+	public void setModifica(boolean modifica) {
+		this.modifica = modifica;
 	}
 	
 	//Getters
@@ -174,6 +180,10 @@ public class Locale {
 	
 	public String getLuogo() {
 		return luogo;
+	}
+	
+	public boolean isModifica() {
+		return modifica;
 	}
 	
 	

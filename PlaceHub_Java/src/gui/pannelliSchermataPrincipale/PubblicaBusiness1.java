@@ -607,6 +607,7 @@ public class PubblicaBusiness1 extends JPanel {
 		comboBoxProvincia.setEnabled(true);
 		comboBoxComune.setEnabled(true);
 		comboBoxCAP.setEnabled(true);
+		textFieldPartitaIVA.setEnabled(true);
 		
 	}
 	
@@ -743,9 +744,9 @@ public class PubblicaBusiness1 extends JPanel {
 		textFieldNomeBusiness.setText(locale.getNome());
 		textFieldIndirizzo.setText(locale.getIndirizzo());
 		textFieldPartitaIVA.setText(locale.getPartitaIVA());
-		textFieldPartitaIVA.setEnabled(false);
 		textFieldTelefono.setText(locale.getTelefono());
 		
+		textFieldPartitaIVA.setEditable(false);
 		comboBoxRegione.setEnabled(false);
 		comboBoxProvincia.setEnabled(false);
 		comboBoxComune.setEnabled(false);

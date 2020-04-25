@@ -19,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
+import oggetti.Locale;
 import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.TextAreaConScrollPaneVerde;
 
@@ -62,7 +63,7 @@ public class PubblicaBusiness2 extends JPanel {
 	 public PubblicaBusiness2(Controller ctrl) {
 	 	addComponentListener(new ComponentAdapter() {
 	 		@Override
-	 		public void componentShown(ComponentEvent e) {
+	 		public void componentHidden(ComponentEvent e) {
 	 			pulisciPannello();
 	 		}
 	 	});
@@ -300,5 +301,12 @@ public class PubblicaBusiness2 extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void impostaBusinessPreesistente(Locale locale) {
+		areaDescrizione.setText(locale.getDescrizione());
+		
+		for (String immagine: locale.getListaImmagini())
+			aggiungiImmagineAVisualizzatore(new File(immagine));
 	}
 }
