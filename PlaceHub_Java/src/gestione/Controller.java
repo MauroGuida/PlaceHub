@@ -417,7 +417,9 @@ public class Controller {
 				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA());
 				
 				for(String immagine: bufferLocale.getListaImmagini()) {
-					business.inserisciImmagine(codBusiness, immagine);
+					try {
+						business.inserisciImmagine(codBusiness, immagine);
+					}catch(SQLException e) {}
 				}
 			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
 				e.printStackTrace();
