@@ -21,6 +21,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.BorderLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class VerificaPubblicaBusiness extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +46,9 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JLabel testoDocumentoCaricatoRetro;
 	
 	private Controller ctrl;
+	private JPanel pannelloErroreCodiceNonValido;
+	private Component verticalGlue;
+	private Component verticalGlue_1;
 	
 	public VerificaPubblicaBusiness(Controller Ctrl) {
 		this.ctrl = Ctrl;
@@ -48,161 +56,18 @@ public class VerificaPubblicaBusiness extends JPanel {
 		setVisible(false);
 		setBackground(Color.WHITE);
 		
-		generaTestoTrascinaImmagini();
-		generaCampoDocumentoFronte();
-		generaCampoDocumentoRetro();
-		generaCampoCodiceVerifica();
-		generaBottoneInviaCodiceVerifica();
-		generaBottoneAvanti();
+		JPanel pannelloInfo = new JPanel();
+		pannelloInfo.setBounds(0, 64, 850, 550);
+		pannelloInfo.setBackground(Color.WHITE);
 		
-		generaTestoErroreCodiceVerifica();
-		generaTestoErroreInvioEmail();
 		
-		generaTestoDocumentoCaricatoFronte();
-		generaTestoDocumentoCaricatoRetro();
-	}
-
-	private void generaTestoDocumentoCaricatoRetro() {
-		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
-		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 15));
-		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
-		testoDocumentoCaricatoRetro.setVisible(false);
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(testoTrascinaImmagini, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(162)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addComponent(immagineDocumentoFronte))
-						.addComponent(testoDocumentoCaricatoFronte, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-					.addGap(140)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(testoDocumentoCaricatoRetro, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addGap(40)
-							.addComponent(immagineDocumentoRetro)
-							.addGap(30)))
-					.addGap(152))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(162)
-					.addComponent(testoDocumentoFronte, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-					.addGap(154)
-					.addComponent(testoDocumentoRetro, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-					.addGap(150))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(242)
-					.addComponent(bottoneInviaCodiceVerifica, GroupLayout.PREFERRED_SIZE, 365, Short.MAX_VALUE)
-					.addGap(243))
-				.addComponent(testoMessaggioMail, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(342)
-					.addComponent(testoCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-					.addGap(342))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(342)
-					.addComponent(textFieldCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-					.addGap(342))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(342)
-					.addComponent(lineaCodiceVerifica, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(342))
-				.addComponent(testoErroreCodiceVerifica, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(355)
-					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
-					.addGap(355))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(12)
-					.addComponent(testoTrascinaImmagini, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(20)
-							.addComponent(immagineDocumentoFronte))
-						.addComponent(testoDocumentoCaricatoFronte, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(testoDocumentoCaricatoRetro, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(20)
-							.addComponent(immagineDocumentoRetro)))
-					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(testoDocumentoFronte, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-						.addComponent(testoDocumentoRetro, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-					.addGap(40)
-					.addComponent(bottoneInviaCodiceVerifica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(testoMessaggioMail, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
-					.addComponent(testoCodiceVerifica, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(textFieldCodiceVerifica, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-					.addGap(2)
-					.addComponent(lineaCodiceVerifica)
-					.addGap(18)
-					.addComponent(testoErroreCodiceVerifica, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-					.addGap(12)
-					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-		);
-		setLayout(groupLayout);
-	}
-
-	private void generaTestoDocumentoCaricatoFronte() {
-		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
-		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
-		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
-		testoDocumentoCaricatoFronte.setVisible(false);
-	}
-
-	private void generaTestoErroreCodiceVerifica() {
-		testoErroreCodiceVerifica = new JLabel("Codice non valido");
-		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
-		testoErroreCodiceVerifica.setForeground(Color.RED);
-		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
-		testoErroreCodiceVerifica.setVisible(false);
-	}
-	
-	private void generaTestoErroreInvioEmail() {
-		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
-		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
-		testoMessaggioMail.setForeground(Color.RED);
-		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
-		testoMessaggioMail.setVisible(false);
-	}
-
-	private void generaCampoDocumentoRetro() {
-		immagineDocumentoRetro = new JLabel("");
-		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(immagineDocumentoRetro.isEnabled()) {
-					resettaVisibilitaErrori();
-					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
-						testoDocumentoCaricatoRetro.setVisible(false);
-						bottoneInviaCodiceVerifica.setEnabled(false);
-					}else {
-						testoDocumentoCaricatoRetro.setVisible(true);
-						abilitaBottoneInviaCodiceVerifica();
-					}
-				}
-			}
-		});
-		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
-		
-		testoDocumentoRetro = new JLabel("Documento Retro");
-		testoDocumentoRetro.setFont(new Font("Roboto", Font.PLAIN, 23));
-	}
-
-	private void generaCampoDocumentoFronte() {
+		testoDocumentoFronte = new JLabel("Documento Fronte");
+		testoDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 23));
 		immagineDocumentoFronte = new JLabel("");
+		immagineDocumentoFronte.setHorizontalAlignment(SwingConstants.CENTER);
 		immagineDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
+		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -218,20 +83,45 @@ public class VerificaPubblicaBusiness extends JPanel {
 			   }
 			}
 		});
-		immagineDocumentoFronte.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
 		
-		testoDocumentoFronte = new JLabel("Documento Fronte");
-		testoDocumentoFronte.setFont(new Font("Roboto", Font.PLAIN, 23));
-	}
-
-	private void generaTestoTrascinaImmagini() {
-		testoTrascinaImmagini = new JLabel("Trascina sulle icone i documenti richiesti");
-		testoTrascinaImmagini.setHorizontalAlignment(SwingConstants.CENTER);
-		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 24));
-	}
-
-	private void generaCampoCodiceVerifica() {
+		
+		
+		testoDocumentoRetro = new JLabel("Documento Retro");
+		testoDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoRetro.setFont(new Font("Roboto", Font.PLAIN, 23));
+		immagineDocumentoRetro = new JLabel("");
+		immagineDocumentoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		immagineDocumentoRetro.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/immagineDocumento.png")));
+		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(immagineDocumentoRetro.isEnabled()) {
+					resettaVisibilitaErrori();
+					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
+						testoDocumentoCaricatoRetro.setVisible(false);
+						bottoneInviaCodiceVerifica.setEnabled(false);
+					}else {
+						testoDocumentoCaricatoRetro.setVisible(true);
+						abilitaBottoneInviaCodiceVerifica();
+					}
+				}
+			}
+		});
+		
+		
+		
+		
+		bottoneInviaCodiceVerifica = new JButton("");
+		bottoneInviaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/bottoneInviaCodiceVerifica.png")));
+		bottoneInviaCodiceVerifica.setOpaque(false);
+		bottoneInviaCodiceVerifica.setBorderPainted(false);
+		bottoneInviaCodiceVerifica.setContentAreaFilled(false);
+		bottoneInviaCodiceVerifica.setEnabled(false);
+		
+		
+		
 		testoCodiceVerifica = new JLabel("Codice Verifica");
+		testoCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
 		testoCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 24));
 		
 		textFieldCodiceVerifica = new JTextField();
@@ -242,21 +132,161 @@ public class VerificaPubblicaBusiness extends JPanel {
 		textFieldCodiceVerifica.setColumns(10);
 		
 		lineaCodiceVerifica = new JLabel("");
+		lineaCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
 		lineaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/lineaCodiceVerifica.png")));
-	}
-
-	private void generaBottoneAvanti() {
+		
+		
+		
+		
 		bottoneAvanti = new JButton("");
-		bottoneAvanti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ctrl.controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
-			}
-		});
 		bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
 		bottoneAvanti.setOpaque(false);
 		bottoneAvanti.setContentAreaFilled(false);
 		bottoneAvanti.setBorderPainted(false);
 		bottoneAvanti.setEnabled(false);
+		bottoneAvanti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(textFieldCodiceVerifica.getText());
+			}
+		});
+		
+		
+		JPanel pannelloDocumentoFronteCaricato = new JPanel();
+		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
+		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoFronte.setVisible(false);
+		pannelloDocumentoFronteCaricato.setLayout(new BorderLayout(0, 0));
+		pannelloDocumentoFronteCaricato.add(testoDocumentoCaricatoFronte);
+		
+		
+		JPanel pannelloDocumentoRetroCaricato = new JPanel();
+		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
+		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
+		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
+		testoDocumentoCaricatoRetro.setVisible(false);
+		pannelloDocumentoRetroCaricato.setLayout(new BorderLayout(0, 0));
+		pannelloDocumentoRetroCaricato.add(testoDocumentoCaricatoRetro);
+		
+		
+		
+		
+		testoTrascinaImmagini = new JLabel("Trascina sulle icone i documenti richiesti");
+		testoTrascinaImmagini.setBounds(0, 12, 850, 40);
+		testoTrascinaImmagini.setHorizontalAlignment(SwingConstants.CENTER);
+		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 24));
+		
+		
+		JPanel pannelloFeedback = new JPanel();
+		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
+		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
+		testoMessaggioMail.setForeground(Color.RED);
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		
+		pannelloErroreCodiceNonValido = new JPanel();
+		testoErroreCodiceVerifica = new JLabel("Codice non valido");
+		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
+		testoErroreCodiceVerifica.setForeground(Color.RED);
+		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
+		
+		GroupLayout gl_pannelloInfo = new GroupLayout(pannelloInfo);
+		gl_pannelloInfo.setHorizontalGroup(
+			gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(139)
+					.addComponent(pannelloDocumentoFronteCaricato, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+					.addGap(84)
+					.addComponent(pannelloDocumentoRetroCaricato, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+					.addGap(111))
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(199)
+					.addComponent(immagineDocumentoFronte, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(213)
+					.addComponent(immagineDocumentoRetro, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+					.addGap(182))
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(162)
+					.addComponent(testoDocumentoFronte, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+					.addGap(154)
+					.addComponent(testoDocumentoRetro, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+					.addGap(150))
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(242)
+					.addComponent(bottoneInviaCodiceVerifica, GroupLayout.PREFERRED_SIZE, 365, Short.MAX_VALUE)
+					.addGap(243))
+				.addComponent(pannelloFeedback, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(342)
+					.addComponent(testoCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+					.addGap(342))
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(342)
+					.addComponent(textFieldCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+					.addGap(342))
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(342)
+					.addComponent(lineaCodiceVerifica, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(342))
+				.addComponent(pannelloErroreCodiceNonValido, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGap(355)
+					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+					.addGap(355))
+		);
+		gl_pannelloInfo.setVerticalGroup(
+			gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pannelloInfo.createSequentialGroup()
+					.addGroup(gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
+						.addComponent(pannelloDocumentoFronteCaricato, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+						.addComponent(pannelloDocumentoRetroCaricato, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+					.addGap(1)
+					.addGroup(gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
+						.addComponent(immagineDocumentoFronte)
+						.addComponent(immagineDocumentoRetro))
+					.addGap(2)
+					.addGroup(gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
+						.addComponent(testoDocumentoFronte, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addComponent(testoDocumentoRetro, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+					.addGap(31)
+					.addComponent(bottoneInviaCodiceVerifica, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addGap(8)
+					.addComponent(pannelloFeedback, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+					.addGap(22)
+					.addComponent(testoCodiceVerifica, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addGap(5)
+					.addComponent(textFieldCodiceVerifica, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(3)
+					.addComponent(lineaCodiceVerifica)
+					.addGap(12)
+					.addComponent(pannelloErroreCodiceNonValido, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+					.addGap(5)
+					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+		);
+		pannelloInfo.setLayout(gl_pannelloInfo);
+		
+		
+		
+		pannelloFeedback.setLayout(new BorderLayout(0, 0));
+		pannelloFeedback.add(testoMessaggioMail);
+		pannelloErroreCodiceNonValido.setLayout(new BorderLayout(0, 0));
+		pannelloErroreCodiceNonValido.add(testoErroreCodiceVerifica);
+		
+		
+		setLayout(new MigLayout("", "[]", "[][grow,center][grow,center][]"));
+		
+		verticalGlue = Box.createVerticalGlue();
+		add(verticalGlue, "cell 0 0");
+		add(testoTrascinaImmagini, "cell 0 1");
+		add(pannelloInfo, "cell 0 2");
+		
+		verticalGlue_1 = Box.createVerticalGlue();
+		add(verticalGlue_1, "cell 0 3");
+		
+		
+		testoErroreCodiceVerifica.setVisible(false);
+		testoMessaggioMail.setVisible(false);
 		bottoneAvanti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -267,15 +297,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 				bottoneAvanti.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/AvantiButton.png")));
 			}
 		});
-	}
-
-	private void generaBottoneInviaCodiceVerifica() {
-		bottoneInviaCodiceVerifica = new JButton("");
-		bottoneInviaCodiceVerifica.setIcon(new ImageIcon(VerificaPubblicaBusiness.class.getResource("/Icone/bottoneInviaCodiceVerifica.png")));
-		bottoneInviaCodiceVerifica.setOpaque(false);
-		bottoneInviaCodiceVerifica.setBorderPainted(false);
-		bottoneInviaCodiceVerifica.setContentAreaFilled(false);
-		bottoneInviaCodiceVerifica.setEnabled(false);
 		bottoneInviaCodiceVerifica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -293,7 +314,8 @@ public class VerificaPubblicaBusiness extends JPanel {
 			}
 		});
 	}
-	
+
+
 	
 	//METODI
 	
