@@ -415,7 +415,6 @@ public class Controller {
 			try {
 				business.inserisciRaffinazioni(codBusiness, raffinazioni);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -439,7 +438,7 @@ public class Controller {
 		public void recuperaBusinessUtente() {
 			try {
 				for (Locale recuperato : business.recuperaBusinessDaCodUtente(utente.getcodUtente()))
-					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato, this));
+					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato, this, true));
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

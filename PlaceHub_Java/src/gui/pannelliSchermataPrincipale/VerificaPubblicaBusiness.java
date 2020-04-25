@@ -21,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.BorderLayout;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
@@ -57,7 +56,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 		setBackground(Color.WHITE);
 		
 		JPanel pannelloInfo = new JPanel();
-		pannelloInfo.setBounds(0, 64, 850, 550);
 		pannelloInfo.setBackground(Color.WHITE);
 		
 		
@@ -152,9 +150,10 @@ public class VerificaPubblicaBusiness extends JPanel {
 		
 		
 		JPanel pannelloDocumentoFronteCaricato = new JPanel();
+		pannelloDocumentoFronteCaricato.setBackground(Color.WHITE);
 		testoDocumentoCaricatoFronte = new JLabel("Documento caricato");
 		testoDocumentoCaricatoFronte.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoFronte.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoDocumentoCaricatoFronte.setForeground(new Color(54,128,0));
 		testoDocumentoCaricatoFronte.setVisible(false);
 		pannelloDocumentoFronteCaricato.setLayout(new BorderLayout(0, 0));
@@ -162,9 +161,10 @@ public class VerificaPubblicaBusiness extends JPanel {
 		
 		
 		JPanel pannelloDocumentoRetroCaricato = new JPanel();
+		pannelloDocumentoRetroCaricato.setBackground(Color.WHITE);
 		testoDocumentoCaricatoRetro = new JLabel("Documento caricato");
 		testoDocumentoCaricatoRetro.setHorizontalAlignment(SwingConstants.CENTER);
-		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 15));
+		testoDocumentoCaricatoRetro.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoDocumentoCaricatoRetro.setForeground(new Color(54,128,0));
 		testoDocumentoCaricatoRetro.setVisible(false);
 		pannelloDocumentoRetroCaricato.setLayout(new BorderLayout(0, 0));
@@ -174,22 +174,23 @@ public class VerificaPubblicaBusiness extends JPanel {
 		
 		
 		testoTrascinaImmagini = new JLabel("Trascina sulle icone i documenti richiesti");
-		testoTrascinaImmagini.setBounds(0, 12, 850, 40);
 		testoTrascinaImmagini.setHorizontalAlignment(SwingConstants.CENTER);
 		testoTrascinaImmagini.setFont(new Font("Roboto", Font.PLAIN, 24));
 		
 		
 		JPanel pannelloFeedback = new JPanel();
+		pannelloFeedback.setBackground(Color.WHITE);
 		testoMessaggioMail = new JLabel("Feedback errore-conferma email");
 		testoMessaggioMail.setHorizontalAlignment(SwingConstants.CENTER);
 		testoMessaggioMail.setForeground(Color.RED);
-		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 20));
 		
 		pannelloErroreCodiceNonValido = new JPanel();
+		pannelloErroreCodiceNonValido.setBackground(Color.WHITE);
 		testoErroreCodiceVerifica = new JLabel("Codice non valido");
 		testoErroreCodiceVerifica.setHorizontalAlignment(SwingConstants.CENTER);
 		testoErroreCodiceVerifica.setForeground(Color.RED);
-		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoErroreCodiceVerifica.setFont(new Font("Roboto", Font.PLAIN, 20));
 		
 		GroupLayout gl_pannelloInfo = new GroupLayout(pannelloInfo);
 		gl_pannelloInfo.setHorizontalGroup(
@@ -219,10 +220,6 @@ public class VerificaPubblicaBusiness extends JPanel {
 				.addComponent(pannelloFeedback, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 				.addGroup(gl_pannelloInfo.createSequentialGroup()
 					.addGap(342)
-					.addComponent(testoCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-					.addGap(342))
-				.addGroup(gl_pannelloInfo.createSequentialGroup()
-					.addGap(342)
 					.addComponent(textFieldCodiceVerifica, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
 					.addGap(342))
 				.addGroup(gl_pannelloInfo.createSequentialGroup()
@@ -234,6 +231,7 @@ public class VerificaPubblicaBusiness extends JPanel {
 					.addGap(355)
 					.addComponent(bottoneAvanti, GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
 					.addGap(355))
+				.addComponent(testoCodiceVerifica, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 		);
 		gl_pannelloInfo.setVerticalGroup(
 			gl_pannelloInfo.createParallelGroup(Alignment.LEADING)
@@ -274,15 +272,16 @@ public class VerificaPubblicaBusiness extends JPanel {
 		pannelloErroreCodiceNonValido.add(testoErroreCodiceVerifica);
 		
 		
-		setLayout(new MigLayout("", "[]", "[][grow,center][grow,center][]"));
+		setLayout(new MigLayout("", "[grow,fill]", "[grow][center][grow,center][grow]"));
 		
 		verticalGlue = Box.createVerticalGlue();
-		add(verticalGlue, "cell 0 0");
-		add(testoTrascinaImmagini, "cell 0 1");
-		add(pannelloInfo, "cell 0 2");
+		add(verticalGlue, "cell 0 0, growy");
+		
+		add(testoTrascinaImmagini, "cell 0 1,alignx center,aligny bottom");
+		add(pannelloInfo, "cell 0 2, align center");
 		
 		verticalGlue_1 = Box.createVerticalGlue();
-		add(verticalGlue_1, "cell 0 3");
+		add(verticalGlue_1, "cell 0 3, growy");
 		
 		
 		testoErroreCodiceVerifica.setVisible(false);
@@ -337,14 +336,14 @@ public class VerificaPubblicaBusiness extends JPanel {
 	public void mostraErroreEmail() {
 		testoMessaggioMail.setText("Non e' stato possibile inviarti alcuna email. Riprova!");
 		testoMessaggioMail.setForeground(Color.RED);
-		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoMessaggioMail.setVisible(true);
 	}
 	
 	public void mostraEmailInviata() {
 		testoMessaggioMail.setText("Email inviata con successo!");
 		testoMessaggioMail.setForeground(new Color(64,151,0));
-		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 17));
+		testoMessaggioMail.setFont(new Font("Roboto", Font.PLAIN, 20));
 		testoMessaggioMail.setVisible(true);
 	}
 	
