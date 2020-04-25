@@ -419,7 +419,9 @@ public class Controller {
 				for(String immagine: bufferLocale.getListaImmagini()) {
 					try {
 						business.inserisciImmagine(codBusiness, immagine);
-					}catch(SQLException e) {}
+					}catch(SQLException e) {
+						//Se viene restituito un errore quell'immagine e' duplicata e quindi non e' aggiunta
+					}
 				}
 			} catch (SQLException | CodiceBusinessNonTrovatoException e) {
 				e.printStackTrace();
