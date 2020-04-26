@@ -15,6 +15,7 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -22,7 +23,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.BorderLayout;
+
+import net.iharder.dnd.FileDrop;
 import net.miginfocom.swing.MigLayout;
+import res.FileChooser;
+
 import java.awt.Component;
 import javax.swing.Box;
 
@@ -53,6 +58,8 @@ public class VerificaPubblicaBusiness extends JPanel {
 	private JPanel pannelloDocumentoRetroCaricato;
 	private JPanel pannelloFeedback;
 	private JPanel pannelloErroreCodiceNonValido;
+	
+	private FileChooser selettoreFile = new FileChooser();
 	
 	public VerificaPubblicaBusiness(Controller Ctrl) {
 		this.ctrl = Ctrl;
@@ -305,18 +312,15 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoRetro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(immagineDocumentoRetro.isEnabled()) {
-					resettaVisibilitaErrori();
-					if (ctrl.caricaDocumentoRetroInBuffer()==null) {
-						testoDocumentoCaricatoRetro.setVisible(false);
-						bottoneInviaCodiceVerifica.setEnabled(false);
-					}else {
-						testoDocumentoCaricatoRetro.setVisible(true);
-						abilitaBottoneInviaCodiceVerifica();
-					}
-				}
+				caricaDocumentoRetro(selettoreFile.selezionaFile());
 			}
 		});
+		
+		new FileDrop(immagineDocumentoRetro, new FileDrop.Listener() {
+			public void filesDropped( File[] files ) {
+				caricaDocumentoRetro(files[0]);
+            }
+        });
 	}
 
 
@@ -332,18 +336,15 @@ public class VerificaPubblicaBusiness extends JPanel {
 		immagineDocumentoFronte.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			   if(immagineDocumentoFronte.isEnabled()) {
-				   resettaVisibilitaErrori();
-				   if( ctrl.caricaDocumentoFronteInBuffer() == null ) {
-					  testoDocumentoCaricatoFronte.setVisible(false);
-					  bottoneInviaCodiceVerifica.setEnabled(false);
-				   }else {
-					   testoDocumentoCaricatoFronte.setVisible(true);
-					   abilitaBottoneInviaCodiceVerifica();
-				   }
-			   }
+				caricaDocumentoFronte(selettoreFile.selezionaFile());
 			}
 		});
+		
+		new FileDrop(immagineDocumentoFronte, new FileDrop.Listener() {
+			public void filesDropped( File[] files ) {
+				caricaDocumentoFronte(files[0]);
+            }
+        });
 	}
 
 
@@ -389,5 +390,31 @@ public class VerificaPubblicaBusiness extends JPanel {
 	public void disabilitaCaricaDocumento() {
 		immagineDocumentoFronte.setEnabled(false);
 		immagineDocumentoRetro.setEnabled(false);
+	}
+	
+	public void caricaDocumentoFronte(File docFronte) {
+		   if(immagineDocumentoFronte.isEnabled()) {
+			   resettaVisibilitaErrori();
+			   if(!ctrl.caricaDocumentoFronteInBuffer(docFronte)) {
+				  testoDocumentoCaricatoFronte.setVisible(false);
+				  bottoneInviaCodiceVerifica.setEnabled(false);
+			   }else {
+				   testoDocumentoCaricatoFronte.setVisible(true);
+				   abilitaBottoneInviaCodiceVerifica();
+			   }
+		   }
+	}
+	
+	public void caricaDocumentoRetro(File docRetro) {
+		if(immagineDocumentoRetro.isEnabled()) {
+			resettaVisibilitaErrori();
+			if(!ctrl.caricaDocumentoRetroInBuffer(docRetro)) {
+				testoDocumentoCaricatoRetro.setVisible(false);
+				bottoneInviaCodiceVerifica.setEnabled(false);
+			}else {
+				testoDocumentoCaricatoRetro.setVisible(true);
+				abilitaBottoneInviaCodiceVerifica();
+			}
+		}
 	}
 }

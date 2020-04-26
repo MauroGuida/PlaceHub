@@ -19,9 +19,11 @@ import javax.swing.ScrollPaneConstants;
 
 import gestione.Controller;
 import gui.SchermataPrincipale;
+import net.iharder.dnd.FileDrop;
 import net.miginfocom.swing.MigLayout;
 import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.TextAreaConScrollPaneVerde;
+import res.FileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,7 +42,7 @@ public class ScriviRecensione extends JPanel {
 	
 	private JButton bottonePubblica;
 	private JButton bottoneCancella;
-	private JLabel immagineFoto_1;
+	private JLabel iconaImmagine;
 	private JPanel pannelloImmagini;
 	private TextAreaConScrollPaneVerde textAreaScriviRecensione;
 	private JLabel testoInfo_1;
@@ -59,6 +61,8 @@ public class ScriviRecensione extends JPanel {
 	
 	private Controller ctrl;
 	private ScrollPaneVerde elencoImmagini;
+	
+	private FileChooser selettoreFile = new FileChooser();
 
 	public ScriviRecensione(Controller ctrl) {
 		addComponentListener(new ComponentAdapter() {
@@ -97,7 +101,7 @@ public class ScriviRecensione extends JPanel {
 					.addGap(27)
 					.addComponent(elencoImmagini, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
 					.addGap(23)
-					.addComponent(immagineFoto_1)
+					.addComponent(iconaImmagine)
 					.addGap(22))
 				.addComponent(pannelloBot, GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -129,7 +133,7 @@ public class ScriviRecensione extends JPanel {
 						.addComponent(elencoImmagini, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(15)
-							.addComponent(immagineFoto_1)
+							.addComponent(iconaImmagine)
 							.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)))
 					.addGap(11)
 					.addComponent(pannelloBot, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -251,15 +255,27 @@ public class ScriviRecensione extends JPanel {
 	}
 
 	private void generaImmagineFoto_1() {
-		immagineFoto_1 = new JLabel("");
-		immagineFoto_1.addMouseListener(new MouseAdapter() {
+		iconaImmagine = new JLabel("");
+		iconaImmagine.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagineRecensione());
+				File daAggiungere = selettoreFile.selezionaFile();
+				if(ctrl.caricaImmagineRecensione(daAggiungere))
+					aggiungiImmagineAVisualizzatore(daAggiungere);
+				
 				pannelloImmagini.revalidate();
 			}
 		});
-		immagineFoto_1.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		iconaImmagine.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/camera.png")));
+		
+		new FileDrop(iconaImmagine, new FileDrop.Listener()	{
+			public void filesDropped( File[] files ) {
+				for( int i = 0; i < files.length; i++ ) {
+					if(ctrl.caricaImmagineRecensione(files[i]))
+						aggiungiImmagineAVisualizzatore(files[i]);
+                }
+            }
+        });
 	}
 
 	private void generaBottoneCancella() {

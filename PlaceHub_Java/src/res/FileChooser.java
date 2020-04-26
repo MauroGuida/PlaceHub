@@ -10,7 +10,7 @@ public class FileChooser {
 		File documento = null;
 		
 		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Images OR PDF", "jpg", "gif", "png", "pdf");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "gif", "png", "jpeg");
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {

@@ -26,7 +26,6 @@ import oggetti.DocumentiUtente;
 import oggetti.Locale;
 import oggetti.Recensione;
 import oggetti.GUI.LocaleGUI;
-import res.FileChooser;
 import res.InvioEmail;
 
 public class Controller {
@@ -45,7 +44,6 @@ public class Controller {
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
-	private FileChooser selettoreFile;
 	
 	
 	//Inizializzazione programma
@@ -82,7 +80,6 @@ public class Controller {
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
-			selettoreFile = new FileChooser();
 			
 			bufferDocumenti = new DocumentiUtente();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -92,6 +89,15 @@ public class Controller {
 	
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
+	}
+	
+	
+	private boolean haEstensioneImmagine(File file) {
+		if(file != null && (file.getAbsolutePath().toLowerCase().contains(".jpg") || file.getAbsolutePath().toLowerCase().contains(".gif") ||
+				file.getAbsolutePath().toLowerCase().contains(".png") || file.getAbsolutePath().toLowerCase().contains(".jpeg"))){
+			return true;
+		}
+		return false;
 	}
 	
 	//SCHERMATA ACCESSO 
@@ -428,12 +434,13 @@ public class Controller {
 			}
 		}
 		
-		public File caricaImmagineLocale() {
-			File nuovaImmagine = selettoreFile.selezionaFile();
+		public boolean caricaImmagineLocale(File nuovaImmagine) {
+			if(haEstensioneImmagine(nuovaImmagine)) {
+				bufferLocale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+				return true;
+			}
 			
-			bufferLocale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
-			
-			return nuovaImmagine;
+			return false;
 		}
 		
 		public void inserisciRaffinazioniBusiness(String codBusiness, String raffinazioni) {
@@ -472,18 +479,22 @@ public class Controller {
 		
 		
 		//VERIFICA PUBBLICA BUSINESS
-		public File caricaDocumentoFronteInBuffer() {
-			File docFronte = selettoreFile.selezionaFile();
-			bufferDocumenti.setFronteDocumento(docFronte);
+		public boolean caricaDocumentoFronteInBuffer(File documentoFronte) {
+			if(haEstensioneImmagine(documentoFronte)) {
+				bufferDocumenti.setFronteDocumento(documentoFronte);
+				return true;
+			}
 			
-			return docFronte;
+			return false;
 		}
 		
-		public File caricaDocumentoRetroInBuffer() {
-			File docRetro = selettoreFile.selezionaFile();
-			bufferDocumenti.setRetroDocumento(docRetro);
+		public boolean caricaDocumentoRetroInBuffer(File documentoRetro) {
+			if(haEstensioneImmagine(documentoRetro)) {
+				bufferDocumenti.setRetroDocumento(documentoRetro);
+				return true;
+			}
 			
-			return docRetro;
+			return false;
 		}
 		
 		private void caricaDocumentiInDatabase() {
@@ -556,14 +567,15 @@ public class Controller {
 		}
 
 		//RECENSISCI
-		public File caricaImmagineRecensione() {
-			File nuovaImmagine = selettoreFile.selezionaFile();
+		public boolean caricaImmagineRecensione(File nuovaImmagine) {
+			if(haEstensioneImmagine(nuovaImmagine)) {
+				bufferRecensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+				return true;
+			}
 			
-			bufferRecensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
-			
-			return nuovaImmagine;
+			return false;
 		}
-		
+
 		public void pubblicaRecensione(String testo, int stelle) {
 			if(testo.equals("Scrivi qui! MAX(2000 caratteri)") || testo.isBlank() || testo.isEmpty()) {
 				schermataPrincipaleFrame.mostraErroreRecensioneVuotaScriviRecensione();

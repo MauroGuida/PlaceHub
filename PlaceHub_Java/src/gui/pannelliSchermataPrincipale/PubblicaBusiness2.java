@@ -22,6 +22,7 @@ import gui.SchermataPrincipale;
 import oggetti.Locale;
 import oggetti.GUI.ScrollPaneVerde;
 import oggetti.GUI.TextAreaConScrollPaneVerde;
+import res.FileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import net.iharder.dnd.FileDrop;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Component;
 import javax.swing.Box;
@@ -59,6 +62,8 @@ public class PubblicaBusiness2 extends JPanel {
 	private JPanel pannelloBot;
 	private Component horizontalGlue;
 	private Component horizontalGlue_1;
+	
+	private FileChooser selettoreFile = new FileChooser();
 	
 	 public PubblicaBusiness2(Controller ctrl) {
 	 	addComponentListener(new ComponentAdapter() {
@@ -243,10 +248,22 @@ public class PubblicaBusiness2 extends JPanel {
 		iconaImmagine.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				aggiungiImmagineAVisualizzatore(ctrl.caricaImmagineLocale());
+				File daAggiungere = selettoreFile.selezionaFile();
+				if(ctrl.caricaImmagineLocale(daAggiungere))
+					aggiungiImmagineAVisualizzatore(daAggiungere);
+				
 				pannelloImmagini.revalidate();
 			}
 		});
+		
+		new FileDrop(iconaImmagine, new FileDrop.Listener()	{
+			public void filesDropped( File[] files ) {
+				for( int i = 0; i < files.length; i++ ) {
+					if(ctrl.caricaImmagineLocale(files[i]))
+						aggiungiImmagineAVisualizzatore(files[i]);
+                }
+            }
+        });
 	}
 
 	private void generaTestoTrascinaImmagini() {
