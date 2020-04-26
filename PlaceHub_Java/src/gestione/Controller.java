@@ -457,7 +457,7 @@ public class Controller {
 		public void controllaDocumentiUtente() {
 			try {
 				if(utente.controllaDocumentiUtente()) {
-					bufferLocale = new Locale();
+					bufferLocale = null;
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
 				}else
 					schermataPrincipaleFrame.mostraVerificaPubblicaBusiness();

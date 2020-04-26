@@ -600,6 +600,7 @@ public class PubblicaBusiness1 extends JPanel {
 		pannelloRaffAlloggi.setVisible(false);
 		pannelloRaffAttrazioni.setVisible(false);
 		pannelloRaffRistorante.setVisible(false);
+		flagFocusBottoneGestisciBusiness1 = 0;
 		
 		resettaVisibilitaErrori();
 		
