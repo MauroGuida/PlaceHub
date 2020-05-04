@@ -1,5 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 
+
+\usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{anyfontsize}
@@ -135,22 +137,24 @@
 \fontsize{35pt}{12pt}\selectfont\bf{Analisi del problema}
 \endgroup
 \vspace*{+1cm}
-
+\end{flushleft}
 
 \normalsize{
-In questo primo capitolo verrà analizzato il problema al livello di
-astrazione più alto.\\
-E' stata richiesta la progettazione di una base di dati relazionale
-per un software di recensioni turistiche, quindi il focus del problema
-è stato quello di permettere agli utenti della piattaforma la possibilità
-di recensire così come poter pubblicare una propria attività. Da come è
-possibile analizzare dal {\it class diagram} a pagina successiva
-il perno del software presentato è il concetto di {\bf Business }, al quale
-è permesso a uno o più utenti di associarvi una recensione, accompagnata, o
-meno, da immagini e descrizione.
+In questo primo capitolo verrà presentata una panoramica generale analizzato il problema al livello di astrazione più alto.
+\vspace*{+0.2cm}
+\\E' stata richiesta la progettazione di una base di dati relazionale per un software di recensioni turistiche, il focus del problema è stato, quindi, gestire un numero indefinito di utenti, permettendo loro l'inserimento in piattaforma di recensioni e nuove attività a scopo pubblicitario e valutativo delle stesse, su tutto il territorio nazionale (Italia).
+\vspace*{+0.2cm}
+\\Da come è possibile analizzare dal {\it class diagram} al Capitolo 2, il concetto cardine del software presentato è il concetto di {\bf Business }, al quale è permesso a uno o più utenti di associarvi una recensione, accompagnata, o meno, da immagini e descrizione.
+\vspace*{+0.2cm}
+\\Tale implementazione ha richiesto l'uso di 7 Tabelle e 2 Enumerazioni, come riportato graficamente al Capitolo 2 e descritto ampiamente al paragrafo 1 del medesimo capitolo. Lo sviluppo, in oltre, non ha richiesto la ristrutturazione del {\it class diagram} in quanto non presenti specializzazioni o associazioni molti a molti. La completa descrizione delle tabelle e le relative associazioni può essere osservata al Capitolo 3.
+\vspace*{+0.2cm}
+\\Ove possibile si è preferito evitare un'interazione diretta tra l'applicativo sviluppato ed il database. Per soddisfare tale scelta implementativa si è preferito dotare il database di funzioni specifiche (4.3), fornendo all'applicativo solo le informazioni strettamente necessarie alla corretta visualizzazione delle informazioni.
+\vspace*{+0.2cm}
+\\Onde evitare alterazioni {\it non} volontarie da parte del personale addetto alla manutenzione, con accesso diretto alla struttura dati, ogni vincolo è implementato direttamente nel database, così da impedire l'errato inserimento o modifica delle tabelle, limitando la possibilità di portare il sistema in uno stato instabile. Il \textit{dizionario dei vincoli} può essere consultato al Capitolo 2 (2.3), dove è riportata anche una descrizione degli stessi.
+\vspace*{+0.2cm}
+\\Da qui in avanti saranno usati in modo intercambiabile i termini \textit{Attività} e \textit{Business}.
 }
 
-\end{flushleft}
 \newpage 
 
 
@@ -165,22 +169,26 @@ meno, da immagini e descrizione.
 \fontsize{30pt}{12pt}\selectfont\bf{Progettazione concettuale}
 \endgroup
 \vspace*{+1cm}
+\end{flushleft}
 
 \begin{center}
 	\begin{figure}[h]
 	\centering
- 	\includegraphics[width=1\textwidth]{classDiagram.png}
+ 	\includegraphics[width=0.8\textwidth]{classDiagram.png}
 	\end{figure}
 
 \end{center}
 
 \normalsize{
-*Durante lo sviluppo del progetto non è stato necessario alcun
-class diagran {\it non} ristrutturato, ergo, questo è stato l'
- unico utilizzato.
+* Durante lo sviluppo del progetto non è stato necessario ristrutturare il {\it class diagram}.
+\vspace*{+0.2cm}
+\\Le associazioni tra tabelle avvengono tramite l'uso delle chiavi primarie: CodUtente, CodBusiness, CodRecensione e CodMappa. Come si evince dal nome, tali chiavi indicano univocamente: Utenti, Attività, Recensioni di un determinato utente ad un determinato Business e uno specifico luogo sulla mappa.
+\vspace*{+0.2cm}
+\\Affinché fosse possibile categorizzare un Business, si sono dovuti creare delle tabelle enumerazione per definire dei tipi specifici per le 3 Attività da gestire (Ristorante, Alloggio, Attrazione) e le relative specializzazioni (4.3.1).
+\vspace*{+0.2cm}
+\\Un'ampia descrizione delle Classi utilizzate e i relativi vincoli, può essere consultata nei paragrafi immediatamente successivi.
 }
 
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{5}
@@ -701,35 +709,38 @@ delle associazioni}}
 \begingroup
 \fontsize{30pt}{12pt}\selectfont\bf{Progettazione fisica}
 \endgroup
-\vspace*{+1cm}
 
+\vspace*{+1cm}
 \normalsize{
 La base di dati verrà implementata sul DBMS \verb|PostgreSQL 11.7|
 }
-\\~\\~\\
-{\bf 4.1 Note sull'implementazione}
+\end{flushleft}
+
+{\flushleft \bf 4.1 Note sull'implementazione}
 \\
 \normalsize{
-Alcuni dettagli implementativi saranno modificati al fine di sfruttare molte delle comodità
-offerte dal DBMS in questione. Inoltre ,alcune funzionalità verranno 'camuffate' come la
-funzione \verb|INSTR| presente su \verb|ORACLE|, non disponibile invece su \verb|PostgreSQL|,
-così come l'implementazione di \verb|ASSERTION|, anch'esse rimpiazzate da procedure poichè
-non disponibili.\\
+Al fine di agevolare lo sviluppo delle funzioni necessarie, ove possibile, saranno utilizzate funzioni e procedure caratteristiche dello standard del DBMS in questione. Tuttavia, alcune funzionalità come \verb|INSTR| appartenente ad \verb|ORACLE|, non disponibile su \verb|PostgreSQL|, saranno implementate manualmente come funzioni del seguente Database, discorso equivalente per l'implementazione di \verb|ASSERTION|, anch'essa rimpiazzata da una specifica procedure poiché non disponibili.
+\vspace*{+0.2cm}
+\\Nel seguente capitolo saranno mostrate le funzionalità implementate lato Database, quali: Vincoli su Tabelle, Procedure, Funzioni e Trigger, oltre ad evidenziare come ogni Tabella sia stata definita.
+\vspace*{+0.2cm}
+\\Nel paragrafo 4 saranno approfondite le funzioni implementate direttamente dell'applicativo e pertanto non presenti nel Database, tuttavia questa pratica, ove possibile, sia stata scongiurata per semplificare future manutenzioni ed implementazioni, rendendo possibile effettuare aggiornamenti esclusivamente lato Database senza rendere obsolete vecchie release degli applicativi.
+\vspace*{+0.2cm}
+\\L'obbiettivo principale è rendere ogni richiesta dell'utente una chiamata ad una funzione presente nella Base di Dati, limitando possibili manomissioni e garantendo una maggiore stabilità del sistema, oltre ad un supporto a lungo termine degli applicativi.
 }
-\end{flushleft}
+
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{13}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.2 Definizione delle tabelle} 
+{\flushleft \bf 4.2 Definizione delle tabelle} 
 \\
-Seguono le definizioni delle tabelle estratte dallo script di creazione del database.\\
-{\it *Alcune parole saranno grammaticalmente sbagliate poichè alcuni 
-caratteri speciali risultano incompatibili col DBMS.}
+Seguono le definizioni delle tabelle utilizzate nella base di dati, con le relative descrizioni dei vincoli adottati, per gli attributi, di ognuna di esse.\\
+\begin{center}
+{\it * Alcune parole risulteranno essere grammaticalmente errate data l'incompatibilità dei caratteri speciali col DBMS.}
+\end{center}
 \vspace*{+1cm}
 
-{\bf 4.2.1  Definizione della tabella UTENTE}
+{\flushleft \bf 4.2.1  Definizione della tabella UTENTE}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: UTENTE
@@ -760,7 +771,7 @@ ALTER TABLE Utente
 
 \vspace*{+1cm}
 
-{\bf 4.2.2  Definizione della tabella MAPPA}
+{\flushleft \bf 4.2.2  Definizione della tabella MAPPA}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: MAPPA
@@ -776,13 +787,11 @@ CREATE TABLE Mappa(
     SiglaProvincia VARCHAR(5),
 );
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{14}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.2.3  Definizione della tabella BUSINESS}
+{\flushleft \bf 4.2.3  Definizione della tabella BUSINESS}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: BUSINESS
@@ -821,7 +830,7 @@ ALTER TABLE Business
 
 \vspace*{+1cm}
 
-{\bf 4.2.4  Definizione della tabella RECENSIONE}
+{\flushleft \bf 4.2.4  Definizione della tabella RECENSIONE}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: RECENSIONE
@@ -839,13 +848,11 @@ CREATE TABLE Recensione(
 ALTER TABLE Recensione
   ADD CONSTRAINT RecensioneUnicaUtenteLuogo UNIQUE(codBusiness, codUtente);
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{15}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.2.5  Definizione della tabella ASSOCIAZIONERAFFINAZIONE}
+{\flushleft \bf 4.2.5  Definizione della tabella ASSOCIAZIONERAFFINAZIONE}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: ASSOCIAZIONERAFFINAZIONE
@@ -875,7 +882,7 @@ ALTER TABLE AssociazioneRaffinazione
 
 \vspace*{+1cm}
 
-{\bf 4.2.6  Definizione della tabella IMMAGINEPROPRIETA}
+{\flushleft \bf 4.2.6  Definizione della tabella IMMAGINEPROPRIETA}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: IMMAGINEPROPRIETA
@@ -893,7 +900,7 @@ ALTER TABLE ImmagineProprieta
 
 \vspace*{+1cm}
 
-{\bf 4.2.7  Definizione della tabella IMMAGINERECENSIONE}
+{\flushleft \bf 4.2.7  Definizione della tabella IMMAGINERECENSIONE}
 \begin{lstlisting}[language=SQL]
 /**
 *	  TABELLA: IMMAGINERECENSIONE
@@ -904,15 +911,14 @@ CREATE TABLE ImmagineRecensione(
   codRecensione INTEGER REFERENCES Recensione(CodRecensione) ON DELETE CASCADE
 );
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{16}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3 Funzioni, procedure e altre automazioni} 
+{\flushleft \bf 4.3 Funzioni, procedure e Trigger}
+\\In questo paragrafo verrà fornita una descrizione accurata dei metodi di automazione adottati, quali trigger e delle funzioni e procedure richiamate dall'applicativo con lo scopo di ricavare le informazioni necessarie al suo funzionamento.
 \vspace*{+1cm}
-\\
+\newline
 {\bf 4.3.1  Integrità delle raffinazioni per tipologia 'Ristorante'}\\
 \normalsize{Se l'utente seleziona come tipologia \verb|'Ristorante'|, allora le raffinazioni
 devono essere necessariamente pescate tra le seguenti : \\
@@ -946,7 +952,7 @@ EXECUTE PROCEDURE checkRaffinazioneRistoranti();
 \end{lstlisting}
 \vspace*{+1cm}
 
-{\bf 4.3.2  Integrità delle raffinazioni per tipologia 'Alloggio'}\\
+{\flushleft \bf 4.3.2  Integrità delle raffinazioni per tipologia 'Alloggio'}\\
 \normalsize{Se l'utente seleziona come tipologia \verb|'Alloggio'|, allora le raffinazioni
 devono essere necessariamente pescate tra le seguenti : \\
 \verb|('Hotel', 'Bed&Breakfast', 'Ostello', 'CasaVacanze' ,'Residence')|}
@@ -974,10 +980,9 @@ FOR EACH ROW
 WHEN (NEW.tipo = 'Alloggio')
 EXECUTE PROCEDURE checkRaffinazioneAlloggio();
 \end{lstlisting}
-
 \vspace*{+1cm}
 
-{\bf 4.3.3 Integrità delle raffinazioni per tipologia 'Attrazione'}\\
+{\flushleft \bf 4.3.3 Integrità delle raffinazioni per tipologia 'Attrazione'}\\
 \normalsize{Se l'utente seleziona come tipologia \verb|'Attrazione'|, allora le raffinazioni
 devono essere necessariamente pescate tra le seguenti : \\
 \verb|('Cinema', 'Shopping','Monumento', 'Museo', 'Parco Giochi', 'Piscina',|\\
@@ -1008,13 +1013,11 @@ FOR EACH ROW
 WHEN (NEW.tipo = 'Attrazione')
 EXECUTE PROCEDURE checkRaffinazioneAttrazioni();
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{18}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.4  Generazione codice verifica per Utente}\\
+{\flushleft \bf 4.3.4  Generazione codice verifica per Utente}\\
 Tale procedura genera un codice di 10 cifre e lo inserisce nel record della tabella
 \verb|UTENTE| grazie al \verb|codUtente| passato in input.
 \begin{lstlisting}[language=SQL]
@@ -1033,7 +1036,7 @@ $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.5  Effettua login}\\
+{\flushleft \bf 4.3.5  Effettua login}\\
 Tale funzione effettua l'accesso al portare tramite le credenziali d'accesso fornite
 dall'utente. (Attraverso il suo \verb|codUtente|)
 \begin{lstlisting}[language=SQL]
@@ -1052,7 +1055,7 @@ $$  LANGUAGE plpgsql;
 
 \vspace*{+1cm}
 
-{\bf 4.3.6  Effettua la registrazione}\\
+{\flushleft \bf 4.3.6  Effettua la registrazione}\\
 Tale procedura aggiorna il database inserendo i parametri dati in input dall'utente in
 modo tale che egli possa effettuare il login in un secondo momento.
 \begin{lstlisting}[language=SQL]
@@ -1070,13 +1073,11 @@ BEGIN
 END;
 $$;
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{19}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.7  Imposta nuova password}\\
+{\flushleft \bf 4.3.7  Imposta nuova password}\\
 Tale procedura permette all'utente di aggiornare la password.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE PROCEDURE impostaNuovaPassword(INT, VARCHAR(50))
@@ -1094,7 +1095,7 @@ $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.8  Controlla documenti utente}\\
+{\flushleft \bf 4.3.8  Controlla documenti utente}\\
 Questa funzione controlla che l'utente abbia verificato la propria identità avendo
 fornito un documento. (\verb|FronteDocumento| \& \verb|RetroDocumento|)
 \begin{lstlisting}[language=SQL]
@@ -1116,7 +1117,7 @@ $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.9  Controlla codice verifica}\\
+{\flushleft \bf 4.3.9  Controlla codice verifica}\\
 Questa funzione controlla che l'utente sia verificato, ovvero abbia inserito
 il \verb|'codiceVerifica'| inviatogli per email.
 \begin{lstlisting}[language=SQL]
@@ -1136,13 +1137,11 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{20}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.10  Inserisci documenti utente}\\
+{\flushleft \bf 4.3.10  Inserisci documenti utente}\\
 Tale procedura aggiorna il database inserendo le foto del documento date in input dall'utente.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE PROCEDURE inserisciDocumentiUtente(INT, VARCHAR(1000), VARCHAR(1000))
@@ -1160,10 +1159,8 @@ $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.11  Inserisci business}\\
-Tale procedura inserisce o aggiorna un business. Se la \verb|PartitaIVA| risulta già presente
-nel database e l'utente che tenta di reinserirla è il proprietario del business, allora
-questo verrà aggiornato, altrimenti verrà inserito ex novo.
+{\flushleft \bf 4.3.11  Inserisci business}\\
+Tale procedura inserisce o aggiorna un business. Se la \verb|PartitaIVA| risulta già presente nel database e l'utente che tenta di reinserirla, è il proprietario del business, allora questo verrà aggiornato, altrimenti verrà inserito ex novo.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE PROCEDURE inserisciBusiness( VARCHAR(50), VARCHAR(100), VARCHAR(10), VARCHAR(100), VARCHAR(100), VARCHAR(2000), INTEGER, INTEGER)
 LANGUAGE plpgsql
@@ -1186,7 +1183,7 @@ $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.12  Inserisci immagini a business}\\
+{\flushleft \bf 4.3.12  Inserisci immagini a business}\\
 Tale procedura associata una immagine fornite dal proprietario al suo business.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE PROCEDURE inserisciImmaginiABusiness(INTEGER, VARCHAR(1000))
@@ -1202,8 +1199,7 @@ $$;
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{21}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.13  Recupera codBusiness}\\
+{\flushleft \bf 4.3.13  Recupera codBusiness}\\
 Tale funzione recupera il codice del business attraverso la \verb|PartitaIVA|.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE FUNCTION recuperaCodBusiness(VARCHAR(100))
@@ -1221,7 +1217,7 @@ $$  LANGUAGE plpgsql;
 
 \vspace*{+1cm}
 
-{\bf 4.3.14  Inserisci raffinazioni}\\
+{\flushleft \bf 4.3.14  Inserisci raffinazioni}\\
 Questa procedura, dati in input un codBusiness ed una stringa di raffinazioni separate
 da virgole, scompone quest'ultima estraendo le singole raffinazioni così da poterle 
 inserire singolarmente nella tabella \verb|ASSOCIAZIONERAFFINAZIONE|.
@@ -1255,13 +1251,11 @@ BEGIN
 END;
 $$;
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{22}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.15  Funzione INSTR}\\
+{\flushleft \bf 4.3.15  Funzione INSTR}\\
 Implementazione funzione INSTR per \verb|PostgreSQL|.
 \begin{lstlisting}[language=SQL]
 create or replace function instr(str text, sub text, startpos int, occurrence int)
@@ -1302,7 +1296,7 @@ end $$;
 
 \vspace*{+1cm}
 
-{\bf 4.3.16  Inserisci immagine recensione}\\
+{\flushleft \bf 4.3.16  Inserisci immagine recensione}\\
 Tale procedura associa un' immagine fornita dall' utente a una sua recensione.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE PROCEDURE inserisciImmagineRecensione(VARCHAR(1000),INTEGER)
@@ -1315,13 +1309,11 @@ BEGIN
 END;
 $$;
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{23}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.17  Inserisci recensione}\\
+{\flushleft \bf 4.3.17  Inserisci recensione}\\
 Tale funzione inserisce una recensione nel database e restituisce il codice della stessa
 così da poterle associare delle immagini successivamente.
 \begin{lstlisting}[language=SQL]
@@ -1339,7 +1331,7 @@ $$  LANGUAGE plpgsql;
 
 \vspace*{+1cm}
 
-{\bf 4.3.18  Ricerca locale}\\
+{\flushleft \bf 4.3.18  Ricerca locale}\\
 Tale funzione restituisce tutte le attività trovate in base alla tipologia e/o luogo passati in input dall'utente.
 \begin{lstlisting}[language=SQL]
 CREATE OR REPLACE FUNCTION ricercaLocale(VARCHAR(20),VARCHAR(20))
@@ -1377,13 +1369,11 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 \end{lstlisting}
-\end{flushleft}
 \newpage
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{24}
 \vspace{-2cm}
-\begin{flushleft}
-{\bf 4.3.19  Aggiorna media stelle}\\
+{\flushleft \bf 4.3.19  Aggiorna media stelle}\\
 Tale funzione aggiorna la valutazione del locale in seguito all'aggiunta di una
 nuova recensione, per mezzo del trigger \verb|'calcolaNuovaMediaDopoInserimentoRecensione'|.
 \begin{lstlisting}[language=SQL]
@@ -1410,11 +1400,10 @@ AFTER INSERT ON Recensione
 FOR EACH ROW
 EXECUTE PROCEDURE aggiornaMediaStelle();
 \end{lstlisting}
-\end{flushleft}
 
 \vspace*{+1cm}
 
-{\bf 4.3.20  Utente con recensione}\\
+{\flushleft \bf 4.3.20  Utente con recensione}\\
 Tale funzione controlla se un utente ha già scritto una recensione per un certo
 business.
 \begin{lstlisting}[language=SQL]
@@ -1434,5 +1423,4 @@ $$  LANGUAGE plpgsql;
 
 \newpage
 
-\end{flushleft}
 \end{document}
