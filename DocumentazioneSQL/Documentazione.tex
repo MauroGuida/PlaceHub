@@ -180,7 +180,7 @@ In questo primo capitolo verrà presentata una panoramica generale analizzato il
 \end{center}
 
 \normalsize{
-* Durante lo sviluppo del progetto non è stato necessario ristrutturare il {\it class diagram}.
+{\small \it* Durante lo sviluppo del progetto non è stato necessario ristrutturare il  class diagram}.
 \vspace*{+0.2cm}
 \\Le associazioni tra tabelle avvengono tramite l'uso delle chiavi primarie: CodUtente, CodBusiness, CodRecensione e CodMappa. Come si evince dal nome, tali chiavi indicano univocamente: Utenti, Attività, Recensioni di un determinato utente ad un determinato Business e uno specifico luogo sulla mappa.
 \vspace*{+0.2cm}
@@ -286,7 +286,6 @@ cui è associata la recensione.
 
 \newpage\null\pagenumbering{arabic}\setcounter{page}{6}
 \vspace{-2cm}
-\begin{flushleft}
 \begin{table}[htbp]
 \caption*{Tabella 1: {\it continua dalla pagina precedente.}}
 \begin{tabular}[c]{| m{3cm} | m{5cm} | m{7cm} |}
@@ -297,18 +296,20 @@ cui è associata la recensione.
 {\bf Mappa}
 &\small Descrittore della posizione geografica di ciascuna attività
 &\footnotesize
+
 {\bf CodMappa}({\it serial}): chiave primaria. Identifica univocamente ciascuna posizione geografica.
 
-{\bf Stato}({\it varchar}): Stato di residenza dell'attività.
-{\bf CAP}({\it varchar}): CAP di residenza dell'attività.
+{\bf Stato}({\it varchar}): Attributo di locazione.
 
-{\bf Comune}({\it varchar}): Comune di residenza dell'attività.
+{\bf CAP}({\it varchar}): Attributo di locazione.
 
-{\bf Regione}({\it varchar}): Regione di residenza dell'attività.
+{\bf Comune}({\it varchar}): Attributo di locazione.
 
-{\bf Provincia}({\it varchar}): Provincia di residenza dell'attività.
+{\bf Provincia}({\it varchar}): Attributo di locazione.
 
-{\bf SiglaProvincia}({\it varchar}): SiglaProvincia della provincia di residenza dell'attività.
+{\bf Regione}({\it varchar}): Attributo di locazione.
+
+{\bf SiglaProvincia}({\it varchar}): Attributo di locazione.
 \\
 \hline
 
@@ -351,7 +352,6 @@ cui è stata associata l'immagine.
 \multicolumn{3}{c}{\footnotesize{\normalsize Tabella 1 - Dizionario delle classi}}
 \end{tabular}
 \end{table}
-\end{flushleft}
 \newpage
 
 
@@ -736,7 +736,7 @@ Al fine di agevolare lo sviluppo delle funzioni necessarie, ove possibile, saran
 \\
 Seguono le definizioni delle tabelle utilizzate nella base di dati, con le relative descrizioni dei vincoli adottati, per gli attributi, di ognuna di esse.\\
 \begin{center}
-{\it * Alcune parole risulteranno essere grammaticalmente errate data l'incompatibilità dei caratteri speciali col DBMS.}
+{\small \it * Alcune parole risulteranno essere grammaticalmente errate data l'incompatibilità dei caratteri speciali col DBMS.}
 \end{center}
 \vspace*{+1cm}
 
@@ -1421,6 +1421,9 @@ END;
 $$  LANGUAGE plpgsql;
 \end{lstlisting}
 
-\newpage
+\newpage\null\pagenumbering{arabic}\setcounter{page}{24}
+\vspace{-2cm}
+{\flushleft \bf 4.4  Chiamate SQL integrate negli Applicativi}\\
+In questo paragrafo sono riportate e descritte le interrogazioni al Database eseguite dall'applicativo sviluppato in \verb|Java|.
 
 \end{document}
