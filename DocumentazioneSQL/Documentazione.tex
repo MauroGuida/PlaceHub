@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 
-
+\usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage[absolute,overlay]{textpos}
 \usepackage{anyfontsize}
@@ -1487,11 +1487,13 @@ $$  LANGUAGE plpgsql;
 \vspace{-2cm}
 {\flushleft \bf 4.4  Chiamate SQL integrate nell'Applicativo}\\
 In questo paragrafo sono riportate e descritte alcune 
-interrogazioni al Database eseguite dall'applicativo sviluppato in \verb|Java|.\\
+interrogazioni al Database eseguite dall'applicativo sviluppato in \verb|Java|.
+
+\begin{center}
 {\small \it* il ? è un placehold per l'input dell'utente che verrà sostituito da una specifica funzione Java}.
-\vspace*{+1cm}
-\newline
-{\bf 4.4.1  Recupera locali da ricerca}\\
+\end{center}
+
+{\flushleft \bf 4.4.1  Recupera locali da ricerca}\\
 \normalsize{L'utente, grazie a questa \verb|SELECT| recupera tutti i locali con un opportuna scelta di luogo e raffinazione o nome locale.}
 \begin{lstlisting}[language=SQL]
 SELECT codBusiness, Nome, Indirizzo, Stelle, URL
