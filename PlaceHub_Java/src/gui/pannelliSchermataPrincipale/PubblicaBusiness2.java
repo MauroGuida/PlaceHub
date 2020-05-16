@@ -6,8 +6,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -250,7 +252,7 @@ public class PubblicaBusiness2 extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				File daAggiungere = selettoreFile.selezionaFile();
 				if(ctrl.caricaImmagineLocale(daAggiungere))
-					aggiungiImmagineAVisualizzatore(daAggiungere);
+					aggiungiImmagineAVisualizzatore(daAggiungere.getAbsolutePath());
 				
 				pannelloImmagini.revalidate();
 			}
@@ -260,7 +262,7 @@ public class PubblicaBusiness2 extends JPanel {
 			public void filesDropped( File[] files ) {
 				for( int i = 0; i < files.length; i++ ) {
 					if(ctrl.caricaImmagineLocale(files[i]))
-						aggiungiImmagineAVisualizzatore(files[i]);
+						aggiungiImmagineAVisualizzatore(files[i].getAbsolutePath());
                 }
             }
         });
@@ -306,17 +308,30 @@ public class PubblicaBusiness2 extends JPanel {
 		testoErrore.setVisible(true);
 	}
 	
-	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
+	private void aggiungiImmagineAVisualizzatore(String nuovaImmagine) {
+		final int W = 210;
+		final int H = 140;
+		
+		Image imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		
 		try {
-			Image imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(210, 140, java.awt.Image.SCALE_SMOOTH);
-			
+			if(nuovaImmagine.contains("http://") || nuovaImmagine.contains("https://")) {
+				URL url = new URL(nuovaImmagine);
+				BufferedImage img = ImageIO.read(url);
+				imgScalata = new ImageIcon(img).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+			}else {
+				File fileImmagine = new File(nuovaImmagine);
+				if(fileImmagine.exists())
+					imgScalata = new ImageIcon(fileImmagine.getAbsolutePath()).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+			}
+		} catch (IOException e) {
+//			Verra' visualizzato il placehoder
+		} finally {
 			JLabel immagine = new JLabel();
-			immagine.setSize(210, 140);
+			immagine.setSize(W, H);
 			immagine.setIcon(new ImageIcon(imgScalata));
 			
 			pannelloImmagini.add(immagine);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -324,6 +339,6 @@ public class PubblicaBusiness2 extends JPanel {
 		areaDescrizione.setText(locale.getDescrizione());
 		
 		for (String immagine: locale.getListaImmagini())
-			aggiungiImmagineAVisualizzatore(new File(immagine));
+			aggiungiImmagineAVisualizzatore(immagine);
 	}
 }

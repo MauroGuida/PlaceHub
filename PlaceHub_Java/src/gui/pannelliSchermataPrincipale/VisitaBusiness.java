@@ -16,8 +16,10 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -263,10 +265,10 @@ public class VisitaBusiness extends JPanel {
 		testoRaffinazioni.setText(locale.getRaffinazioni());
 		stelle.aggiungiStelle(locale.getStelle());
 		
-		for (String immagine: locale.getListaImmagini())
-			aggiungiImmagineAVisualizzatore(new File(immagine));
+		for(String immagine: locale.getListaImmagini())
+			aggiungiImmagineAVisualizzatore(immagine);
 		
-		for (Recensione recensione: locale.getListaRecensioni()) 
+		for(Recensione recensione: locale.getListaRecensioni()) 
 			aggiungiRecensioniAPannello(recensione);
 	}
 	
@@ -287,16 +289,24 @@ public class VisitaBusiness extends JPanel {
 		bottoneRecensisci.setEnabled(true);
 	}
 	
-	private void aggiungiImmagineAVisualizzatore(File nuovaImmagine) {
-		Image imgScalata = null;
-		
+	private void aggiungiImmagineAVisualizzatore(String nuovaImmagine) {
 		final int W = 290;
 		final int H = 170;
 		
+		Image imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		
 		try {
-			imgScalata = new ImageIcon(ImageIO.read(nuovaImmagine)).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+			if(nuovaImmagine.contains("http://") || nuovaImmagine.contains("https://")) {
+				URL url = new URL(nuovaImmagine);
+				BufferedImage img = ImageIO.read(url);
+				imgScalata = new ImageIcon(img).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+			}else {
+				File fileImmagine = new File(nuovaImmagine);
+				if(fileImmagine.exists())
+					imgScalata = new ImageIcon(fileImmagine.getAbsolutePath()).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+			}
 		} catch (IOException e) {
-			imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+//			Verra' visualizzato il placehoder
 		} finally{
 			JLabel immagine = new JLabel();
 			immagine.setSize(W, H);

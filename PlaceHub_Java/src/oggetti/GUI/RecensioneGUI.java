@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 
+import oggetti.Locale;
 import oggetti.Recensione;
 
 import java.awt.Color;
@@ -14,8 +15,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JTextArea;
 import javax.swing.GroupLayout;
@@ -119,10 +122,21 @@ public class RecensioneGUI extends JPanel {
             for (String immagine : recensioneLocale.getListaImmagini()) {
             	scrollPaneImmagini.setVisible(true);
             	
-            	Image imgScalata = new ImageIcon(ImageIO.read(new File(immagine))).getImage().getScaledInstance(130, 90, java.awt.Image.SCALE_SMOOTH);
+            	final int W = 130;
+            	final int H = 90;
+            	Image imgScalata = new ImageIcon(Locale.class.getResource("/Icone/placeholder.gif")).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+    			if(immagine.contains("http://") || immagine.contains("https://")) {
+    				URL url = new URL(immagine);
+    				BufferedImage img = ImageIO.read(url);
+    				imgScalata = new ImageIcon(img).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+    			}else {
+    				File fileImmagine = new File(immagine);
+    				if(fileImmagine.exists())
+    					imgScalata = new ImageIcon(fileImmagine.getAbsolutePath()).getImage().getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+    			}
 
                 JLabel nuovaImmagine = new JLabel();
-                nuovaImmagine.setSize(130, 90);
+                nuovaImmagine.setSize(W, H);
                 nuovaImmagine.setIcon(new ImageIcon(imgScalata));
 
                 pannelloImmagini.add(nuovaImmagine);
