@@ -13,34 +13,34 @@ import database.MappaDAO;
 import database.RecensioneDAO;
 import database.Connessione;
 import database.UtenteDAO;
-import errori.CodMappaNonTrovatoException;
-import errori.CodiceBusinessNonTrovatoException;
-import errori.CodiceVerificaNonTrovatoException;
-import errori.CodiceVerificaNonValidoException;
-import errori.EmailSconosciutaException;
-import errori.UsernameOPasswordErratiException;
-import gui.SchermataAccesso;
-import gui.SchermataPrincipale;
-import gui.pannelliSchermataPrincipale.RicercaLocaleVuota;
-import oggetti.DocumentiUtente;
-import oggetti.Locale;
-import oggetti.Recensione;
-import oggetti.GUI.LocaleGUI;
-import res.InvioEmail;
+import eccezioni.CodMappaNonTrovatoException;
+import eccezioni.CodiceBusinessNonTrovatoException;
+import eccezioni.CodiceVerificaNonTrovatoException;
+import eccezioni.CodiceVerificaNonValidoException;
+import eccezioni.EmailSconosciutaException;
+import eccezioni.UsernameOPasswordErratiException;
+import frameGUI.SchermataAccesso;
+import frameGUI.SchermataPrincipale;
+import frameGUI.pannelliSchermataPrincipale.RicercaLocaleVuota;
+import oggettiServizio.Business;
+import oggettiServizio.Recensione;
+import oggettiServizio.Utente;
+import miscellaneous.InvioEmail;
+import miscellaneousGUI.LocaleGUI;
 
 public class Controller {
-	private DocumentiUtente bufferDocumenti;
-	private Locale bufferLocale;
-	private Recensione bufferRecensione;
+	private Utente utente;
+	private Business locale;
+	private Recensione recensione;
 	
 	private static SchermataAccesso schermataAccessoFrame;
 	private static SchermataPrincipale schermataPrincipaleFrame;
 	
 	private static Connessione connessioneAlDatabase;
-	private static UtenteDAO utente;
-	private static BusinessDAO business;
-	private static MappaDAO mappa;
-	private static RecensioneDAO recensione;
+	private static UtenteDAO utenteDAO;
+	private static BusinessDAO businessDAO;
+	private static MappaDAO mappaDAO;
+	private static RecensioneDAO recensioneDAO;
 	
 	private InvioEmail mail;
 	private LayoutEmail corpoMail;
@@ -73,15 +73,15 @@ public class Controller {
 	private Controller() {
 		try {
 			connessioneAlDatabase = new Connessione();
-			utente = new UtenteDAO();
-			business = new BusinessDAO();
-			mappa = new MappaDAO();
-			recensione = new RecensioneDAO();
+			utenteDAO = new UtenteDAO();
+			businessDAO = new BusinessDAO();
+			mappaDAO = new MappaDAO();
+			recensioneDAO = new RecensioneDAO();
 			
 			mail = new InvioEmail();
 			corpoMail = new LayoutEmail();
 			
-			bufferDocumenti = new DocumentiUtente();
+			utente = new Utente();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +103,7 @@ public class Controller {
 	//SCHERMATA ACCESSO 
 	public void loginSchermataAccesso(String Username, char[] Password) {
 		try {
-			utente.login(Username, Password);
+			utente.setCodUtente(utenteDAO.login(Username, Password));
 			schermataAccessoFrame.mostraErroreUsernamePassword(false);
 			schermataPrincipaleFrame = new SchermataPrincipale(this);
 			schermataPrincipaleFrame.setVisible(true);
@@ -126,7 +126,7 @@ public class Controller {
 			try {
 				final String oggetto = "Benvenuto su PlaceHub";
 				
-				utente.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
+				utenteDAO.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
 				mail.inviaEmail(Email, oggetto, corpoMail.corpoEmailBenvenutoRegistrazione(Username));
 				
 				schermataAccessoFrame.mostraConfermaRegistrazione();
@@ -153,7 +153,7 @@ public class Controller {
 	
 	public void richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			utente.generaCodiceVerifica(utente.recuperaCodiceUtenteDaEmail(email));
+			utenteDAO.generaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(utente.getcodUtente(), email));
 		} catch(EmailSconosciutaException e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
 		} catch (SQLException e) {
@@ -164,7 +164,7 @@ public class Controller {
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
 			final String oggetto = "Placehub - Reimposta password!";
-			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utente.recuperaCodiceVerifica(utente.recuperaCodiceUtenteDaEmail(email))));
+			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(utente.getcodUtente(), email))));
 			
 			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
 			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
@@ -177,7 +177,7 @@ public class Controller {
 	
 	public void impostaPassword(String codiceVerifica, char[] Password) {
 		try {
-			utente.impostaPassword(codiceVerifica, Password);
+			utenteDAO.impostaPassword(utente.getcodUtente(), codiceVerifica, Password);
 			
 			schermataAccessoFrame.mostraAvvisoPasswordImpostataConSuccessoReimpostaPassword2();
 		} catch (SQLException e) {
@@ -199,7 +199,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Locale locale : business.ricercaInVoga())
+				for (Business locale : businessDAO.ricercaInVoga())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 		
 			} catch (SQLException e) {
@@ -212,7 +212,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Locale locale : business.ricercaRistoranti())
+				for (Business locale : businessDAO.ricercaRistoranti())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -223,7 +223,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Locale locale : business.ricercaAttrazioni())
+				for (Business locale : businessDAO.ricercaAttrazioni())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -234,7 +234,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Locale locale : business.ricercaAlloggi())
+				for (Business locale : businessDAO.ricercaAlloggi())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -251,11 +251,11 @@ public class Controller {
 				if(campoDove.isEmpty() || campoDove.isBlank() || campoDove.equals("Dove?"))
 					campoDove = "";
 				
-				ArrayList<Locale> locali = business.ricercaLocali(campoCosa, campoDove);
+				ArrayList<Business> locali = businessDAO.ricercaLocali(campoCosa, campoDove);
 				if(locali.isEmpty())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new RicercaLocaleVuota());
 				else
-					for(Locale locale : locali)
+					for(Business locale : locali)
 						schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale,this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -297,15 +297,15 @@ public class Controller {
 			}
 			
 			try {
-				if(utente.getcodUtente().equals(business.recuperaProprietarioLocaleDaPartitaIVA(partitaIVA)) && (bufferLocale != null && bufferLocale.isModifica())) {
-					bufferLocale.setNome(nomeBusiness);
-					bufferLocale.setIndirizzo(indirizzo);
-					bufferLocale.setTelefono(telefono);
-					bufferLocale.setTipoBusiness(tipoBusiness);
-					bufferLocale.setRaffinazioni(raffinazioni);
+				if(utente.getcodUtente().equals(businessDAO.recuperaProprietarioLocaleDaPartitaIVA(partitaIVA)) && (locale != null && locale.isModifica())) {
+					locale.setNome(nomeBusiness);
+					locale.setIndirizzo(indirizzo);
+					locale.setTelefono(telefono);
+					locale.setTipoBusiness(tipoBusiness);
+					locale.setRaffinazioni(raffinazioni);
 					
 					schermataPrincipaleFrame.mostraPubblicaBusiness2();
-					schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness2(bufferLocale);
+					schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness2(locale);
 					return;
 				}else {
 					schermataPrincipaleFrame.mostraErrorePartitaIVAInUsoPubblicaBusiness1();
@@ -316,21 +316,21 @@ public class Controller {
 			}
 			
 			try {
-				codMappa = mappa.recuperaCodMappa(Regione, Provincia, Comune, CAP);
+				codMappa = mappaDAO.recuperaCodMappa(Regione, Provincia, Comune, CAP);
 			} catch (SQLException | CodMappaNonTrovatoException e) {
 				e.printStackTrace(); //DA SCRIVERE ERRORE
 				flagErrore = true;
 			}
 			
 			if(!flagErrore) {
-				bufferLocale = new Locale(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni, codMappa);
+				locale = new Business(nomeBusiness, indirizzo, telefono, partitaIVA, tipoBusiness, raffinazioni, codMappa);
 				schermataPrincipaleFrame.mostraPubblicaBusiness2();
 			}
 		}
 		
 		public void aggiungiRegioneAModelloComboBoxPubblicaBusiness1() {
 			try {
-				for (String regione: mappa.prelevaRegione())
+				for (String regione: mappaDAO.prelevaRegione())
 					schermataPrincipaleFrame.aggiungiRegioneAModelloPubblicaBusiness1(regione);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -340,7 +340,7 @@ public class Controller {
 		public void aggiungiProvinciaAModelloComboBoxPubblicaBusiness1(String regione) {
 			schermataPrincipaleFrame.pulisciModelloProvinciaPubblicaBusiness1();
 			try {
-				for (String provincia: mappa.prelevaProvincieDiRegione(regione))
+				for (String provincia: mappaDAO.prelevaProvincieDiRegione(regione))
 					schermataPrincipaleFrame.aggiungiProvinciaAModelloPubblicaBusiness1(provincia);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -350,7 +350,7 @@ public class Controller {
 		public void aggiungiComuneAModelloComboBoxPubblicaBusiness1(String provincia) {
 			schermataPrincipaleFrame.pulisciModelloComunePubblicaBusiness1();
 			try {
-				for (String comune: mappa.prelevaComuneDiProvincia(provincia))
+				for (String comune: mappaDAO.prelevaComuneDiProvincia(provincia))
 					schermataPrincipaleFrame.aggiungiComuneAModelloPubblicaBusiness1(comune);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -360,7 +360,7 @@ public class Controller {
 		public void aggiungiCAPAModelloComboBoxPubblicaBusiness1(String comune) {
 			schermataPrincipaleFrame.pulisciModelloCAPPubblicaBusiness1();
 			try {
-				for (String CAP: mappa.prelevaCAPDiComune(comune))
+				for (String CAP: mappaDAO.prelevaCAPDiComune(comune))
 					schermataPrincipaleFrame.aggiungiCAPAModelloPubblicaBusiness1(CAP);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -369,10 +369,10 @@ public class Controller {
 		
 		public void modificaBusinessPubblicaBusiness1(String codBusiness) {
 			try {
-				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
-				bufferLocale.setModifica(true);
+				locale = businessDAO.recuperaBusinessCompletoDaCodBusiness(codBusiness);
+				locale.setModifica(true);
 				schermataPrincipaleFrame.mostraPubblicaBusiness1();
-				schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness1(bufferLocale);
+				schermataPrincipaleFrame.impostaBusinessPreesistentePubblicaBusiness1(locale);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -390,17 +390,17 @@ public class Controller {
 					flagErrore = true;
 				}
 				
-				if(bufferLocale.getNumeroImmagini() < 1) {
+				if(locale.getNumeroImmagini() < 1) {
 					schermataPrincipaleFrame.mostraErroreInserisciImmaginePubblicaBusiness2();
 					flagErrore = true;
 				}
 
 				if(!flagErrore) {
-					bufferLocale.setDescrizione(testoDescriviBusiness);
+					locale.setDescrizione(testoDescriviBusiness);
 					if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 						try {
 							inserisciBusinessInDatabase();
-							inserisciRaffinazioniBusiness(business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA()), bufferLocale.getRaffinazioni());
+							inserisciRaffinazioniBusiness(businessDAO.recuperaCodiceBusinessDaPartitaIVA(locale.getPartitaIVA()), locale.getRaffinazioni());
 							inserisciListaImmaginiInDatabase();
 							schermataPrincipaleFrame.mostraPubblicaBusiness3();
 						} catch (SQLException | CodiceBusinessNonTrovatoException e) {
@@ -412,7 +412,7 @@ public class Controller {
 		
 		public void inserisciBusinessInDatabase() {
 			try {
-				business.inserisciBusiness(bufferLocale, utente.getcodUtente());
+				businessDAO.inserisciBusiness(locale, utente.getcodUtente());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -420,11 +420,11 @@ public class Controller {
 		
 		public void inserisciListaImmaginiInDatabase() {
 			try {
-				String codBusiness = business.recuperaCodiceBusinessDaPartitaIVA(bufferLocale.getPartitaIVA());
+				String codBusiness = businessDAO.recuperaCodiceBusinessDaPartitaIVA(locale.getPartitaIVA());
 				
-				for(String immagine: bufferLocale.getListaImmagini()) {
+				for(String immagine: locale.getListaImmagini()) {
 					try {
-						business.inserisciImmagine(codBusiness, immagine);
+						businessDAO.inserisciImmagine(codBusiness, immagine);
 					}catch(SQLException e) {
 						//Se viene restituito un errore quell'immagine e' duplicata e quindi non e' aggiunta
 					}
@@ -436,7 +436,7 @@ public class Controller {
 		
 		public boolean caricaImmagineLocale(File nuovaImmagine) {
 			if(haEstensioneImmagine(nuovaImmagine)) {
-				bufferLocale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+				locale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
 				return true;
 			}
 			
@@ -445,7 +445,7 @@ public class Controller {
 		
 		public void inserisciRaffinazioniBusiness(String codBusiness, String raffinazioni) {
 			try {
-				business.inserisciRaffinazioni(codBusiness, raffinazioni);
+				businessDAO.inserisciRaffinazioni(codBusiness, raffinazioni);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -456,8 +456,8 @@ public class Controller {
 		//GESTISCI BUSINESS
 		public void controllaDocumentiUtente() {
 			try {
-				if(utente.controllaDocumentiUtente()) {
-					bufferLocale = null;
+				if(utenteDAO.controllaDocumentiUtente(utente.getcodUtente())) {
+					locale = null;
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
 				}else
 					schermataPrincipaleFrame.mostraVerificaPubblicaBusiness();
@@ -470,7 +470,7 @@ public class Controller {
 		
 		public void recuperaBusinessUtente() {
 			try {
-				for (Locale recuperato : business.recuperaBusinessDaCodUtente(utente.getcodUtente()))
+				for (Business recuperato : businessDAO.recuperaBusinessDaCodUtente(utente.getcodUtente()))
 					schermataPrincipaleFrame.aggiungiBusinessGestisciBusiness(new LocaleGUI(recuperato, this, true));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -481,7 +481,7 @@ public class Controller {
 		//VERIFICA PUBBLICA BUSINESS
 		public boolean caricaDocumentoFronteInBuffer(File documentoFronte) {
 			if(haEstensioneImmagine(documentoFronte)) {
-				bufferDocumenti.setFronteDocumento(documentoFronte);
+				utente.setFronteDocumento(documentoFronte);
 				return true;
 			}
 			
@@ -490,7 +490,7 @@ public class Controller {
 		
 		public boolean caricaDocumentoRetroInBuffer(File documentoRetro) {
 			if(haEstensioneImmagine(documentoRetro)) {
-				bufferDocumenti.setRetroDocumento(documentoRetro);
+				utente.setRetroDocumento(documentoRetro);
 				return true;
 			}
 			
@@ -499,8 +499,8 @@ public class Controller {
 		
 		private void caricaDocumentiInDatabase() {
 			try {
-				utente.inserisciDocumentiUtente(utente.getcodUtente(), bufferDocumenti.getFronteDocumento(),
-						bufferDocumenti.getRetroDocumento());
+				utenteDAO.inserisciDocumentiUtente(utente.getcodUtente(), utente.getFronteDocumento(),
+						utente.getRetroDocumento());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -511,10 +511,10 @@ public class Controller {
 			String codUtente;
 			try {
 				codUtente = utente.getcodUtente();
-				utente.generaCodiceVerifica(codUtente);
+				utenteDAO.generaCodiceVerifica(codUtente);
 				
 				final String oggetto = "Placehub - Verifica i tuoi documenti!";
-				mail.inviaEmail(utente.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utente.recuperaCodiceVerifica(codUtente)));
+				mail.inviaEmail(utenteDAO.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utenteDAO.recuperaCodiceVerifica(codUtente)));
 				
 				schermataPrincipaleFrame.disabilitaCaricaDocumentoVerificaPubblicaBusiness();
 				schermataPrincipaleFrame.mostraEmailInviataVerificaPubblicaBusiness();
@@ -529,7 +529,7 @@ public class Controller {
 		
 		public void controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(String codiceVerifica) {
 			try {
-				if(utente.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
+				if(utenteDAO.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
 					caricaDocumentiInDatabase();
 			} catch (SQLException | CodiceVerificaNonValidoException e) {
@@ -541,18 +541,17 @@ public class Controller {
 		public void vaiAVisitaBusiness(String codBusiness) {
 			try {
 				//Recupero Business completo
-				bufferLocale = business.recuperaBusinessCompletoDaCodBusiness(codBusiness);
-				bufferLocale.setListaRecensioni(recensione.recuperaRecensioniBusiness(codBusiness));
-				bufferLocale.setLuogo(mappa.recuperaCittaDaCodMappa(bufferLocale.getCodMappa()));
+				locale = businessDAO.recuperaBusinessCompletoDaCodBusiness(codBusiness);
+				locale.setLuogo(mappaDAO.recuperaCittaDaCodMappa(locale.getCodMappa()));
 				
-				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(bufferLocale);
+				schermataPrincipaleFrame.configuraPannelloVisitaBusiness(locale, recensioneDAO.recuperaRecensioniBusiness(codBusiness));
 				
 				//Il proprietario non puo' auto-recensirsi
-				if(utente.getcodUtente().equals(business.recuperaProprietarioLocale(codBusiness)))
+				if(utente.getcodUtente().equals(businessDAO.recuperaProprietarioLocale(codBusiness)))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
 				
 				//Non posso avere recensioni duplicate
-				if(recensione.utenteConRecensione(utente.getcodUtente(), codBusiness))
+				if(recensioneDAO.utenteConRecensione(utente.getcodUtente(), codBusiness))
 					schermataPrincipaleFrame.disattivaBottoneRecensioneVisitaBusiness();
 				
 				schermataPrincipaleFrame.mostraVisitaBusiness();
@@ -562,14 +561,14 @@ public class Controller {
 		}
 		
 		public void vaiAScriviRecensione() {
-			bufferRecensione = new Recensione(utente.getcodUtente(), bufferLocale.getCodBusiness());
+			recensione = new Recensione(utente.getcodUtente(), locale.getCodBusiness());
 			schermataPrincipaleFrame.mostraScriviRecensione();
 		}
 
 		//RECENSISCI
 		public boolean caricaImmagineRecensione(File nuovaImmagine) {
 			if(haEstensioneImmagine(nuovaImmagine)) {
-				bufferRecensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
+				recensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
 				return true;
 			}
 			
@@ -583,10 +582,10 @@ public class Controller {
 				schermataPrincipaleFrame.mostraErroreStelleMancateScriviRecensione();
 			}else if(JOptionPane.showConfirmDialog(null, "Confermi i dati inseriti?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				try {
-					bufferRecensione.setTestoRecensione(testo);
-					bufferRecensione.setStelle(stelle);
+					recensione.setTestoRecensione(testo);
+					recensione.setStelle(stelle);
 					
-					recensione.inserisciRecensione(bufferRecensione);
+					recensioneDAO.inserisciRecensione(recensione);
 					
 					schermataPrincipaleFrame.mostraHomepage();
 				} catch (SQLException e) {

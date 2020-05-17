@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import gestione.Controller;
-import oggetti.Recensione;
+import oggettiServizio.Recensione;
 
 public class RecensioneDAO {
 	public void inserisciRecensione(Recensione recensione) throws SQLException {	
@@ -55,9 +55,9 @@ public class RecensioneDAO {
 	}
 	
 	public ArrayList<Recensione> recuperaRecensioniBusiness(String codBusiness) throws SQLException {
-		 ArrayList<Recensione> recensioni = new  ArrayList<Recensione>();
+		ArrayList<Recensione> recensioni = new  ArrayList<Recensione>();
 		 
-		String sql = "SELECT r.testo,r.stelle,r.codrecensione,u.username FROM recensione r, Utente u WHERE r.codUtente = u.codUtente AND r.codBusiness = ?";
+		String sql = "SELECT r.testo,r.stelle,r.codrecensione,u.username,r.codUtente FROM recensione r, Utente u WHERE r.codUtente = u.codUtente AND r.codBusiness = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setInt(1, Integer.parseInt(codBusiness));
@@ -65,7 +65,7 @@ public class RecensioneDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next()) {
-			Recensione recensione = new Recensione(codBusiness);
+			Recensione recensione = new Recensione(datiRecuperati.getString("codUtente"), codBusiness);
 			recensione.setCodRecensione(datiRecuperati.getString("codrecensione"));
 			recensione.setTestoRecensione(datiRecuperati.getString("testo"));
 			recensione.setStelle(datiRecuperati.getInt("stelle"));

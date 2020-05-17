@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import errori.CodMappaNonTrovatoException;
+import eccezioni.CodMappaNonTrovatoException;
 import gestione.Controller;
 
 public class MappaDAO {

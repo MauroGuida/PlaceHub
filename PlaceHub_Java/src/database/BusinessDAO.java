@@ -5,15 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import errori.CodiceBusinessNonTrovatoException;
+import eccezioni.CodiceBusinessNonTrovatoException;
 import gestione.Controller;
-import oggetti.Locale;
+import oggettiServizio.Business;
 
 public class BusinessDAO {
-	private ArrayList<Locale> locali = new ArrayList<Locale>();
-
-	public ArrayList<Locale> ricercaInVoga() throws SQLException {
-		locali.clear();
+	public ArrayList<Business> ricercaInVoga() throws SQLException {
+		ArrayList<Business> locali = new ArrayList<Business>();
 
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
 				"FROM Business B, ImmagineProprieta I " + 
@@ -24,46 +22,40 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next())
-			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getDouble(4),
+			locali.add(new Business(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getDouble(4),
 					datiRecuperati.getString(5)));
 
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaRistoranti() throws SQLException {
-		locali.clear();
-		
-		recuperaLocaliDaTipo(new String("Ristorante"));
+	public ArrayList<Business> ricercaRistoranti() throws SQLException {	
+		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Ristorante"));
 		
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaAttrazioni() throws SQLException {
-		locali.clear();
-		
-		recuperaLocaliDaTipo(new String("Attrazione"));
+	public ArrayList<Business> ricercaAttrazioni() throws SQLException {
+		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Attrazione"));
 		
 		return locali;
 	}
 	
-	public ArrayList<Locale> ricercaAlloggi() throws SQLException {
-		locali.clear();
-		
-		recuperaLocaliDaTipo(new String("Alloggio"));
+	public ArrayList<Business> ricercaAlloggi() throws SQLException {
+		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Alloggio"));
 		
 		return locali;
 	}
 	
 	// DA GESTIRE
-	public ArrayList<Locale> ricercaLocali(String campoCosa, String campoDove) throws SQLException{
-		locali.clear();
-		
-		recuperaLocaliDaRicerca(campoCosa, campoDove);
+	public ArrayList<Business> ricercaLocali(String campoCosa, String campoDove) throws SQLException{
+		ArrayList<Business> locali = recuperaLocaliDaRicerca(campoCosa, campoDove);
 		
 		return locali;
 	}
 	
-	public void recuperaLocaliDaTipo(String tipo) throws SQLException {
+	public ArrayList<Business> recuperaLocaliDaTipo(String tipo) throws SQLException {
+		ArrayList<Business> locali = new ArrayList<Business>();
+		
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
 				"FROM Business B, ImmagineProprieta I " + 
 				"WHERE B.codBusiness = I.codBusiness AND " + 
@@ -75,12 +67,16 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next())
-			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+			locali.add(new Business(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
 					datiRecuperati.getString(5)));
+		
+		return locali;
 	}
 	
 	// DA GESTIRE
-	public void recuperaLocaliDaRicerca(String campoCosa, String campoDove) throws SQLException {
+	public ArrayList<Business> recuperaLocaliDaRicerca(String campoCosa, String campoDove) throws SQLException {
+		ArrayList<Business> locali = new ArrayList<Business>();
+		
 		String sql = "SELECT codBusiness, Nome, Indirizzo, Stelle, URL " +
 					 "FROM ricercaLocale( ? , ? ) " +
 					 "AS Locali(codBusiness INTEGER ,Nome VARCHAR(50),Indirizzo VARCHAR(100),Stelle NUMERIC,URL VARCHAR(1000))";
@@ -91,11 +87,13 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next())
-			locali.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+			locali.add(new Business(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
 					datiRecuperati.getString(5)));
+		
+		return locali;
 	}
 	
-	public Locale recuperaBusinessCompletoDaCodBusiness(String codBusiness) throws SQLException {
+	public Business recuperaBusinessCompletoDaCodBusiness(String codBusiness) throws SQLException {
 		//Recupero Informazioni
 		String sql = "SELECT Nome, Indirizzo, Telefono, PartitaIVA, Descrizione, Stelle, tipo, codMappa FROM Business WHERE codBusiness = ?";
 		PreparedStatement query;
@@ -104,7 +102,7 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		datiRecuperati.next();
-		Locale risultato = new Locale();
+		Business risultato = new Business();
 		
 		risultato.setCodBusiness(codBusiness);
 		risultato.setNome(datiRecuperati.getString(1));
@@ -144,7 +142,7 @@ public class BusinessDAO {
 		return risultato;
 	}
 	
-	public void inserisciBusiness(Locale bufferLocale, String codUtente) throws SQLException {
+	public void inserisciBusiness(Business bufferLocale, String codUtente) throws SQLException {
 		String sql = "CALL inserisciBusiness(?,?,?,?,?,?,?,?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -194,8 +192,8 @@ public class BusinessDAO {
 			throw new CodiceBusinessNonTrovatoException();
 	}
 	
-	public ArrayList<Locale> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
-		ArrayList<Locale> recuperato = new ArrayList<Locale>();
+	public ArrayList<Business> recuperaBusinessDaCodUtente(String codUtente) throws SQLException {
+		ArrayList<Business> recuperato = new ArrayList<Business>();
 		
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
 				"FROM Business B, ImmagineProprieta I " + 
@@ -206,7 +204,7 @@ public class BusinessDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		while(datiRecuperati.next())
-			recuperato.add(new Locale(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
+			recuperato.add(new Business(datiRecuperati.getString(1), datiRecuperati.getString(2), datiRecuperati.getString(3), datiRecuperati.getFloat(4),
 					datiRecuperati.getString(5)));
 		
 		

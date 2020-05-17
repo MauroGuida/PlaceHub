@@ -5,21 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import errori.CodiceVerificaNonTrovatoException;
-import errori.CodiceVerificaNonValidoException;
-import errori.EmailSconosciutaException;
-import errori.UsernameOPasswordErratiException;
+import eccezioni.CodiceVerificaNonTrovatoException;
+import eccezioni.CodiceVerificaNonValidoException;
+import eccezioni.EmailSconosciutaException;
+import eccezioni.UsernameOPasswordErratiException;
 import gestione.Controller;
 
 public class UtenteDAO {
-	
-	private String codUtente = null;
-
-	public String getcodUtente() {
-		return codUtente;
-	}
-	
-	public void login(String Username, char[] Password) throws UsernameOPasswordErratiException, SQLException{
+	public String login(String Username, char[] Password) throws UsernameOPasswordErratiException, SQLException{
 		String sql = "SELECT login(?, ?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -28,10 +21,12 @@ public class UtenteDAO {
 		ResultSet datiRecuperati = query.executeQuery();
 		
 		datiRecuperati.next();
-		codUtente = datiRecuperati.getString(1);
+		String codUtente = datiRecuperati.getString(1);
 		
 		if(codUtente == null || codUtente.isBlank() || codUtente.isEmpty())
 			throw new UsernameOPasswordErratiException();
+		
+		return codUtente;
 	}
 	
 	public void registrati(String Username, String Nome, String Cognome, String Email, String DataDiNascita, char[] Password) throws SQLException {
@@ -80,7 +75,7 @@ public class UtenteDAO {
 		return datiRecuperati.getString(1);
 	}
 	
-	public String recuperaCodiceUtenteDaEmail(String Email) throws SQLException, EmailSconosciutaException{	
+	public String recuperaCodiceUtenteDaEmail(String codUtente, String Email) throws SQLException, EmailSconosciutaException{	
 		String sql = "SELECT codUtente FROM utente WHERE email = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -99,7 +94,7 @@ public class UtenteDAO {
 	* Richiede che sia presente nella variabile codUtente della classe un valore codUtente valido,
 	* una valore corretto viene impostato dalla funzione recuperaCodiceUtenteDaEmail
 	*/
-	public void impostaPassword(String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
+	public void impostaPassword(String codUtente, String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
 		if(controllaCodiceVerrifica(codUtente, codiceVerifica)){
 			String sql = "CALL impostaNuovaPassword(?, ?)";
 			PreparedStatement query;
@@ -126,7 +121,7 @@ public class UtenteDAO {
 			throw new CodiceVerificaNonValidoException();
 	}
 	
-	public boolean controllaDocumentiUtente() throws SQLException {
+	public boolean controllaDocumentiUtente(String codUtente) throws SQLException {
 		String sql = "SELECT controllaDocumentiUtente(?)";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql); 
