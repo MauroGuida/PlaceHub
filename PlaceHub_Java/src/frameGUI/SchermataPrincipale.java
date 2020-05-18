@@ -53,10 +53,10 @@ public class SchermataPrincipale extends JFrame {
 		this.ctrl = ctrl;
 		
 		generaLayout();
-
 		generaSideBar();
 		generaBottoni();
 		
+
 		generaPannelloScriviRecensione(ctrl);
 		generapannelloRicerche();
 		generaPannelloVerificaPubblicaBusiness(ctrl);
@@ -98,6 +98,24 @@ public class SchermataPrincipale extends JFrame {
 						.addComponent(pannelloPubblicaBusiness2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 		);
 		getContentPane().setLayout(groupLayout);
+	}
+	
+	
+	private void generaLayout() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(1300,700);
+		setMinimumSize(new Dimension(1100,650));
+		setLocationRelativeTo(null);
+		setUndecorated(true);
+		setResizable(true);
+		getContentPane().setBackground(Color.WHITE);
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
+		
+		
+		ComponentResizer componentResizer = new ComponentResizer();
+		componentResizer.registerComponent(this);
+		componentResizer.setSnapSize(new Dimension(5,5));
+		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 	}
 
 
@@ -158,24 +176,6 @@ public class SchermataPrincipale extends JFrame {
 	private void generaSideBar() {
 		pannelloSideBar = new SideBar();
 		pannelloSideBar.setBounds(0, 0, 250, 650);
-	}
-
-
-	private void generaLayout() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1100,650);
-		setMinimumSize(new Dimension(1100,650));
-		setLocationRelativeTo(null);
-		setUndecorated(true);
-		setResizable(true);
-		getContentPane().setBackground(Color.WHITE);
-		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(51,51,51)));
-		
-		
-		ComponentResizer componentResizer = new ComponentResizer();
-		componentResizer.registerComponent(this);
-		componentResizer.setSnapSize(new Dimension(5,5));
-		componentResizer.setDragInsets(new Insets(5, 5, 5, 5));
 	}
 	
 	
