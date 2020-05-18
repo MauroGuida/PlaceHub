@@ -201,9 +201,7 @@ public class Controller {
 			try {
 				for (Business locale : businessDAO.ricercaInVoga())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
-		
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -318,7 +316,7 @@ public class Controller {
 			try {
 				codMappa = mappaDAO.recuperaCodMappa(Regione, Provincia, Comune, CAP);
 			} catch (SQLException | CodMappaNonTrovatoException e) {
-				e.printStackTrace(); //DA SCRIVERE ERRORE
+				e.printStackTrace();
 				flagErrore = true;
 			}
 			
@@ -502,7 +500,6 @@ public class Controller {
 				utenteDAO.inserisciDocumentiUtente(utente.getcodUtente(), utente.getFronteDocumento(),
 						utente.getRetroDocumento());
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

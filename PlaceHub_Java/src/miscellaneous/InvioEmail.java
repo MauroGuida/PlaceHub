@@ -21,18 +21,12 @@ public class InvioEmail {
             }
           });
 
-
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("placehub@gmx.com"));
-        message.setRecipients(Message.RecipientType.TO,
-        InternetAddress.parse(Email));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(Email));
         message.setSubject(Oggetto);
         message.setContent(Corpo, "text/html");
-      //message.setText(Corpo);
 
         Transport.send(message);
-
-        System.out.println("Done");
-
 	}
 }
