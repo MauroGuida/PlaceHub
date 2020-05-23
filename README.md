@@ -1,8 +1,8 @@
 # PlaceHub
 
-Informazioni sulle Path: \newline
-Database: Sorgente SQL, Sorgente ClassDiagram, CSV Comuni Italiani, Script Creazione Database \newline
-DocumentazioneJava: Sorgente Documentazione, Documentazione PDF \newline
-DocumentazioneSQL: Sorgente Documentazione, Documentazione PDF \newline
-Logo PlaceHub: Sorgente Logo, Logo PNG \newline
-PlaceHub_Java: Sorgente Java dell'applicativo \newline
+Informazioni sulle Path:  
+Database: Sorgente SQL, Sorgente ClassDiagram, CSV Comuni Italiani, Script Creazione Database  
+DocumentazioneJava: Sorgente Documentazione, Documentazione PDF  
+DocumentazioneSQL: Sorgente Documentazione, Documentazione PDF  
+Logo PlaceHub: Sorgente Logo, Logo PNG  
+PlaceHub_Java: Sorgente Java dell'applicativo
