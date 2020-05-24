@@ -136,7 +136,7 @@
 											"width": 207,
 											"height": 13,
 											"underline": true,
-											"text": "+CodBusiness",
+											"text": "+CodBusiness: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -153,7 +153,7 @@
 											"top": 453,
 											"width": 207,
 											"height": 13,
-											"text": "+CodUtente",
+											"text": "+CodUtente: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -170,7 +170,7 @@
 											"top": 468,
 											"width": 207,
 											"height": 13,
-											"text": "+CodMappa",
+											"text": "+CodMappa: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -187,7 +187,7 @@
 											"top": 483,
 											"width": 207,
 											"height": 13,
-											"text": "+Nome",
+											"text": "+Nome: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -204,7 +204,7 @@
 											"top": 498,
 											"width": 207,
 											"height": 13,
-											"text": "+Indirizzo",
+											"text": "+Indirizzo: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -221,7 +221,7 @@
 											"top": 513,
 											"width": 207,
 											"height": 13,
-											"text": "+Partita IVA",
+											"text": "+Partita IVA: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -238,7 +238,7 @@
 											"top": 528,
 											"width": 207,
 											"height": 13,
-											"text": "+Tipo: Enum TipoAttività",
+											"text": "+Tipo: TipoBusiness",
 											"horizontalAlignment": 0
 										},
 										{
@@ -255,7 +255,7 @@
 											"top": 543,
 											"width": 207,
 											"height": 13,
-											"text": "+Descrizione",
+											"text": "+Descrizione: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -272,7 +272,7 @@
 											"top": 558,
 											"width": 207,
 											"height": 13,
-											"text": "+Stelle",
+											"text": "+Stelle: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -468,7 +468,7 @@
 											"width": 208.48876953125,
 											"height": 13,
 											"underline": true,
-											"text": "+CodUtente",
+											"text": "+CodUtente: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -485,7 +485,7 @@
 											"top": 124,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Username",
+											"text": "+Username: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -502,7 +502,7 @@
 											"top": 139,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Nome",
+											"text": "+Nome: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -519,7 +519,7 @@
 											"top": 154,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Cognome",
+											"text": "+Cognome: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -536,7 +536,7 @@
 											"top": 169,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Email",
+											"text": "+Email: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -553,7 +553,7 @@
 											"top": 184,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Data di Nascita",
+											"text": "+Data di Nascita: Date",
 											"horizontalAlignment": 0
 										},
 										{
@@ -570,7 +570,7 @@
 											"top": 199,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Password",
+											"text": "+Password: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -604,7 +604,7 @@
 											"top": 229,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+codiceVerifica",
+											"text": "+codiceVerifica: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -621,7 +621,7 @@
 											"top": 244,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Fronte documento",
+											"text": "+Fronte documento: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -638,7 +638,7 @@
 											"top": 259,
 											"width": 208.48876953125,
 											"height": 13,
-											"text": "+Retro documento",
+											"text": "+Retro documento: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1110,7 +1110,7 @@
 											"top": 446,
 											"width": 247,
 											"height": 13,
-											"text": "+CodBusiness",
+											"text": "+CodBusiness: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1127,7 +1127,7 @@
 											"top": 461,
 											"width": 247,
 											"height": 13,
-											"text": "+nomeRaffinazione: Enum TipiAffinazione",
+											"text": "+nomeRaffinazione: TipiRaffinazione",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1600,7 +1600,7 @@
 											"width": 183,
 											"height": 13,
 											"underline": true,
-											"text": "+CodRecensione",
+											"text": "+CodRecensione: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1617,7 +1617,7 @@
 											"top": 245,
 											"width": 183,
 											"height": 13,
-											"text": "+CodUtente",
+											"text": "+CodUtente: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1634,7 +1634,7 @@
 											"top": 260,
 											"width": 183,
 											"height": 13,
-											"text": "+CodBusiness",
+											"text": "+CodBusiness: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1651,7 +1651,7 @@
 											"top": 275,
 											"width": 183,
 											"height": 13,
-											"text": "+Testo",
+											"text": "+Testo: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1668,7 +1668,7 @@
 											"top": 290,
 											"width": 183,
 											"height": 13,
-											"text": "+Stelle",
+											"text": "+Stelle: Numeric",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3085,7 +3085,7 @@
 											"top": 550,
 											"width": 159,
 											"height": 13,
-											"text": "+CodBusiness",
+											"text": "+CodBusiness: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3102,7 +3102,7 @@
 											"top": 565,
 											"width": 159,
 											"height": 13,
-											"text": "+Url",
+											"text": "+Url: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3570,7 +3570,7 @@
 											"top": 510,
 											"width": 143,
 											"height": 13,
-											"text": "+CodRecensione",
+											"text": "+CodRecensione: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3587,7 +3587,7 @@
 											"top": 525,
 											"width": 143,
 											"height": 13,
-											"text": "+Url",
+											"text": "+Url: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4056,7 +4056,7 @@
 											"width": 127,
 											"height": 13,
 											"underline": true,
-											"text": "+CodMappa",
+											"text": "+CodMappa: Serial",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4073,7 +4073,7 @@
 											"top": 733,
 											"width": 127,
 											"height": 13,
-											"text": "+Regione",
+											"text": "+Regione: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4090,7 +4090,7 @@
 											"top": 748,
 											"width": 127,
 											"height": 13,
-											"text": "+Provincia",
+											"text": "+Provincia: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4107,7 +4107,7 @@
 											"top": 763,
 											"width": 127,
 											"height": 13,
-											"text": "+Comune",
+											"text": "+Comune: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4124,7 +4124,7 @@
 											"top": 778,
 											"width": 127,
 											"height": 13,
-											"text": "+CAP",
+											"text": "+CAP: String",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4561,7 +4561,7 @@
 							},
 							"name": "CodBusiness",
 							"isStatic": true,
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4570,7 +4570,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "CodUtente",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4579,7 +4579,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "CodMappa",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4588,7 +4588,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Nome",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4597,7 +4597,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Indirizzo",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4606,7 +4606,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Partita IVA",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4615,7 +4615,9 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Tipo",
-							"type": "Enum TipoAttività"
+							"type": {
+								"$ref": "AAAAAAFwtMaWZlIWsVI="
+							}
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4624,7 +4626,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Descrizione",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4633,7 +4635,7 @@
 								"$ref": "AAAAAAFwtI8l6ONfqBw="
 							},
 							"name": "Stelle",
-							"type": ""
+							"type": "String"
 						}
 					]
 				},
@@ -4719,7 +4721,7 @@
 							},
 							"name": "CodUtente",
 							"isStatic": true,
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4728,7 +4730,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Username",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4737,7 +4739,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Nome",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4746,7 +4748,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Cognome",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4755,7 +4757,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Email",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4764,7 +4766,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Data di Nascita",
-							"type": ""
+							"type": "Date"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4773,7 +4775,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Password",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4791,7 +4793,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "codiceVerifica",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4800,7 +4802,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Fronte documento",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4809,7 +4811,7 @@
 								"$ref": "AAAAAAFwtJSJsuT/+hE="
 							},
 							"name": "Retro documento",
-							"type": ""
+							"type": "String"
 						}
 					]
 				},
@@ -4828,7 +4830,7 @@
 								"$ref": "AAAAAAFwtLZ4Qex6pXA="
 							},
 							"name": "CodBusiness",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4837,7 +4839,9 @@
 								"$ref": "AAAAAAFwtLZ4Qex6pXA="
 							},
 							"name": "nomeRaffinazione",
-							"type": "Enum TipiAffinazione"
+							"type": {
+								"$ref": "AAAAAAFwtMgMBFe68ws="
+							}
 						}
 					]
 				},
@@ -4923,7 +4927,7 @@
 							},
 							"name": "CodRecensione",
 							"isStatic": true,
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4932,7 +4936,7 @@
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
 							"name": "CodUtente",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4941,7 +4945,7 @@
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
 							"name": "CodBusiness",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4950,7 +4954,7 @@
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
 							"name": "Testo",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4959,7 +4963,7 @@
 								"$ref": "AAAAAAFwtLoIvvFnQ1U="
 							},
 							"name": "Stelle",
-							"type": ""
+							"type": "Numeric"
 						}
 					]
 				},
@@ -5126,7 +5130,7 @@
 								"$ref": "AAAAAAFwtNN4qXAGmz4="
 							},
 							"name": "CodBusiness",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5135,7 +5139,7 @@
 								"$ref": "AAAAAAFwtNN4qXAGmz4="
 							},
 							"name": "Url",
-							"type": ""
+							"type": "String"
 						}
 					]
 				},
@@ -5215,7 +5219,7 @@
 								"$ref": "AAAAAAFwtNuW+JHgIkw="
 							},
 							"name": "CodRecensione",
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5224,7 +5228,7 @@
 								"$ref": "AAAAAAFwtNuW+JHgIkw="
 							},
 							"name": "Url",
-							"type": ""
+							"type": "String"
 						}
 					]
 				},
@@ -5358,7 +5362,7 @@
 							},
 							"name": "CodMappa",
 							"isStatic": true,
-							"type": ""
+							"type": "Serial"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5367,7 +5371,7 @@
 								"$ref": "AAAAAAFxJgsJSVOj6IA="
 							},
 							"name": "Regione",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5376,7 +5380,7 @@
 								"$ref": "AAAAAAFxJgsJSVOj6IA="
 							},
 							"name": "Provincia",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5385,7 +5389,7 @@
 								"$ref": "AAAAAAFxJgsJSVOj6IA="
 							},
 							"name": "Comune",
-							"type": ""
+							"type": "String"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5394,7 +5398,7 @@
 								"$ref": "AAAAAAFxJgsJSVOj6IA="
 							},
 							"name": "CAP",
-							"type": ""
+							"type": "String"
 						}
 					]
 				}
