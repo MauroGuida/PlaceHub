@@ -212,7 +212,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Business locale : businessDAO.ricercaRistoranti())
+				for (Business locale : businessDAO.recuperaLocaliDaTipo("Ristorante"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -223,7 +223,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Business locale : businessDAO.ricercaAttrazioni())
+				for (Business locale : businessDAO.recuperaLocaliDaTipo("Attrazione"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -234,7 +234,7 @@ public class Controller {
 			schermataPrincipaleFrame.svuotaRicerche();
 			
 			try {
-				for (Business locale : businessDAO.ricercaAlloggi())
+				for (Business locale : businessDAO.recuperaLocaliDaTipo("Alloggio"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -251,7 +251,7 @@ public class Controller {
 				if(campoDove.isEmpty() || campoDove.isBlank() || campoDove.equals("Dove?"))
 					campoDove = "";
 				
-				ArrayList<Business> locali = businessDAO.ricercaLocali(campoCosa, campoDove);
+				ArrayList<Business> locali = businessDAO.recuperaLocaliDaRicerca(campoCosa, campoDove);
 				if(locali.isEmpty())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new RicercaLocaleVuota());
 				else

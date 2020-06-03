@@ -13,8 +13,7 @@ public class Connessione {
 	}
 	
 	public void disconnetti() throws SQLException {
-		if(connessione != null)
-			connessione.close();
+		connessione.close();
 	}
 
 	public Connection getConnessione() {

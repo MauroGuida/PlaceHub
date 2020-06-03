@@ -28,30 +28,6 @@ public class BusinessDAO {
 		return locali;
 	}
 	
-	public ArrayList<Business> ricercaRistoranti() throws SQLException {	
-		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Ristorante"));
-		
-		return locali;
-	}
-	
-	public ArrayList<Business> ricercaAttrazioni() throws SQLException {
-		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Attrazione"));
-		
-		return locali;
-	}
-	
-	public ArrayList<Business> ricercaAlloggi() throws SQLException {
-		ArrayList<Business> locali = recuperaLocaliDaTipo(new String("Alloggio"));
-		
-		return locali;
-	}
-	
-	public ArrayList<Business> ricercaLocali(String campoCosa, String campoDove) throws SQLException{
-		ArrayList<Business> locali = recuperaLocaliDaRicerca(campoCosa, campoDove);
-		
-		return locali;
-	}
-	
 	public ArrayList<Business> recuperaLocaliDaTipo(String tipo) throws SQLException {
 		ArrayList<Business> locali = new ArrayList<Business>();
 		
@@ -72,7 +48,6 @@ public class BusinessDAO {
 		return locali;
 	}
 	
-	// DA GESTIRE
 	public ArrayList<Business> recuperaLocaliDaRicerca(String campoCosa, String campoDove) throws SQLException {
 		ArrayList<Business> locali = new ArrayList<Business>();
 		
