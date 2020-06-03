@@ -46,7 +46,6 @@ public class BusinessDAO {
 		return locali;
 	}
 	
-	// DA GESTIRE
 	public ArrayList<Business> ricercaLocali(String campoCosa, String campoDove) throws SQLException{
 		ArrayList<Business> locali = recuperaLocaliDaRicerca(campoCosa, campoDove);
 		
