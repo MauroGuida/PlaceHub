@@ -39,7 +39,7 @@ public class SchermataAccesso extends JFrame {
 	public SchermataAccesso(Controller ctrl) {
 		this.ctrl=ctrl;
 		
-		generaLayout();
+		impostazioniFrame();
 		generaPannelloBackground();
 		generaPannelloBottoni();
 		generaPannelloLogin();
@@ -78,7 +78,7 @@ public class SchermataAccesso extends JFrame {
 		add(pannelloBottoni);
 	}
 	
-	private void generaLayout() {
+	private void impostazioniFrame() {
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		setShape(new RoundRectangle2D.Double(15, 0, 1100, 650, 30, 30));

@@ -85,7 +85,7 @@ public class Bottoni extends JPanel {
 		bottoneEsci.setFocusPainted(false);
 		bottoneEsci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				Controller.chiudiSchermataPrincipale();
 			}
 		});
 		add(bottoneEsci);

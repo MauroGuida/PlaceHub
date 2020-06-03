@@ -62,14 +62,6 @@ public class Controller {
 		});
 	}
 	
-	public static SchermataAccesso getSchermataAccessoFrame() {
-		return schermataAccessoFrame;
-	}
-	
-	public static SchermataPrincipale getSchermataPrincipaleFrame() {
-		return schermataPrincipaleFrame;
-	}
-	
 	private Controller() {
 		try {
 			connessioneAlDatabase = new Connessione();
@@ -87,18 +79,19 @@ public class Controller {
 		}
 	}
 	
+	
+	public static SchermataAccesso getSchermataAccessoFrame() {
+		return schermataAccessoFrame;
+	}
+	
+	public static SchermataPrincipale getSchermataPrincipaleFrame() {
+		return schermataPrincipaleFrame;
+	}
+	
 	public static Connessione getConnessioneAlDatabase() {
 		return connessioneAlDatabase;
 	}
 	
-	
-	private boolean haEstensioneImmagine(File file) {
-		if(file != null && (file.getAbsolutePath().toLowerCase().contains(".jpg") || file.getAbsolutePath().toLowerCase().contains(".gif") ||
-				file.getAbsolutePath().toLowerCase().contains(".png") || file.getAbsolutePath().toLowerCase().contains(".jpeg"))){
-			return true;
-		}
-		return false;
-	}
 	
 	//SCHERMATA ACCESSO 
 	public void loginSchermataAccesso(String Username, char[] Password) {
@@ -192,6 +185,15 @@ public class Controller {
 	
 	
 	//SCHERMATA PRINCIPALE
+	public static void chiudiSchermataPrincipale() {
+		try {
+			connessioneAlDatabase.disconnetti();
+			schermataPrincipaleFrame.dispose();
+			System.exit(0);
+		} catch (SQLException e) {
+			System.exit(1);
+		}
+	}
 	
 	
 		//RICERCHE
@@ -595,4 +597,14 @@ public class Controller {
 			if(JOptionPane.showConfirmDialog(null, "I dati inseriti andranno persi, Confermi?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 				schermataPrincipaleFrame.mostraVisitaBusiness();
 		}
+
+		
+	// ACCESSORI
+	private boolean haEstensioneImmagine(File file) {
+		if(file != null && (file.getAbsolutePath().toLowerCase().contains(".jpg") || file.getAbsolutePath().toLowerCase().contains(".gif") ||
+				file.getAbsolutePath().toLowerCase().contains(".png") || file.getAbsolutePath().toLowerCase().contains(".jpeg"))){
+			return true;
+		}
+		return false;
+	}
 }

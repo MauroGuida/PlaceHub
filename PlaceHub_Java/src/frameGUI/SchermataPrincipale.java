@@ -14,6 +14,8 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -52,7 +54,7 @@ public class SchermataPrincipale extends JFrame {
 	public SchermataPrincipale(Controller ctrl) {
 		this.ctrl = ctrl;
 		
-		generaLayout();
+		impostazioniFrame();
 		generaSideBar();
 		generaBottoni();
 		
@@ -101,8 +103,15 @@ public class SchermataPrincipale extends JFrame {
 	}
 	
 	
-	private void generaLayout() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private void impostazioniFrame() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent event) {
+		        Controller.chiudiSchermataPrincipale();
+		    }
+		});
+		
 		setSize(1300,700);
 		setMinimumSize(new Dimension(1100,650));
 		setLocationRelativeTo(null);
