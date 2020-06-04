@@ -91,11 +91,6 @@ public class UtenteDAO {
 			throw new EmailSconosciutaException();
 	}
 	
-	
-	/**
-	* Richiede che sia presente nella variabile codUtente della classe un valore codUtente valido,
-	* una valore corretto viene impostato dalla funzione recuperaCodiceUtenteDaEmail
-	*/
 	public void impostaPassword(String codUtente, String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
 		if(controllaCodiceVerifica(codUtente, codiceVerifica)){
 			String sql = "CALL impostaNuovaPassword(?, ?)";

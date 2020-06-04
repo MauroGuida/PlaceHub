@@ -167,6 +167,10 @@ public class Controller {
 		}
 	}
 	
+	/**
+	* Richiede che nella classe utente sia presente un codUtente valido,
+	* una valore corretto viene impostato dalla funzione richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword
+	*/
 	public void impostaPassword(String codiceVerifica, char[] Password) {
 		try {
 			utenteDAO.impostaPassword(utente.getcodUtente(), codiceVerifica, Password);
