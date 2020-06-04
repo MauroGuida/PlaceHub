@@ -83,82 +83,82 @@
     </display>  
   </class>  
   <association id="10">    
-    <bendpoint x="147" y="413"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="11" name="connessioneAlDatabase">        
-        <position height="0" width="0" x="-173" y="-10"/>      
-      </attribute>      
-      <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-173" y="-10"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="13">    
-    <bendpoint x="361" y="1074"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="14" name="recensione">        
-        <position height="0" width="0" x="-173" y="-10"/>      
-      </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="16" width="23" x="285" y="1077"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="16">    
-    <bendpoint x="934" y="335"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="mappaDAO">        
-        <position height="0" width="0" x="-192" y="-6"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-192" y="-6"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <bendpoint x="357" y="684"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="20" name="utente">        
-        <position height="0" width="0" x="-173" y="-10"/>      
-      </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-173" y="-10"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="22">    
     <bendpoint x="1022" y="424"/>    
     <bendpoint x="1248" y="424"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="23" name="businessDAO">        
+      <attribute id="11" name="businessDAO">        
         <position height="18" width="75" x="1168" y="395"/>      
       </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
+      <multiplicity id="12" minimum="0" maximum="1">        
         <position height="16" width="23" x="1251" y="396"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="25">    
+  <association id="13">    
+    <bendpoint x="357" y="684"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="14" name="utente">        
+        <position height="0" width="0" x="-173" y="-10"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-173" y="-10"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="16">    
     <bendpoint x="949" y="905"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="26" name="locale">        
+      <attribute id="17" name="locale">        
         <position height="0" width="0" x="-179" y="-43"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="18" minimum="0" maximum="1">        
         <position height="0" width="0" x="-179" y="-43"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="19">    
+    <bendpoint x="327" y="300"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="20" name="recensioneDAO">        
+        <position height="0" width="0" x="-183" y="-11"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-183" y="-11"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <bendpoint x="147" y="413"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="23" name="connessioneAlDatabase">        
+        <position height="0" width="0" x="-173" y="-10"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-173" y="-10"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <bendpoint x="361" y="1074"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="26" name="recensione">        
+        <position height="0" width="0" x="-173" y="-10"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="16" width="23" x="285" y="1077"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="28">    
@@ -174,16 +174,16 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="31">    
-    <bendpoint x="327" y="300"/>    
+    <bendpoint x="934" y="335"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="32" name="recensioneDAO">        
-        <position height="0" width="0" x="-183" y="-11"/>      
+      <attribute id="32" name="mappaDAO">        
+        <position height="0" width="0" x="-192" y="-6"/>      
       </attribute>      
       <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-183" y="-11"/>      
+        <position height="0" width="0" x="-192" y="-6"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

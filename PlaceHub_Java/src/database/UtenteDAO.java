@@ -97,7 +97,7 @@ public class UtenteDAO {
 	* una valore corretto viene impostato dalla funzione recuperaCodiceUtenteDaEmail
 	*/
 	public void impostaPassword(String codUtente, String codiceVerifica, char[] Password) throws SQLException, CodiceVerificaNonValidoException {
-		if(controllaCodiceVerrifica(codUtente, codiceVerifica)){
+		if(controllaCodiceVerifica(codUtente, codiceVerifica)){
 			String sql = "CALL impostaNuovaPassword(?, ?)";
 			PreparedStatement query;
 			query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
@@ -107,7 +107,7 @@ public class UtenteDAO {
 		}
 	}
 	
-	public boolean controllaCodiceVerrifica(String codUtente, String codiceVerifica) throws SQLException, CodiceVerificaNonValidoException {
+	public boolean controllaCodiceVerifica(String codUtente, String codiceVerifica) throws SQLException, CodiceVerificaNonValidoException {
 		String sql = "SELECT controllacodiceverifica(?, ?)";
 		PreparedStatement queryVerifica;
 		queryVerifica = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);

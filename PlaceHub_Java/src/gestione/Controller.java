@@ -528,7 +528,7 @@ public class Controller {
 		
 		public void controllaCodiceVerificaECaricaDocumentiVerificaPubblicaBusiness(String codiceVerifica) {
 			try {
-				if(utenteDAO.controllaCodiceVerrifica(utente.getcodUtente(), codiceVerifica))
+				if(utenteDAO.controllaCodiceVerifica(utente.getcodUtente(), codiceVerifica))
 					schermataPrincipaleFrame.mostraPubblicaBusiness1();
 					caricaDocumentiInDatabase();
 			} catch (SQLException | CodiceVerificaNonValidoException e) {
