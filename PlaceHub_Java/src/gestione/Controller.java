@@ -146,7 +146,8 @@ public class Controller {
 	
 	public void richediGenerazioneCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			utenteDAO.generaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(utente.getcodUtente(), email));
+			utente.setCodUtente(utenteDAO.recuperaCodiceUtenteDaEmail(email)); // Nella classe utente viene impostato il codice dell'utente recuperato
+			utenteDAO.generaCodiceVerifica(utente.getcodUtente());
 		} catch(EmailSconosciutaException e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
 		} catch (SQLException e) {
@@ -157,20 +158,19 @@ public class Controller {
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
 			final String oggetto = "Placehub - Reimposta password!";
-			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(utente.getcodUtente(), email))));
+			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(email))));
 			
 			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
 			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
 		} catch (MessagingException | SQLException | CodiceVerificaNonTrovatoException | EmailSconosciutaException  e) {
 			schermataAccessoFrame.mostraErroreReimpostaPassword1();
-			
-			e.printStackTrace();
 		}
 	}
 	
 	public void impostaPassword(String codiceVerifica, char[] Password) {
 		try {
 			utenteDAO.impostaPassword(utente.getcodUtente(), codiceVerifica, Password);
+			utente.setCodUtente(null);
 			
 			schermataAccessoFrame.mostraAvvisoPasswordImpostataConSuccessoReimpostaPassword2();
 		} catch (SQLException e) {

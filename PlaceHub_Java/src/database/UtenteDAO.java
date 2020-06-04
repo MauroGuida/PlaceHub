@@ -75,7 +75,9 @@ public class UtenteDAO {
 		return datiRecuperati.getString(1);
 	}
 	
-	public String recuperaCodiceUtenteDaEmail(String codUtente, String Email) throws SQLException, EmailSconosciutaException{	
+	public String recuperaCodiceUtenteDaEmail(String Email) throws SQLException, EmailSconosciutaException{	
+		String codUtente;
+		
 		String sql = "SELECT codUtente FROM utente WHERE email = ?";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
