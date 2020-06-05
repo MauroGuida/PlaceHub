@@ -37,7 +37,6 @@ public class RecensioneDAO {
 			
 			query2.executeUpdate();
 		}
-		
 	}
 	
 	public boolean utenteConRecensione(String codUtente, String codBusiness) throws SQLException {

@@ -117,10 +117,8 @@ public class Controller {
 			schermataAccessoFrame.mostraErroreNonPossonoEsserciCampiVuotiRegistrazione();
 		}else {
 			try {
-				final String oggetto = "Benvenuto su PlaceHub";
-				
 				utenteDAO.registrati(Username, Nome, Cognome, Email, DataDiNascita, Password);
-				mail.inviaEmail(Email, oggetto, corpoMail.corpoEmailBenvenutoRegistrazione(Username));
+				mail.inviaEmail(Email, "Benvenuto su PlaceHub", corpoMail.corpoEmailBenvenutoRegistrazione(Username));
 				
 				schermataAccessoFrame.mostraConfermaRegistrazione();
 			} catch (SQLException e) {		
@@ -157,8 +155,7 @@ public class Controller {
 	
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			final String oggetto = "Placehub - Reimposta password!";
-			mail.inviaEmail(email, oggetto, corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(email))));
+			mail.inviaEmail(email, "Placehub - Reimposta password!", corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(email))));
 			
 			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
 			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
@@ -516,8 +513,7 @@ public class Controller {
 				codUtente = utente.getcodUtente();
 				utenteDAO.generaCodiceVerifica(codUtente);
 				
-				final String oggetto = "Placehub - Verifica i tuoi documenti!";
-				mail.inviaEmail(utenteDAO.recuperaEmail(codUtente), oggetto, corpoMail.corpoEmailVerificaDocumenti(utenteDAO.recuperaCodiceVerifica(codUtente)));
+				mail.inviaEmail(utenteDAO.recuperaEmail(codUtente), "Placehub - Verifica i tuoi documenti!", corpoMail.corpoEmailVerificaDocumenti(utenteDAO.recuperaCodiceVerifica(codUtente)));
 				
 				schermataPrincipaleFrame.disabilitaCaricaDocumentoVerificaPubblicaBusiness();
 				schermataPrincipaleFrame.mostraEmailInviataVerificaPubblicaBusiness();
