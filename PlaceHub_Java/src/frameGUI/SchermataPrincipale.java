@@ -62,7 +62,7 @@ public class SchermataPrincipale extends JFrame {
 		generaPannelloScriviRecensione(ctrl);
 		generapannelloRicerche();
 		generaPannelloVerificaPubblicaBusiness(ctrl);
-		generaPannelloPubblicaBusiness3();
+		generaPannelloPubblicaBusiness3(ctrl);
 		generaPannelloPubblicaBusiness2(ctrl);
         generaPannelloPubblicaBusiness1(ctrl);
         generaPannelloGestisciBusiness(ctrl);
@@ -152,8 +152,8 @@ public class SchermataPrincipale extends JFrame {
 	}
 
 
-	private void generaPannelloPubblicaBusiness3() {
-		pannelloPubblicaBusiness3 = new PubblicaBusiness3();
+	private void generaPannelloPubblicaBusiness3(Controller ctrl) {
+		pannelloPubblicaBusiness3 = new PubblicaBusiness3(ctrl);
 		pannelloPubblicaBusiness3.setBounds(250, 36, 850, 614);
 	}
 
@@ -183,7 +183,7 @@ public class SchermataPrincipale extends JFrame {
 
 
 	private void generaSideBar() {
-		pannelloSideBar = new SideBar();
+		pannelloSideBar = new SideBar(ctrl);
 		pannelloSideBar.setBounds(0, 0, 250, 650);
 	}
 	
@@ -207,34 +207,9 @@ public class SchermataPrincipale extends JFrame {
 			pannelloGestisciBusiness.setVisible(true);
 		}
 		
-		private void mostraRicerche() {
+		public void mostraRicerche() {
 			nascondiTuttiIPannelli();
 			pannelloRicerche.setVisible(true);
-		}
-		
-		public void mostraHomepage() {
-			mostraRicerche();
-			ctrl.generaRisultatiHomePage();
-		}
-		
-		public void mostraRistoranti() {
-			mostraRicerche();
-			ctrl.generaRisultatiRistoranti();
-		}
-		
-		public void mostraAttrazioni() {
-			mostraRicerche();
-			ctrl.generaRisultatiAttrazioni();
-		}
-		
-		public void mostraAlloggi() {
-			mostraRicerche();
-			ctrl.generaRisultatiAlloggi();
-		}
-		
-		public void mostraRicercaLocali(String campoCosa, String campoDove) {
-			mostraRicerche();
-			ctrl.generaRisultatiRicercaLocale(campoCosa, campoDove);
 		}
 		
 		public void mostraScriviRecensione() {
@@ -407,37 +382,27 @@ public class SchermataPrincipale extends JFrame {
 		}
 		
 	//Controllo pannelli visibili
-		private boolean pannelloGestisciBusiness_IsVisible() {
+		public boolean pannelloGestisciBusiness_IsVisible() {
 			return pannelloGestisciBusiness.isVisible();
 		}
 		
 		
-		private boolean pannelloPubblicaBusiness1_IsVisible() {
+		public boolean pannelloPubblicaBusiness1_IsVisible() {
 			return pannelloPubblicaBusiness1.isVisible();
 		}
 		
 		
-		private boolean pannelloPubblicaBusiness2_IsVisible() {
+		public boolean pannelloPubblicaBusiness2_IsVisible() {
 			return pannelloPubblicaBusiness2.isVisible();
 		}
 		
 		
-		private boolean pannelloPubblicaBusiness3_IsVisible() {
+		public boolean pannelloPubblicaBusiness3_IsVisible() {
 			return pannelloPubblicaBusiness3.isVisible();
 		}
 		
 		
-		private boolean pannelloVerificaPubblicaBusiness_IsVisible() {
+		public boolean pannelloVerificaPubblicaBusiness_IsVisible() {
 			return pannelloVerificaPubblicaBusiness.isVisible();
-		}
-		
-		
-		public boolean controllaVisibilitaPannelliBusiness() {
-			if(pannelloGestisciBusiness_IsVisible() || pannelloPubblicaBusiness1_IsVisible() || 
-			   pannelloPubblicaBusiness2_IsVisible() || pannelloPubblicaBusiness3_IsVisible() ||
-			   pannelloVerificaPubblicaBusiness_IsVisible())
-				return true;
-				
-			return false;
 		}
 }

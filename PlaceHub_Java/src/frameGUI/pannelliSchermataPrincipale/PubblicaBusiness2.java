@@ -210,7 +210,7 @@ public class PubblicaBusiness2 extends JPanel {
 		bottoneCancella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(JOptionPane.showConfirmDialog(null, "Annullando perderai tutte le modifiche fatte, vuoi procedere?", "Conferma", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-					Controller.getSchermataPrincipaleFrame().mostraHomepage();
+					ctrl.mostraHompageSchermataPrincipale();
 				}
 			}
 		});

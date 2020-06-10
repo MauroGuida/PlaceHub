@@ -41,8 +41,10 @@ public class SideBar extends JPanel {
 	private JButton bottoneGestisciBusiness;
 	private int flagFocusBottone;
 	
+	private Controller ctrl;
 	
-	public SideBar() {
+	public SideBar(Controller ctrl) {
+		this.ctrl = ctrl;
 		setSize(250, 650);
 		setVisible(true);
 		setBackground(new Color(51,51,51));
@@ -134,7 +136,7 @@ public class SideBar extends JPanel {
 	    bottoneCerca.setIcon(new ImageIcon(SchermataPrincipale.class.getResource("/Icone/CercaButton.png")));
 	    bottoneCerca.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent arg0) {
-	    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
+	    		ctrl.mostraRicercaSchermataPrincipale(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    bottoneCerca.addMouseListener(new MouseAdapter() {
@@ -172,7 +174,7 @@ public class SideBar extends JPanel {
 					textFieldDove.setEditable(false);
 	    		
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
-		    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
+					ctrl.mostraRicercaSchermataPrincipale(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    textFieldDove.addFocusListener(new FocusAdapter() {
@@ -215,7 +217,7 @@ public class SideBar extends JPanel {
 					textFieldCosa.setEditable(false);
 	    		
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
-		    		Controller.getSchermataPrincipaleFrame().mostraRicercaLocali(textFieldCosa.getText(), textFieldDove.getText());
+					ctrl.mostraRicercaSchermataPrincipale(textFieldCosa.getText(), textFieldDove.getText());
 	    	}
 	    });
 	    textFieldCosa.addFocusListener(new FocusAdapter() {
@@ -250,7 +252,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 5;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraGestisciBusiness();
+	    		ctrl.mostraGestisciBusiness();
 	    	}
 	    });
 	    bottoneGestisciBusiness.addMouseListener(new MouseAdapter() {
@@ -260,7 +262,7 @@ public class SideBar extends JPanel {
 	    	}
 	    	@Override
 	    	public void mouseExited(MouseEvent e) {
-	    		if(!Controller.getSchermataPrincipaleFrame().controllaVisibilitaPannelliBusiness())
+	    		if(!ctrl.controllaVisibilitaPannelliBusiness())
 	    			bottoneGestisciBusiness.setIcon(new ImageIcon(SideBar.class.getResource("/Icone/gestisciBusiness.png")));
 	    	}
 	    });
@@ -279,7 +281,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 4;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraAlloggi();
+	    		ctrl.mostraAlloggiSchermataPrincipale();
 	    	}
 	    });
 	    bottoneAlloggi.addMouseListener(new MouseAdapter() {
@@ -310,7 +312,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 3;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraAttrazioni();
+	    		ctrl.mostraAttrazioniSchermataPrincipale();
 	    	}
 	    });
 	    bottoneAttrazioni.addMouseListener(new MouseAdapter() {
@@ -341,7 +343,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 2;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraRistoranti();
+	    		ctrl.mostraRistorantiSchermataPrincipale();
 	    	}
 	    });
 	    bottoneRistoranti.addMouseListener(new MouseAdapter() {
@@ -372,7 +374,7 @@ public class SideBar extends JPanel {
 	    		flagFocusBottone = 1;
 	    		cambiaFocusIconeSideBar(flagFocusBottone);
 	    		
-	    		Controller.getSchermataPrincipaleFrame().mostraHomepage();
+	    		ctrl.mostraHompageSchermataPrincipale();
 	    	}
 	    });
 	    bottoneHomepage.addMouseListener(new MouseAdapter() {

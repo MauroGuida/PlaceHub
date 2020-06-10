@@ -30,8 +30,10 @@ public class PubblicaBusiness3 extends JPanel {
 	private JLabel immagineVerificato;
 	private JButton bottoneOK;
 	private JPanel pannelloMessaggio;
+	private Controller ctrl;
 
-	public PubblicaBusiness3() {
+	public PubblicaBusiness3(Controller ctrl) {
+		this.ctrl = ctrl;
 		setSize(850, 614);
 		setVisible(false);
 		setBackground(Color.WHITE);
@@ -101,7 +103,7 @@ public class PubblicaBusiness3 extends JPanel {
 		});
 		bottoneOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller.getSchermataPrincipaleFrame().mostraHomepage();
+				ctrl.mostraHompageSchermataPrincipale();
 			}
 		});
 	}

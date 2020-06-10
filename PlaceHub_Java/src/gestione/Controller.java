@@ -101,7 +101,7 @@ public class Controller {
 			schermataPrincipaleFrame = new SchermataPrincipale(this);
 			schermataPrincipaleFrame.setVisible(true);
 			schermataAccessoFrame.dispose();
-			schermataPrincipaleFrame.mostraHomepage();
+			mostraHompageSchermataPrincipale();
 		} catch (UsernameOPasswordErratiException e1) {
 			schermataAccessoFrame.mostraErroreUsernamePassword(true);
 		} catch(SQLException e2) {
@@ -196,11 +196,40 @@ public class Controller {
 		}
 	}
 	
+		//SIDEBAR
+		public void mostraHompageSchermataPrincipale() {
+			schermataPrincipaleFrame.mostraRicerche();
+			schermataPrincipaleFrame.svuotaRicerche();
+			generaRisultatiHomePage();
+		}
+		
+		public void mostraRistorantiSchermataPrincipale() {
+			schermataPrincipaleFrame.mostraRicerche();
+			schermataPrincipaleFrame.svuotaRicerche();
+			generaRisultatiRistoranti();
+		}
+		
+		public void mostraAttrazioniSchermataPrincipale() {
+			schermataPrincipaleFrame.mostraRicerche();
+			schermataPrincipaleFrame.svuotaRicerche();
+			generaRisultatiAttrazioni();
+		}
+		
+		public void mostraAlloggiSchermataPrincipale() {
+			schermataPrincipaleFrame.mostraRicerche();
+			schermataPrincipaleFrame.svuotaRicerche();
+			generaRisultatiAlloggi();
+		}
+		
+		public void mostraRicercaSchermataPrincipale(String campoCosa,String campoDove) {
+			schermataPrincipaleFrame.mostraRicerche();
+			schermataPrincipaleFrame.svuotaRicerche();
+			generaRisultatiRicercaLocale(campoCosa, campoDove);
+		}
+	
 	
 		//RICERCHE
-		public void generaRisultatiHomePage() {	
-			schermataPrincipaleFrame.svuotaRicerche();
-			
+		private void generaRisultatiHomePage() {	
 			try {
 				for (Business locale : businessDAO.ricercaInVoga())
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
@@ -209,9 +238,7 @@ public class Controller {
 			}
 		}
 		
-		public void generaRisultatiRistoranti() {
-			schermataPrincipaleFrame.svuotaRicerche();
-			
+		private void generaRisultatiRistoranti() {	
 			try {
 				for (Business locale : businessDAO.recuperaLocaliDaTipo("Ristorante"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
@@ -220,9 +247,7 @@ public class Controller {
 			}
 		}
 		
-		public void generaRisultatiAttrazioni() {
-			schermataPrincipaleFrame.svuotaRicerche();
-			
+		private void generaRisultatiAttrazioni() {
 			try {
 				for (Business locale : businessDAO.recuperaLocaliDaTipo("Attrazione"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
@@ -231,9 +256,7 @@ public class Controller {
 			}
 		}
 
-		public void generaRisultatiAlloggi() {
-			schermataPrincipaleFrame.svuotaRicerche();
-			
+		private void generaRisultatiAlloggi() {
 			try {
 				for (Business locale : businessDAO.recuperaLocaliDaTipo("Alloggio"))
 					schermataPrincipaleFrame.aggiungiRisultatoRicerca(new LocaleGUI(locale, this));
@@ -242,9 +265,7 @@ public class Controller {
 			}
 		}
 		
-		public void generaRisultatiRicercaLocale(String campoCosa,String campoDove) {
-			schermataPrincipaleFrame.svuotaRicerche();
-			
+		private void generaRisultatiRicercaLocale(String campoCosa,String campoDove) {
 			try {
 				if(campoCosa.isEmpty() || campoCosa.isBlank() || campoCosa.equals("Cosa?"))
 					campoCosa = "";
@@ -455,6 +476,19 @@ public class Controller {
 		}
 		
 		//GESTISCI BUSINESS
+		public boolean controllaVisibilitaPannelliBusiness() {
+			if(schermataPrincipaleFrame.pannelloGestisciBusiness_IsVisible() || schermataPrincipaleFrame.pannelloPubblicaBusiness1_IsVisible() || 
+					schermataPrincipaleFrame.pannelloPubblicaBusiness2_IsVisible() || schermataPrincipaleFrame.pannelloPubblicaBusiness3_IsVisible() ||
+					schermataPrincipaleFrame.pannelloVerificaPubblicaBusiness_IsVisible())
+				return true;
+				
+			return false;
+		}
+		
+		public void mostraGestisciBusiness() {
+			schermataPrincipaleFrame.mostraGestisciBusiness();
+		}
+		
 		public void controllaDocumentiUtente() {
 			try {
 				if(utenteDAO.controllaDocumentiUtente(utente.getcodUtente())) {
@@ -586,7 +620,7 @@ public class Controller {
 					
 					recensioneDAO.inserisciRecensione(recensione);
 					
-					schermataPrincipaleFrame.mostraHomepage();
+					mostraHompageSchermataPrincipale();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
