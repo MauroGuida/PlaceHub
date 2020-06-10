@@ -155,7 +155,8 @@ public class Controller {
 	
 	public void invioEmailCodiceVerificaSchermataAccessoReimpostaPassword(String email) {
 		try {
-			mail.inviaEmail(email, "Placehub - Reimposta password!", corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(email))));
+			mail.inviaEmail(email, "Placehub - Reimposta password!",
+					corpoMail.corpoEmailReimpostaPassword(utenteDAO.recuperaCodiceVerifica(utenteDAO.recuperaCodiceUtenteDaEmail(email))));
 			
 			schermataAccessoFrame.mostraPannelloReimpostaPassword2();
 			schermataAccessoFrame.nascondiPannelloReimpostaPassword1();
@@ -547,7 +548,8 @@ public class Controller {
 				codUtente = utente.getcodUtente();
 				utenteDAO.generaCodiceVerifica(codUtente);
 				
-				mail.inviaEmail(utenteDAO.recuperaEmail(codUtente), "Placehub - Verifica i tuoi documenti!", corpoMail.corpoEmailVerificaDocumenti(utenteDAO.recuperaCodiceVerifica(codUtente)));
+				mail.inviaEmail(utenteDAO.recuperaEmail(codUtente), "Placehub - Verifica i tuoi documenti!",
+						corpoMail.corpoEmailVerificaDocumenti(utenteDAO.recuperaCodiceVerifica(codUtente)));
 				
 				schermataPrincipaleFrame.disabilitaCaricaDocumentoVerificaPubblicaBusiness();
 				schermataPrincipaleFrame.mostraEmailInviataVerificaPubblicaBusiness();
