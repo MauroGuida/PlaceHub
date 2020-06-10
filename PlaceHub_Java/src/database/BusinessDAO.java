@@ -14,9 +14,9 @@ public class BusinessDAO {
 		ArrayList<Business> locali = new ArrayList<Business>();
 
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
-				"FROM Business B, ImmagineProprieta I " + 
-				"WHERE B.codBusiness = I.codBusiness AND " + 
-				"	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) ORDER BY stelle DESC";
+					 "FROM Business B, ImmagineProprieta I " + 
+					 "WHERE B.codBusiness = I.codBusiness AND " + 
+					 "	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) ORDER BY stelle DESC";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		ResultSet datiRecuperati = query.executeQuery();
@@ -32,10 +32,10 @@ public class BusinessDAO {
 		ArrayList<Business> locali = new ArrayList<Business>();
 		
 		String sql = "SELECT B.codBusiness, B.Nome, B.Indirizzo, B.Stelle, I.Url " + 
-				"FROM Business B, ImmagineProprieta I " + 
-				"WHERE B.codBusiness = I.codBusiness AND " + 
-				"	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) AND " + 
-				"	Tipo = ?::tipoBusiness";
+					 "FROM Business B, ImmagineProprieta I " + 
+					 "WHERE B.codBusiness = I.codBusiness AND " + 
+					 "	I.URL = (SELECT URL FROM ImmagineProprieta IP WHERE IP.codBusiness = B.codBusiness LIMIT 1) AND " + 
+					 "	Tipo = ?::tipoBusiness";
 		PreparedStatement query;
 		query = Controller.getConnessioneAlDatabase().getConnessione().prepareStatement(sql);
 		query.setString(1, tipo);
