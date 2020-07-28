@@ -460,7 +460,7 @@ public class Controller {
 		public boolean caricaImmagineLocale(File nuovaImmagine) {
 			if(haEstensioneImmagine(nuovaImmagine)) {
 				locale.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
-				return true;
+				return true; // Se l'immagine è valida viene aggiunta al visualizzatore
 			}
 			
 			return false;
@@ -604,7 +604,7 @@ public class Controller {
 		public boolean caricaImmagineRecensione(File nuovaImmagine) {
 			if(haEstensioneImmagine(nuovaImmagine)) {
 				recensione.aggiungiImmagini(nuovaImmagine.getAbsolutePath());
-				return true;
+				return true; // Se l'immagine è valida viene aggiunta al visualizzatore
 			}
 			
 			return false;
